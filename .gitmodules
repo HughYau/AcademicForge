@@ -1,0 +1,9 @@
+[submodule "skills/humanizer"]
+	path = skills/humanizer
+	url = https://github.com/blader/humanizer.git
+[submodule "skills/AI-research-SKILLs"]
+	path = skills/AI-research-SKILLs
+	url = https://github.com/zechenzhangAGI/AI-research-SKILLs.git
+[submodule "skills/claude-scientific-skills"]
+	path = skills/claude-scientific-skills
+	url = https://github.com/K-Dense-AI/claude-scientific-skills.git

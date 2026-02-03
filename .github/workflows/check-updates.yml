@@ -1,0 +1,59 @@
+name: Check for Skill Updates
+
+on:
+  schedule:
+    # Check for updates every Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      
+      - name: Check for submodule updates
+        id: check
+        run: |
+          git submodule update --remote --merge
+          
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "No updates available"
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+          else
+            echo "Updates available!"
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+            
+            # Get list of updated submodules
+            echo "## Updated Skills" > update_summary.md
+            echo "" >> update_summary.md
+            git diff --submodule=log >> update_summary.md
+          fi
+      
+      - name: Create Pull Request
+        if: steps.check.outputs.has_updates == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'chore: update skills to latest versions'
+          title: '🔄 Automated Skill Updates Available'
+          body-path: update_summary.md
+          branch: automated-skill-updates
+          delete-branch: true
+          labels: |
+            automated
+            skill-update
+          assignees: your-username
+      
+      - name: Report status
+        run: |
+          if [ "${{ steps.check.outputs.has_updates }}" == "true" ]; then
+            echo "✅ Pull request created with skill updates"
+          else
+            echo "ℹ️ All skills are up to date"
+          fi

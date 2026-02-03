@@ -1,0 +1,103 @@
+forge:
+  name: "academic-forge"
+  version: "1.0.0"
+  description: "A curated skill collection for academic writing and research with Claude Code"
+  author: "your-username"
+  repository: "https://github.com/your-username/academic-forge"
+  license: "MIT"
+  homepage: "https://github.com/your-username/academic-forge"
+  
+  # Forge metadata
+  category: "academic"
+  tags:
+    - academic-writing
+    - research
+    - scientific-papers
+    - latex
+    - citations
+    - thesis
+  
+  # Minimum Claude Code version (if applicable)
+  requires:
+    claude_code: ">=1.0.0"
+
+# Included skills with their metadata
+skills:
+  - name: "claude-scientific-skills"
+    path: "skills/claude-scientific-skills"
+    repository: "https://github.com/k-dense-ai/claude-scientific-skills"
+    author: "k-dense-ai"
+    license: "MIT"
+    description: "Comprehensive scientific paper writing and LaTeX formatting"
+    tags:
+      - scientific-writing
+      - latex
+      - citations
+      - academic-structure
+    
+  - name: "AI-research-SKILLs"
+    path: "skills/AI-research-SKILLs"
+    repository: "https://github.com/orchestra-research/AI-research-SKILLs"
+    author: "orchestra-research"
+    license: "See repository"
+    description: "Research methodology, experimental design, and data analysis"
+    tags:
+      - research-methodology
+      - experimental-design
+      - data-analysis
+      - statistics
+    
+  - name: "humanizer"
+    path: "skills/humanizer"
+    repository: "https://github.com/humanizer-org/humanizer"
+    author: "humanizer-community"
+    license: "See repository"
+    description: "Academic tone refinement and readability improvement"
+    tags:
+      - tone-refinement
+      - readability
+      - academic-style
+      - editing
+
+# Configuration options for users
+config:
+  # Auto-update behavior
+  auto_update: false  # Set to true to check for updates automatically
+  
+  # Skill priority (higher = invoked first when multiple skills match)
+  priority:
+    claude-scientific-skills: 10
+    AI-research-SKILLs: 9
+    humanizer: 8
+  
+  # Enable/disable individual skills
+  enabled:
+    claude-scientific-skills: true
+    AI-research-SKILLs: true
+    humanizer: true
+
+# Installation instructions
+installation:
+  method: "git-submodule"
+  commands:
+    - "git clone --recursive https://github.com/your-username/academic-forge .opencode/skills/academic-forge"
+    - "# Or update existing: git submodule update --init --recursive"
+
+# Update instructions
+update:
+  method: "git-submodule"
+  commands:
+    - "cd .opencode/skills/academic-forge"
+    - "./scripts/update.sh"
+
+# Compatibility notes
+compatibility:
+  conflicts: []  # List any known skill conflicts
+  dependencies: []  # List any external dependencies required
+  
+notes: |
+  Academic Forge uses git submodules to integrate skills from their original
+  repositories. All skills retain their original licenses and authorship.
+  
+  This forge is inspired by Minecraft's mod loader concept, providing a curated
+  collection of skills that work well together for academic writing workflows.
