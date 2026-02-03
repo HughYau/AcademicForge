@@ -2,173 +2,133 @@
 
 <div align="center">
 
-**A curated skill collection for academic writing and research with Claude Code**
+**为学术写作和研究精心整合的 Claude Code 技能集合**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-3-blue.svg)](./skills)
 
+[English](./README_en.md) | 简体中文
+
 </div>
 
-## 📖 What is a Forge?
+## 📖 什么是 Forge（熔炉）？
 
-The name "Forge" is inspired by **Minecraft's mod loader system** (like Forge or Fabric), which allows players to run multiple mods together seamlessly. Just as Minecraft Forge provides a modpack that integrates various mods for specific gameplay experiences, **Academic Forge** integrates multiple Claude Code skills for a focused academic writing workflow.
+"Forge" 这个名字灵感来自 **Minecraft 的模组加载器系统**（如 Forge 或 Fabric），它允许玩家无缝运行多个模组。就像 Minecraft Forge 提供的整合包为特定游戏体验集成各种模组一样，**Academic Forge** 为专注的学术写作工作流程集成多个 Claude Code 技能。
 
-### Why "Forge"?
+### 为什么叫 "Forge"？
 
-- 🔧 **Integration over Installation** - Just like Minecraft modpacks, you get a curated collection that works well together
-- 🎯 **Purpose-Built** - Each forge targets a specific domain (academic writing, web development, data science, etc.)
-- 🔄 **Automatic Updates** - Skills remain linked to their original repositories via git submodules
-- 🤝 **Community-Driven** - Built on the excellent work of multiple skill creators
+- 🔧 **集成优于安装** - 就像 Minecraft 整合包，你得到的是一个精心策划、协同工作的集合
+- 🎯 **专门构建** - 每个 forge 针对特定领域（学术写作、Web 开发、数据科学等）
+- 🔄 **自动更新** - 技能通过 git submodules 保持与原始仓库的链接
+- 🤝 **社区驱动** - 建立在多个技能创作者的优秀工作之上
 
-## 🎯 Purpose
+## 🎯 用途
 
-Academic Forge solves a common problem: **too many skills lead to poor AI agent accuracy**. By curating only the skills relevant to academic writing and research, Claude Code can:
+Academic Forge 解决了一个常见问题：**太多技能会导致 AI 代理准确性下降**。通过只精选与学术写作和研究相关的技能，Claude Code 可以：
 
-- ✅ Make more precise skill invocations
-- ✅ Avoid confusion between similar skills
-- ✅ Maintain focus on your research workflow
-- ✅ Stay up-to-date with improvements from original authors
+- ✅ 做出更精准的技能调用
+- ✅ 避免类似技能之间的混淆
+- ✅ 保持对研究工作流程的专注
+- ✅ 及时获得原始作者的改进更新
 
-## 📦 Included Skills
+## 📦 包含的技能
 
-This forge integrates the following carefully selected skills:
+本 forge 整合了以下精心挑选的技能：
 
 ### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills)
-- **Author**: [@k-dense-ai](https://github.com/k-dense-ai)
-- **License**: MIT
-- **Purpose**: Comprehensive scientific paper writing, LaTeX formatting, and academic structure
-- **Best For**: Writing papers, managing citations, formatting equations
+- **作者**: [@k-dense-ai](https://github.com/k-dense-ai)
+- **许可证**: MIT
+- **用途**: 全面的科学论文写作、LaTeX 格式化和学术结构
+- **最适合**: 写论文、管理引用、格式化公式
 
-### [AI-research-SKILLs](https://github.com/orchestra-research/AI-research-SKILLs)
-- **Author**: [@orchestra-research](https://github.com/orchestra-research)
-- **License**: Check original repository
-- **Purpose**: Research methodology, experimental design, and data analysis workflows
-- **Best For**: Designing experiments, analyzing results, research planning
+### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs)
+- **作者**: [@zechenzhangAGI](https://github.com/zechenzhangAGI)
+- **许可证**: MIT
+- **用途**: 研究方法、实验设计和数据分析工作流程
+- **最适合**: 设计实验、分析结果、研究规划
 
-### [humanizer](https://github.com/humanizer-org/humanizer)
-- **Author**: Humanizer community
-- **License**: Check original repository
-- **Purpose**: Refining academic tone, improving readability, avoiding AI-detection patterns
-- **Best For**: Polishing drafts, maintaining academic voice, peer review preparation
+### [humanizer](https://github.com/blader/humanizer)
+- **作者**: [@blader](https://github.com/blader)
+- **许可证**: 查看原始仓库
+- **用途**: 优化学术语气、提高可读性、避免 AI 检测特征
+- **最适合**: 润色草稿、保持学术声调、同行评审准备
 
-> **Note**: All skills retain their original licenses and authorship. This forge provides convenient integration only. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
+> **注意**: 所有技能保留其原始许可证和作者身份。本 forge 仅提供便捷的集成。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### Installation
+### 安装
 
-Install Academic Forge directly into your Claude Code project:
+直接将 Academic Forge 安装到你的 Claude Code 项目中：
 
+**macOS/Linux:**
 ```bash
-# Navigate to your project
 cd your-project
-
-# Install the forge
 curl -sSL https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/install.sh | bash
 ```
 
-Or manually:
-
-```bash
-# Clone with all submodules
-git clone --recursive https://github.com/your-username/academic-forge .opencode/skills/academic-forge
-
-# Or if you already cloned without --recursive
-git submodule update --init --recursive
+**Windows (PowerShell):**
+```powershell
+cd your-project
+irm https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/install.ps1 | iex
 ```
 
-### Update Skills
+或手动安装：
 
-Keep all skills up-to-date with the latest improvements:
+```bash
+# 克隆包含所有 submodules
+git clone --recursive https://github.com/your-username/academic-forge .opencode/skills/academic-forge
+```
+
+### 更新技能
+
+保持所有技能与最新改进同步：
 
 ```bash
 cd .opencode/skills/academic-forge
-./scripts/update.sh
+./scripts/update.sh  # 或在 Windows 上使用 update.ps1
 ```
 
-## 🏗️ Structure
+## 🎓 使用案例
 
-```
-academic-forge/
-├── README.md              # This file
-├── LICENSE                # MIT License for the forge structure
-├── ATTRIBUTIONS.md        # Detailed credits for all included skills
-├── forge.yaml             # Forge metadata and skill configuration
-├── .gitmodules            # Git submodule definitions
-├── skills/
-│   ├── claude-scientific-skills/    (submodule)
-│   ├── AI-research-SKILLs/          (submodule)
-│   └── humanizer/                   (submodule)
-└── scripts/
-    ├── install.sh         # Installation script
-    └── update.sh          # Update all skills to latest versions
-```
+Academic Forge 非常适合：
 
-## 🎓 Use Cases
+- 📝 **撰写研究论文** - 从大纲到提交就绪的手稿
+- 🔬 **实验设计** - 规划和记录研究方法
+- 📊 **数据分析** - 统计分析和结果解释
+- 📚 **文献综述** - 组织和综合学术资源
+- ✍️ **学位论文写作** - 长篇学术文档管理
+- 👥 **协作研究** - 在团队成员之间保持一致的风格
 
-Academic Forge is perfect for:
+## 📄 文档
 
-- 📝 **Writing Research Papers** - From outline to submission-ready manuscript
-- 🔬 **Experimental Design** - Planning and documenting research methodology
-- 📊 **Data Analysis** - Statistical analysis and result interpretation
-- 📚 **Literature Review** - Organizing and synthesizing academic sources
-- ✍️ **Thesis Writing** - Long-form academic document management
-- 👥 **Collaborative Research** - Maintaining consistent style across team members
+- [快速入门指南](./QUICKSTART.md) - 5 分钟上手
+- [使用示例](./EXAMPLES.md) - 真实工作流程示例
+- [技能归属](./ATTRIBUTIONS.md) - 详细的作者信息和许可证
+- [贡献指南](./CONTRIBUTING.md) - 如何贡献或创建你自己的 forge
 
-## 🔄 Version Management
+## 🤝 贡献
 
-Academic Forge uses git submodules to track specific versions of each skill:
+发现了一个非常适合学术写作的技能？请查看 [CONTRIBUTING.md](./CONTRIBUTING.md) 了解如何：
 
-- **Automatic Updates**: Run `./scripts/update.sh` to pull latest changes
-- **Version Locking**: Commit the `.gitmodules` state to lock specific versions
-- **Rollback Safety**: Use git to revert to previous working states
+- 建议新技能
+- 报告问题
+- 改进文档
+- 创建你自己领域的 forge
 
-## 🤝 Contributing
+## 📄 许可证
 
-Found a skill that would be perfect for academic writing? Here's how to contribute:
+**forge 结构**（脚本、配置、文档）采用 [MIT 许可证](./LICENSE)。
 
-1. **Suggest a Skill** - Open an issue with the skill repository and use case
-2. **Test Compatibility** - Ensure it doesn't conflict with existing skills
-3. **Submit PR** - Add as a submodule with proper attribution
-4. **Update Docs** - Add to README.md and ATTRIBUTIONS.md
+**单个技能**保留其原始许可证 - 详见 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) 和每个技能的仓库。
 
-### Creating Your Own Forge
-
-Inspired to create a forge for your domain? Great! Here's the template:
-
-```bash
-# Fork this repository
-# Replace skills with your domain-specific collection
-# Update README.md with your forge's purpose
-# Share with the community!
-```
-
-## 📄 License
-
-The **forge structure** (scripts, configuration, documentation) is licensed under the [MIT License](./LICENSE).
-
-**Individual skills** retain their original licenses - see [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) and each skill's repository for details.
-
-## 🙏 Acknowledgments
-
-This project exists thanks to the hard work of skill creators in the Claude Code community:
-
-- The [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) team for comprehensive scientific writing support
-- The [orchestra-research](https://github.com/orchestra-research) team for research methodology expertise
-- The humanizer community for academic tone refinement tools
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/your-username/academic-forge/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/academic-forge/discussions)
-- **Updates**: Watch this repository for new skill additions
 
 ---
 
 <div align="center">
 
-**Built with 💙 for the academic research community**
+**为学术研究社区用 💙 构建**
 
-⭐ If this forge helps your research, please star this repo and the individual skill repositories!
+⭐ 如果这个 forge 对你的研究有帮助，请给本仓库和各个技能仓库点星！
 
 </div>
