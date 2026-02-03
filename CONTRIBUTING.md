@@ -20,7 +20,7 @@ Have a skill that would be perfect for academic workflows? Here's what we're loo
 - ✅ Adds unique value to the forge
 
 **How to suggest:**
-1. Open a [GitHub Issue](https://github.com/your-username/academic-forge/issues/new)
+1. Open a [GitHub Issue](https://github.com/HughYau/academic-forge/issues/new)
 2. Use the template: "Skill Suggestion: [Skill Name]"
 3. Provide:
    - Skill repository URL
@@ -32,7 +32,7 @@ Have a skill that would be perfect for academic workflows? Here's what we're loo
 
 Found a bug or compatibility problem?
 
-1. Check [existing issues](https://github.com/your-username/academic-forge/issues) first
+1. Check [existing issues](https://github.com/HughYau/academic-forge/issues) first
 2. Open a new issue with:
    - Clear description of the problem
    - Steps to reproduce
@@ -66,7 +66,7 @@ Documentation improvements are always welcome!
 
 ```bash
 # 1. Fork and clone the forge
-git clone https://github.com/your-username/academic-forge.git
+git clone https://github.com/HughYau/academic-forge.git
 cd academic-forge
 
 # 2. Add the skill as a submodule
@@ -155,9 +155,8 @@ Before submitting a PR with a new skill:
 
 ## Questions?
 
-- 💬 [Open a Discussion](https://github.com/your-username/academic-forge/discussions)
-- 🐛 [Report an Issue](https://github.com/your-username/academic-forge/issues)
-- 📧 Contact: [your-email]
+- 💬 [Open a Discussion](https://github.com/HughYau/academic-forge/discussions)
+- 🐛 [Report an Issue](https://github.com/HughYau/academic-forge/issues)
 
 ## Creating Your Own Forge
 

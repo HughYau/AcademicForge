@@ -304,4 +304,4 @@ accuracy with standard deviation < 0.02 across folds."
 - [Skill Attribution](./ATTRIBUTIONS.md)
 - [Contributing](./CONTRIBUTING.md)
 
-Have a great workflow to share? [Open a discussion](https://github.com/your-username/academic-forge/discussions) and we'll add it here!
+Have a great workflow to share? [Open a discussion](https://github.com/HughYau/academic-forge/discussions) and we'll add it here!

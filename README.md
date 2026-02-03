@@ -85,20 +85,20 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
 **macOS/Linux:**
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
 cd your-project
-irm https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.ps1 | iex
 ```
 
 或手动安装：
 
 ```bash
 # 克隆包含所有 submodules
-git clone --recursive https://github.com/your-username/academic-forge .opencode/skills/academic-forge
+git clone --recursive https://github.com/HughYau/academic-forge .opencode/skills/academic-forge
 ```
 
 ### 更新Skills

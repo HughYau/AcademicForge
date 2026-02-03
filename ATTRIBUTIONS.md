@@ -84,7 +84,7 @@ If you use this forge in your work, we appreciate (but don't require) acknowledg
 
 ```
 We used the Academic Forge skill collection for Claude Code
-(https://github.com/your-username/academic-forge), which integrates
+(https://github.com/HughYau/academic-forge), which integrates
 skills from k-dense-ai, orchestra-research, and the humanizer community.
 ```
 
@@ -93,7 +93,7 @@ skills from k-dense-ai, orchestra-research, and the humanizer community.
 Add to your README.md:
 
 ```markdown
-This project uses [Academic Forge](https://github.com/your-username/academic-forge)
+This project uses [Academic Forge](https://github.com/HughYau/academic-forge)
 for AI-assisted academic writing.
 ```
 
@@ -119,8 +119,7 @@ The best way to support the creators of these skills:
 If you are an author of one of these skills and have concerns about attribution or licensing:
 
 1. Open an issue on this repository
-2. Contact us at [your-email]
-3. We will respond within 48 hours and make necessary corrections
+2. We will respond within 48 hours and make necessary corrections
 
 We are committed to proper attribution and respecting all licenses.
 

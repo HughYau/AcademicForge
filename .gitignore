@@ -5,7 +5,7 @@
 *.swo
 *~
 .DS_Store
-
+PROJECT_SUMMARY.md
 # Logs
 *.log
 logs/

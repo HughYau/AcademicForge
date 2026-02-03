@@ -25,13 +25,13 @@ All seamlessly integrated into Claude Code for your academic workflow.
 **macOS/Linux:**
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
 cd your-project
-irm https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.ps1 | iex
 ```
 
 ### Option B: Manual Installation
@@ -41,7 +41,7 @@ irm https://raw.githubusercontent.com/your-username/academic-forge/main/scripts/
 cd your-project
 
 # 2. Clone Academic Forge with all skills
-git clone --recursive https://github.com/your-username/academic-forge .opencode/skills/academic-forge
+git clone --recursive https://github.com/HughYau/academic-forge .opencode/skills/academic-forge
 
 # 3. Restart Claude Code
 ```
@@ -153,8 +153,8 @@ Disable conflicting skills by editing `forge.yaml` or removing them from your ma
 ## Getting Help
 
 - 📚 [Full Documentation](./README.md)
-- 💬 [Ask Questions](https://github.com/your-username/academic-forge/discussions)
-- 🐛 [Report Issues](https://github.com/your-username/academic-forge/issues)
+- 💬 [Ask Questions](https://github.com/HughYau/academic-forge/discussions)
+- 🐛 [Report Issues](https://github.com/HughYau/academic-forge/issues)
 
 ## What's Next?
 
