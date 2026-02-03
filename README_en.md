@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**A curated skill collection for academic writing and research with Claude Code**
+**A curated skill collection for academic writing and research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-3-blue.svg)](./skills)

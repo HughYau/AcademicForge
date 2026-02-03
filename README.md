@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**为学术写作和研究精心整合的 Claude Code 技能集合**
+**为学术写作整合的Skills集合**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-3-blue.svg)](./skills)
