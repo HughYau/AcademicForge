@@ -25,7 +25,7 @@ Academic Forge uses **git submodules** to include skills from their original rep
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/claude-scientific-skills/LICENSE`
 
-**Why we included it**: Provides comprehensive support for writing scientific papers with proper academic structure, LaTeX integration, and citation handling.
+**Why we included it**: The most comprehensive scientific skills collection available, with 140 ready-to-use skills spanning 15+ scientific domains. Includes deep integration with 28+ scientific databases (PubMed, OpenAlex, ChEMBL, UniProt), 55+ specialized Python packages (BioPython, RDKit, DeepChem, Scanpy), and complete workflows from literature review through publication. Essential for any researcher working in bioinformatics, cheminformatics, clinical research, or computational biology.
 
 ---
 
@@ -40,7 +40,7 @@ Academic Forge uses **git submodules** to include skills from their original rep
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/AI-research-SKILLs/LICENSE`
 
-**Why we included it**: Essential for planning research, designing experiments, and analyzing results with academic rigor.
+**Why we included it**: The gold standard for AI research engineering workflows, with 82 expert-level skills covering the complete research lifecycle. Each skill contains ~420 lines of detailed documentation plus 300KB+ reference materials. Covers cutting-edge frameworks across model architecture (LitGPT, Mamba, RWKV), training (Axolotl, DeepSpeed, FSDP), post-training (TRL, OpenRLHF), inference (vLLM, TensorRT-LLM), and evaluation (lm-eval-harness). Invaluable for researchers and engineers working on LLMs, multimodal models, or publishing ML papers at top-tier conferences (NeurIPS, ICML, ICLR).
 
 ---
 

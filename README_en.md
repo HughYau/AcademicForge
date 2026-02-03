@@ -33,20 +33,41 @@ Academic Forge solves a common problem: **too many skills lead to poor AI agent 
 
 This forge integrates the following carefully selected skills:
 
-### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills)
-- **Author**: [@k-dense-ai](https://github.com/k-dense-ai)
+### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) (140 Skills)
+- **Author**: [@k-dense-ai](https://github.com/k-dense-ai) - By K-Dense Inc.
 - **License**: MIT
-- **Purpose**: Comprehensive scientific paper writing, LaTeX formatting, and academic structure
-- **Best For**: Writing papers, managing citations, formatting equations
+- **Coverage**: 140 ready-to-use scientific skills across 15+ domains
+- **What It Includes**:
+  - 🧬 **Bioinformatics & Genomics** - BioPython, Scanpy, single-cell RNA-seq, variant annotation
+  - 🧪 **Cheminformatics & Drug Discovery** - RDKit, DeepChem, molecular docking, virtual screening
+  - 🏥 **Clinical Research** - ClinicalTrials.gov, ClinVar, FDA databases, pharmacogenomics
+  - 📊 **Data Analysis** - Statistical analysis, matplotlib, seaborn, publication figures
+  - 📚 **Scientific Communication** - LaTeX formatting, citation management, peer review
+  - 🔬 **Laboratory Automation** - PyLabRobot, Benchling, Opentrons integration
+  - 🤖 **Machine Learning** - PyTorch Lightning, scikit-learn, deep learning workflows
+  - 📚 **Databases** - 28+ scientific databases (PubMed, OpenAlex, ChEMBL, UniProt, etc.)
+- **Best For**: Multi-step scientific workflows from literature review to publication
 
-### [AI-research-SKILLs](https://github.com/orchestra-research/AI-research-SKILLs)
-- **Author**: [@orchestra-research](https://github.com/orchestra-research)
-- **License**: Check original repository
-- **Purpose**: Research methodology, experimental design, and data analysis workflows
-- **Best For**: Designing experiments, analyzing results, research planning
+### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) (82 Skills)
+- **Author**: [@zechenzhangAGI](https://github.com/zechenzhangAGI) - By Orchestra Research
+- **License**: MIT
+- **Coverage**: 82 expert-level AI research engineering skills across 20 categories
+- **What It Includes**:
+  - 🏗️ **Model Architecture** - LitGPT, Mamba, RWKV, NanoGPT, TorchTitan (5 skills)
+  - 🎯 **Fine-Tuning** - Axolotl, LLaMA-Factory, PEFT, Unsloth (4 skills)
+  - 🎓 **Post-Training** - TRL, GRPO, OpenRLHF, SimPO, verl (8 skills for RLHF/DPO)
+  - ⚡ **Distributed Training** - DeepSpeed, FSDP, Megatron-Core, Accelerate (6 skills)
+  - 🚀 **Optimization** - Flash Attention, bitsandbytes, GPTQ, AWQ (6 skills)
+  - 🔥 **Inference** - vLLM, TensorRT-LLM, SGLang, llama.cpp (4 skills)
+  - 📊 **Evaluation** - lm-eval-harness, BigCode, NeMo Evaluator (3 skills)
+  - 🤖 **Agents & RAG** - LangChain, LlamaIndex, Chroma, FAISS (9 skills)
+  - 🎨 **Multimodal** - CLIP, Whisper, LLaVA, Stable Diffusion (7 skills)
+  - 📝 **ML Paper Writing** - LaTeX templates for NeurIPS, ICML, ICLR, ACL (1 skill)
+- **Documentation Quality**: ~420 lines per skill + 300KB+ reference materials
+- **Best For**: AI research workflows from hypothesis to paper publication
 
-### [humanizer](https://github.com/humanizer-org/humanizer)
-- **Author**: Humanizer community
+### [humanizer](https://github.com/blader/humanizer)
+- **Author**: [@blader](https://github.com/blader)
 - **License**: Check original repository
 - **Purpose**: Refining academic tone, improving readability, avoiding AI-detection patterns
 - **Best For**: Polishing drafts, maintaining academic voice, peer review preparation

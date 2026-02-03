@@ -35,17 +35,38 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
 
 本 forge 整合了以下精心挑选的Skills：
 
-### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills)
-- **作者**: [@k-dense-ai](https://github.com/k-dense-ai)
+### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) (140 Skills)
+- **作者**: [@k-dense-ai](https://github.com/k-dense-ai) - By K-Dense Inc.
 - **许可证**: MIT
-- **用途**: 全面的科学论文写作、LaTeX 格式化和学术结构
-- **最适合**: 写论文、管理引用、格式化公式
+- **覆盖范围**: 140 个即用型科学skills，涵盖15+领域
+- **包含内容**:
+  - 🧬 **生物信息学与基因组学** - BioPython, Scanpy, 单细胞RNA-seq, 变异注释
+  - 🧪 **化学信息学与药物发现** - RDKit, DeepChem, 分子对接, 虚拟筛选
+  - 🏥 **临床研究** - ClinicalTrials.gov, ClinVar, FDA数据库, 药物基因组学
+  - 📊 **数据分析** - 统计分析, matplotlib, seaborn, 出版级图表
+  - 📚 **科学写作** - LaTeX格式化, 引用管理, 同行评审
+  - 🔬 **实验室自动化** - PyLabRobot, Benchling, Opentrons集成
+  - 🤖 **机器学习** - PyTorch Lightning, scikit-learn, 深度学习工作流
+  - 📚 **数据库** - 28+ 科学数据库 (PubMed, OpenAlex, ChEMBL, UniProt等)
+- **最适合**: 从文献综述到论文发表的多步骤科学工作流程
 
-### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs)
-- **作者**: [@zechenzhangAGI](https://github.com/zechenzhangAGI)
+### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) (82 Skills)
+- **作者**: [@zechenzhangAGI](https://github.com/zechenzhangAGI) - By Orchestra Research
 - **许可证**: MIT
-- **用途**: 研究方法、实验设计和数据分析工作流程
-- **最适合**: 设计实验、分析结果、研究规划
+- **覆盖范围**: 82 个专家级AI研究工程skills，涵盖20个类别
+- **包含内容**:
+  - 🏗️ **模型架构** - LitGPT, Mamba, RWKV, NanoGPT, TorchTitan (5个skills)
+  - 🎯 **微调** - Axolotl, LLaMA-Factory, PEFT, Unsloth (4个skills)
+  - 🎓 **后训练** - TRL, GRPO, OpenRLHF, SimPO, verl (8个RLHF/DPO skills)
+  - ⚡ **分布式训练** - DeepSpeed, FSDP, Megatron-Core, Accelerate (6个skills)
+  - 🚀 **优化** - Flash Attention, bitsandbytes, GPTQ, AWQ (6个skills)
+  - 🔥 **推理** - vLLM, TensorRT-LLM, SGLang, llama.cpp (4个skills)
+  - 📊 **评估** - lm-eval-harness, BigCode, NeMo Evaluator (3个skills)
+  - 🤖 **Agents与RAG** - LangChain, LlamaIndex, Chroma, FAISS (9个skills)
+  - 🎨 **多模态** - CLIP, Whisper, LLaVA, Stable Diffusion (7个skills)
+  - 📝 **机器学习论文写作** - NeurIPS, ICML, ICLR, ACL的LaTeX模板 (1个skill)
+- **文档质量**: 每个skill约420行 + 300KB+参考资料
+- **最适合**: 从假设到论文发表的AI研究工作流程
 
 ### [humanizer](https://github.com/blader/humanizer)
 - **作者**: [@blader](https://github.com/blader)
