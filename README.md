@@ -59,7 +59,7 @@ Academic Forge 解决了一个常见问题：**太多技能会导致 AI 代理�
 
 ### 安装
 
-直接将 Academic Forge 安装到你的 Claude Code 项目中：
+直接将 Academic Forge 安装到你的 Claude Code/OpenCode 项目中：
 
 **macOS/Linux:**
 ```bash
