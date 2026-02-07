@@ -85,14 +85,14 @@ Install Academic Forge directly into your Claude Code project:
 cd your-project
 
 # Install the forge
-curl -sSL https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/install.sh | bash
 ```
 
 Or manually:
 
 ```bash
 # Clone with all submodules
-git clone --recursive https://github.com/HughYau/academic-forge .opencode/skills/academic-forge
+git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge
 
 # Or if you already cloned without --recursive
 git submodule update --init --recursive
