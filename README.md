@@ -101,14 +101,39 @@ irm https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/install
 git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge
 ```
 
-### 更新Skills
+### 下载 Skills Submodules
 
-保持所有Skills与最新改进同步：
+如果你只想下载 skills 文件夹中的子模块（不包含整个仓库）：
+
+**Windows (PowerShell):**
+```powershell
+.\scripts\download-skills.ps1
+```
+
+**Linux/macOS:**
+```bash
+bash scripts/download-skills.sh
+```
+
+这些脚本将自动下载所有 skills 子模块到本地 `skills/` 文件夹。
+
+### 更新 Skills
+
+保持所有 Skills 与最新改进同步：
 
 ```bash
 cd .opencode/skills/academic-forge
 ./scripts/update.sh  # 或在 Windows 上使用 update.ps1
 ```
+
+#### 🔄 自动更新
+
+本仓库配置了自动化工作流程，**每周一 09:00 UTC** 自动更新所有 submodules 到最新版本。这意味着：
+
+- ✅ Skills 始终保持最新状态
+- ✅ 自动获取原作者的改进和bug修复
+- ✅ 无需手动运行更新脚本
+- 📅 更新时间：每周一 09:00 UTC（北京时间 17:00）
 
 ## 🎓 使用案例
 

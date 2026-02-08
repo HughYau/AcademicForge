@@ -98,6 +98,22 @@ git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/
 git submodule update --init --recursive
 ```
 
+### Download Skills Submodules
+
+If you only want to download the skills submodules (without the entire repository):
+
+**Windows (PowerShell):**
+```powershell
+.\scripts\download-skills.ps1
+```
+
+**Linux/macOS:**
+```bash
+bash scripts/download-skills.sh
+```
+
+These scripts will automatically download all skills submodules to your local `skills/` folder. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
+
 ### Update Skills
 
 Keep all skills up-to-date with the latest improvements:
@@ -106,6 +122,15 @@ Keep all skills up-to-date with the latest improvements:
 cd .opencode/skills/academic-forge
 ./scripts/update.sh
 ```
+
+#### 🔄 Automatic Updates
+
+This repository is configured with automated workflows that update all submodules to their latest versions **every Monday at 09:00 UTC**. This means:
+
+- ✅ Skills always stay up-to-date
+- ✅ Automatically receive improvements and bug fixes from original authors
+- ✅ No need to manually run update scripts
+- 📅 Update schedule: Every Monday at 09:00 UTC
 
 ## 🏗️ Structure
 
