@@ -3,9 +3,9 @@ forge:
   version: "1.0.0"
   description: "A curated skill collection for academic writing and research with Claude Code"
   author: "your-username"
-  repository: "https://github.com/your-username/academic-forge"
+  repository: "https://github.com/HughYau/AcademicForge"
   license: "MIT"
-  homepage: "https://github.com/your-username/academic-forge"
+  homepage: "https://github.com/HughYau/AcademicForge"
   
   # Forge metadata
   category: "academic"
@@ -80,7 +80,7 @@ config:
 installation:
   method: "git-submodule"
   commands:
-    - "git clone --recursive https://github.com/your-username/academic-forge .opencode/skills/academic-forge"
+    - "git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge"
     - "# Or update existing: git submodule update --init --recursive"
 
 # Update instructions

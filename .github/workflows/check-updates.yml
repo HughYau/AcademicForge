@@ -6,6 +6,10 @@ on:
     - cron: '0 9 * * 1'
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   check-updates:
     runs-on: ubuntu-latest
@@ -48,7 +52,7 @@ jobs:
           labels: |
             automated
             skill-update
-          assignees: your-username
+          assignees: HughYau
       
       - name: Report status
         run: |
