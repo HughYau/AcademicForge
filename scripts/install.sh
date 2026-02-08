@@ -50,7 +50,7 @@ fi
 mkdir -p "$(dirname "$INSTALL_DIR")"
 
 echo -e "${BLUE}📦 Cloning Academic Forge...${NC}"
-git clone --recursive https://github.com/your-username/academic-forge "$INSTALL_DIR"
+git clone --recursive https://github.com/HughYau/AcademicForge "$INSTALL_DIR"
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✓ Successfully cloned Academic Forge${NC}"

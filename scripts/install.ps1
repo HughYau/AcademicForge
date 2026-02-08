@@ -1,4 +1,4 @@
-# Academic Forge Installation Script for Windows
+﻿# Academic Forge Installation Script for Windows
 # PowerShell version
 
 param(
@@ -60,7 +60,7 @@ if (-not (Test-Path $parentDir)) {
 Write-ColorOutput "📦 Cloning Academic Forge..." "Blue"
 
 try {
-    git clone --recursive https://github.com/your-username/academic-forge $InstallDir
+    git clone --recursive https://github.com/HughYau/AcademicForge $InstallDir
     Write-ColorOutput "✓ Successfully cloned Academic Forge" "Green"
 } catch {
     Write-ColorOutput "❌ Failed to clone repository" "Red"
@@ -106,3 +106,4 @@ Write-Host "  - ATTRIBUTIONS.md: Skill credits and licenses"
 Write-Host "  - forge.yaml: Configuration options"
 Write-Host ""
 Write-ColorOutput "Happy writing! 🎓📝" "Green"
+

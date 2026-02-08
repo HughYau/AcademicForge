@@ -173,8 +173,8 @@ The **forge structure** (scripts, configuration, documentation) is licensed unde
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/HughYau/academic-forge/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/HughYau/academic-forge/discussions)
+- **Issues**: [GitHub Issues](https://github.com/HughYau/AcademicForge/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/HughYau/AcademicForge/discussions)
 - **Updates**: Watch this repository for new skill additions
 
 ---

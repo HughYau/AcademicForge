@@ -1,4 +1,4 @@
-# Academic Forge Update Script for Windows
+﻿# Academic Forge Update Script for Windows
 # PowerShell version
 
 # Set error action preference
