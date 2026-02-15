@@ -25,6 +25,16 @@ jobs:
         id: check
         run: |
           git submodule update --remote --merge
+
+          # Sync superpowers skills-only snapshot
+          rm -rf .tmp-superpowers-sync
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git .tmp-superpowers-sync
+          git -C .tmp-superpowers-sync sparse-checkout set skills
+
+          rm -rf skills/superpowers
+          mkdir -p skills/superpowers
+          cp -R .tmp-superpowers-sync/skills/* skills/superpowers/
+          rm -rf .tmp-superpowers-sync
           
           # Check if there are any changes
           if git diff --quiet; then

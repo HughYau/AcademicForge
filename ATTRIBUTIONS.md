@@ -4,13 +4,18 @@ This project integrates skills from multiple authors in the Claude Code ecosyste
 
 ## How This Forge Works
 
-Academic Forge uses **git submodules** to include skills from their original repositories. This means:
+Academic Forge uses a **hybrid integration model**:
+
+- Most skills are linked via git submodules
+- `superpowers` is synced as a skills-only snapshot from upstream `skills/`
+
+This means:
 
 - ✅ All original LICENSE files are preserved
 - ✅ Skills link directly to their source repositories
 - ✅ Authors receive proper credit and GitHub attribution
 - ✅ Updates flow from the original repositories
-- ✅ No code is copied or redistributed without proper linking
+- ✅ `superpowers` is intentionally limited to skills-only content to keep this forge focused
 
 ## Included Skills
 
@@ -59,6 +64,21 @@ Academic Forge uses **git submodules** to include skills from their original rep
 
 ---
 
+### 4. superpowers (skills-only)
+
+**Original Repository**: [obra/superpowers](https://github.com/obra/superpowers)
+
+- **Author**: obra
+- **License**: MIT License
+- **Included Version**: Synced snapshot of `skills/` (see git history for latest sync commit)
+- **Purpose**: Structured development workflow skills (planning, debugging, TDD, review workflows)
+- **Modifications**: Integrated as skills-only content under `skills/superpowers` (plugin/non-skill directories are intentionally excluded)
+- **Original License Text**: See upstream `obra/superpowers` repository
+
+**Why we included it**: Adds battle-tested workflow skills like brainstorming, writing-plans, systematic-debugging, and test-driven-development that complement academic and research implementation workflows.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -73,6 +93,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | claude-scientific-skills | MIT | ✅ Yes | ✅ Yes |
 | AI-research-SKILLs | TBD* | Check repo | Check repo |
 | humanizer | TBD* | Check repo | Check repo |
+| superpowers | MIT | ✅ Yes | ✅ Yes |
 
 *Please check the original repository for current license information.
 
@@ -130,7 +151,7 @@ Want to add a skill to this forge? Please ensure:
 1. The skill has a clear, open-source license
 2. You have permission to include it (or it's clearly licensed for redistribution)
 3. You provide full attribution in this document
-4. You add it as a git submodule (not a copy) to maintain the link to the original
+4. You use a traceable integration method (prefer submodule; skills-only sync is acceptable when justified)
 
 ## Version History
 
@@ -141,11 +162,14 @@ This document tracks which versions of each skill are included:
 | 2024-XX-XX | claude-scientific-skills | abc123... | Initial inclusion |
 | 2024-XX-XX | AI-research-SKILLs | def456... | Initial inclusion |
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
+| 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
 
-To see the current versions, run:
+To see the current linked submodule versions, run:
 ```bash
 git submodule status
 ```
+
+For `superpowers` (skills-only), check the latest sync commit in this repository's git history.
 
 ---
 

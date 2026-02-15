@@ -5,7 +5,7 @@
 **为学术写作整合的Skills集合**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-3-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-4-blue.svg)](./skills)
 
 [English](./README_en.md) | 简体中文
 
@@ -19,7 +19,7 @@
 
 - 🔧 **集成优于安装** - 就像 Minecraft 整合包，你得到的是一个精心策划、协同工作的集合
 - 🎯 **专门构建** - 每个 forge 针对特定领域（学术写作、Web 开发、数据科学等）
-- 🔄 **自动更新** - Skills通过 git submodules 保持与原始仓库的链接
+- 🔄 **自动更新** - Skills 通过 git submodules 与 skills-only 同步机制保持最新
 - 🤝 **社区驱动** - 建立在多个Skills创作者的优秀工作之上
 
 ## 🎯 用途
@@ -74,6 +74,24 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
 - **用途**: 优化学术语气、提高可读性、避免 AI 检测特征
 - **最适合**: 润色草稿、保持学术声调、同行评审准备
 
+### [superpowers](https://github.com/obra/superpowers)（仅包含 `skills/`）
+- **作者**: [@obra](https://github.com/obra)
+- **许可证**: MIT
+- **定位**: 一个“流程型技能库”，强调 **先设计、后实现、再验证** 的工程纪律，减少“直接开写导致返工”的问题
+- **核心技能**:
+  - `brainstorming`：把模糊需求收敛成可执行方案
+  - `writing-plans` / `executing-plans`：把任务拆到可验证的粒度
+  - `systematic-debugging`：按步骤定位根因，避免拍脑袋修 bug
+  - `test-driven-development`：以测试驱动最小改动实现
+  - `requesting-code-review` / `receiving-code-review`：形成闭环复盘
+  - `verification-before-completion`：在宣告完成前做证据化验证
+- **在学术项目中的价值**:
+  - 📌 **课题与实验规划**：先澄清假设、变量、验收标准，再落地代码
+  - 🧪 **实验管线开发**：把“数据处理→训练→评估→可视化”拆成可追踪步骤
+  - 🛠️ **复现实验与排错**：用系统化调试减少不可复现与隐性错误
+  - ✅ **交付质量**：通过测试与验证步骤，降低结果描述与代码实现不一致
+- **集成方式**: 本 forge 仅同步上游仓库 `skills/` 子目录，不包含插件与其他目录（即不注入 OpenCode 插件逻辑）
+
 > **注意**: 所有Skills保留其原始许可证和作者身份。本 forge 仅提供便捷的集成。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
 
 ## 🚀 快速开始
@@ -97,13 +115,13 @@ irm https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/install
 或手动安装：
 
 ```bash
-# 克隆包含所有 submodules
+# 克隆仓库（包含 submodules，可后续同步 skills-only 来源）
 git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge
 ```
 
-### 下载 Skills Submodules
+### 下载/同步 Skills
 
-如果你只想下载 skills 文件夹中的子模块（不包含整个仓库）：
+如果你只想在现有仓库中拉取最新 skills（包含 submodules + superpowers skills-only）：
 
 **Windows (PowerShell):**
 ```powershell
@@ -115,7 +133,7 @@ git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/
 bash scripts/download-skills.sh
 ```
 
-这些脚本将自动下载所有 skills 子模块到本地 `skills/` 文件夹。
+这些脚本将自动同步本地 `skills/`（包括所有子模块和 `superpowers` 的 `skills/` 子目录快照）。
 
 ### 更新 Skills
 
@@ -126,9 +144,11 @@ cd .opencode/skills/academic-forge
 ./scripts/update.sh  # 或在 Windows 上使用 update.ps1
 ```
 
+> 可选：如需屏蔽特定上游 skill，可编辑 `scripts/skill-blacklist.txt`。安装/下载/更新脚本会自动移除清单中的路径。
+
 #### 🔄 自动更新
 
-本仓库配置了自动化工作流程，**每周一 09:00 UTC** 自动更新所有 submodules 到最新版本。这意味着：
+本仓库配置了自动化工作流程，**每周一 09:00 UTC** 自动更新所有 skills 来源（submodules + superpowers skills-only 同步）。这意味着：
 
 - ✅ Skills 始终保持最新状态
 - ✅ 自动获取原作者的改进和bug修复

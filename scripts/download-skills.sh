@@ -1,6 +1,6 @@
 #!/bin/bash
-# Academic Forge - Download Skills Submodules Script
-# Bash version - Only downloads skills folder submodules
+# Academic Forge - Download Skills Script
+# Bash version - Downloads skills submodules and syncs skills-only sources
 
 set -e  # Exit on error
 
@@ -36,7 +36,7 @@ if [ ! -d ".git" ]; then
 fi
 
 echo ""
-echo -e "${BLUE}📥 Downloading skills submodules...${NC}"
+echo -e "${BLUE}📥 Downloading skills...${NC}"
 echo ""
 
 # Initialize and update only skills folder submodules
@@ -63,6 +63,38 @@ for submodule in "${SKILLS_SUBMODULES[@]}"; do
 done
 
 echo ""
+echo -e "${CYAN}→ Syncing skills/superpowers (skills-only)...${NC}"
+
+TEMP_DIR=".tmp-superpowers-sync"
+rm -rf "$TEMP_DIR"
+
+git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git "$TEMP_DIR"
+git -C "$TEMP_DIR" sparse-checkout set skills
+
+rm -rf skills/superpowers
+mkdir -p skills/superpowers
+cp -R "$TEMP_DIR"/skills/* skills/superpowers/
+rm -rf "$TEMP_DIR"
+
+echo -e "${GREEN}  ✓ skills/superpowers synced successfully${NC}"
+
+echo ""
+echo -e "${CYAN}→ Applying skill blacklist...${NC}"
+BLACKLIST_FILE="scripts/skill-blacklist.txt"
+if [ -f "$BLACKLIST_FILE" ]; then
+    while IFS= read -r skill_path; do
+        # Skip comments and empty lines
+        [[ -z "$skill_path" || "$skill_path" =~ ^# ]] && continue
+
+        if [ -e "$skill_path" ]; then
+            rm -rf "$skill_path"
+            echo -e "${YELLOW}  - Removed blacklisted skill: $skill_path${NC}"
+        fi
+    done < "$BLACKLIST_FILE"
+fi
+echo -e "${GREEN}  ✓ Skill blacklist applied${NC}"
+
+echo ""
 echo -e "${GREEN}╔═══════════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║                                           ║${NC}"
 echo -e "${GREEN}║            ✨ Download Complete!          ║${NC}"
@@ -81,6 +113,12 @@ for submodule in "${SKILLS_SUBMODULES[@]}"; do
         echo -e "${RED}  ✗ $skill_name (not found)${NC}"
     fi
 done
+
+if [ -d "skills/superpowers" ] && [ -n "$(ls -A "skills/superpowers" 2>/dev/null)" ]; then
+    echo -e "${GREEN}  ✓ superpowers${NC}"
+else
+    echo -e "${RED}  ✗ superpowers (not found)${NC}"
+fi
 
 echo ""
 echo -e "${BLUE}💡 To update skills later, run this script again${NC}"

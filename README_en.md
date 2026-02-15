@@ -5,7 +5,7 @@
 **A curated skill collection for academic writing and research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-3-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-4-blue.svg)](./skills)
 
 </div>
 
@@ -17,7 +17,7 @@ The name "Forge" is inspired by **Minecraft's mod loader system** (like Forge or
 
 - 🔧 **Integration over Installation** - Just like Minecraft modpacks, you get a curated collection that works well together
 - 🎯 **Purpose-Built** - Each forge targets a specific domain (academic writing, web development, data science, etc.)
-- 🔄 **Automatic Updates** - Skills remain linked to their original repositories via git submodules
+- 🔄 **Automatic Updates** - Skills stay current via git submodules plus skills-only sync sources
 - 🤝 **Community-Driven** - Built on the excellent work of multiple skill creators
 
 ## 🎯 Purpose
@@ -72,6 +72,13 @@ This forge integrates the following carefully selected skills:
 - **Purpose**: Refining academic tone, improving readability, avoiding AI-detection patterns
 - **Best For**: Polishing drafts, maintaining academic voice, peer review preparation
 
+### [superpowers](https://github.com/obra/superpowers) (skills-only)
+- **Author**: [@obra](https://github.com/obra)
+- **License**: MIT
+- **Purpose**: Structured development workflow skills (e.g., brainstorming, writing-plans, systematic-debugging, test-driven-development)
+- **Best For**: Requirement clarification, planning, systematic debugging, and TDD execution in academic projects
+- **Integration Mode**: This forge intentionally syncs only the upstream `skills/` directory (no plugin or non-skill folders)
+
 > **Note**: All skills retain their original licenses and authorship. This forge provides convenient integration only. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
 
 ## 🚀 Quick Start
@@ -91,16 +98,16 @@ curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/i
 Or manually:
 
 ```bash
-# Clone with all submodules
+# Clone repository (with submodules; skills-only sources are synced by scripts)
 git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge
 
 # Or if you already cloned without --recursive
 git submodule update --init --recursive
 ```
 
-### Download Skills Submodules
+### Download/Sync Skills
 
-If you only want to download the skills submodules (without the entire repository):
+If you want to sync skills in an existing clone (submodules + superpowers skills-only):
 
 **Windows (PowerShell):**
 ```powershell
@@ -112,7 +119,7 @@ If you only want to download the skills submodules (without the entire repositor
 bash scripts/download-skills.sh
 ```
 
-These scripts will automatically download all skills submodules to your local `skills/` folder. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
+These scripts automatically sync your local `skills/` folder, including submodules and the `superpowers` `skills/` snapshot. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
 
 ### Update Skills
 
@@ -123,9 +130,11 @@ cd .opencode/skills/academic-forge
 ./scripts/update.sh
 ```
 
+> Optional: To block specific upstream skills, edit `scripts/skill-blacklist.txt`. Install/download/update scripts automatically remove listed paths.
+
 #### 🔄 Automatic Updates
 
-This repository is configured with automated workflows that update all submodules to their latest versions **every Monday at 09:00 UTC**. This means:
+This repository is configured with automated workflows that update all skill sources (submodules + superpowers skills-only sync) **every Monday at 09:00 UTC**. This means:
 
 - ✅ Skills always stay up-to-date
 - ✅ Automatically receive improvements and bug fixes from original authors
@@ -144,7 +153,8 @@ academic-forge/
 ├── skills/
 │   ├── claude-scientific-skills/    (submodule)
 │   ├── AI-research-SKILLs/          (submodule)
-│   └── humanizer/                   (submodule)
+│   ├── humanizer/                   (submodule)
+│   └── superpowers/                 (skills-only sync from obra/superpowers)
 └── scripts/
     ├── install.sh         # Installation script
     └── update.sh          # Update all skills to latest versions
@@ -163,10 +173,10 @@ Academic Forge is perfect for:
 
 ## 🔄 Version Management
 
-Academic Forge uses git submodules to track specific versions of each skill:
+Academic Forge uses a hybrid version model (git submodules + skills-only sync for superpowers):
 
 - **Automatic Updates**: Run `./scripts/update.sh` to pull latest changes
-- **Version Locking**: Commit the `.gitmodules` state to lock specific versions
+- **Version Locking**: Commit the `.gitmodules` state and tracked `skills/superpowers` changes
 - **Rollback Safety**: Use git to revert to previous working states
 
 ## 🤝 Contributing
@@ -175,7 +185,7 @@ Found a skill that would be perfect for academic writing? Here's how to contribu
 
 1. **Suggest a Skill** - Open an issue with the skill repository and use case
 2. **Test Compatibility** - Ensure it doesn't conflict with existing skills
-3. **Submit PR** - Add as a submodule with proper attribution
+3. **Submit PR** - Add with a traceable integration method and proper attribution
 4. **Update Docs** - Add to README.md and ATTRIBUTIONS.md
 
 ### Creating Your Own Forge

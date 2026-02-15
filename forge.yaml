@@ -59,6 +59,18 @@ skills:
       - academic-style
       - editing
 
+  - name: "superpowers"
+    path: "skills/superpowers"
+    repository: "https://github.com/obra/superpowers"
+    author: "obra"
+    license: "MIT"
+    description: "Agentic development workflow skills (synced from upstream skills/ directory only)"
+    tags:
+      - workflow
+      - planning
+      - debugging
+      - tdd
+
 # Configuration options for users
 config:
   # Auto-update behavior
@@ -68,24 +80,26 @@ config:
   priority:
     claude-scientific-skills: 10
     AI-research-SKILLs: 9
-    humanizer: 8
+    superpowers: 8
+    humanizer: 7
   
   # Enable/disable individual skills
   enabled:
     claude-scientific-skills: true
     AI-research-SKILLs: true
+    superpowers: true
     humanizer: true
 
 # Installation instructions
 installation:
-  method: "git-submodule"
+  method: "hybrid-submodule-and-skills-sync"
   commands:
     - "git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge"
-    - "# Or update existing: git submodule update --init --recursive"
+    - "# Or update existing: git submodule update --init --recursive && bash scripts/download-skills.sh"
 
 # Update instructions
 update:
-  method: "git-submodule"
+  method: "hybrid-submodule-and-skills-sync"
   commands:
     - "cd .opencode/skills/academic-forge"
     - "./scripts/update.sh"
@@ -97,7 +111,11 @@ compatibility:
   
 notes: |
   Academic Forge uses git submodules to integrate skills from their original
-  repositories. All skills retain their original licenses and authorship.
+  repositories where possible. superpowers is intentionally distributed as a
+  skills-only snapshot (skills/superpowers), synced from
+  https://github.com/obra/superpowers/tree/main/skills.
+
+  All skills retain their original licenses and authorship.
   
   This forge is inspired by Minecraft's mod loader concept, providing a curated
   collection of skills that work well together for academic writing workflows.

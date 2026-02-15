@@ -122,13 +122,15 @@ config:
   enabled:
     claude-scientific-skills: true
     AI-research-SKILLs: true
+    superpowers: true
     humanizer: true
   
   # Adjust which skills are invoked first
   priority:
     claude-scientific-skills: 10
     AI-research-SKILLs: 9
-    humanizer: 8
+    superpowers: 8
+    humanizer: 7
 ```
 
 ## Troubleshooting
@@ -138,6 +140,7 @@ config:
 1. Restart Claude Code
 2. Check that the forge is in `.opencode/skills/academic-forge`
 3. Verify submodules initialized: `git submodule status`
+4. Verify `skills/superpowers` exists (synced skills-only snapshot)
 
 ### Getting old versions?
 
@@ -149,6 +152,8 @@ Run the update script to pull latest changes:
 ### Conflicts with other skills?
 
 Disable conflicting skills by editing `forge.yaml` or removing them from your main skills directory.
+
+To auto-remove specific upstream skills after sync/install/update, add paths to `scripts/skill-blacklist.txt`.
 
 ## Getting Help
 

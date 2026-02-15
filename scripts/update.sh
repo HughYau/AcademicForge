@@ -62,12 +62,44 @@ else
     exit 1
 fi
 
+echo -e "${BLUE}🔄 Syncing superpowers (skills-only)...${NC}"
+
+TEMP_DIR=".tmp-superpowers-sync"
+rm -rf "$TEMP_DIR"
+
+git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git "$TEMP_DIR"
+git -C "$TEMP_DIR" sparse-checkout set skills
+
+rm -rf skills/superpowers
+mkdir -p skills/superpowers
+cp -R "$TEMP_DIR"/skills/* skills/superpowers/
+rm -rf "$TEMP_DIR"
+
+echo -e "${GREEN}✓ superpowers skills synced${NC}"
+
+echo -e "${BLUE}🧹 Applying skill blacklist...${NC}"
+BLACKLIST_FILE="scripts/skill-blacklist.txt"
+if [ -f "$BLACKLIST_FILE" ]; then
+    while IFS= read -r skill_path; do
+        # Skip comments and empty lines
+        [[ -z "$skill_path" || "$skill_path" =~ ^# ]] && continue
+
+        if [ -e "$skill_path" ]; then
+            rm -rf "$skill_path"
+            echo -e "${YELLOW}  - Removed blacklisted skill: $skill_path${NC}"
+        fi
+    done < "$BLACKLIST_FILE"
+fi
+echo -e "${GREEN}✓ Skill blacklist applied${NC}"
+
 echo ""
 echo -e "${BLUE}📊 Update Summary:${NC}"
 echo ""
 
 # Show status of each submodule
 git submodule foreach 'echo "📚 $name:"; git log --oneline -3 --decorate; echo ""'
+echo "📚 skills/superpowers: synced from obra/superpowers (skills/)"
+echo ""
 
 echo ""
 echo -e "${GREEN}╔═══════════════════════════════════════════╗${NC}"

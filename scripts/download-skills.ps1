@@ -1,5 +1,5 @@
-﻿# Academic Forge - Download Skills Submodules Script
-# PowerShell version - Only downloads skills folder submodules
+﻿# Academic Forge - Download Skills Script
+# PowerShell version - Downloads skills submodules and syncs skills-only sources
 
 # Set error action preference
 $ErrorActionPreference = "Stop"
@@ -39,7 +39,7 @@ if (-not (Test-Path ".git")) {
 }
 
 Write-Host ""
-Write-ColorOutput "📥 Downloading skills submodules..." "Blue"
+Write-ColorOutput "📥 Downloading skills..." "Blue"
 Write-Host ""
 
 # Initialize and update only skills folder submodules
@@ -67,6 +67,43 @@ try {
             Write-ColorOutput "  ⚠ Warning: Failed to download $submodule" "Red"
         }
     }
+
+    Write-Host ""
+    Write-ColorOutput "→ Syncing skills/superpowers (skills-only)..." "Cyan"
+
+    $tempDir = ".tmp-superpowers-sync"
+    if (Test-Path $tempDir) {
+        Remove-Item -Recurse -Force $tempDir
+    }
+
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git $tempDir
+    git -C $tempDir sparse-checkout set skills
+
+    if (Test-Path "skills/superpowers") {
+        Remove-Item -Recurse -Force "skills/superpowers"
+    }
+    New-Item -ItemType Directory -Path "skills/superpowers" -Force | Out-Null
+    Copy-Item -Path "$tempDir/skills/*" -Destination "skills/superpowers" -Recurse -Force
+    Remove-Item -Recurse -Force $tempDir
+
+    Write-ColorOutput "  ✓ skills/superpowers synced successfully" "Green"
+
+    Write-Host ""
+    Write-ColorOutput "→ Applying skill blacklist..." "Cyan"
+    $blacklistFile = "scripts/skill-blacklist.txt"
+    if (Test-Path $blacklistFile) {
+        $blacklistPaths = Get-Content $blacklistFile | Where-Object {
+            $_ -and $_.Trim() -ne "" -and -not $_.Trim().StartsWith("#")
+        }
+
+        foreach ($skillPath in $blacklistPaths) {
+            if (Test-Path $skillPath) {
+                Remove-Item -Recurse -Force $skillPath
+                Write-ColorOutput "  - Removed blacklisted skill: $skillPath" "Yellow"
+            }
+        }
+    }
+    Write-ColorOutput "  ✓ Skill blacklist applied" "Green"
     
     Write-Host ""
     Write-ColorOutput "╔═══════════════════════════════════════════╗" "Green"
@@ -87,12 +124,18 @@ try {
             Write-ColorOutput "  ✗ $skillName (not found)" "Red"
         }
     }
+
+    if (Test-Path "skills/superpowers") {
+        Write-ColorOutput "  ✓ superpowers" "Green"
+    } else {
+        Write-ColorOutput "  ✗ superpowers (not found)" "Red"
+    }
     
     Write-Host ""
     Write-ColorOutput "💡 To update skills later, run this script again" "Blue"
     
 } catch {
-    Write-ColorOutput "❌ Error downloading submodules: $_" "Red"
+    Write-ColorOutput "❌ Error downloading skills: $_" "Red"
     exit 1
 }
 

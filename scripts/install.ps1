@@ -81,6 +81,53 @@ try {
     exit 1
 }
 
+Write-ColorOutput "🔄 Syncing superpowers (skills-only)..." "Blue"
+try {
+    $tempDir = ".tmp-superpowers-sync"
+    if (Test-Path $tempDir) {
+        Remove-Item -Recurse -Force $tempDir
+    }
+
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git $tempDir
+    git -C $tempDir sparse-checkout set skills
+
+    if (Test-Path "skills/superpowers") {
+        Remove-Item -Recurse -Force "skills/superpowers"
+    }
+    New-Item -ItemType Directory -Path "skills/superpowers" -Force | Out-Null
+    Copy-Item -Path "$tempDir/skills/*" -Destination "skills/superpowers" -Recurse -Force
+    Remove-Item -Recurse -Force $tempDir
+
+    Write-ColorOutput "✓ superpowers skills synced" "Green"
+} catch {
+    Write-ColorOutput "❌ Failed to sync superpowers skills" "Red"
+    Pop-Location
+    exit 1
+}
+
+Write-ColorOutput "🧹 Applying skill blacklist..." "Blue"
+try {
+    $blacklistFile = "scripts/skill-blacklist.txt"
+    if (Test-Path $blacklistFile) {
+        $blacklistPaths = Get-Content $blacklistFile | Where-Object {
+            $_ -and $_.Trim() -ne "" -and -not $_.Trim().StartsWith("#")
+        }
+
+        foreach ($skillPath in $blacklistPaths) {
+            if (Test-Path $skillPath) {
+                Remove-Item -Recurse -Force $skillPath
+                Write-ColorOutput "  - Removed blacklisted skill: $skillPath" "Yellow"
+            }
+        }
+    }
+
+    Write-ColorOutput "✓ Skill blacklist applied" "Green"
+} catch {
+    Write-ColorOutput "❌ Failed to apply skill blacklist" "Red"
+    Pop-Location
+    exit 1
+}
+
 Write-Host ""
 Write-ColorOutput "╔═══════════════════════════════════════════╗" "Green"
 Write-ColorOutput "║                                           ║" "Green"
@@ -91,6 +138,7 @@ Write-Host ""
 
 Write-ColorOutput "📚 Included Skills:" "Blue"
 git submodule foreach --quiet 'echo "  ✓ $name"'
+Write-Host "  ✓ skills/superpowers"
 
 Pop-Location
 

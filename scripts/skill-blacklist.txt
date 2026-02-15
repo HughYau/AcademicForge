@@ -1,0 +1,5 @@
+# Skill paths to remove after sync/install/update
+# One relative path per line (from repository root)
+# Lines starting with # are comments
+
+skills/claude-scientific-skills/scientific-skills/offer-k-dense-web
