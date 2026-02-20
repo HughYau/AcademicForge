@@ -25,13 +25,13 @@ All seamlessly integrated into Claude Code for your academic workflow.
 **macOS/Linux:**
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
 cd your-project
-irm https://raw.githubusercontent.com/HughYau/academic-forge/main/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.ps1 | iex
 ```
 
 ### Option B: Manual Installation
