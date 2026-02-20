@@ -103,13 +103,13 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
 **macOS/Linux:**
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/master/scripts/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
 cd your-project
-irm https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/HughYau/AcademicForge/master/scripts/install.ps1 | iex
 ```
 
 或手动安装：
