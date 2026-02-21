@@ -92,7 +92,7 @@ Install Academic Forge directly into your Claude Code project:
 cd your-project
 
 # Install the forge
-curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
 ```
 
 Or manually:
