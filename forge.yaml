@@ -71,6 +71,18 @@ skills:
       - debugging
       - tdd
 
+  - name: "planning-with-files"
+    path: "skills/planning-with-files"
+    repository: "https://github.com/OthmanAdi/planning-with-files"
+    author: "OthmanAdi"
+    license: "MIT"
+    description: "Manus-style file-based planning skill synced from upstream skills/planning-with-files"
+    tags:
+      - planning
+      - workflow
+      - context-management
+      - organization
+
 # Configuration options for users
 config:
   # Auto-update behavior
@@ -81,6 +93,7 @@ config:
     claude-scientific-skills: 10
     AI-research-SKILLs: 9
     superpowers: 8
+    planning-with-files: 8
     humanizer: 7
   
   # Enable/disable individual skills
@@ -88,6 +101,7 @@ config:
     claude-scientific-skills: true
     AI-research-SKILLs: true
     superpowers: true
+    planning-with-files: true
     humanizer: true
 
 # Installation instructions
@@ -111,9 +125,11 @@ compatibility:
   
 notes: |
   Academic Forge uses git submodules to integrate skills from their original
-  repositories where possible. superpowers is intentionally distributed as a
-  skills-only snapshot (skills/superpowers), synced from
-  https://github.com/obra/superpowers/tree/main/skills.
+  repositories where possible. superpowers and planning-with-files are
+  intentionally distributed as skills-only snapshots (no submodules):
+  - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
+  - skills/planning-with-files synced from
+    https://github.com/OthmanAdi/planning-with-files/tree/master/skills/planning-with-files
 
   All skills retain their original licenses and authorship.
   

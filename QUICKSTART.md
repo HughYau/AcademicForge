@@ -9,6 +9,7 @@ By installing Academic Forge, you'll have access to:
 - ✍️ **Scientific Paper Writing** - LaTeX formatting, proper structure, academic conventions
 - 🔬 **Research Methodology** - Experimental design, data analysis, statistical rigor
 - 📝 **Academic Tone** - Professional writing style, clarity improvements, polish
+- 🧭 **Workflow Planning** - File-based phase planning for long multi-step tasks
 
 All seamlessly integrated into Claude Code for your academic workflow.
 
@@ -123,6 +124,7 @@ config:
     claude-scientific-skills: true
     AI-research-SKILLs: true
     superpowers: true
+    planning-with-files: true
     humanizer: true
   
   # Adjust which skills are invoked first
@@ -130,6 +132,7 @@ config:
     claude-scientific-skills: 10
     AI-research-SKILLs: 9
     superpowers: 8
+    planning-with-files: 8
     humanizer: 7
 ```
 
@@ -140,7 +143,7 @@ config:
 1. Restart Claude Code
 2. Check that the forge is in `.opencode/skills/academic-forge`
 3. Verify submodules initialized: `git submodule status`
-4. Verify `skills/superpowers` exists (synced skills-only snapshot)
+4. Verify `skills/superpowers` and `skills/planning-with-files` exist (synced skills-only snapshots)
 
 ### Getting old versions?
 

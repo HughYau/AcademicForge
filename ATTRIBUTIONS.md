@@ -8,6 +8,7 @@ Academic Forge uses a **hybrid integration model**:
 
 - Most skills are linked via git submodules
 - `superpowers` is synced as a skills-only snapshot from upstream `skills/`
+- `planning-with-files` is synced as a single skills-only folder from upstream `skills/planning-with-files`
 
 This means:
 
@@ -15,7 +16,7 @@ This means:
 - ✅ Skills link directly to their source repositories
 - ✅ Authors receive proper credit and GitHub attribution
 - ✅ Updates flow from the original repositories
-- ✅ `superpowers` is intentionally limited to skills-only content to keep this forge focused
+- ✅ `superpowers` and `planning-with-files` are intentionally limited to skills-only content to keep this forge focused
 
 ## Included Skills
 
@@ -79,6 +80,21 @@ This means:
 
 ---
 
+### 5. planning-with-files (skills-only single folder)
+
+**Original Repository**: [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files)
+
+- **Author**: OthmanAdi
+- **License**: MIT License
+- **Included Version**: Synced snapshot of `skills/planning-with-files` (see git history for latest sync commit)
+- **Purpose**: Manus-style file-based planning and session persistence for complex tasks
+- **Modifications**: Integrated as skills-only content under `skills/planning-with-files` (not as a submodule)
+- **Original License Text**: See upstream `OthmanAdi/planning-with-files` repository
+
+**Why we included it**: Adds durable planning primitives (`task_plan.md`, `findings.md`, `progress.md`) and session catchup scripts that are especially useful for long-running research and implementation work.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -94,6 +110,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | AI-research-SKILLs | TBD* | Check repo | Check repo |
 | humanizer | TBD* | Check repo | Check repo |
 | superpowers | MIT | ✅ Yes | ✅ Yes |
+| planning-with-files | MIT | ✅ Yes | ✅ Yes |
 
 *Please check the original repository for current license information.
 
@@ -163,13 +180,14 @@ This document tracks which versions of each skill are included:
 | 2024-XX-XX | AI-research-SKILLs | def456... | Initial inclusion |
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
+| 2026-03-04 | planning-with-files (skills-only folder) | synced from OthmanAdi/planning-with-files/skills/planning-with-files | Initial inclusion |
 
 To see the current linked submodule versions, run:
 ```bash
 git submodule status
 ```
 
-For `superpowers` (skills-only), check the latest sync commit in this repository's git history.
+For `superpowers` and `planning-with-files` (skills-only syncs), check the latest sync commits in this repository's git history.
 
 ---
 

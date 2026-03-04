@@ -89,6 +89,26 @@ try {
     Write-ColorOutput "  ✓ skills/superpowers synced successfully" "Green"
 
     Write-Host ""
+    Write-ColorOutput "→ Syncing skills/planning-with-files (skills-only)..." "Cyan"
+
+    $tempDir = ".tmp-planning-with-files-sync"
+    if (Test-Path $tempDir) {
+        Remove-Item -Recurse -Force $tempDir
+    }
+
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git $tempDir
+    git -C $tempDir sparse-checkout set skills/planning-with-files
+
+    if (Test-Path "skills/planning-with-files") {
+        Remove-Item -Recurse -Force "skills/planning-with-files"
+    }
+    New-Item -ItemType Directory -Path "skills/planning-with-files" -Force | Out-Null
+    Copy-Item -Path "$tempDir/skills/planning-with-files/*" -Destination "skills/planning-with-files" -Recurse -Force
+    Remove-Item -Recurse -Force $tempDir
+
+    Write-ColorOutput "  ✓ skills/planning-with-files synced successfully" "Green"
+
+    Write-Host ""
     Write-ColorOutput "→ Applying skill blacklist..." "Cyan"
     $blacklistFile = "scripts/skill-blacklist.txt"
     if (Test-Path $blacklistFile) {
@@ -129,6 +149,12 @@ try {
         Write-ColorOutput "  ✓ superpowers" "Green"
     } else {
         Write-ColorOutput "  ✗ superpowers (not found)" "Red"
+    }
+
+    if (Test-Path "skills/planning-with-files") {
+        Write-ColorOutput "  ✓ planning-with-files" "Green"
+    } else {
+        Write-ColorOutput "  ✗ planning-with-files (not found)" "Red"
     }
     
     Write-Host ""

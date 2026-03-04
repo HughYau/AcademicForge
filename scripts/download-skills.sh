@@ -79,6 +79,22 @@ rm -rf "$TEMP_DIR"
 echo -e "${GREEN}  ✓ skills/superpowers synced successfully${NC}"
 
 echo ""
+echo -e "${CYAN}→ Syncing skills/planning-with-files (skills-only)...${NC}"
+
+TEMP_DIR=".tmp-planning-with-files-sync"
+rm -rf "$TEMP_DIR"
+
+git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git "$TEMP_DIR"
+git -C "$TEMP_DIR" sparse-checkout set skills/planning-with-files
+
+rm -rf skills/planning-with-files
+mkdir -p skills/planning-with-files
+cp -R "$TEMP_DIR"/skills/planning-with-files/. skills/planning-with-files/
+rm -rf "$TEMP_DIR"
+
+echo -e "${GREEN}  ✓ skills/planning-with-files synced successfully${NC}"
+
+echo ""
 echo -e "${CYAN}→ Applying skill blacklist...${NC}"
 BLACKLIST_FILE="scripts/skill-blacklist.txt"
 if [ -f "$BLACKLIST_FILE" ]; then
@@ -118,6 +134,12 @@ if [ -d "skills/superpowers" ] && [ -n "$(ls -A "skills/superpowers" 2>/dev/null
     echo -e "${GREEN}  ✓ superpowers${NC}"
 else
     echo -e "${RED}  ✗ superpowers (not found)${NC}"
+fi
+
+if [ -d "skills/planning-with-files" ] && [ -n "$(ls -A "skills/planning-with-files" 2>/dev/null)" ]; then
+    echo -e "${GREEN}  ✓ planning-with-files${NC}"
+else
+    echo -e "${RED}  ✗ planning-with-files (not found)${NC}"
 fi
 
 echo ""

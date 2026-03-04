@@ -94,6 +94,30 @@ try {
     exit 1
 }
 
+Write-ColorOutput "🔄 Syncing planning-with-files (skills-only)..." "Blue"
+
+try {
+    $tempDir = ".tmp-planning-with-files-sync"
+    if (Test-Path $tempDir) {
+        Remove-Item -Recurse -Force $tempDir
+    }
+
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git $tempDir
+    git -C $tempDir sparse-checkout set skills/planning-with-files
+
+    if (Test-Path "skills/planning-with-files") {
+        Remove-Item -Recurse -Force "skills/planning-with-files"
+    }
+    New-Item -ItemType Directory -Path "skills/planning-with-files" -Force | Out-Null
+    Copy-Item -Path "$tempDir/skills/planning-with-files/*" -Destination "skills/planning-with-files" -Recurse -Force
+    Remove-Item -Recurse -Force $tempDir
+
+    Write-ColorOutput "✓ planning-with-files skill synced" "Green"
+} catch {
+    Write-ColorOutput "❌ Failed to sync planning-with-files skill" "Red"
+    exit 1
+}
+
 Write-ColorOutput "🧹 Applying skill blacklist..." "Blue"
 
 try {
@@ -124,6 +148,7 @@ Write-Host ""
 # Show status of each submodule
 git submodule foreach 'echo "📚 $name:"; git log --oneline -3 --decorate; echo ""'
 Write-Host "📚 skills/superpowers: synced from obra/superpowers (skills/)"
+Write-Host "📚 skills/planning-with-files: synced from OthmanAdi/planning-with-files (skills/planning-with-files)"
 Write-Host ""
 
 Write-Host ""

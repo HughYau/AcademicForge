@@ -5,7 +5,7 @@
 **A curated skill collection for academic writing and research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-4-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-5-blue.svg)](./skills)
 
 </div>
 
@@ -79,6 +79,13 @@ This forge integrates the following carefully selected skills:
 - **Best For**: Requirement clarification, planning, systematic debugging, and TDD execution in academic projects
 - **Integration Mode**: This forge intentionally syncs only the upstream `skills/` directory (no plugin or non-skill folders)
 
+### [planning-with-files](https://github.com/OthmanAdi/planning-with-files) (skills-only single folder)
+- **Author**: [@OthmanAdi](https://github.com/OthmanAdi)
+- **License**: MIT
+- **Purpose**: Manus-style file-based planning with `task_plan.md`, `findings.md`, and `progress.md` to persist context during complex work
+- **Best For**: Long multi-step implementation or research tasks that need durable planning and session recovery
+- **Integration Mode**: This forge intentionally syncs only upstream `skills/planning-with-files` (not as a submodule)
+
 > **Note**: All skills retain their original licenses and authorship. This forge provides convenient integration only. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
 
 ## 🚀 Quick Start
@@ -107,7 +114,7 @@ git submodule update --init --recursive
 
 ### Download/Sync Skills
 
-If you want to sync skills in an existing clone (submodules + superpowers skills-only):
+If you want to sync skills in an existing clone (submodules + skills-only sources):
 
 **Windows (PowerShell):**
 ```powershell
@@ -119,7 +126,7 @@ If you want to sync skills in an existing clone (submodules + superpowers skills
 bash scripts/download-skills.sh
 ```
 
-These scripts automatically sync your local `skills/` folder, including submodules and the `superpowers` `skills/` snapshot. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
+These scripts automatically sync your local `skills/` folder, including submodules, the `superpowers` `skills/` snapshot, and the `planning-with-files` `skills/planning-with-files` snapshot. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
 
 ### Update Skills
 
@@ -134,7 +141,7 @@ cd .opencode/skills/academic-forge
 
 #### 🔄 Automatic Updates
 
-This repository is configured with automated workflows that update all skill sources (submodules + superpowers skills-only sync) **every Monday at 09:00 UTC**. This means:
+This repository is configured with automated workflows that update all skill sources (submodules + superpowers/planning-with-files skills-only sync) **every Monday at 09:00 UTC**. This means:
 
 - ✅ Skills always stay up-to-date
 - ✅ Automatically receive improvements and bug fixes from original authors
@@ -154,7 +161,8 @@ academic-forge/
 │   ├── claude-scientific-skills/    (submodule)
 │   ├── AI-research-SKILLs/          (submodule)
 │   ├── humanizer/                   (submodule)
-│   └── superpowers/                 (skills-only sync from obra/superpowers)
+│   ├── superpowers/                 (skills-only sync from obra/superpowers)
+│   └── planning-with-files/         (skills-only sync from OthmanAdi/planning-with-files)
 └── scripts/
     ├── install.sh         # Installation script
     └── update.sh          # Update all skills to latest versions
@@ -173,10 +181,10 @@ Academic Forge is perfect for:
 
 ## 🔄 Version Management
 
-Academic Forge uses a hybrid version model (git submodules + skills-only sync for superpowers):
+Academic Forge uses a hybrid version model (git submodules + skills-only sync for selected sources):
 
 - **Automatic Updates**: Run `./scripts/update.sh` to pull latest changes
-- **Version Locking**: Commit the `.gitmodules` state and tracked `skills/superpowers` changes
+- **Version Locking**: Commit the `.gitmodules` state and tracked `skills/superpowers` + `skills/planning-with-files` changes
 - **Rollback Safety**: Use git to revert to previous working states
 
 ## 🤝 Contributing
