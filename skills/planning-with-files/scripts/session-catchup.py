@@ -13,37 +13,97 @@ import sys
 import os
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple
-from datetime import datetime
+
 
 PLANNING_FILES = ['task_plan.md', 'progress.md', 'findings.md']
 
 
 def get_project_dir(project_path: str) -> Path:
-    """Convert project path to Claude's storage path format."""
-    sanitized = project_path.replace('/', '-')
+    """Convert project path to OpenCode's storage path format."""
+    # Normalize to an absolute path to ensure a stable representation
+    # .as_posix() handles '\' -> '/' conversion on Windows automatically
+    resolved_str = Path(project_path).resolve().as_posix()
+    
+    # Sanitize path: replace separators with '-', remove ':' (Windows drives)
+    sanitized = resolved_str.replace('/', '-').replace(':', '')
+
+    # Apply legacy naming convention: leading '-' and '_' -> '-'
     if not sanitized.startswith('-'):
         sanitized = '-' + sanitized
-    sanitized = sanitized.replace('_', '-')
-    return Path.home() / '.claude' / 'projects' / sanitized
+    sanitized_name = sanitized.replace('_', '-')
+
+    # 1. Check Legacy Location first (~/.opencode/sessions/...)
+    legacy_dir = Path.home() / '.opencode' / 'sessions' / sanitized_name
+    if legacy_dir.is_dir():
+        return legacy_dir
+
+    # 2. Standard Layout
+    data_root_env = os.getenv('OPENCODE_DATA_DIR')
+    if data_root_env:
+        data_root = Path(data_root_env)
+    else:
+        # Respect XDG_DATA_HOME if set, otherwise use default
+        xdg_root = os.getenv('XDG_DATA_HOME')
+        if xdg_root:
+            data_root = Path(xdg_root) / 'opencode' / 'storage'
+        else:
+            data_root = Path.home() / '.local' / 'share' / 'opencode' / 'storage'
+
+    return data_root / 'session' / sanitized_name
 
 
 def get_sessions_sorted(project_dir: Path) -> List[Path]:
     """Get all session files sorted by modification time (newest first)."""
-    sessions = list(project_dir.glob('*.jsonl'))
-    main_sessions = [s for s in sessions if not s.name.startswith('agent-')]
+    # Support both legacy JSONL (*.jsonl) and standard JSON (*.json) session files.
+    sessions = list(project_dir.glob('*.jsonl')) + list(project_dir.glob('*.json'))
+    # Deduplicate in case of overlaps and filter out agent-specific sessions.
+    unique_sessions = {s for s in sessions}
+    main_sessions = [s for s in unique_sessions if not s.name.startswith('agent-')]
     return sorted(main_sessions, key=lambda p: p.stat().st_mtime, reverse=True)
 
 
 def parse_session_messages(session_file: Path) -> List[Dict]:
     """Parse all messages from a session file, preserving order."""
+    messages: List[Dict] = []
+
+    # First, try to parse the entire file as JSON (for *.json session files).
+    try:
+        with open(session_file, 'r') as f:
+            content = f.read()
+        if content.strip():
+            data = json.loads(content)
+            if isinstance(data, list):
+                for idx, item in enumerate(data):
+                    if isinstance(item, dict):
+                        item['_line_num'] = idx
+                        messages.append(item)
+            elif isinstance(data, dict):
+                # Some formats may wrap messages in a top-level object.
+                msg_list = data.get('messages')
+                if isinstance(msg_list, list):
+                    for idx, item in enumerate(msg_list):
+                        if isinstance(item, dict):
+                            item['_line_num'] = idx
+                            messages.append(item)
+    except json.JSONDecodeError:
+        # Fall through to JSONL parsing if full-file JSON parsing fails.
+        messages = []
+
+    if messages:
+        return messages
+
+    # Fallback: treat file as JSONL (one JSON object per line), the original behavior.
     messages = []
     with open(session_file, 'r') as f:
         for line_num, line in enumerate(f):
             try:
                 data = json.loads(line)
-                data['_line_num'] = line_num
-                messages.append(data)
+                if isinstance(data, dict):
+                    data['_line_num'] = line_num
+                    messages.append(data)
             except json.JSONDecodeError:
+                # Ignore malformed lines to be resilient to partial writes.
+                # Some session log lines may be incomplete or non-JSON; skip them
                 pass
     return messages
 
@@ -147,7 +207,7 @@ def main():
         Path(project_path, f).exists() for f in PLANNING_FILES
     )
     if not has_planning_files:
-        # No planning files in this project; skip catchup to avoid noise.
+        # No planning files in this project; skip catchup to avoid noise
         return
 
     if not project_dir.exists():
@@ -194,7 +254,7 @@ def main():
             print(f"USER: {msg['content'][:300]}")
         else:
             if msg.get('content'):
-                print(f"CLAUDE: {msg['content'][:300]}")
+                print(f"OPENCODE: {msg['content'][:300]}")
             if msg.get('tools'):
                 print(f"  Tools: {', '.join(msg['tools'][:4])}")
 

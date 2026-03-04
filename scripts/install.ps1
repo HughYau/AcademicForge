@@ -113,13 +113,13 @@ try {
     }
 
     git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git $tempDir
-    git -C $tempDir sparse-checkout set skills/planning-with-files
+    git -C $tempDir sparse-checkout set .opencode/skills/planning-with-files
 
     if (Test-Path "skills/planning-with-files") {
         Remove-Item -Recurse -Force "skills/planning-with-files"
     }
     New-Item -ItemType Directory -Path "skills/planning-with-files" -Force | Out-Null
-    Copy-Item -Path "$tempDir/skills/planning-with-files/*" -Destination "skills/planning-with-files" -Recurse -Force
+    Copy-Item -Path "$tempDir/.opencode/skills/planning-with-files/*" -Destination "skills/planning-with-files" -Recurse -Force
     Remove-Item -Recurse -Force $tempDir
 
     Write-ColorOutput "✓ planning-with-files skill synced" "Green"

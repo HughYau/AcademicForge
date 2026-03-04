@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Added `planning-with-files` as a skills-only synced source under `skills/planning-with-files` (no submodule)
+- Added `planning-with-files` as a skills-only synced source under `skills/planning-with-files`, synced from upstream `.opencode/skills/planning-with-files` (no submodule)
 - Updated install/download/update scripts (bash + PowerShell) to sync `planning-with-files` alongside `superpowers`
 - Updated automation workflow and documentation to reflect the new skills-only source
 

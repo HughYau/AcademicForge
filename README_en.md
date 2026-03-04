@@ -84,7 +84,7 @@ This forge integrates the following carefully selected skills:
 - **License**: MIT
 - **Purpose**: Manus-style file-based planning with `task_plan.md`, `findings.md`, and `progress.md` to persist context during complex work
 - **Best For**: Long multi-step implementation or research tasks that need durable planning and session recovery
-- **Integration Mode**: This forge intentionally syncs only upstream `skills/planning-with-files` (not as a submodule)
+- **Integration Mode**: This forge intentionally syncs only upstream `.opencode/skills/planning-with-files` (not as a submodule)
 
 > **Note**: All skills retain their original licenses and authorship. This forge provides convenient integration only. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
 
@@ -126,7 +126,7 @@ If you want to sync skills in an existing clone (submodules + skills-only source
 bash scripts/download-skills.sh
 ```
 
-These scripts automatically sync your local `skills/` folder, including submodules, the `superpowers` `skills/` snapshot, and the `planning-with-files` `skills/planning-with-files` snapshot. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
+These scripts automatically sync your local `skills/` folder, including submodules, the `superpowers` `skills/` snapshot, and the `planning-with-files` `.opencode/skills/planning-with-files` snapshot. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
 
 ### Update Skills
 

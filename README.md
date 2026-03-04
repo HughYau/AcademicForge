@@ -92,7 +92,7 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
   - ✅ **交付质量**：通过测试与验证步骤，降低结果描述与代码实现不一致
 - **集成方式**: 本 forge 仅同步上游仓库 `skills/` 子目录，不包含插件与其他目录（即不注入 OpenCode 插件逻辑）
 
-### [planning-with-files](https://github.com/OthmanAdi/planning-with-files)（仅同步 `skills/planning-with-files`）
+### [planning-with-files](https://github.com/OthmanAdi/planning-with-files)（仅同步 `.opencode/skills/planning-with-files`）
 - **作者**: [@OthmanAdi](https://github.com/OthmanAdi)
 - **许可证**: MIT
 - **定位**: 用文件化方式管理复杂任务，把上下文沉淀到磁盘，避免长会话中信息丢失
@@ -105,7 +105,7 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
   - 🧭 **实验路线清晰化**：把问题拆成阶段，降低中途跑偏风险
   - 🧠 **上下文持久化**：跨会话保持研究结论、假设与决策链
   - 🧪 **复现实验更稳定**：错误与尝试路径可追溯，便于复盘
-- **集成方式**: 本 forge 仅同步上游仓库 `skills/planning-with-files` 单个目录，不采用 submodule
+- **集成方式**: 本 forge 仅同步上游仓库 `.opencode/skills/planning-with-files` 单个目录，不采用 submodule
 
 > **注意**: 所有Skills保留其原始许可证和作者身份。本 forge 仅提供便捷的集成。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
 
@@ -148,7 +148,7 @@ git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/
 bash scripts/download-skills.sh
 ```
 
-这些脚本将自动同步本地 `skills/`（包括所有子模块、`superpowers` 的 `skills/` 快照，以及 `planning-with-files` 的 `skills/planning-with-files` 单目录快照）。
+这些脚本将自动同步本地 `skills/`（包括所有子模块、`superpowers` 的 `skills/` 快照，以及 `planning-with-files` 的 `.opencode/skills/planning-with-files` 单目录快照）。
 
 ### 更新 Skills
 

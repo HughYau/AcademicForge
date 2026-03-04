@@ -85,11 +85,11 @@ TEMP_DIR=".tmp-planning-with-files-sync"
 rm -rf "$TEMP_DIR"
 
 git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git "$TEMP_DIR"
-git -C "$TEMP_DIR" sparse-checkout set skills/planning-with-files
+git -C "$TEMP_DIR" sparse-checkout set .opencode/skills/planning-with-files
 
 rm -rf skills/planning-with-files
 mkdir -p skills/planning-with-files
-cp -R "$TEMP_DIR"/skills/planning-with-files/. skills/planning-with-files/
+cp -R "$TEMP_DIR"/.opencode/skills/planning-with-files/. skills/planning-with-files/
 rm -rf "$TEMP_DIR"
 
 echo -e "${GREEN}  ✓ skills/planning-with-files synced successfully${NC}"

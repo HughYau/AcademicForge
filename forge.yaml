@@ -76,7 +76,7 @@ skills:
     repository: "https://github.com/OthmanAdi/planning-with-files"
     author: "OthmanAdi"
     license: "MIT"
-    description: "Manus-style file-based planning skill synced from upstream skills/planning-with-files"
+    description: "Manus-style file-based planning skill synced from upstream .opencode/skills/planning-with-files"
     tags:
       - planning
       - workflow
@@ -129,7 +129,7 @@ notes: |
   intentionally distributed as skills-only snapshots (no submodules):
   - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
   - skills/planning-with-files synced from
-    https://github.com/OthmanAdi/planning-with-files/tree/master/skills/planning-with-files
+    https://github.com/OthmanAdi/planning-with-files/tree/master/.opencode/skills/planning-with-files
 
   All skills retain their original licenses and authorship.
   

@@ -17,7 +17,7 @@ hooks:
   Stop:
     - hooks:
         - type: command
-          command: "SD=\"${CLAUDE_PLUGIN_ROOT:-$HOME/.claude/plugins/planning-with-files}/scripts\"; powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$SD/check-complete.ps1\" 2>/dev/null || sh \"$SD/check-complete.sh\""
+          command: "SD=\"${OPENCODE_SKILL_ROOT:-$HOME/.config/opencode/skills/planning-with-files}/scripts\"; powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$SD/check-complete.ps1\" 2>/dev/null || sh \"$SD/check-complete.sh\""
 metadata:
   version: "2.16.1"
 ---
@@ -31,13 +31,13 @@ Work like Manus: Use persistent markdown files as your "working memory on disk."
 **Before starting work**, check for unsynced context from a previous session:
 
 ```bash
-# Linux/macOS
-$(command -v python3 || command -v python) ${CLAUDE_PLUGIN_ROOT}/scripts/session-catchup.py "$(pwd)"
+# Linux/macOS (auto-detects python3 or python)
+$(command -v python3 || command -v python) ~/.config/opencode/skills/planning-with-files/scripts/session-catchup.py "$(pwd)"
 ```
 
 ```powershell
 # Windows PowerShell
-& (Get-Command python -ErrorAction SilentlyContinue).Source "$env:USERPROFILE\.claude\skills\planning-with-files\scripts\session-catchup.py" (Get-Location)
+python "$env:USERPROFILE\.opencode\skills\planning-with-files\scripts\session-catchup.py" (Get-Location)
 ```
 
 If catchup report shows unsynced context:
@@ -48,12 +48,12 @@ If catchup report shows unsynced context:
 
 ## Important: Where Files Go
 
-- **Templates** are in `${CLAUDE_PLUGIN_ROOT}/templates/`
+- **Templates** are in `~/.config/opencode/skills/planning-with-files/templates/`
 - **Your planning files** go in **your project directory**
 
 | Location | What Goes There |
 |----------|-----------------|
-| Skill directory (`${CLAUDE_PLUGIN_ROOT}/`) | Templates, scripts, reference docs |
+| Skill directory (`~/.config/opencode/skills/planning-with-files/`) | Templates, scripts, reference docs |
 | Your project directory | `task_plan.md`, `findings.md`, `progress.md` |
 
 ## Quick Start

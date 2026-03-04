@@ -8,7 +8,7 @@ Academic Forge uses a **hybrid integration model**:
 
 - Most skills are linked via git submodules
 - `superpowers` is synced as a skills-only snapshot from upstream `skills/`
-- `planning-with-files` is synced as a single skills-only folder from upstream `skills/planning-with-files`
+- `planning-with-files` is synced as a single skills-only folder from upstream `.opencode/skills/planning-with-files`
 
 This means:
 
@@ -86,7 +86,7 @@ This means:
 
 - **Author**: OthmanAdi
 - **License**: MIT License
-- **Included Version**: Synced snapshot of `skills/planning-with-files` (see git history for latest sync commit)
+- **Included Version**: Synced snapshot of `.opencode/skills/planning-with-files` (see git history for latest sync commit)
 - **Purpose**: Manus-style file-based planning and session persistence for complex tasks
 - **Modifications**: Integrated as skills-only content under `skills/planning-with-files` (not as a submodule)
 - **Original License Text**: See upstream `OthmanAdi/planning-with-files` repository
@@ -180,7 +180,7 @@ This document tracks which versions of each skill are included:
 | 2024-XX-XX | AI-research-SKILLs | def456... | Initial inclusion |
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
-| 2026-03-04 | planning-with-files (skills-only folder) | synced from OthmanAdi/planning-with-files/skills/planning-with-files | Initial inclusion |
+| 2026-03-04 | planning-with-files (skills-only folder) | synced from OthmanAdi/planning-with-files/.opencode/skills/planning-with-files | Initial inclusion |
 
 To see the current linked submodule versions, run:
 ```bash

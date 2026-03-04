@@ -83,11 +83,11 @@ TEMP_DIR=".tmp-planning-with-files-sync"
 rm -rf "$TEMP_DIR"
 
 git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git "$TEMP_DIR"
-git -C "$TEMP_DIR" sparse-checkout set skills/planning-with-files
+git -C "$TEMP_DIR" sparse-checkout set .opencode/skills/planning-with-files
 
 rm -rf skills/planning-with-files
 mkdir -p skills/planning-with-files
-cp -R "$TEMP_DIR"/skills/planning-with-files/. skills/planning-with-files/
+cp -R "$TEMP_DIR"/.opencode/skills/planning-with-files/. skills/planning-with-files/
 rm -rf "$TEMP_DIR"
 
 echo -e "${GREEN}✓ planning-with-files skill synced${NC}"
@@ -114,7 +114,7 @@ echo ""
 # Show status of each submodule
 git submodule foreach 'echo "📚 $name:"; git log --oneline -3 --decorate; echo ""'
 echo "📚 skills/superpowers: synced from obra/superpowers (skills/)"
-echo "📚 skills/planning-with-files: synced from OthmanAdi/planning-with-files (skills/planning-with-files)"
+echo "📚 skills/planning-with-files: synced from OthmanAdi/planning-with-files (.opencode/skills/planning-with-files)"
 echo ""
 
 echo ""
