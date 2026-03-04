@@ -5,7 +5,7 @@
 **A curated skill collection for academic writing and research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-5-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-6-blue.svg)](./skills)
 
 </div>
 
@@ -86,6 +86,13 @@ This forge integrates the following carefully selected skills:
 - **Best For**: Long multi-step implementation or research tasks that need durable planning and session recovery
 - **Integration Mode**: This forge intentionally syncs only upstream `.opencode/skills/planning-with-files` (not as a submodule)
 
+### scientific-visualization (local built-in skill)
+- **Author**: Academic Forge contributors (maintained locally)
+- **License**: MIT (inherits this repository license)
+- **Purpose**: Improve scientific figures to publication-ready quality with stronger visual consistency and accessibility
+- **Best For**: Journal-ready plotting workflows (multi-panel layouts, error bars/significance markers, colorblind-safe palettes, and export format optimization)
+- **Integration Mode**: Local skill at `skills/scientific-visualization` with no upstream sync dependency
+
 > **Note**: All skills retain their original licenses and authorship. This forge provides convenient integration only. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
 
 ## 🚀 Quick Start
@@ -126,7 +133,7 @@ If you want to sync skills in an existing clone (submodules + skills-only source
 bash scripts/download-skills.sh
 ```
 
-These scripts automatically sync your local `skills/` folder, including submodules, the `superpowers` `skills/` snapshot, and the `planning-with-files` `.opencode/skills/planning-with-files` snapshot. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
+These scripts automatically sync your local `skills/` folder, including submodules, the `superpowers` `skills/` snapshot, and the `planning-with-files` `.opencode/skills/planning-with-files` snapshot. `scientific-visualization` is local and does not rely on upstream sync. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
 
 ### Update Skills
 
@@ -141,7 +148,7 @@ cd .opencode/skills/academic-forge
 
 #### 🔄 Automatic Updates
 
-This repository is configured with automated workflows that update all skill sources (submodules + superpowers/planning-with-files skills-only sync) **every Monday at 09:00 UTC**. This means:
+This repository is configured with automated workflows that update all upstream skill sources (submodules + superpowers/planning-with-files skills-only sync) **every Monday at 09:00 UTC**. `scientific-visualization` is maintained locally in this repository.
 
 - ✅ Skills always stay up-to-date
 - ✅ Automatically receive improvements and bug fixes from original authors
@@ -162,7 +169,8 @@ academic-forge/
 │   ├── AI-research-SKILLs/          (submodule)
 │   ├── humanizer/                   (submodule)
 │   ├── superpowers/                 (skills-only sync from obra/superpowers)
-│   └── planning-with-files/         (skills-only sync from OthmanAdi/planning-with-files)
+│   ├── planning-with-files/         (skills-only sync from OthmanAdi/planning-with-files)
+│   └── scientific-visualization/    (local built-in skill)
 └── scripts/
     ├── install.sh         # Installation script
     └── update.sh          # Update all skills to latest versions
@@ -175,6 +183,7 @@ Academic Forge is perfect for:
 - 📝 **Writing Research Papers** - From outline to submission-ready manuscript
 - 🔬 **Experimental Design** - Planning and documenting research methodology
 - 📊 **Data Analysis** - Statistical analysis and result interpretation
+- 🖼️ **Scientific Figures** - Creating and polishing publication-quality plots
 - 📚 **Literature Review** - Organizing and synthesizing academic sources
 - ✍️ **Thesis Writing** - Long-form academic document management
 - 👥 **Collaborative Research** - Maintaining consistent style across team members
@@ -184,7 +193,7 @@ Academic Forge is perfect for:
 Academic Forge uses a hybrid version model (git submodules + skills-only sync for selected sources):
 
 - **Automatic Updates**: Run `./scripts/update.sh` to pull latest changes
-- **Version Locking**: Commit the `.gitmodules` state and tracked `skills/superpowers` + `skills/planning-with-files` changes
+- **Version Locking**: Commit the `.gitmodules` state and tracked `skills/superpowers`, `skills/planning-with-files`, and `skills/scientific-visualization` changes
 - **Rollback Safety**: Use git to revert to previous working states
 
 ## 🤝 Contributing

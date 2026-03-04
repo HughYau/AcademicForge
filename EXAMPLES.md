@@ -262,6 +262,48 @@ accuracy with standard deviation < 0.02 across folds."
 
 ---
 
+## 🖼️ Example 7: Scientific Figure Upgrade (Same Prompt, Different Skill Stack)
+
+### Scenario
+You need a journal-ready figure from the same dataset and prompt.
+
+### Prompt (same in both runs)
+```
+"Please create a dose-response comparison plot for Control, Drug A, and Drug B
+with mean and uncertainty, suitable for a manuscript."
+```
+
+### Run A: Without `scientific-visualization`
+```
+Claude: *Uses general plotting defaults*
+
+Typical output:
+- Basic chart with default style
+- Inconsistent font sizes and spacing
+- Limited accessibility considerations
+- Export often stops at a single PNG
+```
+
+### Run B: With `scientific-visualization`
+```
+Claude: *Uses scientific-visualization*
+
+Typical output:
+- Publication-focused styling and typography
+- Colorblind-safe palette and clearer legend hierarchy
+- Better panel composition, labels, and error representation
+- Multi-format export guidance (PDF/EPS/TIFF/PNG)
+```
+
+### Why this matters
+- Reviewers evaluate scientific clarity and figure readability quickly.
+- Better figure structure reduces revision cycles during submission.
+- Visual consistency across all figures strengthens perceived rigor.
+
+> Tip: For local side-by-side visual comparisons, generate a private folder (ignored by git) and keep prompts + images together for your lab's workflow.
+
+---
+
 ## 💡 Tips for Maximum Effectiveness
 
 1. **Be Specific**: Instead of "improve this," say "make this sound more academic" or "format this as LaTeX"

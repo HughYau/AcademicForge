@@ -37,6 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `planning-with-files` as a skills-only synced source under `skills/planning-with-files`, synced from upstream `.opencode/skills/planning-with-files` (no submodule)
 - Updated install/download/update scripts (bash + PowerShell) to sync `planning-with-files` alongside `superpowers`
 - Updated automation workflow and documentation to reflect the new skills-only source
+- Added local `scientific-visualization` skill documentation (no upstream dependency)
+- Updated README/QUICKSTART/ATTRIBUTIONS/forge metadata to include visualization workflow capabilities
 
 ### Planned
 - Example workflows and use cases

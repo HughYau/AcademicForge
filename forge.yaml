@@ -83,6 +83,19 @@ skills:
       - context-management
       - organization
 
+  - name: "scientific-visualization"
+    path: "skills/scientific-visualization"
+    repository: "local (this repository)"
+    author: "Academic Forge contributors"
+    license: "MIT"
+    description: "Local publication-focused scientific plotting skill (matplotlib/seaborn/plotly)"
+    tags:
+      - visualization
+      - publication-figures
+      - matplotlib
+      - seaborn
+      - plotly
+
 # Configuration options for users
 config:
   # Auto-update behavior
@@ -94,6 +107,7 @@ config:
     AI-research-SKILLs: 9
     superpowers: 8
     planning-with-files: 8
+    scientific-visualization: 8
     humanizer: 7
   
   # Enable/disable individual skills
@@ -102,6 +116,7 @@ config:
     AI-research-SKILLs: true
     superpowers: true
     planning-with-files: true
+    scientific-visualization: true
     humanizer: true
 
 # Installation instructions
@@ -130,6 +145,8 @@ notes: |
   - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
   - skills/planning-with-files synced from
     https://github.com/OthmanAdi/planning-with-files/tree/master/.opencode/skills/planning-with-files
+  - skills/scientific-visualization is maintained locally in this repository
+    (no upstream sync dependency)
 
   All skills retain their original licenses and authorship.
   

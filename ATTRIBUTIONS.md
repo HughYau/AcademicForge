@@ -9,14 +9,16 @@ Academic Forge uses a **hybrid integration model**:
 - Most skills are linked via git submodules
 - `superpowers` is synced as a skills-only snapshot from upstream `skills/`
 - `planning-with-files` is synced as a single skills-only folder from upstream `.opencode/skills/planning-with-files`
+- `scientific-visualization` is maintained locally in this repository (no upstream dependency)
 
 This means:
 
 - ✅ All original LICENSE files are preserved
-- ✅ Skills link directly to their source repositories
+- ✅ External skills link directly to their source repositories
 - ✅ Authors receive proper credit and GitHub attribution
 - ✅ Updates flow from the original repositories
 - ✅ `superpowers` and `planning-with-files` are intentionally limited to skills-only content to keep this forge focused
+- ✅ Local custom skills remain fully transparent in this repository's git history
 
 ## Included Skills
 
@@ -95,6 +97,21 @@ This means:
 
 ---
 
+### 6. scientific-visualization (local built-in)
+
+**Source**: Local skill maintained in this repository at `skills/scientific-visualization`
+
+- **Author**: Academic Forge contributors
+- **License**: MIT License (inherits this forge's repository license)
+- **Included Version**: Tracked directly by this repository's commit history
+- **Purpose**: Publication-focused scientific plotting and figure polishing (matplotlib/seaborn/plotly)
+- **Modifications**: First-party local skill, no upstream mirror/submodule
+- **Original License Text**: See root `LICENSE`
+
+**Why we included it**: Academic projects regularly fail quality bars at the figure stage. This skill directly targets publication-readiness (layout consistency, accessibility-safe colors, export formats, and journal-oriented styling), which strongly complements writing and research-methodology skills.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -111,6 +128,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | humanizer | TBD* | Check repo | Check repo |
 | superpowers | MIT | ✅ Yes | ✅ Yes |
 | planning-with-files | MIT | ✅ Yes | ✅ Yes |
+| scientific-visualization | MIT | ✅ Yes | ✅ Yes |
 
 *Please check the original repository for current license information.
 
@@ -181,13 +199,14 @@ This document tracks which versions of each skill are included:
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
 | 2026-03-04 | planning-with-files (skills-only folder) | synced from OthmanAdi/planning-with-files/.opencode/skills/planning-with-files | Initial inclusion |
+| 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
 
 To see the current linked submodule versions, run:
 ```bash
 git submodule status
 ```
 
-For `superpowers` and `planning-with-files` (skills-only syncs), check the latest sync commits in this repository's git history.
+For `superpowers` and `planning-with-files` (skills-only syncs), check the latest sync commits in this repository's git history. For `scientific-visualization`, check normal file history in this repository.
 
 ---
 

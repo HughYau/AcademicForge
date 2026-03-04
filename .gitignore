@@ -23,3 +23,7 @@ Thumbs.db
 .env
 .env.local
 config.local.yaml
+
+# Local private docs and demo outputs
+LOCAL_SKILLS_INTRO.md
+example/

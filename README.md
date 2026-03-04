@@ -5,7 +5,7 @@
 **为学术写作整合的Skills集合**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-5-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-6-blue.svg)](./skills)
 
 [English](./README_en.md) | 简体中文
 
@@ -107,6 +107,21 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
   - 🧪 **复现实验更稳定**：错误与尝试路径可追溯，便于复盘
 - **集成方式**: 本 forge 仅同步上游仓库 `.opencode/skills/planning-with-files` 单个目录，不采用 submodule
 
+### scientific-visualization（本地内置 Skill）
+- **作者**: Academic Forge contributors（本地维护）
+- **许可证**: MIT（沿用本仓库许可证）
+- **定位**: 面向科研论文与报告的可视化增强，输出更接近投稿标准的图表
+- **核心能力**:
+  - 出版级样式模板（期刊风格、字体/线宽/配色一致化）
+  - 多子图布局与标注规范（panel labels、legend、单位、误差线）
+  - 色盲友好配色与灰度可读性校验
+  - 导出优化（PDF/EPS/TIFF/PNG，分辨率与尺寸对齐投稿要求）
+- **在学术项目中的价值**:
+  - 📈 **结果表达更清晰**：把“能看”变成“能发表”
+  - 🧾 **图表规范更统一**：减少补图返工与格式问题
+  - 🧪 **统计呈现更严谨**：鼓励展示误差、显著性与样本信息
+- **集成方式**: 本地目录 `skills/scientific-visualization`，无上游同步依赖
+
 > **注意**: 所有Skills保留其原始许可证和作者身份。本 forge 仅提供便捷的集成。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
 
 ## 🚀 快速开始
@@ -148,7 +163,7 @@ git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/
 bash scripts/download-skills.sh
 ```
 
-这些脚本将自动同步本地 `skills/`（包括所有子模块、`superpowers` 的 `skills/` 快照，以及 `planning-with-files` 的 `.opencode/skills/planning-with-files` 单目录快照）。
+这些脚本将自动同步本地 `skills/`（包括所有子模块、`superpowers` 的 `skills/` 快照，以及 `planning-with-files` 的 `.opencode/skills/planning-with-files` 单目录快照）。`scientific-visualization` 为本地内置 skill，不依赖上游同步。
 
 ### 更新 Skills
 
@@ -163,7 +178,7 @@ cd .opencode/skills/academic-forge
 
 #### 🔄 自动更新
 
-本仓库配置了自动化工作流程，**每周一 09:00 UTC** 自动更新所有 skills 来源（submodules + superpowers/planning-with-files skills-only 同步）。这意味着：
+本仓库配置了自动化工作流程，**每周一 09:00 UTC** 自动更新所有上游 skills 来源（submodules + superpowers/planning-with-files skills-only 同步）。`scientific-visualization` 由本仓库本地维护。
 
 - ✅ Skills 始终保持最新状态
 - ✅ 自动获取原作者的改进和bug修复
@@ -177,6 +192,7 @@ Academic Forge 非常适合：
 - 📝 **撰写研究论文** - 从大纲到提交就绪的手稿
 - 🔬 **实验设计** - 规划和记录研究方法
 - 📊 **数据分析** - 统计分析和结果解释
+- 🖼️ **科研绘图** - 生成或改造投稿级图表
 - 📚 **文献综述** - 组织和综合学术资源
 - ✍️ **学位论文写作** - 长篇学术文档管理
 - 👥 **协作研究** - 在团队成员之间保持一致的风格
