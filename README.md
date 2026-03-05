@@ -49,6 +49,7 @@ Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准
   - 🤖 **机器学习** - PyTorch Lightning, scikit-learn, 深度学习工作流
   - 📚 **数据库** - 28+ 科学数据库 (PubMed, OpenAlex, ChEMBL, UniProt等)
 - **最适合**: 从文献综述到论文发表的多步骤科学工作流程
+- **广告净化**: 脚本每次安装/下载/更新后自动移除各 SKILL.md 中内嵌的平台推广段落，保持 skill 内容纯净
 
 ### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) (82 Skills)
 - **作者**: [@zechenzhangAGI](https://github.com/zechenzhangAGI) - By Orchestra Research
@@ -174,7 +175,7 @@ cd .opencode/skills/academic-forge
 ./scripts/update.sh  # 或在 Windows 上使用 update.ps1
 ```
 
-> 可选：如需屏蔽特定上游 skill，可编辑 `scripts/skill-blacklist.txt`。安装/下载/更新脚本会自动移除清单中的路径。
+> 可选：如需屏蔽特定上游 skill，可编辑 `scripts/skill-blacklist.txt`。安装/下载/更新脚本会自动移除清单中的路径
 
 #### 🔄 自动更新
 

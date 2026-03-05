@@ -47,6 +47,7 @@ This forge integrates the following carefully selected skills:
   - 🤖 **Machine Learning** - PyTorch Lightning, scikit-learn, deep learning workflows
   - 📚 **Databases** - 28+ scientific databases (PubMed, OpenAlex, ChEMBL, UniProt, etc.)
 - **Best For**: Multi-step scientific workflows from literature review to publication
+- **Ad Sanitization**: Each install/download/update run automatically strips embeddedpromotional sectionfrom all SKILL.md files, keeping skill content clean
 
 ### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) (82 Skills)
 - **Author**: [@zechenzhangAGI](https://github.com/zechenzhangAGI) - By Orchestra Research
@@ -144,7 +145,7 @@ cd .opencode/skills/academic-forge
 ./scripts/update.sh
 ```
 
-> Optional: To block specific upstream skills, edit `scripts/skill-blacklist.txt`. Install/download/update scripts automatically remove listed paths.
+> Optional: To block specific upstream skills, edit `scripts/skill-blacklist.txt`. Install/download/update scripts automatically remove listed paths
 
 #### 🔄 Automatic Updates
 
