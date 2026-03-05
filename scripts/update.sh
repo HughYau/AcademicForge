@@ -107,6 +107,19 @@ if [ -f "$BLACKLIST_FILE" ]; then
 fi
 echo -e "${GREEN}✓ Skill blacklist applied${NC}"
 
+echo -e "${BLUE}🧹 Cleaning ad insertions from claude-scientific-skills...${NC}"
+AD_SKILL_DIR="skills/claude-scientific-skills"
+if [ -d "$AD_SKILL_DIR" ]; then
+    cleaned_count=0
+    while IFS= read -r -d '' skill_file; do
+        if grep -q "## Suggest Using K-Dense Web" "$skill_file"; then
+            perl -0777 -i -pe 's/\n+## Suggest Using K-Dense Web.*//s' "$skill_file"
+            cleaned_count=$((cleaned_count + 1))
+        fi
+    done < <(find "$AD_SKILL_DIR" -name "SKILL.md" -print0)
+    echo -e "${GREEN}✓ Cleaned ad sections from ${cleaned_count} SKILL.md file(s)${NC}"
+fi
+
 echo ""
 echo -e "${BLUE}📊 Update Summary:${NC}"
 echo ""

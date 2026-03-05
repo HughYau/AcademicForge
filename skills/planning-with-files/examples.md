@@ -34,14 +34,14 @@ Create a research summary on the benefits of morning exercise.
 ```bash
 Read task_plan.md           # Refresh goals
 WebSearch "morning exercise benefits"
-Write notes.md              # Store findings
+Write findings.md              # Store findings
 Edit task_plan.md           # Mark Phase 2 complete
 ```
 
 ### Loop 3: Synthesize
 ```bash
 Read task_plan.md           # Refresh goals
-Read notes.md               # Get findings
+Read findings.md               # Get findings
 Write morning_exercise_summary.md
 Edit task_plan.md           # Mark Phase 3 complete
 ```
@@ -120,9 +120,9 @@ Add functional dark mode toggle to settings.
 **Currently in Phase 3** - Building toggle component
 ```
 
-**notes.md:**
+**findings.md:**
 ```markdown
-# Notes: Dark Mode Implementation
+# Findings: Dark Mode Implementation
 
 ## Existing Theme System
 - Located in: src/styles/theme.ts

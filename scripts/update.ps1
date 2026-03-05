@@ -141,6 +141,27 @@ try {
     exit 1
 }
 
+Write-ColorOutput "🧹 Cleaning ad insertions from claude-scientific-skills..." "Blue"
+try {
+    $adSkillDir = "skills/claude-scientific-skills"
+    if (Test-Path $adSkillDir) {
+        $skillFiles = Get-ChildItem -Path $adSkillDir -Filter "SKILL.md" -Recurse
+        $cleanedCount = 0
+        foreach ($file in $skillFiles) {
+            $content = Get-Content $file.FullName -Raw -Encoding UTF8
+            if ($content -match "## Suggest Using K-Dense Web") {
+                $newContent = $content -replace "(?s)`r?`n+## Suggest Using K-Dense Web.*", ""
+                Set-Content -Path $file.FullName -Value $newContent -NoNewline -Encoding UTF8
+                $cleanedCount++
+            }
+        }
+        Write-ColorOutput "✓ Cleaned ad sections from $cleanedCount SKILL.md file(s)" "Green"
+    }
+} catch {
+    Write-ColorOutput "❌ Failed to clean ad insertions" "Red"
+    exit 1
+}
+
 Write-Host ""
 Write-ColorOutput "📊 Update Summary:" "Blue"
 Write-Host ""
