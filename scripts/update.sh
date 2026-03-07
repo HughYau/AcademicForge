@@ -93,15 +93,26 @@ rm -rf "$TEMP_DIR"
 echo -e "${GREEN}✓ planning-with-files skill synced${NC}"
 
 echo -e "${BLUE}🧹 Applying skill blacklist...${NC}"
-BLACKLIST_FILE="scripts/skill-blacklist.txt"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+BLACKLIST_FILE="$REPO_ROOT/scripts/skill-blacklist.txt"
 if [ -f "$BLACKLIST_FILE" ]; then
-    while IFS= read -r skill_path; do
+    while IFS= read -r raw_skill_path || [ -n "$raw_skill_path" ]; do
+        skill_path="$(echo "$raw_skill_path" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
         # Skip comments and empty lines
         [[ -z "$skill_path" || "$skill_path" =~ ^# ]] && continue
 
-        if [ -e "$skill_path" ]; then
-            rm -rf "$skill_path"
+        if [[ "$skill_path" = /* ]]; then
+            target_path="$skill_path"
+        else
+            target_path="$REPO_ROOT/$skill_path"
+        fi
+
+        if [ -e "$target_path" ]; then
+            rm -rf "$target_path"
             echo -e "${YELLOW}  - Removed blacklisted skill: $skill_path${NC}"
+        else
+            echo -e "${YELLOW}  - Blacklist entry not found (skipped): $skill_path${NC}"
         fi
     done < "$BLACKLIST_FILE"
 fi

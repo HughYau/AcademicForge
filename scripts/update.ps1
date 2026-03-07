@@ -121,16 +121,26 @@ try {
 Write-ColorOutput "🧹 Applying skill blacklist..." "Blue"
 
 try {
-    $blacklistFile = "scripts/skill-blacklist.txt"
+    $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
+    $blacklistFile = Join-Path $repoRoot "scripts/skill-blacklist.txt"
     if (Test-Path $blacklistFile) {
-        $blacklistPaths = Get-Content $blacklistFile | Where-Object {
-            $_ -and $_.Trim() -ne "" -and -not $_.Trim().StartsWith("#")
-        }
+        foreach ($rawSkillPath in Get-Content $blacklistFile) {
+            $skillPath = $rawSkillPath.Trim()
+            if (-not $skillPath -or $skillPath.StartsWith("#")) {
+                continue
+            }
 
-        foreach ($skillPath in $blacklistPaths) {
-            if (Test-Path $skillPath) {
-                Remove-Item -Recurse -Force $skillPath
+            $targetPath = if ([System.IO.Path]::IsPathRooted($skillPath)) {
+                $skillPath
+            } else {
+                Join-Path $repoRoot $skillPath
+            }
+
+            if (Test-Path -LiteralPath $targetPath) {
+                Remove-Item -Recurse -Force -LiteralPath $targetPath
                 Write-ColorOutput "  - Removed blacklisted skill: $skillPath" "Yellow"
+            } else {
+                Write-ColorOutput "  - Blacklist entry not found (skipped): $skillPath" "DarkYellow"
             }
         }
     }
