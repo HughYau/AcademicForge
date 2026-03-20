@@ -1,12 +1,36 @@
-﻿# Academic Forge Installation Script for Windows
+# Academic Forge Installation Script for Windows
 # PowerShell version
 
 param(
-    [string]$InstallDir = ".opencode\skills\academic-forge"
+    [string]$InstallDir = "",
+    [string]$Tool = ""
 )
 
 # Set error action preference
 $ErrorActionPreference = "Stop"
+
+# Determine install directory based on tool type
+if (-not $InstallDir) {
+    if ($Tool) {
+        switch ($Tool.ToLower()) {
+            "claude"   { $InstallDir = ".claude\skills\academic-forge" }
+            "opencode" { $InstallDir = ".opencode\skills\academic-forge" }
+            default {
+                Write-Host "Unknown tool: $Tool" -ForegroundColor Red
+                Write-Host "Supported: claude, opencode"
+                Write-Host "Or provide a custom path with -InstallDir."
+                exit 1
+            }
+        }
+    } else {
+        # Auto-detect: prefer .claude if it exists, otherwise .opencode
+        if (Test-Path ".claude") {
+            $InstallDir = ".claude\skills\academic-forge"
+        } else {
+            $InstallDir = ".opencode\skills\academic-forge"
+        }
+    }
+}
 
 # Colors
 function Write-ColorOutput {
@@ -41,7 +65,7 @@ Write-Host ""
 if (Test-Path $InstallDir) {
     Write-ColorOutput "⚠️  Directory already exists: $InstallDir" "Yellow"
     $response = Read-Host "Do you want to remove it and reinstall? (y/N)"
-    
+
     if ($response -eq 'y' -or $response -eq 'Y') {
         Remove-Item -Recurse -Force $InstallDir
         Write-ColorOutput "✓ Removed existing directory" "Green"
@@ -81,105 +105,31 @@ try {
     exit 1
 }
 
-Write-ColorOutput "🔄 Syncing superpowers (skills-only)..." "Blue"
+# Load shared library functions (now that we're in the cloned repo)
+. (Join-Path "scripts" "lib.ps1")
+
+# Sync skills-only snapshots
 try {
-    $tempDir = ".tmp-superpowers-sync"
-    if (Test-Path $tempDir) {
-        Remove-Item -Recurse -Force $tempDir
-    }
-
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git $tempDir
-    git -C $tempDir sparse-checkout set skills
-
-    if (Test-Path "skills/superpowers") {
-        Remove-Item -Recurse -Force "skills/superpowers"
-    }
-    New-Item -ItemType Directory -Path "skills/superpowers" -Force | Out-Null
-    Copy-Item -Path "$tempDir/skills/*" -Destination "skills/superpowers" -Recurse -Force
-    Remove-Item -Recurse -Force $tempDir
-
-    Write-ColorOutput "✓ superpowers skills synced" "Green"
+    Sync-Superpowers
 } catch {
     Write-ColorOutput "❌ Failed to sync superpowers skills" "Red"
     Pop-Location
     exit 1
 }
 
-Write-ColorOutput "🔄 Syncing planning-with-files (skills-only)..." "Blue"
 try {
-    $tempDir = ".tmp-planning-with-files-sync"
-    if (Test-Path $tempDir) {
-        Remove-Item -Recurse -Force $tempDir
-    }
-
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git $tempDir
-    git -C $tempDir sparse-checkout set .opencode/skills/planning-with-files
-
-    if (Test-Path "skills/planning-with-files") {
-        Remove-Item -Recurse -Force "skills/planning-with-files"
-    }
-    New-Item -ItemType Directory -Path "skills/planning-with-files" -Force | Out-Null
-    Copy-Item -Path "$tempDir/.opencode/skills/planning-with-files/*" -Destination "skills/planning-with-files" -Recurse -Force
-    Remove-Item -Recurse -Force $tempDir
-
-    Write-ColorOutput "✓ planning-with-files skill synced" "Green"
+    Sync-PlanningWithFiles
 } catch {
     Write-ColorOutput "❌ Failed to sync planning-with-files skill" "Red"
     Pop-Location
     exit 1
 }
 
-Write-ColorOutput "🧹 Applying skill blacklist..." "Blue"
+# Post-sync processing: patch paths, apply blacklist, clean ads
 try {
-    $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
-    $blacklistFile = Join-Path $repoRoot "scripts/skill-blacklist.txt"
-    if (Test-Path $blacklistFile) {
-        foreach ($rawSkillPath in Get-Content $blacklistFile) {
-            $skillPath = $rawSkillPath.Trim()
-            if (-not $skillPath -or $skillPath.StartsWith("#")) {
-                continue
-            }
-
-            $targetPath = if ([System.IO.Path]::IsPathRooted($skillPath)) {
-                $skillPath
-            } else {
-                Join-Path $repoRoot $skillPath
-            }
-
-            if (Test-Path -LiteralPath $targetPath) {
-                Remove-Item -Recurse -Force -LiteralPath $targetPath
-                Write-ColorOutput "  - Removed blacklisted skill: $skillPath" "Yellow"
-            } else {
-                Write-ColorOutput "  - Blacklist entry not found (skipped): $skillPath" "DarkYellow"
-            }
-        }
-    }
-
-    Write-ColorOutput "✓ Skill blacklist applied" "Green"
+    Invoke-PostSyncAll -BlacklistFile "scripts/skill-blacklist.txt"
 } catch {
-    Write-ColorOutput "❌ Failed to apply skill blacklist" "Red"
-    Pop-Location
-    exit 1
-}
-
-Write-ColorOutput "🧹 Cleaning ad insertions from claude-scientific-skills..." "Blue"
-try {
-    $adSkillDir = "skills/claude-scientific-skills"
-    if (Test-Path $adSkillDir) {
-        $skillFiles = Get-ChildItem -Path $adSkillDir -Filter "SKILL.md" -Recurse
-        $cleanedCount = 0
-        foreach ($file in $skillFiles) {
-            $content = Get-Content $file.FullName -Raw -Encoding UTF8
-            if ($content -match "## Suggest Using K-Dense Web") {
-                $newContent = $content -replace "(?s)`r?`n+## Suggest Using K-Dense Web.*", ""
-                Set-Content -Path $file.FullName -Value $newContent -NoNewline -Encoding UTF8
-                $cleanedCount++
-            }
-        }
-        Write-ColorOutput "✓ Cleaned ad sections from $cleanedCount SKILL.md file(s)" "Green"
-    }
-} catch {
-    Write-ColorOutput "❌ Failed to clean ad insertions" "Red"
+    Write-ColorOutput "❌ Failed post-sync processing" "Red"
     Pop-Location
     exit 1
 }
@@ -211,4 +161,3 @@ Write-Host "  - ATTRIBUTIONS.md: Skill credits and licenses"
 Write-Host "  - forge.yaml: Configuration options"
 Write-Host ""
 Write-ColorOutput "Happy writing! 🎓📝" "Green"
-

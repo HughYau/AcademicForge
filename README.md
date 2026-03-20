@@ -143,6 +143,20 @@ cd your-project
 irm https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.ps1 | iex
 ```
 
+**指定目标工具（可选）：**
+```bash
+# 安装到 Claude Code 目录
+bash install.sh --tool claude
+
+# 安装到 OpenCode 目录
+bash install.sh --tool opencode
+
+# 自定义路径
+bash install.sh /path/to/your/skills/academic-forge
+```
+
+> 如果不指定 `--tool`，脚本会自动检测：优先使用 `.claude/` 目录，否则使用 `.opencode/`。
+
 或手动安装：
 
 ```bash
@@ -171,9 +185,11 @@ bash scripts/download-skills.sh
 保持所有 Skills 与最新改进同步：
 
 ```bash
-cd .opencode/skills/academic-forge
+cd .opencode/skills/academic-forge  # 或你的安装目录
 ./scripts/update.sh  # 或在 Windows 上使用 update.ps1
 ```
+
+> 所有脚本支持从任意目录运行，会自动定位仓库根目录。
 
 > 可选：如需屏蔽特定上游 skill，可编辑 `scripts/skill-blacklist.txt`。安装/下载/更新脚本会自动移除清单中的路径
 

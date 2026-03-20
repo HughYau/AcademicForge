@@ -100,14 +100,26 @@ This forge integrates the following carefully selected skills:
 
 ### Installation
 
-Install Academic Forge directly into your Claude Code project:
+Install Academic Forge directly into your Claude Code / OpenCode project:
 
 ```bash
 # Navigate to your project
 cd your-project
 
-# Install the forge
+# Install the forge (auto-detects Claude Code or OpenCode)
 curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
+```
+
+**Specify target tool (optional):**
+```bash
+# Install to Claude Code directory
+bash install.sh --tool claude
+
+# Install to OpenCode directory
+bash install.sh --tool opencode
+
+# Custom path
+bash install.sh /path/to/your/skills/academic-forge
 ```
 
 Or manually:
@@ -141,9 +153,11 @@ These scripts automatically sync your local `skills/` folder, including submodul
 Keep all skills up-to-date with the latest improvements:
 
 ```bash
-cd .opencode/skills/academic-forge
+cd .opencode/skills/academic-forge  # or your install directory
 ./scripts/update.sh
 ```
+
+> All scripts can be run from any directory — they auto-detect the repository root.
 
 > Optional: To block specific upstream skills, edit `scripts/skill-blacklist.txt`. Install/download/update scripts automatically remove listed paths
 
@@ -173,8 +187,10 @@ academic-forge/
 │   ├── planning-with-files/         (skills-only sync from OthmanAdi/planning-with-files)
 │   └── scientific-visualization/    (local built-in skill)
 └── scripts/
-    ├── install.sh         # Installation script
-    └── update.sh          # Update all skills to latest versions
+    ├── lib.sh / lib.ps1   # Shared functions (sync, patch, blacklist, ads)
+    ├── install.sh/.ps1    # Installation script
+    ├── update.sh/.ps1     # Update all skills to latest versions
+    └── download-skills.sh/.ps1  # Download/re-sync skills
 ```
 
 ## 🎓 Use Cases

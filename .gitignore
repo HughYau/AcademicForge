@@ -26,5 +26,6 @@ config.local.yaml
 
 # Local private docs and demo outputs
 LOCAL_SKILLS_INTRO.md
+CLAUDE.md
 example/
 skills/claude-scientific-skills
