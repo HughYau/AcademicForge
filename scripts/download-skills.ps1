@@ -1,12 +1,38 @@
 # Academic Forge - Download Skills Script
 # PowerShell version - Downloads skills submodules and syncs skills-only sources
 
+param(
+    [switch]$Help,
+    [Alias("V")][switch]$Version
+)
+
 # Set error action preference
 $ErrorActionPreference = "Stop"
 
 # Auto-detect repo root from script location
 $RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 Set-Location $RepoRoot
+
+if ($Help) {
+    Write-Host "Usage: .\scripts\download-skills.ps1"
+    Write-Host ""
+    Write-Host "Downloads and syncs all Academic Forge skills (submodules + skills-only snapshots)."
+    Write-Host ""
+    Write-Host "Options:"
+    Write-Host "  -Help              Show this help message"
+    Write-Host "  -Version, -V       Show forge version"
+    exit 0
+}
+
+if ($Version) {
+    $ver = "unknown"
+    if (Test-Path "forge.yaml") {
+        $line = Select-String -Path "forge.yaml" -Pattern 'version:' | Select-Object -First 1
+        if ($line) { $ver = ($line.Line -replace '.*"(.*)".*', '$1') }
+    }
+    Write-Host "Academic Forge v$ver"
+    exit 0
+}
 
 # Load shared library functions
 . (Join-Path $PSScriptRoot "lib.ps1")

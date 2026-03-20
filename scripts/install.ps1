@@ -3,11 +3,33 @@
 
 param(
     [string]$InstallDir = "",
-    [string]$Tool = ""
+    [string]$Tool = "",
+    [switch]$Help,
+    [Alias("V")][switch]$Version
 )
 
 # Set error action preference
 $ErrorActionPreference = "Stop"
+
+if ($Help) {
+    Write-Host "Usage: .\scripts\install.ps1 [--tool claude|opencode] [-InstallDir <path>]"
+    Write-Host ""
+    Write-Host "Installs Academic Forge into your project."
+    Write-Host ""
+    Write-Host "Options:"
+    Write-Host "  -Tool <name>       Target tool: 'claude' or 'opencode'"
+    Write-Host "  -InstallDir <path> Custom installation directory"
+    Write-Host "  -Help              Show this help message"
+    Write-Host "  -Version, -V       Show forge version"
+    Write-Host ""
+    Write-Host "If no -Tool or -InstallDir is given, auto-detects .claude/ or .opencode/."
+    exit 0
+}
+
+if ($Version) {
+    Write-Host "Academic Forge installer"
+    exit 0
+}
 
 # Determine install directory based on tool type
 if (-not $InstallDir) {

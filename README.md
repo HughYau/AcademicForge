@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**为学术写作整合的Skills集合**
+**为学术写作整合的 Claude Code / OpenCode 技能集合**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-6-blue.svg)](./skills)
@@ -13,123 +13,16 @@
 
 ## 📖 什么是 Forge（熔炉）？
 
-"Forge" 这个名字灵感来自 **Minecraft 的模组加载器系统**（如 Forge 或 Fabric），它允许玩家无缝运行多个模组。就像 Minecraft Forge 提供的整合包为特定游戏体验集成各种模组一样，**Academic Forge** 为专注的学术写作工作流程集成多个 Skills。
+"Forge" 灵感来自 **Minecraft 的模组加载器系统**——就像 Minecraft Forge 整合包为特定游戏体验集成各种模组一样，**Academic Forge** 为学术写作工作流程整合多个 AI 编程助手技能。
 
-### 为什么叫 "Forge"？
-
-- 🔧 **集成优于安装** - 就像 Minecraft 整合包，你得到的是一个精心策划、协同工作的集合
-- 🎯 **专门构建** - 每个 forge 针对特定领域（学术写作、Web 开发、数据科学等）
+- 🔧 **集成优于安装** - 精心策划、协同工作的技能集合，而非零散安装
+- 🎯 **专门构建** - 只包含学术写作相关技能，避免太多技能导致 AI 准确性下降
 - 🔄 **自动更新** - Skills 通过 git submodules 与 skills-only 同步机制保持最新
-- 🤝 **社区驱动** - 建立在多个Skills创作者的优秀工作之上
-
-## 🎯 用途
-
-Academic Forge 解决了一个常见问题：**太多Skills会导致 AI agent准确性下降**。通过只精选与学术写作和研究相关的Skills，可以：
-
-- ✅ 做出更精准的Skills调用
-- ✅ 避免类似Skills之间的混淆
-- ✅ 保持对研究工作流程的专注
-- ✅ 及时获得原始作者的改进更新
-
-## 📦 包含的Skills
-
-本 forge 整合了以下精心挑选的Skills：
-
-### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) (140 Skills)
-- **作者**: [@k-dense-ai](https://github.com/k-dense-ai) - By K-Dense Inc.
-- **许可证**: MIT
-- **覆盖范围**: 140 个即用型科学skills，涵盖15+领域
-- **包含内容**:
-  - 🧬 **生物信息学与基因组学** - BioPython, Scanpy, 单细胞RNA-seq, 变异注释
-  - 🧪 **化学信息学与药物发现** - RDKit, DeepChem, 分子对接, 虚拟筛选
-  - 🏥 **临床研究** - ClinicalTrials.gov, ClinVar, FDA数据库, 药物基因组学
-  - 📊 **数据分析** - 统计分析, matplotlib, seaborn, 出版级图表
-  - 📚 **科学写作** - LaTeX格式化, 引用管理, 同行评审
-  - 🔬 **实验室自动化** - PyLabRobot, Benchling, Opentrons集成
-  - 🤖 **机器学习** - PyTorch Lightning, scikit-learn, 深度学习工作流
-  - 📚 **数据库** - 28+ 科学数据库 (PubMed, OpenAlex, ChEMBL, UniProt等)
-- **最适合**: 从文献综述到论文发表的多步骤科学工作流程
-- **广告净化**: 脚本每次安装/下载/更新后自动移除各 SKILL.md 中内嵌的平台推广段落，保持 skill 内容纯净
-
-### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) (82 Skills)
-- **作者**: [@zechenzhangAGI](https://github.com/zechenzhangAGI) - By Orchestra Research
-- **许可证**: MIT
-- **覆盖范围**: 82 个专家级AI研究工程skills，涵盖20个类别
-- **包含内容**:
-  - 🏗️ **模型架构** - LitGPT, Mamba, RWKV, NanoGPT, TorchTitan (5个skills)
-  - 🎯 **微调** - Axolotl, LLaMA-Factory, PEFT, Unsloth (4个skills)
-  - 🎓 **后训练** - TRL, GRPO, OpenRLHF, SimPO, verl (8个RLHF/DPO skills)
-  - ⚡ **分布式训练** - DeepSpeed, FSDP, Megatron-Core, Accelerate (6个skills)
-  - 🚀 **优化** - Flash Attention, bitsandbytes, GPTQ, AWQ (6个skills)
-  - 🔥 **推理** - vLLM, TensorRT-LLM, SGLang, llama.cpp (4个skills)
-  - 📊 **评估** - lm-eval-harness, BigCode, NeMo Evaluator (3个skills)
-  - 🤖 **Agents与RAG** - LangChain, LlamaIndex, Chroma, FAISS (9个skills)
-  - 🎨 **多模态** - CLIP, Whisper, LLaVA, Stable Diffusion (7个skills)
-  - 📝 **机器学习论文写作** - NeurIPS, ICML, ICLR, ACL的LaTeX模板 (1个skill)
-- **文档质量**: 每个skill约420行 + 300KB+参考资料
-- **最适合**: 从假设到论文发表的AI研究工作流程
-
-### [humanizer](https://github.com/blader/humanizer)
-- **作者**: [@blader](https://github.com/blader)
-- **许可证**: 查看原始仓库
-- **用途**: 优化学术语气、提高可读性、避免 AI 检测特征
-- **最适合**: 润色草稿、保持学术声调、同行评审准备
-
-### [superpowers](https://github.com/obra/superpowers)（仅包含 `skills/`）
-- **作者**: [@obra](https://github.com/obra)
-- **许可证**: MIT
-- **定位**: 一个“流程型技能库”，强调 **先设计、后实现、再验证** 的工程纪律，减少“直接开写导致返工”的问题
-- **核心技能**:
-  - `brainstorming`：把模糊需求收敛成可执行方案
-  - `writing-plans` / `executing-plans`：把任务拆到可验证的粒度
-  - `systematic-debugging`：按步骤定位根因，避免拍脑袋修 bug
-  - `test-driven-development`：以测试驱动最小改动实现
-  - `requesting-code-review` / `receiving-code-review`：形成闭环复盘
-  - `verification-before-completion`：在宣告完成前做证据化验证
-- **在学术项目中的价值**:
-  - 📌 **课题与实验规划**：先澄清假设、变量、验收标准，再落地代码
-  - 🧪 **实验管线开发**：把“数据处理→训练→评估→可视化”拆成可追踪步骤
-  - 🛠️ **复现实验与排错**：用系统化调试减少不可复现与隐性错误
-  - ✅ **交付质量**：通过测试与验证步骤，降低结果描述与代码实现不一致
-- **集成方式**: 本 forge 仅同步上游仓库 `skills/` 子目录，不包含插件与其他目录（即不注入 OpenCode 插件逻辑）
-
-### [planning-with-files](https://github.com/OthmanAdi/planning-with-files)（仅同步 `.opencode/skills/planning-with-files`）
-- **作者**: [@OthmanAdi](https://github.com/OthmanAdi)
-- **许可证**: MIT
-- **定位**: 用文件化方式管理复杂任务，把上下文沉淀到磁盘，避免长会话中信息丢失
-- **核心能力**:
-  - `task_plan.md`：阶段拆解、验收标准、状态追踪
-  - `findings.md`：研究发现与关键证据沉淀
-  - `progress.md`：执行日志、测试结果与错误记录
-  - `session-catchup.py`：在 `/clear` 后恢复上下文
-- **在学术项目中的价值**:
-  - 🧭 **实验路线清晰化**：把问题拆成阶段，降低中途跑偏风险
-  - 🧠 **上下文持久化**：跨会话保持研究结论、假设与决策链
-  - 🧪 **复现实验更稳定**：错误与尝试路径可追溯，便于复盘
-- **集成方式**: 本 forge 仅同步上游仓库 `.opencode/skills/planning-with-files` 单个目录，不采用 submodule
-
-### scientific-visualization（本地内置 Skill）
-- **作者**: Academic Forge contributors（本地维护）
-- **许可证**: MIT（沿用本仓库许可证）
-- **定位**: 面向科研论文与报告的可视化增强，输出更接近投稿标准的图表
-- **核心能力**:
-  - 出版级样式模板（期刊风格、字体/线宽/配色一致化）
-  - 多子图布局与标注规范（panel labels、legend、单位、误差线）
-  - 色盲友好配色与灰度可读性校验
-  - 导出优化（PDF/EPS/TIFF/PNG，分辨率与尺寸对齐投稿要求）
-- **在学术项目中的价值**:
-  - 📈 **结果表达更清晰**：把“能看”变成“能发表”
-  - 🧾 **图表规范更统一**：减少补图返工与格式问题
-  - 🧪 **统计呈现更严谨**：鼓励展示误差、显著性与样本信息
-- **集成方式**: 本地目录 `skills/scientific-visualization`，无上游同步依赖
-
-> **注意**: 所有Skills保留其原始许可证和作者身份。本 forge 仅提供便捷的集成。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
+- 🤝 **社区驱动** - 建立在多个 Skills 创作者的优秀工作之上
 
 ## 🚀 快速开始
 
 ### 安装
-
-直接将 Academic Forge 安装到你的 Claude Code/OpenCode 项目中：
 
 **macOS/Linux:**
 ```bash
@@ -145,66 +38,146 @@ irm https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/sc
 
 **指定目标工具（可选）：**
 ```bash
-# 安装到 Claude Code 目录
-bash install.sh --tool claude
-
-# 安装到 OpenCode 目录
-bash install.sh --tool opencode
-
-# 自定义路径
-bash install.sh /path/to/your/skills/academic-forge
+bash install.sh --tool claude     # 安装到 .claude/skills/
+bash install.sh --tool opencode   # 安装到 .opencode/skills/
+bash install.sh /custom/path      # 自定义路径
 ```
 
-> 如果不指定 `--tool`，脚本会自动检测：优先使用 `.claude/` 目录，否则使用 `.opencode/`。
+> 不指定 `--tool` 时，脚本会自动检测：优先使用 `.claude/` 目录，否则使用 `.opencode/`。
 
-或手动安装：
+### 验证安装
 
 ```bash
-# 克隆仓库（包含 submodules，可后续同步 skills-only 来源）
-git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge
+bash scripts/verify.sh    # 检查所有技能是否正确安装
+bash scripts/list-skills.sh  # 列出所有已安装技能
 ```
 
-### 下载/同步 Skills
+## 📦 包含的 Skills
 
-如果你只想在现有仓库中拉取最新 skills（包含 submodules + skills-only 同步源）：
+| 技能包 | 数量 | 擅长领域 | 来源 |
+|--------|------|----------|------|
+| [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | 140 | 科学写作、LaTeX、引文、数据库 | [@k-dense-ai](https://github.com/k-dense-ai) |
+| [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI 研究方法、训练、推理、评估 | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
+| [superpowers](https://github.com/obra/superpowers) | 15 | 规划、调试、TDD、代码审查 | [@obra](https://github.com/obra) |
+| [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 1 | 文件化任务管理、上下文持久化 | [@OthmanAdi](https://github.com/OthmanAdi) |
+| [scientific-visualization](./skills/scientific-visualization) | 1 | 出版级图表、色盲友好配色 | 本地维护 |
+| [humanizer](https://github.com/blader/humanizer) | 1 | 学术语气润色、可读性优化 | [@blader](https://github.com/blader) |
 
-**Windows (PowerShell):**
-```powershell
-.\scripts\download-skills.ps1
-```
+> 所有 Skills 保留其原始许可证和作者身份。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
 
-**Linux/macOS:**
+<details>
+<summary><b>📋 查看每个 Skills 的详细内容</b></summary>
+
+### claude-scientific-skills (140 Skills)
+- **许可证**: MIT
+- **覆盖范围**: 140 个即用型科学 skills，涵盖 15+ 领域
+- **包含内容**:
+  - 🧬 **生物信息学与基因组学** - BioPython, Scanpy, 单细胞RNA-seq, 变异注释
+  - 🧪 **化学信息学与药物发现** - RDKit, DeepChem, 分子对接, 虚拟筛选
+  - 🏥 **临床研究** - ClinicalTrials.gov, ClinVar, FDA数据库, 药物基因组学
+  - 📊 **数据分析** - 统计分析, matplotlib, seaborn, 出版级图表
+  - 📚 **科学写作** - LaTeX格式化, 引用管理, 同行评审
+  - 🔬 **实验室自动化** - PyLabRobot, Benchling, Opentrons集成
+  - 🤖 **机器学习** - PyTorch Lightning, scikit-learn, 深度学习工作流
+  - 📚 **数据库** - 28+ 科学数据库 (PubMed, OpenAlex, ChEMBL, UniProt等)
+- **最适合**: 从文献综述到论文发表的多步骤科学工作流程
+- **广告净化**: 脚本每次安装/下载/更新后自动移除各 SKILL.md 中内嵌的平台推广段落，保持 skill 内容纯净
+
+### AI-research-SKILLs (82 Skills)
+- **许可证**: MIT
+- **覆盖范围**: 82 个专家级AI研究工程 skills，涵盖 20 个类别
+- **包含内容**:
+  - 🏗️ **模型架构** - LitGPT, Mamba, RWKV, NanoGPT, TorchTitan (5个skills)
+  - 🎯 **微调** - Axolotl, LLaMA-Factory, PEFT, Unsloth (4个skills)
+  - 🎓 **后训练** - TRL, GRPO, OpenRLHF, SimPO, verl (8个RLHF/DPO skills)
+  - ⚡ **分布式训练** - DeepSpeed, FSDP, Megatron-Core, Accelerate (6个skills)
+  - 🚀 **优化** - Flash Attention, bitsandbytes, GPTQ, AWQ (6个skills)
+  - 🔥 **推理** - vLLM, TensorRT-LLM, SGLang, llama.cpp (4个skills)
+  - 📊 **评估** - lm-eval-harness, BigCode, NeMo Evaluator (3个skills)
+  - 🤖 **Agents与RAG** - LangChain, LlamaIndex, Chroma, FAISS (9个skills)
+  - 🎨 **多模态** - CLIP, Whisper, LLaVA, Stable Diffusion (7个skills)
+  - 📝 **机器学习论文写作** - NeurIPS, ICML, ICLR, ACL的LaTeX模板 (1个skill)
+- **文档质量**: 每个 skill 约 420 行 + 300KB+ 参考资料
+- **最适合**: 从假设到论文发表的AI研究工作流程
+
+### humanizer
+- **许可证**: 查看原始仓库
+- **用途**: 优化学术语气、提高可读性、避免 AI 检测特征
+- **最适合**: 润色草稿、保持学术声调、同行评审准备
+
+### superpowers（仅包含 `skills/`）
+- **许可证**: MIT
+- **定位**: 一个"流程型技能库"，强调 **先设计、后实现、再验证** 的工程纪律
+- **核心技能**:
+  - `brainstorming`：把模糊需求收敛成可执行方案
+  - `writing-plans` / `executing-plans`：把任务拆到可验证的粒度
+  - `systematic-debugging`：按步骤定位根因，避免拍脑袋修 bug
+  - `test-driven-development`：以测试驱动最小改动实现
+  - `requesting-code-review` / `receiving-code-review`：形成闭环复盘
+  - `verification-before-completion`：在宣告完成前做证据化验证
+
+### planning-with-files（仅同步 `.opencode/skills/planning-with-files`）
+- **许可证**: MIT
+- **定位**: 用文件化方式管理复杂任务，把上下文沉淀到磁盘
+- **核心能力**:
+  - `task_plan.md`：阶段拆解、验收标准、状态追踪
+  - `findings.md`：研究发现与关键证据沉淀
+  - `progress.md`：执行日志、测试结果与错误记录
+  - `session-catchup.py`：在 `/clear` 后恢复上下文
+
+### scientific-visualization（本地内置 Skill）
+- **许可证**: MIT
+- **定位**: 面向科研论文与报告的可视化增强
+- **核心能力**:
+  - 出版级样式模板（期刊风格、字体/线宽/配色一致化）
+  - 多子图布局与标注规范（panel labels、legend、单位、误差线）
+  - 色盲友好配色与灰度可读性校验
+  - 导出优化（PDF/EPS/TIFF/PNG，分辨率与尺寸对齐投稿要求）
+
+</details>
+
+## 🔧 管理 Skills
+
+### 更新
+
 ```bash
-bash scripts/download-skills.sh
-```
-
-这些脚本将自动同步本地 `skills/`（包括所有子模块、`superpowers` 的 `skills/` 快照，以及 `planning-with-files` 的 `.opencode/skills/planning-with-files` 单目录快照）。`scientific-visualization` 为本地内置 skill，不依赖上游同步。
-
-### 更新 Skills
-
-保持所有 Skills 与最新改进同步：
-
-```bash
-cd .opencode/skills/academic-forge  # 或你的安装目录
-./scripts/update.sh  # 或在 Windows 上使用 update.ps1
+./scripts/update.sh  # 或 Windows: .\scripts\update.ps1
 ```
 
 > 所有脚本支持从任意目录运行，会自动定位仓库根目录。
 
-> 可选：如需屏蔽特定上游 skill，可编辑 `scripts/skill-blacklist.txt`。安装/下载/更新脚本会自动移除清单中的路径
+### 配置
 
-#### 🔄 自动更新
+编辑 `forge.yaml` 中的 `config.enabled` 来启用/禁用特定技能包：
 
-本仓库配置了自动化工作流程，**每周一 09:00 UTC** 自动更新所有上游 skills 来源（submodules + superpowers/planning-with-files skills-only 同步）。`scientific-visualization` 由本仓库本地维护。
+```yaml
+config:
+  enabled:
+    claude-scientific-skills: true
+    humanizer: false  # 设为 false 会在下次同步后移除
+```
 
-- ✅ Skills 始终保持最新状态
-- ✅ 自动获取原作者的改进和bug修复
-- ✅ 无需手动运行更新脚本
-- 📅 更新时间：每周一 09:00 UTC（北京时间 17:00）
+如需屏蔽特定上游 skill（而非整个技能包），编辑 `scripts/skill-blacklist.txt`。
+
+### 自动更新
+
+本仓库配置了自动化工作流程，**每周一 09:00 UTC**（北京时间 17:00）自动更新所有上游 skills 来源。
+
+## ❓ 常见问题
+
+**Q: 技能怎么触发？需要手动调用吗？**
+A: 不需要。技能由 AI 助手根据你的提示词自动选择并调用。你只需正常对话即可。
+
+**Q: 装了这么多技能会变慢吗？**
+A: 不会影响响应速度。Skills 只是提供给 AI 的参考信息，不会增加运行开销。
+
+**Q: 和手动装单个 skill 有什么区别？**
+A: Academic Forge 精选了互相兼容的技能组合，避免冲突。同时提供一键安装、自动更新、广告清理等便利功能。
+
+**Q: 怎么卸载？**
+A: 运行 `bash scripts/uninstall.sh`（Windows: `.\scripts\uninstall.ps1`），或直接删除安装目录。
 
 ## 🎓 使用案例
-
-Academic Forge 非常适合：
 
 - 📝 **撰写研究论文** - 从大纲到提交就绪的手稿
 - 🔬 **实验设计** - 规划和记录研究方法
@@ -212,7 +185,6 @@ Academic Forge 非常适合：
 - 🖼️ **科研绘图** - 生成或改造投稿级图表
 - 📚 **文献综述** - 组织和综合学术资源
 - ✍️ **学位论文写作** - 长篇学术文档管理
-- 👥 **协作研究** - 在团队成员之间保持一致的风格
 
 ## 📄 文档
 

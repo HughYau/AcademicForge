@@ -12,6 +12,24 @@ cd "$REPO_ROOT"
 # Load shared library functions
 source "$SCRIPT_DIR/lib.sh"
 
+# Show help
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    echo "Usage: bash scripts/download-skills.sh"
+    echo ""
+    echo "Downloads and syncs all Academic Forge skills (submodules + skills-only snapshots)."
+    echo ""
+    echo "Options:"
+    echo "  --help, -h       Show this help message"
+    echo "  --version, -V    Show forge version"
+    exit 0
+fi
+
+if [[ "${1:-}" == "--version" || "${1:-}" == "-V" ]]; then
+    version=$(grep -m1 'version:' forge.yaml 2>/dev/null | sed 's/.*"\(.*\)".*/\1/' || echo "unknown")
+    echo "Academic Forge v${version}"
+    exit 0
+fi
+
 echo ""
 echo -e "${BLUE}╔═══════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║                                           ║${NC}"
