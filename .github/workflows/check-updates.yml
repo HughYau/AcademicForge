@@ -13,39 +13,30 @@ permissions:
 jobs:
   check-updates:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
-      
-      - name: Check for submodule updates
+
+      - name: Update skills and apply post-processing
         id: check
         run: |
+          # Load shared library functions
+          source scripts/lib.sh
+
+          # Update submodules
           git submodule update --remote --merge
 
-          # Sync superpowers skills-only snapshot
-          rm -rf .tmp-superpowers-sync
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git .tmp-superpowers-sync
-          git -C .tmp-superpowers-sync sparse-checkout set skills
+          # Sync skills-only snapshots
+          sync_superpowers
+          sync_planning_with_files
 
-          rm -rf skills/superpowers
-          mkdir -p skills/superpowers
-          cp -R .tmp-superpowers-sync/skills/* skills/superpowers/
-          rm -rf .tmp-superpowers-sync
+          # Post-sync processing: patch paths, apply blacklist, clean ads
+          post_sync_all "scripts/skill-blacklist.txt"
 
-          # Sync planning-with-files skill-only snapshot
-          rm -rf .tmp-planning-with-files-sync
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git .tmp-planning-with-files-sync
-          git -C .tmp-planning-with-files-sync sparse-checkout set .opencode/skills/planning-with-files
-
-          rm -rf skills/planning-with-files
-          mkdir -p skills/planning-with-files
-          cp -R .tmp-planning-with-files-sync/.opencode/skills/planning-with-files/. skills/planning-with-files/
-          rm -rf .tmp-planning-with-files-sync
-          
           # Check if there are any changes
           if git diff --quiet; then
             echo "No updates available"
@@ -53,13 +44,13 @@ jobs:
           else
             echo "Updates available!"
             echo "has_updates=true" >> $GITHUB_OUTPUT
-            
+
             # Get list of updated submodules
             echo "## Updated Skills" > update_summary.md
             echo "" >> update_summary.md
             git diff --submodule=log >> update_summary.md
           fi
-      
+
       - name: Create Pull Request
         if: steps.check.outputs.has_updates == 'true'
         uses: peter-evans/create-pull-request@v5
@@ -73,7 +64,7 @@ jobs:
             automated
             skill-update
           assignees: HughYau
-      
+
       - name: Report status
         run: |
           if [ "${{ steps.check.outputs.has_updates }}" == "true" ]; then

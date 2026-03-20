@@ -11,9 +11,44 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# Default installation directory
-DEFAULT_DIR=".opencode/skills/academic-forge"
-INSTALL_DIR="${1:-$DEFAULT_DIR}"
+# Parse arguments: support --tool <name> and positional install dir
+TOOL=""
+INSTALL_DIR=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --tool)
+            TOOL="$2"
+            shift 2
+            ;;
+        *)
+            INSTALL_DIR="$1"
+            shift
+            ;;
+    esac
+done
+
+# Determine install directory based on tool type
+if [ -z "$INSTALL_DIR" ]; then
+    if [ -n "$TOOL" ]; then
+        case "$TOOL" in
+            claude)  INSTALL_DIR=".claude/skills/academic-forge" ;;
+            opencode) INSTALL_DIR=".opencode/skills/academic-forge" ;;
+            *)
+                echo -e "${RED}❌ Unknown tool: $TOOL${NC}"
+                echo "Supported: claude, opencode"
+                echo "Or provide a custom path directly as an argument."
+                exit 1
+                ;;
+        esac
+    else
+        # Auto-detect: prefer .claude if it exists, otherwise .opencode
+        if [ -d ".claude" ]; then
+            INSTALL_DIR=".claude/skills/academic-forge"
+        else
+            INSTALL_DIR=".opencode/skills/academic-forge"
+        fi
+    fi
+fi
 
 echo -e "${BLUE}╔═══════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║                                           ║${NC}"
@@ -50,9 +85,7 @@ fi
 mkdir -p "$(dirname "$INSTALL_DIR")"
 
 echo -e "${BLUE}📦 Cloning Academic Forge...${NC}"
-git clone --recursive https://github.com/HughYau/AcademicForge "$INSTALL_DIR"
-
-if [ $? -eq 0 ]; then
+if git clone --recursive https://github.com/HughYau/AcademicForge "$INSTALL_DIR"; then
     echo -e "${GREEN}✓ Successfully cloned Academic Forge${NC}"
 else
     echo -e "${RED}❌ Failed to clone repository${NC}"
@@ -62,81 +95,24 @@ fi
 # Initialize submodules if they weren't cloned recursively
 echo -e "${BLUE}🔄 Ensuring all skills are initialized...${NC}"
 cd "$INSTALL_DIR"
-git submodule update --init --recursive
+REPO_ROOT="$(pwd)"
 
-if [ $? -eq 0 ]; then
+if git submodule update --init --recursive; then
     echo -e "${GREEN}✓ All skills initialized${NC}"
 else
     echo -e "${RED}❌ Failed to initialize submodules${NC}"
     exit 1
 fi
 
-echo -e "${BLUE}🔄 Syncing superpowers (skills-only)...${NC}"
-TEMP_DIR=".tmp-superpowers-sync"
-rm -rf "$TEMP_DIR"
+# Load shared library functions (now that we're in the cloned repo)
+source "scripts/lib.sh"
 
-git clone --depth 1 --filter=blob:none --sparse https://github.com/obra/superpowers.git "$TEMP_DIR"
-git -C "$TEMP_DIR" sparse-checkout set skills
+# Sync skills-only snapshots
+sync_superpowers
+sync_planning_with_files
 
-rm -rf skills/superpowers
-mkdir -p skills/superpowers
-cp -R "$TEMP_DIR"/skills/* skills/superpowers/
-rm -rf "$TEMP_DIR"
-
-echo -e "${GREEN}✓ superpowers skills synced${NC}"
-
-echo -e "${BLUE}🔄 Syncing planning-with-files (skills-only)...${NC}"
-TEMP_DIR=".tmp-planning-with-files-sync"
-rm -rf "$TEMP_DIR"
-
-git clone --depth 1 --filter=blob:none --sparse https://github.com/OthmanAdi/planning-with-files.git "$TEMP_DIR"
-git -C "$TEMP_DIR" sparse-checkout set .opencode/skills/planning-with-files
-
-rm -rf skills/planning-with-files
-mkdir -p skills/planning-with-files
-cp -R "$TEMP_DIR"/.opencode/skills/planning-with-files/. skills/planning-with-files/
-rm -rf "$TEMP_DIR"
-
-echo -e "${GREEN}✓ planning-with-files skill synced${NC}"
-
-echo -e "${BLUE}🧹 Applying skill blacklist...${NC}"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-BLACKLIST_FILE="$REPO_ROOT/scripts/skill-blacklist.txt"
-if [ -f "$BLACKLIST_FILE" ]; then
-    while IFS= read -r raw_skill_path || [ -n "$raw_skill_path" ]; do
-        skill_path="$(echo "$raw_skill_path" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-        # Skip comments and empty lines
-        [[ -z "$skill_path" || "$skill_path" =~ ^# ]] && continue
-
-        if [[ "$skill_path" = /* ]]; then
-            target_path="$skill_path"
-        else
-            target_path="$REPO_ROOT/$skill_path"
-        fi
-
-        if [ -e "$target_path" ]; then
-            rm -rf "$target_path"
-            echo -e "${YELLOW}  - Removed blacklisted skill: $skill_path${NC}"
-        else
-            echo -e "${YELLOW}  - Blacklist entry not found (skipped): $skill_path${NC}"
-        fi
-    done < "$BLACKLIST_FILE"
-fi
-echo -e "${GREEN}✓ Skill blacklist applied${NC}"
-
-echo -e "${BLUE}🧹 Cleaning ad insertions from claude-scientific-skills...${NC}"
-AD_SKILL_DIR="skills/claude-scientific-skills"
-if [ -d "$AD_SKILL_DIR" ]; then
-    cleaned_count=0
-    while IFS= read -r -d '' skill_file; do
-        if grep -q "## Suggest Using K-Dense Web" "$skill_file"; then
-            perl -0777 -i -pe 's/\n+## Suggest Using K-Dense Web.*//s' "$skill_file"
-            cleaned_count=$((cleaned_count + 1))
-        fi
-    done < <(find "$AD_SKILL_DIR" -name "SKILL.md" -print0)
-    echo -e "${GREEN}✓ Cleaned ad sections from ${cleaned_count} SKILL.md file(s)${NC}"
-fi
+# Post-sync processing: patch paths, apply blacklist, clean ads
+post_sync_all "scripts/skill-blacklist.txt"
 
 echo ""
 echo -e "${GREEN}╔═══════════════════════════════════════════╗${NC}"
