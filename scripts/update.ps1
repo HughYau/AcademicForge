@@ -1,12 +1,39 @@
 # Academic Forge Update Script for Windows
 # PowerShell version
 
+param(
+    [switch]$Help,
+    [Alias("V")][switch]$Version
+)
+
 # Set error action preference
 $ErrorActionPreference = "Stop"
 
 # Auto-detect repo root from script location
 $RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 Set-Location $RepoRoot
+
+if ($Help) {
+    Write-Host "Usage: .\scripts\update.ps1"
+    Write-Host ""
+    Write-Host "Updates Academic Forge and all included skills to their latest versions."
+    Write-Host "This includes git submodules, skills-only snapshots, and post-sync processing."
+    Write-Host ""
+    Write-Host "Options:"
+    Write-Host "  -Help              Show this help message"
+    Write-Host "  -Version, -V       Show forge version"
+    exit 0
+}
+
+if ($Version) {
+    $ver = "unknown"
+    if (Test-Path "forge.yaml") {
+        $line = Select-String -Path "forge.yaml" -Pattern 'version:' | Select-Object -First 1
+        if ($line) { $ver = ($line.Line -replace '.*"(.*)".*', '$1') }
+    }
+    Write-Host "Academic Forge v$ver"
+    exit 0
+}
 
 # Load shared library functions
 . (Join-Path $PSScriptRoot "lib.ps1")

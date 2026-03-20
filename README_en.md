@@ -11,30 +11,72 @@
 
 ## 📖 What is a Forge?
 
-The name "Forge" is inspired by **Minecraft's mod loader system** (like Forge or Fabric), which allows players to run multiple mods together seamlessly. Just as Minecraft Forge provides a modpack that integrates various mods for specific gameplay experiences, **Academic Forge** integrates multiple Claude Code skills for a focused academic writing workflow.
+The name "Forge" is inspired by **Minecraft's mod loader system** — just as Minecraft Forge provides modpacks that integrate various mods for specific gameplay experiences, **Academic Forge** integrates multiple AI coding assistant skills for an academic writing workflow.
 
-### Why "Forge"?
-
-- 🔧 **Integration over Installation** - Just like Minecraft modpacks, you get a curated collection that works well together
-- 🎯 **Purpose-Built** - Each forge targets a specific domain (academic writing, web development, data science, etc.)
-- 🔄 **Automatic Updates** - Skills stay current via git submodules plus skills-only sync sources
+- 🔧 **Integration over Installation** - A curated collection that works well together, not scattered installs
+- 🎯 **Purpose-Built** - Only academic-relevant skills, avoiding the accuracy drop from too many skills
+- 🔄 **Automatic Updates** - Skills stay current via git submodules plus skills-only sync
 - 🤝 **Community-Driven** - Built on the excellent work of multiple skill creators
 
-## 🎯 Purpose
+## 🚀 Quick Start
 
-Academic Forge solves a common problem: **too many skills lead to poor AI agent accuracy**. By curating only the skills relevant to academic writing and research, Claude Code can:
+### Installation
 
-- ✅ Make more precise skill invocations
-- ✅ Avoid confusion between similar skills
-- ✅ Maintain focus on your research workflow
-- ✅ Stay up-to-date with improvements from original authors
+**macOS/Linux:**
+```bash
+cd your-project
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
+```
+
+**Windows (PowerShell):**
+```powershell
+cd your-project
+irm https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.ps1 | iex
+```
+
+**Specify target tool (optional):**
+```bash
+bash install.sh --tool claude     # Install to .claude/skills/
+bash install.sh --tool opencode   # Install to .opencode/skills/
+bash install.sh /custom/path      # Custom path
+```
+
+> Without `--tool`, the script auto-detects: prefers `.claude/` if it exists, otherwise `.opencode/`.
+
+### Verify Installation
+
+```bash
+bash scripts/verify.sh       # Check all skills are properly installed
+bash scripts/list-skills.sh  # List all installed skills
+```
+
+### After Installation
+
+Start using it right away — **skills are automatically triggered** during your conversations, no manual invocation needed.
+
+**Try these prompts:**
+- "Help me outline a research paper about deep learning in LaTeX"
+- "Analyze this CSV data and generate publication-ready figures"
+- "Plan a multi-step experiment and track progress with files"
+- "Polish this abstract to match academic writing standards"
 
 ## 📦 Included Skills
 
-This forge integrates the following carefully selected skills:
+| Skill Pack | Count | Best For | Source |
+|------------|-------|----------|--------|
+| [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | 140 | Scientific writing, LaTeX, citations, databases | [@k-dense-ai](https://github.com/k-dense-ai) |
+| [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI research methods, training, inference, evaluation | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
+| [superpowers](https://github.com/obra/superpowers) | 15 | Planning, debugging, TDD, code review | [@obra](https://github.com/obra) |
+| [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 1 | File-based task management, context persistence | [@OthmanAdi](https://github.com/OthmanAdi) |
+| [scientific-visualization](./skills/scientific-visualization) | 1 | Publication-ready figures, colorblind-safe palettes | Local |
+| [humanizer](https://github.com/blader/humanizer) | 1 | Academic tone refinement, readability | [@blader](https://github.com/blader) |
 
-### [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) (140 Skills)
-- **Author**: [@k-dense-ai](https://github.com/k-dense-ai) - By K-Dense Inc.
+> All skills retain their original licenses and authorship. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
+
+<details>
+<summary><b>📋 View detailed skill descriptions</b></summary>
+
+### claude-scientific-skills (140 Skills)
 - **License**: MIT
 - **Coverage**: 140 ready-to-use scientific skills across 15+ domains
 - **What It Includes**:
@@ -47,10 +89,9 @@ This forge integrates the following carefully selected skills:
   - 🤖 **Machine Learning** - PyTorch Lightning, scikit-learn, deep learning workflows
   - 📚 **Databases** - 28+ scientific databases (PubMed, OpenAlex, ChEMBL, UniProt, etc.)
 - **Best For**: Multi-step scientific workflows from literature review to publication
-- **Ad Sanitization**: Each install/download/update run automatically strips embeddedpromotional sectionfrom all SKILL.md files, keeping skill content clean
+- **Ad Sanitization**: Each install/download/update run automatically strips embedded promotional sections from all SKILL.md files, keeping skill content clean
 
-### [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) (82 Skills)
-- **Author**: [@zechenzhangAGI](https://github.com/zechenzhangAGI) - By Orchestra Research
+### AI-research-SKILLs (82 Skills)
 - **License**: MIT
 - **Coverage**: 82 expert-level AI research engineering skills across 20 categories
 - **What It Includes**:
@@ -67,135 +108,71 @@ This forge integrates the following carefully selected skills:
 - **Documentation Quality**: ~420 lines per skill + 300KB+ reference materials
 - **Best For**: AI research workflows from hypothesis to paper publication
 
-### [humanizer](https://github.com/blader/humanizer)
-- **Author**: [@blader](https://github.com/blader)
+### humanizer
 - **License**: Check original repository
 - **Purpose**: Refining academic tone, improving readability, avoiding AI-detection patterns
 - **Best For**: Polishing drafts, maintaining academic voice, peer review preparation
 
-### [superpowers](https://github.com/obra/superpowers) (skills-only)
-- **Author**: [@obra](https://github.com/obra)
+### superpowers (skills-only)
 - **License**: MIT
-- **Purpose**: Structured development workflow skills (e.g., brainstorming, writing-plans, systematic-debugging, test-driven-development)
-- **Best For**: Requirement clarification, planning, systematic debugging, and TDD execution in academic projects
-- **Integration Mode**: This forge intentionally syncs only the upstream `skills/` directory (no plugin or non-skill folders)
+- **Purpose**: Structured development workflow skills emphasizing **design first, implement, then verify**
+- **Key Skills**: brainstorming, writing-plans, executing-plans, systematic-debugging, test-driven-development, code-review, verification-before-completion
+- **Integration Mode**: Syncs only the upstream `skills/` directory (no plugin or non-skill folders)
 
-### [planning-with-files](https://github.com/OthmanAdi/planning-with-files) (skills-only single folder)
-- **Author**: [@OthmanAdi](https://github.com/OthmanAdi)
+### planning-with-files (skills-only)
 - **License**: MIT
-- **Purpose**: Manus-style file-based planning with `task_plan.md`, `findings.md`, and `progress.md` to persist context during complex work
+- **Purpose**: Manus-style file-based planning with `task_plan.md`, `findings.md`, and `progress.md`
 - **Best For**: Long multi-step implementation or research tasks that need durable planning and session recovery
-- **Integration Mode**: This forge intentionally syncs only upstream `.opencode/skills/planning-with-files` (not as a submodule)
+- **Integration Mode**: Syncs only upstream `.opencode/skills/planning-with-files`
 
-### scientific-visualization (local built-in skill)
-- **Author**: Academic Forge contributors (maintained locally)
-- **License**: MIT (inherits this repository license)
-- **Purpose**: Improve scientific figures to publication-ready quality with stronger visual consistency and accessibility
-- **Best For**: Journal-ready plotting workflows (multi-panel layouts, error bars/significance markers, colorblind-safe palettes, and export format optimization)
-- **Integration Mode**: Local skill at `skills/scientific-visualization` with no upstream sync dependency
+### scientific-visualization (local built-in)
+- **License**: MIT
+- **Purpose**: Publication-ready scientific figures with journal-specific style templates, colorblind-safe palettes, multi-panel layouts, and export optimization
 
-> **Note**: All skills retain their original licenses and authorship. This forge provides convenient integration only. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
+</details>
 
-## 🚀 Quick Start
+## 🔧 Managing Skills
 
-### Installation
-
-Install Academic Forge directly into your Claude Code / OpenCode project:
+### Update
 
 ```bash
-# Navigate to your project
-cd your-project
-
-# Install the forge (auto-detects Claude Code or OpenCode)
-curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
-```
-
-**Specify target tool (optional):**
-```bash
-# Install to Claude Code directory
-bash install.sh --tool claude
-
-# Install to OpenCode directory
-bash install.sh --tool opencode
-
-# Custom path
-bash install.sh /path/to/your/skills/academic-forge
-```
-
-Or manually:
-
-```bash
-# Clone repository (with submodules; skills-only sources are synced by scripts)
-git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge
-
-# Or if you already cloned without --recursive
-git submodule update --init --recursive
-```
-
-### Download/Sync Skills
-
-If you want to sync skills in an existing clone (submodules + skills-only sources):
-
-**Windows (PowerShell):**
-```powershell
-.\scripts\download-skills.ps1
-```
-
-**Linux/macOS:**
-```bash
-bash scripts/download-skills.sh
-```
-
-These scripts automatically sync your local `skills/` folder, including submodules, the `superpowers` `skills/` snapshot, and the `planning-with-files` `.opencode/skills/planning-with-files` snapshot. `scientific-visualization` is local and does not rely on upstream sync. For detailed usage instructions, see [scripts/SKILLS-DOWNLOAD-README.md](./scripts/SKILLS-DOWNLOAD-README.md).
-
-### Update Skills
-
-Keep all skills up-to-date with the latest improvements:
-
-```bash
-cd .opencode/skills/academic-forge  # or your install directory
-./scripts/update.sh
+./scripts/update.sh  # or Windows: .\scripts\update.ps1
 ```
 
 > All scripts can be run from any directory — they auto-detect the repository root.
 
-> Optional: To block specific upstream skills, edit `scripts/skill-blacklist.txt`. Install/download/update scripts automatically remove listed paths
+### Configuration
 
-#### 🔄 Automatic Updates
+Edit `config.enabled` in `forge.yaml` to enable/disable specific skill packs:
 
-This repository is configured with automated workflows that update all upstream skill sources (submodules + superpowers/planning-with-files skills-only sync) **every Monday at 09:00 UTC**. `scientific-visualization` is maintained locally in this repository.
-
-- ✅ Skills always stay up-to-date
-- ✅ Automatically receive improvements and bug fixes from original authors
-- ✅ No need to manually run update scripts
-- 📅 Update schedule: Every Monday at 09:00 UTC
-
-## 🏗️ Structure
-
+```yaml
+config:
+  enabled:
+    claude-scientific-skills: true
+    humanizer: false  # Set to false to remove on next sync
 ```
-academic-forge/
-├── README.md              # This file
-├── LICENSE                # MIT License for the forge structure
-├── ATTRIBUTIONS.md        # Detailed credits for all included skills
-├── forge.yaml             # Forge metadata and skill configuration
-├── .gitmodules            # Git submodule definitions
-├── skills/
-│   ├── claude-scientific-skills/    (submodule)
-│   ├── AI-research-SKILLs/          (submodule)
-│   ├── humanizer/                   (submodule)
-│   ├── superpowers/                 (skills-only sync from obra/superpowers)
-│   ├── planning-with-files/         (skills-only sync from OthmanAdi/planning-with-files)
-│   └── scientific-visualization/    (local built-in skill)
-└── scripts/
-    ├── lib.sh / lib.ps1   # Shared functions (sync, patch, blacklist, ads)
-    ├── install.sh/.ps1    # Installation script
-    ├── update.sh/.ps1     # Update all skills to latest versions
-    └── download-skills.sh/.ps1  # Download/re-sync skills
-```
+
+To block specific upstream skills (not entire packs), edit `scripts/skill-blacklist.txt`.
+
+### Automatic Updates
+
+This repository runs automated workflows to update all upstream skill sources **every Monday at 09:00 UTC**.
+
+## ❓ FAQ
+
+**Q: How are skills triggered? Do I need to call them manually?**
+A: No. Skills are automatically selected and invoked by the AI assistant based on your prompts. Just chat normally.
+
+**Q: Will this many skills slow things down?**
+A: No. Skills are reference information for the AI, not runtime overhead. Response speed is unaffected.
+
+**Q: How is this different from installing skills individually?**
+A: Academic Forge curates compatible skill combinations, avoids conflicts, and provides one-click install, automatic updates, and ad sanitization.
+
+**Q: How do I uninstall?**
+A: Run `bash scripts/uninstall.sh` (Windows: `.\scripts\uninstall.ps1`), or simply delete the installation directory.
 
 ## 🎓 Use Cases
-
-Academic Forge is perfect for:
 
 - 📝 **Writing Research Papers** - From outline to submission-ready manuscript
 - 🔬 **Experimental Design** - Planning and documenting research methodology
@@ -203,49 +180,56 @@ Academic Forge is perfect for:
 - 🖼️ **Scientific Figures** - Creating and polishing publication-quality plots
 - 📚 **Literature Review** - Organizing and synthesizing academic sources
 - ✍️ **Thesis Writing** - Long-form academic document management
-- 👥 **Collaborative Research** - Maintaining consistent style across team members
 
-## 🔄 Version Management
+## 🏗️ Structure
 
-Academic Forge uses a hybrid version model (git submodules + skills-only sync for selected sources):
+```
+academic-forge/
+├── forge.yaml             # Forge metadata and skill enable/disable config
+├── skills/
+│   ├── claude-scientific-skills/    (submodule)
+│   ├── AI-research-SKILLs/          (submodule)
+│   ├── humanizer/                   (submodule)
+│   ├── superpowers/                 (skills-only sync)
+│   ├── planning-with-files/         (skills-only sync)
+│   └── scientific-visualization/    (local built-in)
+└── scripts/
+    ├── lib.sh / lib.ps1             # Shared functions
+    ├── install.sh/.ps1              # Installation
+    ├── update.sh/.ps1               # Update all skills
+    ├── download-skills.sh/.ps1      # Download/re-sync skills
+    ├── verify.sh/.ps1               # Verify installation
+    ├── list-skills.sh/.ps1          # List installed skills
+    └── uninstall.sh/.ps1            # Uninstall
+```
 
-- **Automatic Updates**: Run `./scripts/update.sh` to pull latest changes
-- **Version Locking**: Commit the `.gitmodules` state and tracked `skills/superpowers`, `skills/planning-with-files`, and `skills/scientific-visualization` changes
-- **Rollback Safety**: Use git to revert to previous working states
+## 📄 Documentation
+
+- [Quick Start Guide](./QUICKSTART.md) - Get started in 5 minutes
+- [Usage Examples](./EXAMPLES.md) - Real-world workflow examples
+- [Skill Credits](./ATTRIBUTIONS.md) - Detailed authorship and licensing
+- [Contributing Guide](./CONTRIBUTING.md) - How to contribute or create your own forge
 
 ## 🤝 Contributing
 
-Found a skill that would be perfect for academic writing? Here's how to contribute:
+Found a skill that would be perfect for academic writing? See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to:
 
-1. **Suggest a Skill** - Open an issue with the skill repository and use case
-2. **Test Compatibility** - Ensure it doesn't conflict with existing skills
-3. **Submit PR** - Add with a traceable integration method and proper attribution
-4. **Update Docs** - Add to README.md and ATTRIBUTIONS.md
-
-### Creating Your Own Forge
-
-Inspired to create a forge for your domain? Great! Here's the template:
-
-```bash
-# Fork this repository
-# Replace skills with your domain-specific collection
-# Update README.md with your forge's purpose
-# Share with the community!
-```
+- Suggest new skills
+- Report issues
+- Improve documentation
+- Create your own domain-specific forge
 
 ## 📄 License
 
 The **forge structure** (scripts, configuration, documentation) is licensed under the [MIT License](./LICENSE).
 
-**Individual skills** retain their original licenses - see [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) and each skill's repository for details.
-
+**Individual skills** retain their original licenses - see [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) and each skill's repository.
 
 ## 📞 Support
 
 - **Issues**: [GitHub Issues](https://github.com/HughYau/AcademicForge/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/HughYau/AcademicForge/discussions)
-- **Updates**: Watch this repository for new skill additions
-  
+
 ## Star History
 
 <a href="https://www.star-history.com/?repos=HughYau%2FAcademicForge&type=date&logscale=&legend=top-left">

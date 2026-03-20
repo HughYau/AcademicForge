@@ -11,11 +11,28 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# Parse arguments: support --tool <name> and positional install dir
+# Parse arguments: support --help, --version, --tool <name>, and positional install dir
 TOOL=""
 INSTALL_DIR=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        --help|-h)
+            echo "Usage: bash install.sh [--tool claude|opencode] [install-dir]"
+            echo ""
+            echo "Installs Academic Forge into your project."
+            echo ""
+            echo "Options:"
+            echo "  --tool <name>    Target tool: 'claude' or 'opencode'"
+            echo "  --help, -h       Show this help message"
+            echo "  --version, -V    Show forge version"
+            echo ""
+            echo "If no --tool or path is given, auto-detects .claude/ or .opencode/."
+            exit 0
+            ;;
+        --version|-V)
+            echo "Academic Forge installer"
+            exit 0
+            ;;
         --tool)
             TOOL="$2"
             shift 2
