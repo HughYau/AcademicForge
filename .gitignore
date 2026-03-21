@@ -28,4 +28,4 @@ config.local.yaml
 LOCAL_SKILLS_INTRO.md
 CLAUDE.md
 example/
-skills/claude-scientific-skills
+.claude/
