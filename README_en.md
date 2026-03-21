@@ -131,7 +131,14 @@ Start using it right away — **skills are automatically triggered** during your
 
 </details>
 
-## 🔧 Managing Skills
+## 🛡️ Defenses Against Prompt Injection & Context Pollution
+
+To prevent potential **Prompt Injection attacks** (which might hijack AI behavior) or irrelevant advertisements from upstream Skills, this repository implements built-in security and sanitization mechanisms to keep your assistant's context clean:
+
+- **Blacklist Filtering**: Via `scripts/skill-blacklist.txt`, the installation and update scripts automatically remove specific upstream files known to contain malicious prompts, low-quality instructions, or confusing context.
+- **Post-Prompt Sanitization (Clean-AdInsertions)**: After downloading and syncing upstream content, the configuration runs sanitization functions (such as `Clean-AdInsertions`) that use Regex pattern matching to strip out irrelevant third-party platform promotions, sponsor advertisements, and other attached commands. This ensures that the provided context fed to the AI assistant remains safe and pure.
+
+## �🔧 Managing Skills
 
 ### Update
 

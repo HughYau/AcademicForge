@@ -136,6 +136,13 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 
 </details>
 
+## 🛡️ 防御 Prompt 注入与内容净化
+
+为了防止部分上游 Skills 中可能包含的 **Prompt 注入攻击**（如劫持 AI 行为）或破坏上下文的无关广告，本仓库在同步与安装流程中内置了以下机制：
+
+- **黑名单屏蔽 (Blacklist)**：通过维护 `scripts/skill-blacklist.txt`，安装向导和更新脚本会自动移除已知的含有恶意 Prompt、质量低下或会导致上下文混乱的特定文件。
+- **Prompt 后置清理 (Clean-AdInsertions)**：在上游内容同步后，脚本会自动执行清洗策略（如 `Clean-AdInsertions` 函数），通过正则匹配自动剥离 SKILL 文件中夹带的第三方平台引流、赞助广告等附加指令，确保输入给 AI 助手的 Prompt 内容纯净、安全。
+
 ## 🔧 管理 Skills
 
 ### 更新
