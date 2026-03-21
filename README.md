@@ -5,7 +5,7 @@
 **为学术写作整合的 Claude Code / OpenCode 技能集合**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-6-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
 
 [English](./README_en.md) | 简体中文
 
@@ -60,6 +60,7 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 | [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI 研究方法、训练、推理、评估 | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
 | [superpowers](https://github.com/obra/superpowers) | 15 | 规划、调试、TDD、代码审查 | [@obra](https://github.com/obra) |
 | [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 1 | 文件化任务管理、上下文持久化 | [@OthmanAdi](https://github.com/OthmanAdi) |
+| [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | 论文翻译、润色、审稿模拟与投稿工作流 | [@Lylll9436](https://github.com/Lylll9436) |
 | [scientific-visualization](./skills/scientific-visualization) | 1 | 出版级图表、色盲友好配色 | 本地维护 |
 | [humanizer](https://github.com/blader/humanizer) | 1 | 学术语气润色、可读性优化 | [@blader](https://github.com/blader) |
 
@@ -233,3 +234,4 @@ A: 运行 `bash scripts/uninstall.sh`（Windows: `.\scripts\uninstall.ps1`），
 ⭐ 如果这个 forge 对你的研究有帮助，请给本仓库和各个Skills仓库点星！
 
 </div>
+

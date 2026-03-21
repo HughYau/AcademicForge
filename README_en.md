@@ -5,7 +5,7 @@
 **A curated skill collection for academic writing and research**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-6-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
 
 </div>
 
@@ -68,6 +68,7 @@ Start using it right away — **skills are automatically triggered** during your
 | [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI research methods, training, inference, evaluation | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
 | [superpowers](https://github.com/obra/superpowers) | 15 | Planning, debugging, TDD, code review | [@obra](https://github.com/obra) |
 | [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 1 | File-based task management, context persistence | [@OthmanAdi](https://github.com/OthmanAdi) |
+| [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | Paper translation, polishing, review simulation, and submission workflow | [@Lylll9436](https://github.com/Lylll9436) |
 | [scientific-visualization](./skills/scientific-visualization) | 1 | Publication-ready figures, colorblind-safe palettes | Local |
 | [humanizer](https://github.com/blader/humanizer) | 1 | Academic tone refinement, readability | [@blader](https://github.com/blader) |
 
@@ -125,6 +126,16 @@ Start using it right away — **skills are automatically triggered** during your
 - **Best For**: Long multi-step implementation or research tasks that need durable planning and session recovery
 - **Integration Mode**: Syncs only upstream `.opencode/skills/planning-with-files`
 
+### paper-polish-workflow-skill (15 Skills)
+- **License**: MIT
+- **Coverage**: A full paper-writing workflow pack with 1 coordinating meta-skill plus 14 focused sub-skills under `.claude/skills/`
+- **What It Includes**:
+  - translation, polishing, de-AI rewriting, reviewer simulation
+  - abstract, cover letter, experiment analysis, caption writing
+  - logic checking, literature search, visualization recommendations
+  - repo-to-paper, team orchestration, and update helpers
+- **Best For**: Taking a draft from bilingual translation through polishing, self-review, submission packaging, and literature-grounded revision
+
 ### scientific-visualization (local built-in)
 - **License**: MIT
 - **Purpose**: Publication-ready scientific figures with journal-specific style templates, colorblind-safe palettes, multi-panel layouts, and export optimization
@@ -156,6 +167,7 @@ Edit `config.enabled` in `forge.yaml` to enable/disable specific skill packs:
 config:
   enabled:
     claude-scientific-skills: true
+    paper-polish-workflow-skill: true
     humanizer: false  # Set to false to remove on next sync
 ```
 
@@ -197,6 +209,7 @@ academic-forge/
 │   ├── claude-scientific-skills/    (submodule)
 │   ├── AI-research-SKILLs/          (submodule)
 │   ├── humanizer/                   (submodule)
+│   ├── paper-polish-workflow-skill/ (submodule)
 │   ├── superpowers/                 (skills-only sync)
 │   ├── planning-with-files/         (skills-only sync)
 │   └── scientific-visualization/    (local built-in)

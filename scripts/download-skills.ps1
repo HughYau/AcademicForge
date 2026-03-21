@@ -78,7 +78,8 @@ try {
     $skillsSubmodules = @(
         "skills/humanizer",
         "skills/AI-research-SKILLs",
-        "skills/claude-scientific-skills"
+        "skills/claude-scientific-skills",
+        "skills/paper-polish-workflow-skill"
     )
 
     foreach ($submodule in $skillsSubmodules) {

@@ -7,6 +7,7 @@ This project integrates skills from multiple authors in the Claude Code ecosyste
 Academic Forge uses a **hybrid integration model**:
 
 - Most skills are linked via git submodules
+- `paper-polish-workflow-skill` is linked via git submodule
 - `superpowers` is synced as a skills-only snapshot from upstream `skills/`
 - `planning-with-files` is synced as a single skills-only folder from upstream `.opencode/skills/planning-with-files`
 - `scientific-visualization` is maintained locally in this repository (no upstream dependency)
@@ -97,7 +98,22 @@ This means:
 
 ---
 
-### 6. scientific-visualization (local built-in)
+### 6. paper-polish-workflow-skill
+
+**Original Repository**: [Lylll9436/Paper-Polish-Workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill)
+
+- **Author**: Lylll9436
+- **License**: MIT License
+- **Included Version**: See `.gitmodules` for current commit hash
+- **Purpose**: End-to-end academic paper translation, polishing, review simulation, and submission workflow
+- **Modifications**: None (used as-is via git submodule)
+- **Original License Text**: See `skills/paper-polish-workflow-skill/LICENSE`
+
+**Why we included it**: It adds a tightly integrated paper-writing workflow pack that complements Academic Forge's research and visualization skills with bilingual translation, polishing, reviewer simulation, literature search, and submission-focused helpers.
+
+---
+
+### 7. scientific-visualization (local built-in)
 
 **Source**: Local skill maintained in this repository at `skills/scientific-visualization`
 
@@ -199,6 +215,7 @@ This document tracks which versions of each skill are included:
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
 | 2026-03-04 | planning-with-files (skills-only folder) | synced from OthmanAdi/planning-with-files/.opencode/skills/planning-with-files | Initial inclusion |
+| 2026-03-21 | paper-polish-workflow-skill | submodule from Lylll9436/Paper-Polish-Workflow-skill | Initial inclusion |
 | 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
 
 To see the current linked submodule versions, run:
@@ -213,3 +230,4 @@ For `superpowers` and `planning-with-files` (skills-only syncs), check the lates
 ## Thank You
 
 This forge exists because of the generosity of open-source contributors who share their work freely. Thank you to all skill creators for making the Claude Code ecosystem richer and more powerful! 🙏
+

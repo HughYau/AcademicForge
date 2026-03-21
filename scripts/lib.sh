@@ -134,6 +134,7 @@ apply_forge_config() {
         ["humanizer"]="skills/humanizer"
         ["superpowers"]="skills/superpowers"
         ["planning-with-files"]="skills/planning-with-files"
+        ["paper-polish-workflow-skill"]="skills/paper-polish-workflow-skill"
         ["scientific-visualization"]="skills/scientific-visualization"
     )
 

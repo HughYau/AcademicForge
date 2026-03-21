@@ -73,6 +73,7 @@ SKILLS=(
     "skills/humanizer"
     "skills/superpowers"
     "skills/planning-with-files"
+    "skills/paper-polish-workflow-skill"
     "skills/scientific-visualization"
 )
 

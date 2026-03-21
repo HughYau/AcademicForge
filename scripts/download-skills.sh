@@ -68,6 +68,7 @@ SKILLS_SUBMODULES=(
     "skills/humanizer"
     "skills/AI-research-SKILLs"
     "skills/claude-scientific-skills"
+    "skills/paper-polish-workflow-skill"
 )
 
 # Download each submodule

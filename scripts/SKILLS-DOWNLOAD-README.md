@@ -10,6 +10,7 @@ The scripts sync all skill sources into your local `skills/` directory:
    - `skills/claude-scientific-skills`
    - `skills/AI-research-SKILLs`
    - `skills/humanizer`
+   - `skills/paper-polish-workflow-skill`
 2. Skills-only synced source:
    - `skills/superpowers` (from `https://github.com/obra/superpowers/tree/main/skills`)
    - `skills/planning-with-files` (from `https://github.com/OthmanAdi/planning-with-files/tree/master/.opencode/skills/planning-with-files`)

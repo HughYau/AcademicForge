@@ -83,6 +83,19 @@ skills:
       - context-management
       - organization
 
+  - name: "paper-polish-workflow-skill"
+    path: "skills/paper-polish-workflow-skill"
+    repository: "https://github.com/Lylll9436/Paper-Polish-Workflow-skill"
+    author: "Lylll9436"
+    license: "MIT"
+    description: "Academic paper translation, polishing, peer-review simulation, and submission workflow pack"
+    tags:
+      - academic-writing
+      - translation
+      - polishing
+      - peer-review
+      - submission
+
   - name: "scientific-visualization"
     path: "skills/scientific-visualization"
     repository: "local (this repository)"
@@ -107,6 +120,7 @@ config:
     AI-research-SKILLs: 9
     superpowers: 8
     planning-with-files: 8
+    paper-polish-workflow-skill: 8
     scientific-visualization: 8
     humanizer: 7
   
@@ -116,6 +130,7 @@ config:
     AI-research-SKILLs: true
     superpowers: true
     planning-with-files: true
+    paper-polish-workflow-skill: true
     scientific-visualization: true
     humanizer: true
 
