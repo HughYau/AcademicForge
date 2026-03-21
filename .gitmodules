@@ -7,3 +7,6 @@
 [submodule "skills/claude-scientific-skills"]
 	path = skills/claude-scientific-skills
 	url = https://github.com/K-Dense-AI/claude-scientific-skills.git
+[submodule "skills/paper-polish-workflow-skill"]
+	path = skills/paper-polish-workflow-skill
+	url = https://github.com/Lylll9436/Paper-Polish-Workflow-skill.git
