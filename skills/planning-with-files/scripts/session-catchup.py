@@ -254,7 +254,7 @@ def main():
             print(f"USER: {msg['content'][:300]}")
         else:
             if msg.get('content'):
-                print(f"OPENCODE: {msg['content'][:300]}")
+                print(f"ASSISTANT: {msg['content'][:300]}")
             if msg.get('tools'):
                 print(f"  Tools: {', '.join(msg['tools'][:4])}")
 
