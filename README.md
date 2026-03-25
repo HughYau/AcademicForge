@@ -197,7 +197,6 @@ A: 运行 `bash scripts/uninstall.sh`（Windows: `.\scripts\uninstall.ps1`），
 ## 📄 文档
 
 - [快速入门指南](./QUICKSTART.md) - 5 分钟上手
-- [使用示例](./EXAMPLES.md) - 真实工作流程示例
 - [Skills归属](./ATTRIBUTIONS.md) - 详细的作者信息和许可证
 - [贡献指南](./CONTRIBUTING.md) - 如何贡献或创建你自己的 forge
 
