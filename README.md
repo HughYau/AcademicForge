@@ -59,10 +59,10 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 | [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | 140 | 科学写作、LaTeX、引文、数据库 | [@k-dense-ai](https://github.com/k-dense-ai) |
 | [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI 研究方法、训练、推理、评估 | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
 | [superpowers](https://github.com/obra/superpowers) | 15 | 规划、调试、TDD、代码审查 | [@obra](https://github.com/obra) |
-| [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 1 | 文件化任务管理、上下文持久化 | [@OthmanAdi](https://github.com/OthmanAdi) |
 | [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | 论文翻译、润色、审稿模拟与投稿工作流 | [@Lylll9436](https://github.com/Lylll9436) |
 | [scientific-visualization](./skills/scientific-visualization) | 1 | 出版级图表、色盲友好配色 | 本地维护 |
 | [humanizer](https://github.com/blader/humanizer) | 1 | 学术语气润色、可读性优化 | [@blader](https://github.com/blader) |
+| [humanizer-zh](https://github.com/op7418/Humanizer-zh) | 1 | 中文去 AI 味、自然化改写、学术中文润色 | [@op7418](https://github.com/op7418) |
 
 > 所有 Skills 保留其原始许可证和作者身份。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
 
@@ -106,6 +106,11 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 - **用途**: 优化学术语气、提高可读性、避免 AI 检测特征
 - **最适合**: 润色草稿、保持学术声调、同行评审准备
 
+### humanizer-zh
+- **许可证**: MIT
+- **用途**: 中文去 AI 痕迹、自然化改写、保留原意的语气润色
+- **最适合**: 中文摘要、中文论文段落、双语改写后的中文定稿
+
 ### superpowers（仅包含 `skills/`）
 - **许可证**: MIT
 - **定位**: 一个"流程型技能库"，强调 **先设计、后实现、再验证** 的工程纪律
@@ -116,15 +121,6 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
   - `test-driven-development`：以测试驱动最小改动实现
   - `requesting-code-review` / `receiving-code-review`：形成闭环复盘
   - `verification-before-completion`：在宣告完成前做证据化验证
-
-### planning-with-files（仅同步 `.opencode/skills/planning-with-files`）
-- **许可证**: MIT
-- **定位**: 用文件化方式管理复杂任务，把上下文沉淀到磁盘
-- **核心能力**:
-  - `task_plan.md`：阶段拆解、验收标准、状态追踪
-  - `findings.md`：研究发现与关键证据沉淀
-  - `progress.md`：执行日志、测试结果与错误记录
-  - `session-catchup.py`：在 `/clear` 后恢复上下文
 
 ### scientific-visualization（本地内置 Skill）
 - **许可证**: MIT
@@ -163,6 +159,7 @@ config:
   enabled:
     claude-scientific-skills: true
     humanizer: false  # 设为 false 会在下次同步后移除
+    humanizer-zh: false  # 设为 false 会在下次同步后移除
 ```
 
 如需屏蔽特定上游 skill（而非整个技能包），编辑 `scripts/skill-blacklist.txt`。

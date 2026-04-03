@@ -32,9 +32,8 @@ jobs:
 
           # Sync skills-only snapshots
           sync_superpowers
-          sync_planning_with_files
 
-          # Post-sync processing: patch paths, apply blacklist, clean ads
+          # Post-sync processing: apply blacklist, clean ads, and enabled flags
           post_sync_all "scripts/skill-blacklist.txt"
 
           # Check if there are any changes

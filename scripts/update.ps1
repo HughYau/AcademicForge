@@ -97,9 +97,8 @@ try {
 
 # Sync skills-only snapshots
 Sync-Superpowers
-Sync-PlanningWithFiles
 
-# Post-sync processing: patch paths, apply blacklist, clean ads
+# Post-sync processing: apply blacklist, clean ads, and enabled flags
 Invoke-PostSyncAll -BlacklistFile "scripts/skill-blacklist.txt"
 
 Write-Host ""
@@ -109,7 +108,6 @@ Write-Host ""
 # Show status of each submodule
 git submodule foreach 'echo "📚 $name:"; git log --oneline -3 --decorate; echo ""'
 Write-Host "📚 skills/superpowers: synced from obra/superpowers (skills/)"
-Write-Host "📚 skills/planning-with-files: synced from OthmanAdi/planning-with-files (.opencode/skills/planning-with-files)"
 Write-Host ""
 
 Write-Host ""

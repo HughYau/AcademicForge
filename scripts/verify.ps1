@@ -50,8 +50,8 @@ $skills = @(
     "skills/claude-scientific-skills",
     "skills/AI-research-SKILLs",
     "skills/humanizer",
+    "skills/humanizer-zh",
     "skills/superpowers",
-    "skills/planning-with-files",
     "skills/paper-polish-workflow-skill",
     "skills/scientific-visualization"
 )

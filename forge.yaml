@@ -49,8 +49,8 @@ skills:
     
   - name: "humanizer"
     path: "skills/humanizer"
-    repository: "https://github.com/humanizer-org/humanizer"
-    author: "humanizer-community"
+    repository: "https://github.com/blader/humanizer"
+    author: "blader"
     license: "See repository"
     description: "Academic tone refinement and readability improvement"
     tags:
@@ -59,6 +59,18 @@ skills:
       - academic-style
       - editing
 
+  - name: "humanizer-zh"
+    path: "skills/humanizer-zh"
+    repository: "https://github.com/op7418/Humanizer-zh"
+    author: "op7418"
+    license: "MIT"
+    description: "Chinese AI-writing humanization and de-AI rewriting"
+    tags:
+      - chinese-writing
+      - tone-refinement
+      - de-ai
+      - readability
+
   - name: "superpowers"
     path: "skills/superpowers"
     repository: "https://github.com/obra/superpowers"
@@ -66,22 +78,10 @@ skills:
     license: "MIT"
     description: "Agentic development workflow skills (synced from upstream skills/ directory only)"
     tags:
-      - workflow
       - planning
+      - workflow
       - debugging
       - tdd
-
-  - name: "planning-with-files"
-    path: "skills/planning-with-files"
-    repository: "https://github.com/OthmanAdi/planning-with-files"
-    author: "OthmanAdi"
-    license: "MIT"
-    description: "Manus-style file-based planning skill synced from upstream .opencode/skills/planning-with-files"
-    tags:
-      - planning
-      - workflow
-      - context-management
-      - organization
 
   - name: "paper-polish-workflow-skill"
     path: "skills/paper-polish-workflow-skill"
@@ -119,20 +119,20 @@ config:
     claude-scientific-skills: 10
     AI-research-SKILLs: 9
     superpowers: 8
-    planning-with-files: 8
     paper-polish-workflow-skill: 8
     scientific-visualization: 8
     humanizer: 7
+    humanizer-zh: 7
   
   # Enable/disable individual skills
   enabled:
     claude-scientific-skills: true
     AI-research-SKILLs: true
     superpowers: true
-    planning-with-files: true
     paper-polish-workflow-skill: true
     scientific-visualization: true
     humanizer: true
+    humanizer-zh: true
 
 # Installation instructions
 installation:
@@ -155,11 +155,9 @@ compatibility:
   
 notes: |
   Academic Forge uses git submodules to integrate skills from their original
-  repositories where possible. superpowers and planning-with-files are
-  intentionally distributed as skills-only snapshots (no submodules):
+  repositories where possible. superpowers is intentionally distributed as a
+  skills-only snapshot (no submodule):
   - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
-  - skills/planning-with-files synced from
-    https://github.com/OthmanAdi/planning-with-files/tree/master/.opencode/skills/planning-with-files
   - skills/scientific-visualization is maintained locally in this repository
     (no upstream sync dependency)
 

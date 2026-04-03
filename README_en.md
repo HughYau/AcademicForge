@@ -57,7 +57,7 @@ Start using it right away — **skills are automatically triggered** during your
 **Try these prompts:**
 - "Help me outline a research paper about deep learning in LaTeX"
 - "Analyze this CSV data and generate publication-ready figures"
-- "Plan a multi-step experiment and track progress with files"
+- "Rewrite this Chinese abstract to sound natural and less AI-generated"
 - "Polish this abstract to match academic writing standards"
 
 ## 📦 Included Skills
@@ -67,10 +67,10 @@ Start using it right away — **skills are automatically triggered** during your
 | [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | 140 | Scientific writing, LaTeX, citations, databases | [@k-dense-ai](https://github.com/k-dense-ai) |
 | [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI research methods, training, inference, evaluation | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
 | [superpowers](https://github.com/obra/superpowers) | 15 | Planning, debugging, TDD, code review | [@obra](https://github.com/obra) |
-| [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 1 | File-based task management, context persistence | [@OthmanAdi](https://github.com/OthmanAdi) |
 | [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | Paper translation, polishing, review simulation, and submission workflow | [@Lylll9436](https://github.com/Lylll9436) |
 | [scientific-visualization](./skills/scientific-visualization) | 1 | Publication-ready figures, colorblind-safe palettes | Local |
 | [humanizer](https://github.com/blader/humanizer) | 1 | Academic tone refinement, readability | [@blader](https://github.com/blader) |
+| [humanizer-zh](https://github.com/op7418/Humanizer-zh) | 1 | Chinese de-AI rewriting, naturalization, Chinese academic polishing | [@op7418](https://github.com/op7418) |
 
 > All skills retain their original licenses and authorship. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed credits.
 
@@ -114,17 +114,16 @@ Start using it right away — **skills are automatically triggered** during your
 - **Purpose**: Refining academic tone, improving readability, avoiding AI-detection patterns
 - **Best For**: Polishing drafts, maintaining academic voice, peer review preparation
 
+### humanizer-zh
+- **License**: MIT
+- **Purpose**: Rewriting Chinese text to sound less AI-generated while preserving meaning and tone
+- **Best For**: Chinese abstracts, Chinese manuscript polishing, and natural-sounding final rewrites
+
 ### superpowers (skills-only)
 - **License**: MIT
 - **Purpose**: Structured development workflow skills emphasizing **design first, implement, then verify**
 - **Key Skills**: brainstorming, writing-plans, executing-plans, systematic-debugging, test-driven-development, code-review, verification-before-completion
 - **Integration Mode**: Syncs only the upstream `skills/` directory (no plugin or non-skill folders)
-
-### planning-with-files (skills-only)
-- **License**: MIT
-- **Purpose**: Manus-style file-based planning with `task_plan.md`, `findings.md`, and `progress.md`
-- **Best For**: Long multi-step implementation or research tasks that need durable planning and session recovery
-- **Integration Mode**: Syncs only upstream `.opencode/skills/planning-with-files`
 
 ### paper-polish-workflow-skill (15 Skills)
 - **License**: MIT
@@ -169,6 +168,7 @@ config:
     claude-scientific-skills: true
     paper-polish-workflow-skill: true
     humanizer: false  # Set to false to remove on next sync
+    humanizer-zh: false  # Set to false to remove on next sync
 ```
 
 To block specific upstream skills (not entire packs), edit `scripts/skill-blacklist.txt`.
@@ -209,9 +209,9 @@ academic-forge/
 │   ├── claude-scientific-skills/    (submodule)
 │   ├── AI-research-SKILLs/          (submodule)
 │   ├── humanizer/                   (submodule)
+│   ├── humanizer-zh/                (submodule)
 │   ├── paper-polish-workflow-skill/ (submodule)
 │   ├── superpowers/                 (skills-only sync)
-│   ├── planning-with-files/         (skills-only sync)
 │   └── scientific-visualization/    (local built-in)
 └── scripts/
     ├── lib.sh / lib.ps1             # Shared functions

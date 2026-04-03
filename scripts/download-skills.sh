@@ -66,6 +66,7 @@ echo -e "${CYAN}→ Downloading skills submodules...${NC}"
 # Define skills submodules
 SKILLS_SUBMODULES=(
     "skills/humanizer"
+    "skills/humanizer-zh"
     "skills/AI-research-SKILLs"
     "skills/claude-scientific-skills"
     "skills/paper-polish-workflow-skill"
@@ -85,12 +86,10 @@ echo ""
 
 # Sync skills-only snapshots
 sync_superpowers
-echo ""
-sync_planning_with_files
 
 echo ""
 
-# Post-sync processing: patch paths, apply blacklist, clean ads
+# Post-sync processing: apply blacklist, clean ads, and enabled flags
 post_sync_all "scripts/skill-blacklist.txt"
 
 echo ""
@@ -117,12 +116,6 @@ if [ -d "skills/superpowers" ] && [ -n "$(ls -A "skills/superpowers" 2>/dev/null
     echo -e "${GREEN}  ✓ superpowers${NC}"
 else
     echo -e "${RED}  ✗ superpowers (not found)${NC}"
-fi
-
-if [ -d "skills/planning-with-files" ] && [ -n "$(ls -A "skills/planning-with-files" 2>/dev/null)" ]; then
-    echo -e "${GREEN}  ✓ planning-with-files${NC}"
-else
-    echo -e "${RED}  ✗ planning-with-files (not found)${NC}"
 fi
 
 echo ""

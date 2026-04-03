@@ -139,15 +139,7 @@ try {
     exit 1
 }
 
-try {
-    Sync-PlanningWithFiles
-} catch {
-    Write-ColorOutput "❌ Failed to sync planning-with-files skill" "Red"
-    Pop-Location
-    exit 1
-}
-
-# Post-sync processing: patch paths, apply blacklist, clean ads
+# Post-sync processing: apply blacklist, clean ads, and enabled flags
 try {
     Invoke-PostSyncAll -BlacklistFile "scripts/skill-blacklist.txt"
 } catch {
@@ -167,7 +159,6 @@ Write-Host ""
 Write-ColorOutput "📚 Included Skills:" "Blue"
 git submodule foreach --quiet 'echo "  ✓ $name"'
 Write-Host "  ✓ skills/superpowers"
-Write-Host "  ✓ skills/planning-with-files"
 
 Pop-Location
 

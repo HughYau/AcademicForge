@@ -33,10 +33,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Added `humanizer-zh` as a git submodule under `skills/humanizer-zh`, matching the integration strategy used for `humanizer`
+
+### Removed
+- Removed `planning-with-files` from the curated skill set, install/update pipeline, verification scripts, and user-facing documentation
+
 ### Fixed
 - **脚本路径修复**: 所有脚本（install/update/download）现在支持从任意目录运行，自动定位仓库根目录
-- **planning-with-files 路径适配**: 同步后自动将 opencode 专用路径替换为工具无关路径（兼容 Claude Code / OpenCode / Qita）
-- **CI 工作流补全**: 自动更新 PR 现在也会应用技能黑名单、清理 K-Dense 广告、修补 planning-with-files 路径
+- **CI 工作流补全**: 自动更新 PR 现在也会应用技能黑名单、清理 K-Dense 广告，并执行统一的同步后清理流程
 - **死代码清理**: 移除 update.sh / install.sh 中永远为真的 `$?` 检查
 
 ### Added

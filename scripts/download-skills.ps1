@@ -77,6 +77,7 @@ try {
 
     $skillsSubmodules = @(
         "skills/humanizer",
+        "skills/humanizer-zh",
         "skills/AI-research-SKILLs",
         "skills/claude-scientific-skills",
         "skills/paper-polish-workflow-skill"
@@ -97,12 +98,10 @@ try {
 
     # Sync skills-only snapshots
     Sync-Superpowers
-    Write-Host ""
-    Sync-PlanningWithFiles
 
     Write-Host ""
 
-    # Post-sync processing: patch paths, apply blacklist, clean ads
+    # Post-sync processing: apply blacklist, clean ads, and enabled flags
     Invoke-PostSyncAll -BlacklistFile "scripts/skill-blacklist.txt"
 
     Write-Host ""
@@ -129,12 +128,6 @@ try {
         Write-ColorOutput "  ✓ superpowers" "Green"
     } else {
         Write-ColorOutput "  ✗ superpowers (not found)" "Red"
-    }
-
-    if (Test-Path "skills/planning-with-files") {
-        Write-ColorOutput "  ✓ planning-with-files" "Green"
-    } else {
-        Write-ColorOutput "  ✗ planning-with-files (not found)" "Red"
     }
 
     Write-Host ""

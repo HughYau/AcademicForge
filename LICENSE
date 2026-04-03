@@ -32,7 +32,8 @@ Please refer to each skill's repository for its specific license:
 
 - claude-scientific-skills: https://github.com/k-dense-ai/claude-scientific-skills/blob/main/LICENSE
 - AI-research-SKILLs: https://github.com/orchestra-research/AI-research-SKILLs/blob/main/LICENSE
-- humanizer: https://github.com/humanizer-org/humanizer/blob/main/LICENSE
+- humanizer: https://github.com/blader/humanizer/blob/main/LICENSE
+- humanizer-zh: https://github.com/op7418/Humanizer-zh/blob/main/LICENSE
 
 When using this forge, you must comply with BOTH:
 1. This MIT license for the forge structure

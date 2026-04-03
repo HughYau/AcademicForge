@@ -80,9 +80,8 @@ fi
 
 # Sync skills-only snapshots
 sync_superpowers
-sync_planning_with_files
 
-# Post-sync processing: patch paths, apply blacklist, clean ads
+# Post-sync processing: apply blacklist, clean ads, and enabled flags
 post_sync_all "scripts/skill-blacklist.txt"
 
 echo ""
@@ -92,7 +91,6 @@ echo ""
 # Show status of each submodule
 git submodule foreach 'echo "📚 $name:"; git log --oneline -3 --decorate; echo ""'
 echo "📚 skills/superpowers: synced from obra/superpowers (skills/)"
-echo "📚 skills/planning-with-files: synced from OthmanAdi/planning-with-files (.opencode/skills/planning-with-files)"
 echo ""
 
 echo ""

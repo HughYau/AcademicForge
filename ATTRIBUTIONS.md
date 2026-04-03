@@ -8,8 +8,8 @@ Academic Forge uses a **hybrid integration model**:
 
 - Most skills are linked via git submodules
 - `paper-polish-workflow-skill` is linked via git submodule
+- `humanizer-zh` is linked via git submodule
 - `superpowers` is synced as a skills-only snapshot from upstream `skills/`
-- `planning-with-files` is synced as a single skills-only folder from upstream `.opencode/skills/planning-with-files`
 - `scientific-visualization` is maintained locally in this repository (no upstream dependency)
 
 This means:
@@ -18,7 +18,7 @@ This means:
 - ✅ External skills link directly to their source repositories
 - ✅ Authors receive proper credit and GitHub attribution
 - ✅ Updates flow from the original repositories
-- ✅ `superpowers` and `planning-with-files` are intentionally limited to skills-only content to keep this forge focused
+- ✅ `superpowers` is intentionally limited to skills-only content to keep this forge focused
 - ✅ Local custom skills remain fully transparent in this repository's git history
 
 ## Included Skills
@@ -55,9 +55,9 @@ This means:
 
 ### 3. humanizer
 
-**Original Repository**: [humanizer-org/humanizer](https://github.com/humanizer-org/humanizer)
+**Original Repository**: [blader/humanizer](https://github.com/blader/humanizer)
 
-- **Author**: Humanizer community contributors
+- **Author**: blader
 - **License**: Check original repository for license details
 - **Included Version**: See `.gitmodules` for current commit hash
 - **Purpose**: Academic tone refinement, readability improvement
@@ -68,7 +68,22 @@ This means:
 
 ---
 
-### 4. superpowers (skills-only)
+### 4. humanizer-zh
+
+**Original Repository**: [op7418/Humanizer-zh](https://github.com/op7418/Humanizer-zh)
+
+- **Author**: op7418
+- **License**: MIT License
+- **Included Version**: See `.gitmodules` for current commit hash
+- **Purpose**: Chinese de-AI rewriting, naturalization, and Chinese academic polishing
+- **Modifications**: None (used as-is via git submodule)
+- **Original License Text**: See `skills/humanizer-zh/LICENSE`
+
+**Why we included it**: Complements `humanizer` with a Chinese-first variant for more natural Chinese abstracts, paper sections, and bilingual revision workflows.
+
+---
+
+### 5. superpowers (skills-only)
 
 **Original Repository**: [obra/superpowers](https://github.com/obra/superpowers)
 
@@ -80,21 +95,6 @@ This means:
 - **Original License Text**: See upstream `obra/superpowers` repository
 
 **Why we included it**: Adds battle-tested workflow skills like brainstorming, writing-plans, systematic-debugging, and test-driven-development that complement academic and research implementation workflows.
-
----
-
-### 5. planning-with-files (skills-only single folder)
-
-**Original Repository**: [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files)
-
-- **Author**: OthmanAdi
-- **License**: MIT License
-- **Included Version**: Synced snapshot of `.opencode/skills/planning-with-files` (see git history for latest sync commit)
-- **Purpose**: Manus-style file-based planning and session persistence for complex tasks
-- **Modifications**: Integrated as skills-only content under `skills/planning-with-files` (not as a submodule)
-- **Original License Text**: See upstream `OthmanAdi/planning-with-files` repository
-
-**Why we included it**: Adds durable planning primitives (`task_plan.md`, `findings.md`, `progress.md`) and session catchup scripts that are especially useful for long-running research and implementation work.
 
 ---
 
@@ -142,8 +142,9 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | claude-scientific-skills | MIT | ✅ Yes | ✅ Yes |
 | AI-research-SKILLs | TBD* | Check repo | Check repo |
 | humanizer | TBD* | Check repo | Check repo |
+| humanizer-zh | MIT | ✅ Yes | ✅ Yes |
 | superpowers | MIT | ✅ Yes | ✅ Yes |
-| planning-with-files | MIT | ✅ Yes | ✅ Yes |
+| paper-polish-workflow-skill | MIT | ✅ Yes | ✅ Yes |
 | scientific-visualization | MIT | ✅ Yes | ✅ Yes |
 
 *Please check the original repository for current license information.
@@ -157,7 +158,7 @@ If you use this forge in your work, we appreciate (but don't require) acknowledg
 ```
 We used the Academic Forge skill collection for Claude Code
 (https://github.com/HughYau/academic-forge), which integrates
-skills from k-dense-ai, orchestra-research, and the humanizer community.
+skills from k-dense-ai, orchestra-research, blader, and op7418.
 ```
 
 ### In Projects
@@ -213,8 +214,8 @@ This document tracks which versions of each skill are included:
 | 2024-XX-XX | claude-scientific-skills | abc123... | Initial inclusion |
 | 2024-XX-XX | AI-research-SKILLs | def456... | Initial inclusion |
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
+| 2026-04-03 | humanizer-zh | submodule from op7418/Humanizer-zh | Initial inclusion |
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
-| 2026-03-04 | planning-with-files (skills-only folder) | synced from OthmanAdi/planning-with-files/.opencode/skills/planning-with-files | Initial inclusion |
 | 2026-03-21 | paper-polish-workflow-skill | submodule from Lylll9436/Paper-Polish-Workflow-skill | Initial inclusion |
 | 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
 
@@ -223,7 +224,7 @@ To see the current linked submodule versions, run:
 git submodule status
 ```
 
-For `superpowers` and `planning-with-files` (skills-only syncs), check the latest sync commits in this repository's git history. For `scientific-visualization`, check normal file history in this repository.
+For `superpowers` (skills-only sync), check the latest sync commits in this repository's git history. For `scientific-visualization`, check normal file history in this repository.
 
 ---
 

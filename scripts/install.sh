@@ -126,9 +126,8 @@ source "scripts/lib.sh"
 
 # Sync skills-only snapshots
 sync_superpowers
-sync_planning_with_files
 
-# Post-sync processing: patch paths, apply blacklist, clean ads
+# Post-sync processing: apply blacklist, clean ads, and enabled flags
 post_sync_all "scripts/skill-blacklist.txt"
 
 echo ""
@@ -142,7 +141,6 @@ echo ""
 echo -e "${BLUE}📚 Included Skills:${NC}"
 git submodule foreach --quiet 'echo "  ✓ $name"'
 echo "  ✓ skills/superpowers"
-echo "  ✓ skills/planning-with-files"
 
 echo ""
 echo -e "${BLUE}📖 Next Steps:${NC}"
