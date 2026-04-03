@@ -10,3 +10,6 @@
 [submodule "skills/paper-polish-workflow-skill"]
 	path = skills/paper-polish-workflow-skill
 	url = https://github.com/Lylll9436/Paper-Polish-Workflow-skill.git
+[submodule "skills/humanizer-zh"]
+	path = skills/humanizer-zh
+	url = https://github.com/op7418/Humanizer-zh.git
