@@ -78,16 +78,19 @@ apply_forge_config() {
 
     echo -e "${BLUE}🔧 Applying forge.yaml configuration...${NC}"
 
-    # Map skill names to their directory paths
-    declare -A skill_paths=(
-        ["claude-scientific-skills"]="skills/claude-scientific-skills"
-        ["AI-research-SKILLs"]="skills/AI-research-SKILLs"
-        ["humanizer"]="skills/humanizer"
-        ["humanizer-zh"]="skills/humanizer-zh"
-        ["superpowers"]="skills/superpowers"
-        ["paper-polish-workflow-skill"]="skills/paper-polish-workflow-skill"
-        ["scientific-visualization"]="skills/scientific-visualization"
-    )
+    # Get directory path for a skill name (bash 3.x compatible - no associative arrays)
+    get_skill_dir() {
+        case "$1" in
+            claude-scientific-skills) echo "skills/claude-scientific-skills" ;;
+            AI-research-SKILLs) echo "skills/AI-research-SKILLs" ;;
+            humanizer) echo "skills/humanizer" ;;
+            humanizer-zh) echo "skills/humanizer-zh" ;;
+            superpowers) echo "skills/superpowers" ;;
+            paper-polish-workflow-skill) echo "skills/paper-polish-workflow-skill" ;;
+            scientific-visualization) echo "skills/scientific-visualization" ;;
+            *) echo "" ;;
+        esac
+    }
 
     # Parse enabled flags from forge.yaml using grep/awk (lightweight, no yq needed)
     local in_enabled=false
@@ -108,7 +111,8 @@ apply_forge_config() {
             value="$(echo "$line" | sed -n 's/^[[:space:]]*\([a-zA-Z_-]*\):[[:space:]]*\(.*\)/\2/p')"
 
             if [ -n "$skill_name" ] && [ "$value" = "false" ]; then
-                local skill_dir="${skill_paths[$skill_name]}"
+                local skill_dir
+                skill_dir="$(get_skill_dir "$skill_name")"
                 if [ -n "$skill_dir" ] && [ -d "$skill_dir" ]; then
                     rm -rf "$skill_dir"
                     echo -e "${YELLOW}  - Disabled skill removed: $skill_name ($skill_dir)${NC}"
