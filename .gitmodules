@@ -4,9 +4,9 @@
 [submodule "skills/AI-research-SKILLs"]
 	path = skills/AI-research-SKILLs
 	url = https://github.com/zechenzhangAGI/AI-research-SKILLs.git
-[submodule "skills/claude-scientific-skills"]
-	path = skills/claude-scientific-skills
-	url = https://github.com/K-Dense-AI/claude-scientific-skills.git
+[submodule "skills/scientific-agent-skills"]
+	path = skills/scientific-agent-skills
+	url = https://github.com/K-Dense-AI/scientific-agent-skills.git
 [submodule "skills/paper-polish-workflow-skill"]
 	path = skills/paper-polish-workflow-skill
 	url = https://github.com/Lylll9436/Paper-Polish-Workflow-skill.git
