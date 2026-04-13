@@ -70,6 +70,8 @@ echo -e "${BLUE}🔄 Updating all skills...${NC}"
 echo ""
 
 # Update all submodules
+git submodule sync --recursive
+remove_legacy_scientific_skills_path
 if git submodule update --remote --merge; then
     echo -e "${GREEN}✓ All submodule skills updated${NC}"
 else

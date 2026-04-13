@@ -68,7 +68,7 @@ fi
 echo -e "${BLUE}Checking skill directories...${NC}"
 
 SKILLS=(
-    "skills/claude-scientific-skills"
+    "skills/scientific-agent-skills"
     "skills/AI-research-SKILLs"
     "skills/humanizer"
     "skills/humanizer-zh"
@@ -87,6 +87,10 @@ for skill_dir in "${SKILLS[@]}"; do
         check_fail "$skill_name (not found)"
     fi
 done
+
+if [ -e "skills/claude-scientific-skills" ]; then
+    check_warn "skills/claude-scientific-skills is legacy; current path is skills/scientific-agent-skills"
+fi
 
 # 3. Check submodule status
 echo -e "${BLUE}Checking git submodules...${NC}"

@@ -60,6 +60,8 @@ echo ""
 # Initialize and update only skills folder submodules
 echo -e "${CYAN}→ Initializing submodules...${NC}"
 git submodule init
+git submodule sync --recursive
+remove_legacy_scientific_skills_path
 
 echo -e "${CYAN}→ Downloading skills submodules...${NC}"
 
@@ -68,7 +70,7 @@ SKILLS_SUBMODULES=(
     "skills/humanizer"
     "skills/humanizer-zh"
     "skills/AI-research-SKILLs"
-    "skills/claude-scientific-skills"
+    "skills/scientific-agent-skills"
     "skills/paper-polish-workflow-skill"
 )
 

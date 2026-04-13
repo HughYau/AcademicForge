@@ -52,11 +52,27 @@ apply_blacklist() {
     echo -e "${GREEN}✓ Skill blacklist applied${NC}"
 }
 
-# Clean K-Dense ad insertions from claude-scientific-skills SKILL.md files
-clean_ads() {
-    echo -e "${BLUE}🧹 Cleaning ad insertions from claude-scientific-skills...${NC}"
+# Remove an empty legacy directory left behind after the upstream rename from
+# claude-scientific-skills -> scientific-agent-skills.
+remove_legacy_scientific_skills_path() {
+    local legacy_path="skills/claude-scientific-skills"
+    local current_path="skills/scientific-agent-skills"
 
-    local ad_skill_dir="skills/claude-scientific-skills"
+    if [ -d "$legacy_path" ] && [ ! -e "$current_path" ]; then
+        if [ -n "$(find "$legacy_path" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ]; then
+            echo -e "${YELLOW}⚠ Legacy directory detected: $legacy_path. Current path is $current_path.${NC}"
+        else
+            rmdir "$legacy_path"
+            echo -e "${YELLOW}ℹ Removed empty legacy directory: $legacy_path${NC}"
+        fi
+    fi
+}
+
+# Clean K-Dense ad insertions from scientific-agent-skills SKILL.md files
+clean_ads() {
+    echo -e "${BLUE}🧹 Cleaning ad insertions from scientific-agent-skills...${NC}"
+
+    local ad_skill_dir="skills/scientific-agent-skills"
     if [ -d "$ad_skill_dir" ]; then
         local cleaned_count=0
         while IFS= read -r -d '' skill_file; do
@@ -81,7 +97,7 @@ apply_forge_config() {
     # Get directory path for a skill name (bash 3.x compatible - no associative arrays)
     get_skill_dir() {
         case "$1" in
-            claude-scientific-skills) echo "skills/claude-scientific-skills" ;;
+            scientific-agent-skills) echo "skills/scientific-agent-skills" ;;
             AI-research-SKILLs) echo "skills/AI-research-SKILLs" ;;
             humanizer) echo "skills/humanizer" ;;
             humanizer-zh) echo "skills/humanizer-zh" ;;

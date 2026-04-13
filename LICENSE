@@ -30,7 +30,7 @@ scripts, and documentation created specifically for this forge).
 The individual skills included via git submodules retain their ORIGINAL licenses.
 Please refer to each skill's repository for its specific license:
 
-- claude-scientific-skills: https://github.com/k-dense-ai/claude-scientific-skills/blob/main/LICENSE
+- scientific-agent-skills: https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md
 - AI-research-SKILLs: https://github.com/orchestra-research/AI-research-SKILLs/blob/main/LICENSE
 - humanizer: https://github.com/blader/humanizer/blob/main/LICENSE
 - humanizer-zh: https://github.com/op7418/Humanizer-zh/blob/main/LICENSE

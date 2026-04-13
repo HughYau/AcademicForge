@@ -56,7 +56,7 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 
 | 技能包 | 数量 | 擅长领域 | 来源 |
 |--------|------|----------|------|
-| [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | 140 | 科学写作、LaTeX、引文、数据库 | [@k-dense-ai](https://github.com/k-dense-ai) |
+| [scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) | 133 | 科研工作流、科学数据库、科学计算、科学写作 | [@K-Dense-AI](https://github.com/K-Dense-AI) |
 | [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI 研究方法、训练、推理、评估 | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
 | [superpowers](https://github.com/obra/superpowers) | 15 | 规划、调试、TDD、代码审查 | [@obra](https://github.com/obra) |
 | [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | 论文翻译、润色、审稿模拟与投稿工作流 | [@Lylll9436](https://github.com/Lylll9436) |
@@ -69,18 +69,19 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 <details>
 <summary><b>📋 查看每个 Skills 的详细内容</b></summary>
 
-### claude-scientific-skills (140 Skills)
+### scientific-agent-skills (133 Skills)
 - **许可证**: MIT
-- **覆盖范围**: 140 个即用型科学 skills，涵盖 15+ 领域
+- **覆盖范围**: 133 个即用型科研与科学 skills，涵盖 15+ 领域
+- **兼容性**: 已升级为遵循开放 `Agent Skills` 标准的通用技能库，不再局限于 Claude
 - **包含内容**:
   - 🧬 **生物信息学与基因组学** - BioPython, Scanpy, 单细胞RNA-seq, 变异注释
   - 🧪 **化学信息学与药物发现** - RDKit, DeepChem, 分子对接, 虚拟筛选
   - 🏥 **临床研究** - ClinicalTrials.gov, ClinVar, FDA数据库, 药物基因组学
   - 📊 **数据分析** - 统计分析, matplotlib, seaborn, 出版级图表
-  - 📚 **科学写作** - LaTeX格式化, 引用管理, 同行评审
+  - 📚 **科学交流** - LaTeX格式化, 引用管理, 同行评审, 海报/幻灯片/图示
   - 🔬 **实验室自动化** - PyLabRobot, Benchling, Opentrons集成
   - 🤖 **机器学习** - PyTorch Lightning, scikit-learn, 深度学习工作流
-  - 📚 **数据库** - 28+ 科学数据库 (PubMed, OpenAlex, ChEMBL, UniProt等)
+  - 🗃️ **数据库** - 78+ 科学数据库与更多聚合入口 (PubMed, OpenAlex, ChEMBL, UniProt 等)
 - **最适合**: 从文献综述到论文发表的多步骤科学工作流程
 - **广告净化**: 脚本每次安装/下载/更新后自动移除各 SKILL.md 中内嵌的平台推广段落，保持 skill 内容纯净
 
@@ -157,7 +158,7 @@ bash scripts/list-skills.sh  # 列出所有已安装技能
 ```yaml
 config:
   enabled:
-    claude-scientific-skills: true
+    scientific-agent-skills: true
     humanizer: false  # 设为 false 会在下次同步后移除
     humanizer-zh: false  # 设为 false 会在下次同步后移除
 ```

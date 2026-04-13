@@ -7,7 +7,7 @@ This guide explains what the `download-skills` scripts do in Academic Forge.
 The scripts sync all skill sources into your local `skills/` directory:
 
 1. Git submodule-based skills:
-   - `skills/claude-scientific-skills`
+   - `skills/scientific-agent-skills`
    - `skills/AI-research-SKILLs`
    - `skills/humanizer`
    - `skills/humanizer-zh`
@@ -37,5 +37,4 @@ bash scripts/download-skills.sh
 - `scientific-visualization` is a local first-party skill in this repository and is **not** pulled from an external upstream by sync scripts.
 - Re-running the scripts is safe and refreshes skill content to latest upstream state.
 - A post-sync blacklist is applied from `scripts/skill-blacklist.txt`.
-- Current default blacklist removes:
-  - `skills/claude-scientific-skills/scientific-skills/offer-k-dense-web`
+- The blacklist file is currently empty by default; add one relative path per line if a future upstream skill needs to be blocked.

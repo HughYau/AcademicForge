@@ -1,7 +1,7 @@
 forge:
   name: "academic-forge"
   version: "1.0.0"
-  description: "A curated skill collection for academic writing and research with Claude Code"
+  description: "A curated skill collection for academic writing and research across modern AI agents"
   author: "your-username"
   repository: "https://github.com/HughYau/AcademicForge"
   license: "MIT"
@@ -23,17 +23,17 @@ forge:
 
 # Included skills with their metadata
 skills:
-  - name: "claude-scientific-skills"
-    path: "skills/claude-scientific-skills"
-    repository: "https://github.com/k-dense-ai/claude-scientific-skills"
-    author: "k-dense-ai"
+  - name: "scientific-agent-skills"
+    path: "skills/scientific-agent-skills"
+    repository: "https://github.com/K-Dense-AI/scientific-agent-skills"
+    author: "K-Dense-AI"
     license: "MIT"
-    description: "Comprehensive scientific paper writing and LaTeX formatting"
+    description: "Comprehensive scientific and research workflows for any AI agent"
     tags:
+      - scientific-workflows
+      - scientific-databases
+      - scientific-python
       - scientific-writing
-      - latex
-      - citations
-      - academic-structure
     
   - name: "AI-research-SKILLs"
     path: "skills/AI-research-SKILLs"
@@ -116,7 +116,7 @@ config:
   
   # Skill priority (higher = invoked first when multiple skills match)
   priority:
-    claude-scientific-skills: 10
+    scientific-agent-skills: 10
     AI-research-SKILLs: 9
     superpowers: 8
     paper-polish-workflow-skill: 8
@@ -126,7 +126,7 @@ config:
   
   # Enable/disable individual skills
   enabled:
-    claude-scientific-skills: true
+    scientific-agent-skills: true
     AI-research-SKILLs: true
     superpowers: true
     paper-polish-workflow-skill: true
@@ -157,6 +157,7 @@ notes: |
   Academic Forge uses git submodules to integrate skills from their original
   repositories where possible. superpowers is intentionally distributed as a
   skills-only snapshot (no submodule):
+  - skills/scientific-agent-skills synced from https://github.com/K-Dense-AI/scientific-agent-skills
   - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
   - skills/scientific-visualization is maintained locally in this repository
     (no upstream sync dependency)

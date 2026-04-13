@@ -64,7 +64,7 @@ Start using it right away — **skills are automatically triggered** during your
 
 | Skill Pack | Count | Best For | Source |
 |------------|-------|----------|--------|
-| [claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills) | 140 | Scientific writing, LaTeX, citations, databases | [@k-dense-ai](https://github.com/k-dense-ai) |
+| [scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) | 133 | Scientific workflows, scientific databases, scientific computing, writing | [@K-Dense-AI](https://github.com/K-Dense-AI) |
 | [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI research methods, training, inference, evaluation | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
 | [superpowers](https://github.com/obra/superpowers) | 15 | Planning, debugging, TDD, code review | [@obra](https://github.com/obra) |
 | [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | Paper translation, polishing, review simulation, and submission workflow | [@Lylll9436](https://github.com/Lylll9436) |
@@ -77,18 +77,19 @@ Start using it right away — **skills are automatically triggered** during your
 <details>
 <summary><b>📋 View detailed skill descriptions</b></summary>
 
-### claude-scientific-skills (140 Skills)
+### scientific-agent-skills (133 Skills)
 - **License**: MIT
-- **Coverage**: 140 ready-to-use scientific skills across 15+ domains
+- **Coverage**: 133 ready-to-use scientific and research skills across 15+ domains
+- **Compatibility**: Renamed from Claude Scientific Skills and now aligned with the open `Agent Skills` standard for broader agent support
 - **What It Includes**:
   - 🧬 **Bioinformatics & Genomics** - BioPython, Scanpy, single-cell RNA-seq, variant annotation
   - 🧪 **Cheminformatics & Drug Discovery** - RDKit, DeepChem, molecular docking, virtual screening
   - 🏥 **Clinical Research** - ClinicalTrials.gov, ClinVar, FDA databases, pharmacogenomics
   - 📊 **Data Analysis** - Statistical analysis, matplotlib, seaborn, publication figures
-  - 📚 **Scientific Communication** - LaTeX formatting, citation management, peer review
+  - 📚 **Scientific Communication** - LaTeX formatting, citation management, peer review, posters, slides, and schematics
   - 🔬 **Laboratory Automation** - PyLabRobot, Benchling, Opentrons integration
   - 🤖 **Machine Learning** - PyTorch Lightning, scikit-learn, deep learning workflows
-  - 📚 **Databases** - 28+ scientific databases (PubMed, OpenAlex, ChEMBL, UniProt, etc.)
+  - 🗃️ **Databases** - 78+ scientific databases and aggregated access paths (PubMed, OpenAlex, ChEMBL, UniProt, etc.)
 - **Best For**: Multi-step scientific workflows from literature review to publication
 - **Ad Sanitization**: Each install/download/update run automatically strips embedded promotional sections from all SKILL.md files, keeping skill content clean
 
@@ -148,7 +149,7 @@ To prevent potential **Prompt Injection attacks** (which might hijack AI behavio
 - **Blacklist Filtering**: Via `scripts/skill-blacklist.txt`, the installation and update scripts automatically remove specific upstream files known to contain malicious prompts, low-quality instructions, or confusing context.
 - **Post-Prompt Sanitization (Clean-AdInsertions)**: After downloading and syncing upstream content, the configuration runs sanitization functions (such as `Clean-AdInsertions`) that use Regex pattern matching to strip out irrelevant third-party platform promotions, sponsor advertisements, and other attached commands. This ensures that the provided context fed to the AI assistant remains safe and pure.
 
-## �🔧 Managing Skills
+## 🔧 Managing Skills
 
 ### Update
 
@@ -165,7 +166,7 @@ Edit `config.enabled` in `forge.yaml` to enable/disable specific skill packs:
 ```yaml
 config:
   enabled:
-    claude-scientific-skills: true
+    scientific-agent-skills: true
     paper-polish-workflow-skill: true
     humanizer: false  # Set to false to remove on next sync
     humanizer-zh: false  # Set to false to remove on next sync
@@ -206,7 +207,7 @@ A: Run `bash scripts/uninstall.sh` (Windows: `.\scripts\uninstall.ps1`), or simp
 academic-forge/
 ├── forge.yaml             # Forge metadata and skill enable/disable config
 ├── skills/
-│   ├── claude-scientific-skills/    (submodule)
+│   ├── scientific-agent-skills/     (submodule)
 │   ├── AI-research-SKILLs/          (submodule)
 │   ├── humanizer/                   (submodule)
 │   ├── humanizer-zh/                (submodule)

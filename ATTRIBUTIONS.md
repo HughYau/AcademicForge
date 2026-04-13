@@ -1,6 +1,6 @@
 # Attributions and Credits
 
-This project integrates skills from multiple authors in the Claude Code ecosystem. We are deeply grateful for their contributions and want to ensure proper credit is given.
+This project integrates skills from multiple authors across the AI agent ecosystem. We are deeply grateful for their contributions and want to ensure proper credit is given.
 
 ## How This Forge Works
 
@@ -23,18 +23,18 @@ This means:
 
 ## Included Skills
 
-### 1. claude-scientific-skills
+### 1. scientific-agent-skills
 
-**Original Repository**: [k-dense-ai/claude-scientific-skills](https://github.com/k-dense-ai/claude-scientific-skills)
+**Original Repository**: [K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills)
 
-- **Author**: k-dense-ai
+- **Author**: K-Dense-AI
 - **License**: MIT License
 - **Included Version**: See `.gitmodules` for current commit hash
-- **Purpose**: Scientific paper writing, LaTeX formatting, citation management
+- **Purpose**: Scientific and research workflows for any AI agent
 - **Modifications**: None (used as-is via git submodule)
-- **Original License Text**: See `skills/claude-scientific-skills/LICENSE`
+- **Original License Text**: See `skills/scientific-agent-skills/LICENSE.md`
 
-**Why we included it**: The most comprehensive scientific skills collection available, with 140 ready-to-use skills spanning 15+ scientific domains. Includes deep integration with 28+ scientific databases (PubMed, OpenAlex, ChEMBL, UniProt), 55+ specialized Python packages (BioPython, RDKit, DeepChem, Scanpy), and complete workflows from literature review through publication. Essential for any researcher working in bioinformatics, cheminformatics, clinical research, or computational biology.
+**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 133 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
 
 ---
 
@@ -139,7 +139,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 
 | Skill | License | Commercial Use | Attribution Required |
 |-------|---------|----------------|---------------------|
-| claude-scientific-skills | MIT | ✅ Yes | ✅ Yes |
+| scientific-agent-skills | MIT | ✅ Yes | ✅ Yes |
 | AI-research-SKILLs | TBD* | Check repo | Check repo |
 | humanizer | TBD* | Check repo | Check repo |
 | humanizer-zh | MIT | ✅ Yes | ✅ Yes |
@@ -211,7 +211,8 @@ This document tracks which versions of each skill are included:
 
 | Date | Skill | Version/Commit | Change |
 |------|-------|----------------|--------|
-| 2024-XX-XX | claude-scientific-skills | abc123... | Initial inclusion |
+| 2024-XX-XX | scientific-agent-skills | abc123... | Initial inclusion |
+| 2026-04-13 | scientific-agent-skills | upstream rename + metadata refresh | Migrated submodule path and project references from `claude-scientific-skills` |
 | 2024-XX-XX | AI-research-SKILLs | def456... | Initial inclusion |
 | 2024-XX-XX | humanizer | ghi789... | Initial inclusion |
 | 2026-04-03 | humanizer-zh | submodule from op7418/Humanizer-zh | Initial inclusion |
@@ -230,5 +231,5 @@ For `superpowers` (skills-only sync), check the latest sync commits in this repo
 
 ## Thank You
 
-This forge exists because of the generosity of open-source contributors who share their work freely. Thank you to all skill creators for making the Claude Code ecosystem richer and more powerful! 🙏
+This forge exists because of the generosity of open-source contributors who share their work freely. Thank you to all skill creators for making the AI agent ecosystem richer and more powerful! 🙏
 

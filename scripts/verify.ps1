@@ -28,16 +28,16 @@ if ($Version) {
     exit 0
 }
 
-Write-Host "🔍 Academic Forge - Installation Verification" -ForegroundColor Blue
+Write-Host "Academic Forge - Installation Verification" -ForegroundColor Blue
 Write-Host ""
 
 $passed = 0
 $failed = 0
 $warnings = 0
 
-function Check-Pass($msg) { Write-Host "  ✓ $msg" -ForegroundColor Green; $script:passed++ }
-function Check-Fail($msg) { Write-Host "  ✗ $msg" -ForegroundColor Red; $script:failed++ }
-function Check-Warn($msg) { Write-Host "  ⚠ $msg" -ForegroundColor Yellow; $script:warnings++ }
+function Check-Pass($msg) { Write-Host "  OK: $msg" -ForegroundColor Green; $script:passed++ }
+function Check-Fail($msg) { Write-Host "  FAIL: $msg" -ForegroundColor Red; $script:failed++ }
+function Check-Warn($msg) { Write-Host "  WARN: $msg" -ForegroundColor Yellow; $script:warnings++ }
 
 # 1. Check forge.yaml
 Write-Host "Checking forge configuration..." -ForegroundColor Blue
@@ -47,7 +47,7 @@ if (Test-Path "forge.yaml") { Check-Pass "forge.yaml found" } else { Check-Fail 
 Write-Host "Checking skill directories..." -ForegroundColor Blue
 
 $skills = @(
-    "skills/claude-scientific-skills",
+    "skills/scientific-agent-skills",
     "skills/AI-research-SKILLs",
     "skills/humanizer",
     "skills/humanizer-zh",
@@ -65,6 +65,10 @@ foreach ($skillDir in $skills) {
     } else {
         Check-Fail "$skillName (not found)"
     }
+}
+
+if (Test-Path "skills/claude-scientific-skills") {
+    Check-Warn "skills/claude-scientific-skills is legacy; current path is skills/scientific-agent-skills"
 }
 
 # 3. Check submodule status
@@ -92,12 +96,12 @@ if (Test-Path "scripts/lib.ps1") { Check-Pass "scripts/lib.ps1 found" } else { C
 
 # Summary
 Write-Host ""
-Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Blue
+Write-Host "----------------------------------------" -ForegroundColor Blue
 Write-Host "  Passed: $passed  Failed: $failed  Warnings: $warnings"
-Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Blue
+Write-Host "----------------------------------------" -ForegroundColor Blue
 
 if ($failed -eq 0) {
-    Write-Host "✨ Academic Forge is correctly installed!" -ForegroundColor Green
+    Write-Host "Academic Forge is correctly installed." -ForegroundColor Green
 } else {
     Write-Host "Some checks failed. Run '.\scripts\download-skills.ps1' to fix." -ForegroundColor Red
     exit 1

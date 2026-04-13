@@ -12,7 +12,7 @@ function Write-ColorOutput {
 
 # Sync superpowers skills-only snapshot from upstream
 function Sync-Superpowers {
-    Write-ColorOutput "🔄 Syncing superpowers (skills-only)..." "Blue"
+    Write-ColorOutput "Syncing superpowers (skills-only)..." "Blue"
 
     $tempDir = ".tmp-superpowers-sync"
     if (Test-Path $tempDir) {
@@ -29,7 +29,7 @@ function Sync-Superpowers {
     Copy-Item -Path "$tempDir/skills/*" -Destination "skills/superpowers" -Recurse -Force
     Remove-Item -Recurse -Force $tempDir
 
-    Write-ColorOutput "✓ superpowers skills synced" "Green"
+    Write-ColorOutput "superpowers skills synced" "Green"
 }
 
 # Apply skill blacklist - removes unwanted skills listed in skill-blacklist.txt
@@ -38,7 +38,7 @@ function Apply-SkillBlacklist {
         [string]$BlacklistFile = "scripts/skill-blacklist.txt"
     )
 
-    Write-ColorOutput "🧹 Applying skill blacklist..." "Blue"
+    Write-ColorOutput "Applying skill blacklist..." "Blue"
 
     if (Test-Path $BlacklistFile) {
         foreach ($rawSkillPath in Get-Content $BlacklistFile) {
@@ -56,14 +56,31 @@ function Apply-SkillBlacklist {
         }
     }
 
-    Write-ColorOutput "✓ Skill blacklist applied" "Green"
+    Write-ColorOutput "Skill blacklist applied" "Green"
 }
 
-# Clean K-Dense ad insertions from claude-scientific-skills SKILL.md files
-function Clean-AdInsertions {
-    Write-ColorOutput "🧹 Cleaning ad insertions from claude-scientific-skills..." "Blue"
+# Remove an empty legacy directory left behind after the upstream rename from
+# claude-scientific-skills -> scientific-agent-skills.
+function Remove-LegacyScientificSkillsPath {
+    $legacyPath = "skills/claude-scientific-skills"
+    $currentPath = "skills/scientific-agent-skills"
 
-    $adSkillDir = "skills/claude-scientific-skills"
+    if ((Test-Path $legacyPath) -and -not (Test-Path $currentPath)) {
+        $hasContent = Get-ChildItem -Force -ErrorAction SilentlyContinue $legacyPath | Select-Object -First 1
+        if ($hasContent) {
+            Write-ColorOutput "WARNING: Legacy directory detected: $legacyPath. Current path is $currentPath." "Yellow"
+        } else {
+            Remove-Item -Force $legacyPath
+            Write-ColorOutput "INFO: Removed empty legacy directory: $legacyPath" "Yellow"
+        }
+    }
+}
+
+# Clean K-Dense ad insertions from scientific-agent-skills SKILL.md files
+function Clean-AdInsertions {
+    Write-ColorOutput "Cleaning ad insertions from scientific-agent-skills..." "Blue"
+
+    $adSkillDir = "skills/scientific-agent-skills"
     if (Test-Path $adSkillDir) {
         $skillFiles = Get-ChildItem -Path $adSkillDir -Filter "SKILL.md" -Recurse
         $cleanedCount = 0
@@ -75,7 +92,7 @@ function Clean-AdInsertions {
                 $cleanedCount++
             }
         }
-        Write-ColorOutput "✓ Cleaned ad sections from $cleanedCount SKILL.md file(s)" "Green"
+        Write-ColorOutput "Cleaned ad sections from $cleanedCount SKILL.md file(s)" "Green"
     }
 }
 
@@ -89,16 +106,16 @@ function Apply-ForgeConfig {
         return
     }
 
-    Write-ColorOutput "🔧 Applying forge.yaml configuration..." "Blue"
+    Write-ColorOutput "Applying forge.yaml configuration..." "Blue"
 
     $skillPaths = @{
-        "claude-scientific-skills" = "skills/claude-scientific-skills"
-        "AI-research-SKILLs"      = "skills/AI-research-SKILLs"
-        "humanizer"               = "skills/humanizer"
-        "humanizer-zh"            = "skills/humanizer-zh"
-        "superpowers"             = "skills/superpowers"
+        "scientific-agent-skills"     = "skills/scientific-agent-skills"
+        "AI-research-SKILLs"          = "skills/AI-research-SKILLs"
+        "humanizer"                   = "skills/humanizer"
+        "humanizer-zh"                = "skills/humanizer-zh"
+        "superpowers"                 = "skills/superpowers"
         "paper-polish-workflow-skill" = "skills/paper-polish-workflow-skill"
-        "scientific-visualization" = "skills/scientific-visualization"
+        "scientific-visualization"    = "skills/scientific-visualization"
     }
 
     $lines = Get-Content $ConfigFile
@@ -122,7 +139,7 @@ function Apply-ForgeConfig {
         }
     }
 
-    Write-ColorOutput "✓ forge.yaml configuration applied" "Green"
+    Write-ColorOutput "forge.yaml configuration applied" "Green"
 }
 
 # Run all post-sync processing steps

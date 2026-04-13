@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - 🎉 Initial release of Academic Forge
 - Integrated 3 carefully selected skills for academic writing:
-  - claude-scientific-skills (K-Dense-AI)
+  - scientific-agent-skills (K-Dense-AI)
   - AI-research-SKILLs (orchestra-research)
   - humanizer (community)
 - Created installation scripts for bash and PowerShell
@@ -35,6 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added `humanizer-zh` as a git submodule under `skills/humanizer-zh`, matching the integration strategy used for `humanizer`
+
+### Changed
+- Renamed the K-Dense scientific skills integration from `claude-scientific-skills` to `scientific-agent-skills`, including the submodule path, upstream URL, forge metadata, blacklist paths, verification scripts, and user-facing documentation
 
 ### Removed
 - Removed `planning-with-files` from the curated skill set, install/update pipeline, verification scripts, and user-facing documentation
