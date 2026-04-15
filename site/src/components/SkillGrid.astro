@@ -1,8 +1,8 @@
 ---
-import { CATEGORY_LABELS, CATEGORY_ORDER, getSkillCategory } from '../lib/categories';
-import type { Category } from '../lib/categories';
+import { CATEGORY_LABELS, CATEGORY_ORDER, SUBDISCIPLINE_LABELS, SUBDISCIPLINE_ORDER, getItemCategory } from '../lib/categories';
+import type { Category, Subdiscipline } from '../lib/categories';
 import { formatCount } from '../lib/registry';
-import type { SkillRecord } from '../lib/registry';
+import type { SkillRecord, SubSkillRecord } from '../lib/registry';
 import SkillCard from './SkillCard.astro';
 
 interface Props {
@@ -13,15 +13,59 @@ interface Props {
 
 const { skills, repositoryCount, totalSkillCount } = Astro.props;
 
-const groupedSkills = Object.fromEntries(
+const sortSubSkills = (items: SubSkillRecord[]) => {
+  return [...items].sort((left, right) => left.name.localeCompare(right.name));
+};
+
+const rootSkillsByCategory = Object.fromEntries(
   CATEGORY_ORDER.map((category) => [category, [] as SkillRecord[]]),
 ) as Record<Category, SkillRecord[]>;
 
+const directSubSkillsByCategory = Object.fromEntries(
+  CATEGORY_ORDER.map((category) => [category, [] as SubSkillRecord[]]),
+) as Record<Category, SubSkillRecord[]>;
+
+const researchSubSkillsBySubdiscipline = Object.fromEntries(
+  SUBDISCIPLINE_ORDER.map((subdiscipline) => [subdiscipline, [] as SubSkillRecord[]]),
+) as Record<Subdiscipline, SubSkillRecord[]>;
+
 skills.forEach((skill) => {
-  groupedSkills[getSkillCategory(skill.id)].push(skill);
+  rootSkillsByCategory[getItemCategory(skill)].push(skill);
+
+  skill.sub_skills?.forEach((subSkill) => {
+    const category = getItemCategory(subSkill);
+    if (category === 'research' && subSkill.subdiscipline) {
+      researchSubSkillsBySubdiscipline[subSkill.subdiscipline as Subdiscipline].push(subSkill);
+      return;
+    }
+
+    directSubSkillsByCategory[category].push(subSkill);
+  });
 });
 
-const categories = CATEGORY_ORDER.filter((category) => groupedSkills[category].length > 0);
+for (const category of CATEGORY_ORDER) {
+  directSubSkillsByCategory[category] = sortSubSkills(directSubSkillsByCategory[category]);
+}
+
+for (const subdiscipline of SUBDISCIPLINE_ORDER) {
+  researchSubSkillsBySubdiscipline[subdiscipline] = sortSubSkills(researchSubSkillsBySubdiscipline[subdiscipline]);
+}
+
+const categoryItemCounts = Object.fromEntries(
+  CATEGORY_ORDER.map((category) => {
+    const nestedResearchCount = category === 'research'
+      ? SUBDISCIPLINE_ORDER.reduce((sum, subdiscipline) => sum + researchSubSkillsBySubdiscipline[subdiscipline].length, 0)
+      : 0;
+
+    return [
+      category,
+      rootSkillsByCategory[category].length + directSubSkillsByCategory[category].length + nestedResearchCount,
+    ];
+  }),
+) as Record<Category, number>;
+
+const visibleCategories = CATEGORY_ORDER.filter((category) => categoryItemCounts[category] > 0);
+const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline) => researchSubSkillsBySubdiscipline[subdiscipline].length > 0);
 ---
 
 <section id="library" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
@@ -63,7 +107,7 @@ const categories = CATEGORY_ORDER.filter((category) => groupedSkills[category].l
   </div>
 
   <div id="skill-grid" class="mt-2 min-h-0 flex-1 space-y-3 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6]">
-    {categories.map((category) => (
+    {visibleCategories.map((category) => (
       <details class="skill-group rounded-[20px] border border-[#e8e6dc] bg-[#faf9f5]" open data-category={category} data-user-open="true">
         <summary class="details-summary px-4 py-3.5">
           <p class="text-sm font-medium text-[#141413]">
@@ -72,7 +116,7 @@ const categories = CATEGORY_ORDER.filter((category) => groupedSkills[category].l
           </p>
 
           <span class="flex items-center gap-3 text-xs text-[#87867f]">
-            <span>{formatCount(groupedSkills[category].length)}</span>
+            <span>{formatCount(categoryItemCounts[category])}</span>
             <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
               <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
             </svg>
@@ -81,9 +125,63 @@ const categories = CATEGORY_ORDER.filter((category) => groupedSkills[category].l
 
         <div class="details-body">
           <div class="details-body__inner border-t border-[#f0eee6] bg-white">
-            {groupedSkills[category].map((skill, index) => (
-              <SkillCard {...skill} rank={index + 1} />
-            ))}
+            {rootSkillsByCategory[category].length > 0 && (
+              <div>
+                {rootSkillsByCategory[category].map((skill, index) => (
+                  <SkillCard {...skill} rank={index + 1} />
+                ))}
+              </div>
+            )}
+
+            {directSubSkillsByCategory[category].length > 0 && (
+              <div class:list={[rootSkillsByCategory[category].length > 0 ? 'border-t border-[#e8e6dc]' : '']}>
+                {directSubSkillsByCategory[category].map((skill, index) => (
+                  <SkillCard {...skill} compact rank={index + 1} />
+                ))}
+              </div>
+            )}
+
+            {category === 'research' && visibleResearchSubdisciplines.length > 0 && (
+              <div
+                class:list={[
+                  'space-y-3 p-3 sm:p-4',
+                  rootSkillsByCategory[category].length > 0 || directSubSkillsByCategory[category].length > 0
+                    ? 'border-t border-[#e8e6dc]'
+                    : '',
+                ]}
+              >
+                {visibleResearchSubdisciplines.map((subdiscipline) => (
+                  <details
+                    class="skill-group skill-group--sub rounded-[18px] border border-[#e8e6dc] bg-[#faf9f5]"
+                    data-category={`${category}-${subdiscipline}`}
+                    data-user-open="false"
+                  >
+                    <summary class="details-summary px-4 py-3">
+                      <p class="text-sm font-medium text-[#141413]">
+                        <span aria-hidden="true">{SUBDISCIPLINE_LABELS[subdiscipline].icon}</span>
+                        <span class="ml-2 lang-en">{SUBDISCIPLINE_LABELS[subdiscipline].en}</span>
+                        <span class="ml-2 lang-zh">{SUBDISCIPLINE_LABELS[subdiscipline].zh}</span>
+                      </p>
+
+                      <span class="flex items-center gap-3 text-xs text-[#87867f]">
+                        <span>{formatCount(researchSubSkillsBySubdiscipline[subdiscipline].length)}</span>
+                        <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+                          <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+                        </svg>
+                      </span>
+                    </summary>
+
+                    <div class="details-body">
+                      <div class="details-body__inner border-t border-[#f0eee6] bg-white">
+                        {researchSubSkillsBySubdiscipline[subdiscipline].map((skill, index) => (
+                          <SkillCard {...skill} compact rank={index + 1} />
+                        ))}
+                      </div>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </details>
@@ -212,7 +310,7 @@ const categories = CATEGORY_ORDER.filter((category) => groupedSkills[category].l
       return;
     }
 
-    if (target.closest('a, button, input, label')) {
+    if (target.closest('a, button, input, label, summary')) {
       return;
     }
 

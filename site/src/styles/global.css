@@ -170,6 +170,16 @@ details[open] > .details-body {
   overflow: hidden;
 }
 
+.skill-group--sub {
+  margin-left: 1.25rem;
+  border-left: 1px solid var(--af-border-strong);
+}
+
+.skill-group--sub .details-summary {
+  padding-left: 1rem;
+  font-size: 0.95rem;
+}
+
 details[open] > .details-summary .chevron-icon,
 .disclosure.is-open .chevron-icon,
 .skill-card.is-expanded .chevron-icon {
@@ -281,6 +291,34 @@ details[open] > .details-summary .chevron-icon,
 
 .skill-card__surface {
   cursor: pointer;
+}
+
+.skill-card__origin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--af-border-strong);
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0.08rem 0.45rem;
+  font-size: 0.625rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--af-subtle);
+}
+
+.skill-card--compact {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.skill-card--compact h3 {
+  font-size: 1.08rem;
+}
+
+.skill-card--compact .skill-card__toggle {
+  height: 2rem;
+  width: 2rem;
 }
 
 .skill-card__toggle:hover,

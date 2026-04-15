@@ -6,24 +6,45 @@ interface Props {
   id: string;
   name: string;
   summary: LocalizedText;
-  author: string;
-  repository: string;
-  license: string;
-  skill_count: number;
-  stars: number;
-  tags: string[];
+  author?: string;
+  repository?: string;
+  license?: string;
+  skill_count?: number;
+  stars?: number;
+  tags?: string[];
   rank: number;
+  compact?: boolean;
+  [key: string]: unknown;
 }
 
-const { id, name, summary, author, repository, license, skill_count, stars, tags, rank } = Astro.props;
-const searchText = [name, summary.en, summary.zh, author, repository, license, ...tags].join(' ').toLowerCase();
-const detailId = `skill-detail-${id}`;
-const titleId = `skill-title-${id}`;
+const {
+  id,
+  name,
+  summary,
+  author,
+  repository,
+  license,
+  skill_count,
+  stars,
+  tags = [],
+  rank,
+  compact = false,
+} = Astro.props;
+
+const count = skill_count ?? 1;
+const searchText = [id, name, summary.en, summary.zh, author ?? '', repository ?? '', license ?? '', ...tags]
+  .join(' ')
+  .toLowerCase();
+const detailSlug = id.replace(/[^a-zA-Z0-9_-]/g, '-');
+const detailId = `skill-detail-${detailSlug}`;
+const titleId = `skill-title-${detailSlug}`;
+const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' : '';
 ---
 
 <article
   class:list={[
     'skill-card flex flex-col px-4 py-3 transition sm:px-5',
+    compact ? 'skill-card--compact' : '',
     rank === 1 ? '' : 'border-t border-[#e8e6dc]',
   ]}
   data-skill-id={id}
@@ -36,8 +57,8 @@ const titleId = `skill-title-${id}`;
         class="skill-checkbox peer sr-only"
         aria-label={`Select ${name}`}
         data-skill-id={id}
-        data-skill-name={name}
-        data-skill-count={String(skill_count)}
+        data-skill-name={compact ? id : name}
+        data-skill-count={String(count)}
       />
       <span class="flex h-8 w-8 items-center justify-center rounded-[12px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5]">
         <svg viewBox="0 0 20 20" fill="none" class="h-4 w-4" aria-hidden="true">
@@ -48,25 +69,30 @@ const titleId = `skill-title-${id}`;
 
     <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-3 rounded-[20px]" data-detail-toggle>
       <div class="min-w-0 flex-1">
-        <h3 id={titleId} class="truncate text-[var(--af-text-feat)] leading-[1.2] text-[#141413]">{name}</h3>
+        <div class="flex min-w-0 items-center gap-2">
+          <h3 id={titleId} class="truncate text-[var(--af-text-feat)] leading-[1.2] text-[#141413]">{name}</h3>
+          {compact && sourceLabel && <span class="skill-card__origin">{sourceLabel}</span>}
+        </div>
         <p class="compact-clamp mt-1 text-sm leading-6 text-[#5e5d59]">
           <span class="lang-en">{summary.en}</span>
           <span class="lang-zh">{summary.zh}</span>
         </p>
       </div>
 
-      <div class="shrink-0 text-right text-xs leading-5 text-[#87867f] sm:text-sm">
-        <p>
-          {formatCount(stars)}
-          <span class="lang-en"> stars</span>
-          <span class="lang-zh"> star</span>
-        </p>
-        <p>
-          {formatCount(skill_count)}
-          <span class="lang-en"> skills</span>
-          <span class="lang-zh"> skill</span>
-        </p>
-      </div>
+      {!compact && typeof stars === 'number' && (
+        <div class="shrink-0 text-right text-xs leading-5 text-[#87867f] sm:text-sm">
+          <p>
+            {formatCount(stars)}
+            <span class="lang-en"> stars</span>
+            <span class="lang-zh"> star</span>
+          </p>
+          <p>
+            {formatCount(count)}
+            <span class="lang-en"> skills</span>
+            <span class="lang-zh"> skill</span>
+          </p>
+        </div>
+      )}
 
       <button
         type="button"
@@ -89,54 +115,71 @@ const titleId = `skill-title-${id}`;
           <span class="lang-zh">{summary.zh}</span>
         </p>
 
-        <ul class="mt-3 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2.5 py-1 text-[var(--af-text-label)] leading-5 text-[#5e5d59]">
-              #{tag}
-            </li>
-          ))}
-        </ul>
+        {tags.length > 0 && (
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2.5 py-1 text-[var(--af-text-label)] leading-5 text-[#5e5d59]">
+                #{tag}
+              </li>
+            ))}
+          </ul>
+        )}
 
-        <dl class="skill-card__meta mt-3 grid gap-x-4 gap-y-2 text-sm leading-7 text-[#4d4c48] sm:grid-cols-[72px_minmax(0,1fr)]">
-          <div class="contents">
-            <dt class="text-[#87867f]">
-              <span class="lang-en">Author</span>
-              <span class="lang-zh">作者</span>
-            </dt>
-            <dd>
-              <a
-                href={`https://github.com/${author}`}
-                target="_blank"
-                rel="noreferrer"
-                class="underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413]"
-              >
-                @{author}
-              </a>
-            </dd>
-          </div>
-          <div class="contents">
-            <dt class="text-[#87867f]">
-              <span class="lang-en">License</span>
-              <span class="lang-zh">许可</span>
-            </dt>
-            <dd>{license}</dd>
-          </div>
-          <div class="contents">
-            <dt class="text-[#87867f]">
-              <span class="lang-en">Repository</span>
-              <span class="lang-zh">仓库</span>
-            </dt>
-            <dd>
-              <a
-                href={repository}
-                target="_blank"
-                rel="noreferrer"
-                class="underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413]"
-              >
-                GitHub
-              </a>
-            </dd>
-          </div>
+        <dl class="skill-card__meta mt-3 grid gap-x-4 gap-y-2 text-sm leading-7 text-[#4d4c48] sm:grid-cols-[88px_minmax(0,1fr)]">
+          {compact && (
+            <div class="contents">
+              <dt class="text-[#87867f]">ID</dt>
+              <dd><code>{id}</code></dd>
+            </div>
+          )}
+
+          {author && (
+            <div class="contents">
+              <dt class="text-[#87867f]">
+                <span class="lang-en">Author</span>
+                <span class="lang-zh">作者</span>
+              </dt>
+              <dd>
+                <a
+                  href={`https://github.com/${author}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413]"
+                >
+                  @{author}
+                </a>
+              </dd>
+            </div>
+          )}
+
+          {license && (
+            <div class="contents">
+              <dt class="text-[#87867f]">
+                <span class="lang-en">License</span>
+                <span class="lang-zh">许可</span>
+              </dt>
+              <dd>{license}</dd>
+            </div>
+          )}
+
+          {repository && !compact && (
+            <div class="contents">
+              <dt class="text-[#87867f]">
+                <span class="lang-en">Repository</span>
+                <span class="lang-zh">仓库</span>
+              </dt>
+              <dd>
+                <a
+                  href={repository}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413]"
+                >
+                  GitHub
+                </a>
+              </dd>
+            </div>
+          )}
         </dl>
       </div>
     </div>

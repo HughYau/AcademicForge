@@ -142,21 +142,34 @@ field_path = os.environ["FIELD_PATH"]
 with open(registry_path, encoding="utf-8") as handle:
     data = json.load(handle)
 
+record = None
 for skill in data["skills"]:
-    if skill["id"] != skill_id:
-        continue
-    value = skill
-    for part in field_path.split("."):
-        value = value[part]
-    if isinstance(value, (dict, list)):
-        print(json.dumps(value, ensure_ascii=False))
-    elif value is None:
-        print("")
-    else:
-        print(value)
-    raise SystemExit(0)
+    if skill["id"] == skill_id:
+        record = skill
+        break
 
-raise SystemExit(1)
+    for sub_skill in skill.get("sub_skills", []):
+        if sub_skill["id"] == skill_id:
+            record = sub_skill
+            break
+
+    if record is not None:
+        break
+
+if record is None:
+    raise SystemExit(1)
+
+value = record
+for part in field_path.split("."):
+    value = value[part]
+if isinstance(value, (dict, list)):
+    print(json.dumps(value, ensure_ascii=False))
+elif value is None:
+    print("")
+else:
+    print(value)
+raise SystemExit(0)
+
 PY
 }
 

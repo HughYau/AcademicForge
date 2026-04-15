@@ -34,6 +34,14 @@ function Get-SkillRecord {
         if ($skill.id -eq $SkillId) {
             return $skill
         }
+
+        if ($skill.PSObject.Properties.Match('sub_skills').Count -gt 0) {
+            foreach ($subSkill in @($skill.sub_skills)) {
+                if ($subSkill.id -eq $SkillId) {
+                    return $subSkill
+                }
+            }
+        }
     }
 
     return $null
