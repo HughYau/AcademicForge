@@ -65,6 +65,7 @@ const categoryItemCounts = Object.fromEntries(
 ) as Record<Category, number>;
 
 const visibleCategories = CATEGORY_ORDER.filter((category) => categoryItemCounts[category] > 0);
+const initialCategory = visibleCategories[0] ?? 'workflow';
 const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline) => researchSubSkillsBySubdiscipline[subdiscipline].length > 0);
 ---
 
@@ -106,85 +107,78 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
     </label>
   </div>
 
-  <div id="skill-grid" class="mt-2 min-h-0 flex-1 space-y-3 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6]">
+  <div class="category-tabs mt-3" role="tablist" aria-label="Top-level skill categories">
     {visibleCategories.map((category) => (
-      <details class="skill-group rounded-[20px] border border-[#e8e6dc] bg-[#faf9f5]" open data-category={category} data-user-open="true">
-        <summary class="details-summary px-4 py-3.5">
-          <p class="text-sm font-medium text-[#141413]">
-            <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
-            <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
-          </p>
+      <button
+        type="button"
+        class="category-tab"
+        role="tab"
+        data-category-tab={category}
+        aria-selected={category === initialCategory}
+        aria-pressed={category === initialCategory}
+      >
+        <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
+        <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
+      </button>
+    ))}
+  </div>
 
-          <span class="flex items-center gap-3 text-xs text-[#87867f]">
-            <span>{formatCount(categoryItemCounts[category])}</span>
-            <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
-              <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
-            </svg>
-          </span>
-        </summary>
-
-        <div class="details-body">
-          <div class="details-body__inner border-t border-[#f0eee6] bg-white">
-            {rootSkillsByCategory[category].length > 0 && (
-              <div>
-                {rootSkillsByCategory[category].map((skill, index) => (
-                  <SkillCard {...skill} rank={index + 1} />
-                ))}
-              </div>
-            )}
-
-            {directSubSkillsByCategory[category].length > 0 && (
-              <div class:list={[rootSkillsByCategory[category].length > 0 ? 'border-t border-[#e8e6dc]' : '']}>
-                {directSubSkillsByCategory[category].map((skill, index) => (
-                  <SkillCard {...skill} compact rank={index + 1} />
-                ))}
-              </div>
-            )}
-
-            {category === 'research' && visibleResearchSubdisciplines.length > 0 && (
-              <div
-                class:list={[
-                  'space-y-3 p-3 sm:p-4',
-                  rootSkillsByCategory[category].length > 0 || directSubSkillsByCategory[category].length > 0
-                    ? 'border-t border-[#e8e6dc]'
-                    : '',
-                ]}
-              >
-                {visibleResearchSubdisciplines.map((subdiscipline) => (
-                  <details
-                    class="skill-group skill-group--sub rounded-[18px] border border-[#e8e6dc] bg-[#faf9f5]"
-                    data-category={`${category}-${subdiscipline}`}
-                    data-user-open="false"
-                  >
-                    <summary class="details-summary px-4 py-3">
-                      <p class="text-sm font-medium text-[#141413]">
-                        <span aria-hidden="true">{SUBDISCIPLINE_LABELS[subdiscipline].icon}</span>
-                        <span class="ml-2 lang-en">{SUBDISCIPLINE_LABELS[subdiscipline].en}</span>
-                        <span class="ml-2 lang-zh">{SUBDISCIPLINE_LABELS[subdiscipline].zh}</span>
-                      </p>
-
-                      <span class="flex items-center gap-3 text-xs text-[#87867f]">
-                        <span>{formatCount(researchSubSkillsBySubdiscipline[subdiscipline].length)}</span>
-                        <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
-                          <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
-                        </svg>
-                      </span>
-                    </summary>
-
-                    <div class="details-body">
-                      <div class="details-body__inner border-t border-[#f0eee6] bg-white">
-                        {researchSubSkillsBySubdiscipline[subdiscipline].map((skill, index) => (
-                          <SkillCard {...skill} compact rank={index + 1} />
-                        ))}
-                      </div>
-                    </div>
-                  </details>
-                ))}
-              </div>
-            )}
+  <div id="skill-grid" class="mt-3 min-h-0 flex-1 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6] sm:p-4">
+    {visibleCategories.map((category) => (
+      <section class:list={['skill-panel space-y-3', category === initialCategory ? '' : 'hidden']} data-category-panel={category}>
+        {rootSkillsByCategory[category].length > 0 && (
+          <div class="skill-card-grid">
+            {rootSkillsByCategory[category].map((skill, index) => (
+              <SkillCard {...skill} rank={index + 1} />
+            ))}
           </div>
-        </div>
-      </details>
+        )}
+
+        {directSubSkillsByCategory[category].length > 0 && (
+          <div class="skill-card-grid skill-card-grid--dense">
+            {directSubSkillsByCategory[category].map((skill, index) => (
+              <SkillCard {...skill} compact rank={index + 1} />
+            ))}
+          </div>
+        )}
+
+        {category === 'research' && visibleResearchSubdisciplines.length > 0 && (
+          <div class="space-y-2">
+            {visibleResearchSubdisciplines.map((subdiscipline) => (
+              <details
+                class="skill-group skill-group--sub rounded-[18px] border border-[#e8e6dc] bg-[#faf9f5]"
+                data-category={`${category}-${subdiscipline}`}
+                data-user-open="false"
+              >
+                <summary class="details-summary px-3.5 py-2.5">
+                  <p class="text-sm font-medium text-[#141413]">
+                    <span aria-hidden="true">{SUBDISCIPLINE_LABELS[subdiscipline].icon}</span>
+                    <span class="ml-2 lang-en">{SUBDISCIPLINE_LABELS[subdiscipline].en}</span>
+                    <span class="ml-2 lang-zh">{SUBDISCIPLINE_LABELS[subdiscipline].zh}</span>
+                  </p>
+
+                  <span class="flex items-center gap-2 text-xs text-[#87867f]">
+                    <span>{formatCount(researchSubSkillsBySubdiscipline[subdiscipline].length)}</span>
+                    <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+                      <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+                    </svg>
+                  </span>
+                </summary>
+
+                <div class="details-body">
+                  <div class="details-body__inner border-t border-[#f0eee6] p-3 bg-white sm:p-4">
+                    <div class="skill-card-grid skill-card-grid--dense">
+                      {researchSubSkillsBySubdiscipline[subdiscipline].map((skill, index) => (
+                        <SkillCard {...skill} compact rank={index + 1} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </details>
+            ))}
+          </div>
+        )}
+      </section>
     ))}
   </div>
 
@@ -193,7 +187,9 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
 
 <script>
   const skillCards = Array.from(document.querySelectorAll<HTMLElement>('.skill-card'));
-  const skillGroups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.skill-group'));
+  const skillGroups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.skill-group--sub'));
+  const categoryTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category-tab]'));
+  const categoryPanels = Array.from(document.querySelectorAll<HTMLElement>('[data-category-panel]'));
   const searchInput = document.getElementById('skill-search') as HTMLInputElement | null;
   const emptyState = document.getElementById('skill-grid-empty');
   const grid = document.getElementById('skill-grid');
@@ -210,8 +206,27 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
   };
 
   let visibleCount = skillCards.length;
+  let activeCategory = categoryTabs.find((button) => button.getAttribute('aria-pressed') === 'true')?.dataset.categoryTab
+    ?? categoryTabs[0]?.dataset.categoryTab
+    ?? '';
 
   const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
+
+  const getActivePanel = () => {
+    return categoryPanels.find((panel) => panel.dataset.categoryPanel === activeCategory) ?? null;
+  };
+
+  const applyTabState = () => {
+    categoryTabs.forEach((button) => {
+      const isActive = button.dataset.categoryTab === activeCategory;
+      button.setAttribute('aria-selected', String(isActive));
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    categoryPanels.forEach((panel) => {
+      panel.classList.toggle('hidden', panel.dataset.categoryPanel !== activeCategory);
+    });
+  };
 
   const updateCardSelectionState = (checkbox: HTMLInputElement) => {
     const card = checkbox.closest('.skill-card');
@@ -272,10 +287,16 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
       const hasVisible = visibleCards.length > 0;
 
       group.hidden = !hasVisible;
-      group.open = hasQuery ? hasVisible : group.dataset.userOpen !== 'false';
+      group.open = hasQuery ? hasVisible : group.dataset.userOpen === 'true';
     });
 
-    const hasVisible = visibleCount > 0;
+    applyTabState();
+
+    const activePanel = getActivePanel();
+    const hasVisible = activePanel
+      ? Array.from(activePanel.querySelectorAll<HTMLElement>('.skill-card')).some((card) => !card.classList.contains('hidden'))
+      : false;
+
     emptyState?.classList.toggle('hidden', hasVisible);
     grid?.classList.toggle('hidden', !hasVisible);
 
@@ -285,6 +306,13 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
   };
 
   searchInput?.addEventListener('input', applyFilters);
+
+  categoryTabs.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeCategory = button.dataset.categoryTab ?? activeCategory;
+      applyFilters();
+    });
+  });
 
   skillGroups.forEach((group) => {
     group.dataset.userOpen = String(group.open);

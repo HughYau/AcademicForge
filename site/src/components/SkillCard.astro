@@ -27,7 +27,6 @@ const {
   skill_count,
   stars,
   tags = [],
-  rank,
   compact = false,
 } = Astro.props;
 
@@ -43,15 +42,14 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
 
 <article
   class:list={[
-    'skill-card flex flex-col px-4 py-3 transition sm:px-5',
-    compact ? 'skill-card--compact' : '',
-    rank === 1 ? '' : 'border-t border-[#e8e6dc]',
+    'skill-card rounded-[18px] border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]',
+    compact ? 'skill-card--compact px-3 py-2' : 'px-3.5 py-3',
   ]}
   data-skill-id={id}
   data-search={searchText}
 >
-  <div class="flex items-start gap-3 sm:gap-4">
-    <label class="skill-card__selection inline-flex shrink-0 cursor-pointer items-center pt-1">
+  <div class="flex items-start gap-2.5">
+    <label class="skill-card__selection inline-flex shrink-0 cursor-pointer items-center pt-0.5">
       <input
         type="checkbox"
         class="skill-checkbox peer sr-only"
@@ -60,43 +58,53 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
         data-skill-name={compact ? id : name}
         data-skill-count={String(count)}
       />
-      <span class="flex h-8 w-8 items-center justify-center rounded-[12px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5]">
-        <svg viewBox="0 0 20 20" fill="none" class="h-4 w-4" aria-hidden="true">
+      <span class="flex h-7 w-7 items-center justify-center rounded-[10px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5]">
+        <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5" aria-hidden="true">
           <path d="M4.5 10.5 8 14l7.5-8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
         </svg>
       </span>
     </label>
 
-    <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-3 rounded-[20px]" data-detail-toggle>
+    <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-2" data-detail-toggle>
       <div class="min-w-0 flex-1">
-        <div class="flex min-w-0 items-center gap-2">
-          <h3 id={titleId} class="truncate text-[var(--af-text-feat)] leading-[1.2] text-[#141413]">{name}</h3>
+        <div class="flex min-w-0 items-center gap-1.5">
+          <h3 id={titleId} class:list={[compact ? 'text-[1rem]' : 'text-[1.08rem]', 'truncate leading-[1.2] text-[#141413]']}>
+            {name}
+          </h3>
           {compact && sourceLabel && <span class="skill-card__origin">{sourceLabel}</span>}
         </div>
-        <p class="compact-clamp mt-1 text-sm leading-6 text-[#5e5d59]">
+
+        <p
+          class:list={[
+            compact ? 'skill-card__summary--compact mt-0.5 text-xs leading-5' : 'skill-card__summary--default mt-1 text-[0.82rem] leading-5',
+            'text-[#5e5d59]',
+          ]}
+        >
           <span class="lang-en">{summary.en}</span>
           <span class="lang-zh">{summary.zh}</span>
         </p>
-      </div>
 
-      {!compact && typeof stars === 'number' && (
-        <div class="shrink-0 text-right text-xs leading-5 text-[#87867f] sm:text-sm">
-          <p>
-            {formatCount(stars)}
-            <span class="lang-en"> stars</span>
-            <span class="lang-zh"> star</span>
-          </p>
-          <p>
-            {formatCount(count)}
-            <span class="lang-en"> skills</span>
-            <span class="lang-zh"> skill</span>
-          </p>
-        </div>
-      )}
+        {!compact && (
+          <div class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[0.72rem] leading-5 text-[#87867f]">
+            {typeof stars === 'number' && (
+              <span>
+                {formatCount(stars)}
+                <span class="lang-en"> stars</span>
+                <span class="lang-zh"> star</span>
+              </span>
+            )}
+            <span>
+              {formatCount(count)}
+              <span class="lang-en"> skills</span>
+              <span class="lang-zh"> skill</span>
+            </span>
+          </div>
+        )}
+      </div>
 
       <button
         type="button"
-        class="skill-card__toggle inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e8e6dc] bg-[#f5f4ed] text-[#5e5d59]"
+        class="skill-card__toggle inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e8e6dc] bg-[#f5f4ed] text-[#5e5d59]"
         aria-expanded="false"
         aria-controls={detailId}
       >
@@ -109,23 +117,23 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
 
   <div class="skill-card__detail-shell">
     <div id={detailId} class="skill-card__detail-panel" role="region" aria-labelledby={titleId} aria-hidden="true" inert>
-      <div class="skill-card__detail-inner mt-3 border-t border-[#f0eee6] pt-3">
-        <p class="text-sm leading-7 text-[#5e5d59]">
+      <div class="skill-card__detail-inner mt-2 border-t border-[#f0eee6] pt-2.5">
+        <p class="text-sm leading-6 text-[#5e5d59]">
           <span class="lang-en">{summary.en}</span>
           <span class="lang-zh">{summary.zh}</span>
         </p>
 
         {tags.length > 0 && (
-          <ul class="mt-3 flex flex-wrap gap-2">
+          <ul class="mt-2.5 flex flex-wrap gap-1.5">
             {tags.map((tag) => (
-              <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2.5 py-1 text-[var(--af-text-label)] leading-5 text-[#5e5d59]">
+              <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2 py-0.5 text-[0.68rem] leading-5 text-[#5e5d59]">
                 #{tag}
               </li>
             ))}
           </ul>
         )}
 
-        <dl class="skill-card__meta mt-3 grid gap-x-4 gap-y-2 text-sm leading-7 text-[#4d4c48] sm:grid-cols-[88px_minmax(0,1fr)]">
+        <dl class="skill-card__meta mt-2.5 grid gap-x-3 gap-y-1.5 text-xs leading-6 text-[#4d4c48] sm:grid-cols-[82px_minmax(0,1fr)]">
           {compact && (
             <div class="contents">
               <dt class="text-[#87867f]">ID</dt>

@@ -82,6 +82,7 @@
           },
           "sparse_path": "scientific-skills/aeon",
           "category": "research",
+          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -360,6 +361,7 @@
           },
           "sparse_path": "scientific-skills/consciousness-council",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -379,6 +381,7 @@
           },
           "sparse_path": "scientific-skills/dask",
           "category": "research",
+          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -398,6 +401,7 @@
           },
           "sparse_path": "scientific-skills/database-lookup",
           "category": "research",
+          "subdiscipline": "other",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -496,6 +500,7 @@
           },
           "sparse_path": "scientific-skills/dhdna-profiler",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -555,6 +560,7 @@
           },
           "sparse_path": "scientific-skills/docx",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Proprietary. LICENSE.txt has complete terms",
           "install": {
             "method": "sparse-checkout",
@@ -614,6 +620,7 @@
           },
           "sparse_path": "scientific-skills/exploratory-data-analysis",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -752,6 +759,7 @@
           },
           "sparse_path": "scientific-skills/get-available-resources",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -870,6 +878,7 @@
           },
           "sparse_path": "scientific-skills/hypogenic",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -889,6 +898,7 @@
           },
           "sparse_path": "scientific-skills/hypothesis-generation",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -1101,6 +1111,7 @@
           },
           "sparse_path": "scientific-skills/markitdown",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -1199,6 +1210,7 @@
           },
           "sparse_path": "scientific-skills/modal",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Apache-2.0",
           "install": {
             "method": "sparse-checkout",
@@ -1337,6 +1349,7 @@
           },
           "sparse_path": "scientific-skills/open-notebook",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT",
           "install": {
             "method": "sparse-checkout",
@@ -1376,6 +1389,7 @@
           },
           "sparse_path": "scientific-skills/optimize-for-gpu",
           "category": "research",
+          "subdiscipline": "other",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1431,6 +1445,7 @@
           },
           "sparse_path": "scientific-skills/parallel-web",
           "category": "research",
+          "subdiscipline": "other",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1469,6 +1484,7 @@
           },
           "sparse_path": "scientific-skills/pdf",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Proprietary. LICENSE.txt has complete terms",
           "install": {
             "method": "sparse-checkout",
@@ -1547,6 +1563,7 @@
           },
           "sparse_path": "scientific-skills/polars-bio",
           "category": "research",
+          "subdiscipline": "other",
           "license": "https://github.com/biodatageeks/polars-bio/blob/main/LICENSE",
           "install": {
             "method": "sparse-checkout",
@@ -1566,6 +1583,7 @@
           },
           "sparse_path": "scientific-skills/polars",
           "category": "research",
+          "subdiscipline": "other",
           "license": "https://github.com/pola-rs/polars/blob/main/LICENSE",
           "install": {
             "method": "sparse-checkout",
@@ -1663,6 +1681,7 @@
           },
           "sparse_path": "scientific-skills/pufferlib",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -1782,6 +1801,7 @@
           },
           "sparse_path": "scientific-skills/pymc",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Apache License, Version 2.0",
           "install": {
             "method": "sparse-checkout",
@@ -1801,6 +1821,7 @@
           },
           "sparse_path": "scientific-skills/pymoo",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -1880,6 +1901,7 @@
           },
           "sparse_path": "scientific-skills/pytorch-lightning",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -1997,6 +2019,7 @@
           },
           "sparse_path": "scientific-skills/research-lookup",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2075,6 +2098,7 @@
           },
           "sparse_path": "scientific-skills/scientific-brainstorming",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2094,6 +2118,7 @@
           },
           "sparse_path": "scientific-skills/scientific-critical-thinking",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2209,6 +2234,7 @@
           },
           "sparse_path": "scientific-skills/scikit-learn",
           "category": "research",
+          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2307,6 +2333,7 @@
           },
           "sparse_path": "scientific-skills/shap",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2326,6 +2353,7 @@
           },
           "sparse_path": "scientific-skills/simpy",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2345,6 +2373,7 @@
           },
           "sparse_path": "scientific-skills/stable-baselines3",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2383,6 +2412,7 @@
           },
           "sparse_path": "scientific-skills/statsmodels",
           "category": "research",
+          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2442,6 +2472,7 @@
           },
           "sparse_path": "scientific-skills/timesfm-forecasting",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -2461,6 +2492,7 @@
           },
           "sparse_path": "scientific-skills/torch-geometric",
           "category": "research",
+          "subdiscipline": "other",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2499,6 +2531,7 @@
           },
           "sparse_path": "scientific-skills/transformers",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -2538,6 +2571,7 @@
           },
           "sparse_path": "scientific-skills/umap-learn",
           "category": "research",
+          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2577,6 +2611,7 @@
           },
           "sparse_path": "scientific-skills/vaex",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2615,6 +2650,7 @@
           },
           "sparse_path": "scientific-skills/what-if-oracle",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2634,6 +2670,7 @@
           },
           "sparse_path": "scientific-skills/xlsx",
           "category": "research",
+          "subdiscipline": "other",
           "license": "Proprietary. LICENSE.txt has complete terms",
           "install": {
             "method": "sparse-checkout",
@@ -2653,6 +2690,7 @@
           },
           "sparse_path": "scientific-skills/zarr-python",
           "category": "research",
+          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2724,6 +2762,7 @@
           },
           "sparse_path": "0-autoresearch-skill",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Autonomous Research",
             "Two-Loop Architecture",
@@ -2897,6 +2936,7 @@
           },
           "sparse_path": "02-tokenization/huggingface-tokenizers",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Tokenization",
             "HuggingFace",
@@ -2926,6 +2966,7 @@
           },
           "sparse_path": "02-tokenization/sentencepiece",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Tokenization",
             "SentencePiece",
@@ -3020,6 +3061,7 @@
           },
           "sparse_path": "03-fine-tuning/peft",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Fine-Tuning",
             "PEFT",
@@ -3178,6 +3220,7 @@
           },
           "sparse_path": "05-data-processing/nemo-curator",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Data Processing",
             "NeMo Curator",
@@ -3208,6 +3251,7 @@
           },
           "sparse_path": "05-data-processing/ray-data",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Data Processing",
             "Ray Data",
@@ -3580,6 +3624,7 @@
           },
           "sparse_path": "08-distributed-training/accelerate",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Distributed Training",
             "HuggingFace",
@@ -3609,6 +3654,7 @@
           },
           "sparse_path": "08-distributed-training/deepspeed",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "DeepSpeed",
             "Distributed Training",
@@ -3667,6 +3713,7 @@
           },
           "sparse_path": "08-distributed-training/pytorch-fsdp2",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "PyTorch",
             "FSDP2",
@@ -3696,6 +3743,7 @@
           },
           "sparse_path": "08-distributed-training/pytorch-lightning",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "PyTorch Lightning",
             "Training Framework",
@@ -3725,6 +3773,7 @@
           },
           "sparse_path": "08-distributed-training/ray-train",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Ray Train",
             "Distributed Training",
@@ -3754,6 +3803,7 @@
           },
           "sparse_path": "09-infrastructure/lambda-labs",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Infrastructure",
             "GPU Cloud",
@@ -3778,6 +3828,7 @@
           },
           "sparse_path": "09-infrastructure/modal",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Infrastructure",
             "Serverless",
@@ -3803,6 +3854,7 @@
           },
           "sparse_path": "09-infrastructure/skypilot",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Infrastructure",
             "Multi-Cloud",
@@ -3857,6 +3909,7 @@
           },
           "sparse_path": "10-optimization/bitsandbytes",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Optimization",
             "Bitsandbytes",
@@ -3887,6 +3940,7 @@
           },
           "sparse_path": "10-optimization/flash-attention",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Optimization",
             "Flash Attention",
@@ -3974,6 +4028,7 @@
           },
           "sparse_path": "10-optimization/hqq",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Quantization",
             "HQQ",
@@ -3999,6 +4054,7 @@
           },
           "sparse_path": "10-optimization/ml-training-recipes",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "PyTorch",
             "Training",
@@ -4239,6 +4295,7 @@
           },
           "sparse_path": "13-mlops/mlflow",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "MLOps",
             "MLflow",
@@ -4269,6 +4326,7 @@
           },
           "sparse_path": "13-mlops/swanlab",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "MLOps",
             "SwanLab",
@@ -4298,6 +4356,7 @@
           },
           "sparse_path": "13-mlops/tensorboard",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "MLOps",
             "TensorBoard",
@@ -4326,6 +4385,7 @@
           },
           "sparse_path": "13-mlops/weights-and-biases",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "MLOps",
             "Weights And Biases",
@@ -4356,6 +4416,7 @@
           },
           "sparse_path": "14-agents/autogpt",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Agents",
             "AutoGPT",
@@ -4381,6 +4442,7 @@
           },
           "sparse_path": "14-agents/crewai",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Agents",
             "CrewAI",
@@ -4410,6 +4472,7 @@
           },
           "sparse_path": "14-agents/langchain",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Agents",
             "LangChain",
@@ -4439,6 +4502,7 @@
           },
           "sparse_path": "14-agents/llamaindex",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Agents",
             "LlamaIndex",
@@ -4469,6 +4533,7 @@
           },
           "sparse_path": "15-rag/chroma",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "RAG",
             "Chroma",
@@ -4497,6 +4562,7 @@
           },
           "sparse_path": "15-rag/faiss",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "RAG",
             "FAISS",
@@ -4527,6 +4593,7 @@
           },
           "sparse_path": "15-rag/pinecone",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "RAG",
             "Pinecone",
@@ -4556,6 +4623,7 @@
           },
           "sparse_path": "15-rag/qdrant",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "RAG",
             "Vector Search",
@@ -4584,6 +4652,7 @@
           },
           "sparse_path": "15-rag/sentence-transformers",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Sentence Transformers",
             "Embeddings",
@@ -4613,6 +4682,7 @@
           },
           "sparse_path": "16-prompt-engineering/dspy",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Prompt Engineering",
             "DSPy",
@@ -4642,6 +4712,7 @@
           },
           "sparse_path": "16-prompt-engineering/guidance",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Prompt Engineering",
             "Guidance",
@@ -4670,6 +4741,7 @@
           },
           "sparse_path": "16-prompt-engineering/instructor",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Prompt Engineering",
             "Instructor",
@@ -4700,6 +4772,7 @@
           },
           "sparse_path": "16-prompt-engineering/outlines",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Prompt Engineering",
             "Outlines",
@@ -4729,6 +4802,7 @@
           },
           "sparse_path": "17-observability/langsmith",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Observability",
             "LangSmith",
@@ -4757,6 +4831,7 @@
           },
           "sparse_path": "17-observability/phoenix",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Observability",
             "Phoenix",
@@ -5067,6 +5142,7 @@
           },
           "sparse_path": "19-emerging-techniques/knowledge-distillation",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Emerging Techniques",
             "Knowledge Distillation",
@@ -5096,6 +5172,7 @@
           },
           "sparse_path": "19-emerging-techniques/long-context",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Emerging Techniques",
             "Long Context",
@@ -5126,6 +5203,7 @@
           },
           "sparse_path": "19-emerging-techniques/model-merging",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Emerging Techniques",
             "Model Merging",
@@ -5156,6 +5234,7 @@
           },
           "sparse_path": "19-emerging-techniques/model-pruning",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Emerging Techniques",
             "Model Pruning",
@@ -5186,6 +5265,7 @@
           },
           "sparse_path": "19-emerging-techniques/moe-training",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Emerging Techniques",
             "MoE",
@@ -5216,6 +5296,7 @@
           },
           "sparse_path": "19-emerging-techniques/speculative-decoding",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Emerging Techniques",
             "Speculative Decoding",
@@ -5310,6 +5391,7 @@
           },
           "sparse_path": "21-research-ideation/brainstorming-research-ideas",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Research Ideation",
             "Brainstorming",
@@ -5334,6 +5416,7 @@
           },
           "sparse_path": "21-research-ideation/creative-thinking-for-research",
           "category": "research",
+          "subdiscipline": "other",
           "tags": [
             "Creative Thinking",
             "Research Ideation",

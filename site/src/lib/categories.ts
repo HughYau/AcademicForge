@@ -18,6 +18,7 @@ export const SUBDISCIPLINE_ORDER = [
   'lab-automation',
   'llm',
   'multimodal',
+  'other',
 ] as const;
 
 export type Subdiscipline = (typeof SUBDISCIPLINE_ORDER)[number];
@@ -29,6 +30,7 @@ export const SUBDISCIPLINE_LABELS: Record<Subdiscipline, { en: string; zh: strin
   'lab-automation': { en: 'Lab automation & integration', zh: '实验室自动化', icon: '🔬' },
   llm: { en: 'LLM research', zh: '大模型研究', icon: '🤖' },
   multimodal: { en: 'Multimodal & embodied AI', zh: '多模态与具身 AI', icon: '🎨' },
+  other: { en: 'Other specific tools', zh: '其他特定工具', icon: '📦' },
 };
 
 export const SKILL_CATEGORY: Partial<Record<string, Category>> = {

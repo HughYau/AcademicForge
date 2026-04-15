@@ -121,7 +121,7 @@ import CodeBlock from './CodeBlock.astro';
         <strong id="selected-total" class="text-[#c96442]">0</strong>
       </span>
     </div>
-    <p id="selected-list" class="mt-2 text-sm leading-7 text-[#87867f]">No repositories selected.</p>
+    <div id="selected-list" class="selected-items mt-2 text-sm text-[#87867f]">No repositories selected.</div>
   </div>
 
   <div class="mt-4 space-y-2">
@@ -360,15 +360,37 @@ import CodeBlock from './CodeBlock.astro';
       return;
     }
 
+    selectedList.replaceChildren();
+
     if (selected.length === 0) {
       selectedList.textContent = translations[getLocale()].empty;
       return;
     }
 
-    selectedList.textContent = selected
-      .map((checkbox) => checkbox.dataset.skillName ?? checkbox.dataset.skillId ?? '')
-      .filter(Boolean)
-      .join(', ');
+    selected.forEach((checkbox) => {
+      const skillId = checkbox.dataset.skillId ?? '';
+      const label = checkbox.dataset.skillName ?? skillId;
+
+      if (!label) {
+        return;
+      }
+
+      const item = document.createElement('span');
+      item.className = 'selected-item';
+
+      const itemLabel = document.createElement('span');
+      itemLabel.textContent = label;
+
+      const removeButton = document.createElement('button');
+      removeButton.type = 'button';
+      removeButton.className = 'selected-item__remove';
+      removeButton.dataset.removeSkillId = skillId;
+      removeButton.setAttribute('aria-label', getLocale() === 'zh' ? `移除 ${label}` : `Remove ${label}`);
+      removeButton.textContent = 'x';
+
+      item.append(itemLabel, removeButton);
+      selectedList.append(item);
+    });
   };
 
   const renderCommands = (selected: HTMLInputElement[]) => {
@@ -542,6 +564,27 @@ import CodeBlock from './CodeBlock.astro';
     if (target instanceof HTMLInputElement && target.classList.contains('skill-checkbox')) {
       updateSelection();
     }
+  });
+
+  selectedList?.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const button = target.closest<HTMLButtonElement>('[data-remove-skill-id]');
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    const skillId = button.dataset.removeSkillId ?? '';
+    const checkbox = getCheckboxes().find((item) => item.dataset.skillId === skillId);
+    if (!(checkbox instanceof HTMLInputElement)) {
+      return;
+    }
+
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
   });
 
   const handleSelectChange = () => {

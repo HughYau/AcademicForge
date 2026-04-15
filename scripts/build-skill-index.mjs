@@ -142,6 +142,10 @@ for (const collection of collections) {
 
     seenIds.add(id);
 
+    const fallbackSubdiscipline = classificationEntry.category === 'research'
+      ? (classificationEntry.subdiscipline ?? 'other')
+      : undefined;
+
     return {
       id,
       name: displayName,
@@ -151,7 +155,7 @@ for (const collection of collections) {
       },
       sparse_path: relativeDir,
       category: classificationEntry.category,
-      ...(classificationEntry.subdiscipline ? { subdiscipline: classificationEntry.subdiscipline } : {}),
+      ...(fallbackSubdiscipline ? { subdiscipline: fallbackSubdiscipline } : {}),
       ...(frontmatter.tags.length > 0 ? { tags: frontmatter.tags } : {}),
       ...(frontmatter.license ? { license: frontmatter.license } : {}),
       install: {
