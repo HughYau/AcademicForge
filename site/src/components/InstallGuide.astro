@@ -7,12 +7,12 @@ import CodeBlock from './CodeBlock.astro';
     <div class="flex items-center justify-between border-b border-[#e8e6dc] px-6 py-5">
       <div>
         <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c96442]">
-          <span class="lang-en">Install guide</span>
-          <span class="lang-zh">安装引导</span>
+          <span class="lang-en">Install steps</span>
+          <span class="lang-zh">安装步骤</span>
         </p>
-        <h2 class="mt-2 text-3xl leading-tight text-[#141413]">
-          <span class="lang-en">Install the selected repositories into the current project in three steps.</span>
-          <span class="lang-zh">按三步把所选仓库装进当前项目。</span>
+        <h2 class="mt-2 text-[var(--af-text-sub-sm)] leading-[1.2] text-[#141413]">
+          <span class="lang-en">Install selected repositories into the current project in three steps.</span>
+          <span class="lang-zh">三步将所选仓库装入当前项目。</span>
         </h2>
       </div>
       <button id="guide-close" type="button" class="rounded-full border border-[#e8e6dc] bg-white px-3 py-2 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6] transition hover:bg-[#f5f4ed]">
@@ -56,9 +56,9 @@ import CodeBlock from './CodeBlock.astro';
       </section>
 
       <div class="rounded-[24px] border border-[#e8e6dc] bg-[#f5f4ed] p-5 text-sm leading-7 text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
-        <p id="guide-path-note">Selected repositories will be installed into .claude/skills.</p>
-        <p id="guide-tool-note">Claude Code will discover these skill packs automatically.</p>
-        <p id="guide-launch-note">Start your tool after installation to use the selected repositories.</p>
+        <p id="guide-path-note">Selected repositories will be installed into `.claude/skills`.</p>
+        <p id="guide-tool-note">Claude Code will detect and load them automatically.</p>
+        <p id="guide-launch-note">Start your tool after installation to use them.</p>
       </div>
     </div>
   </div>
@@ -89,22 +89,22 @@ import CodeBlock from './CodeBlock.astro';
 
   const translations = {
     en: {
-      step1Windows: 'Open PowerShell and move into the project root where you want these repositories installed.',
-      step1Unix: 'Open your terminal and move into the project root where you want these repositories installed.',
-      step2: 'Run the generated install command for the selected tool and platform.',
-      step3: 'Verify that the repositories landed in the expected target directory.',
-      pathNote: (skillPath: string) => `Selected repositories will be installed into ${skillPath}.`,
-      toolNote: (toolLabel: string) => `${toolLabel} will discover these skill packs automatically.`,
-      launchNote: (toolLabel: string) => `Start ${toolLabel} after installation to use the selected repositories.`,
+      step1Windows: 'Open PowerShell and move into the target project root.',
+      step1Unix: 'Open your terminal and move into the target project root.',
+      step2: 'Run the generated install command for the current platform and tool.',
+      step3: 'Confirm that the repositories were written into the target directory.',
+      pathNote: (skillPath: string) => `Selected repositories will be installed into \`${skillPath}\`.`,
+      toolNote: (toolLabel: string) => `${toolLabel} will detect and load them automatically.`,
+      launchNote: (toolLabel: string) => `Start ${toolLabel} after installation to use them.`,
     },
     zh: {
-      step1Windows: '打开 PowerShell，并进入你希望安装这些仓库的项目根目录。',
-      step1Unix: '打开终端，并进入你希望安装这些仓库的项目根目录。',
-      step2: '运行针对当前平台和工具生成的安装命令。',
-      step3: '检查这些仓库是否已经落到目标目录。',
-      pathNote: (skillPath: string) => `所选仓库会安装到 ${skillPath}。`,
-      toolNote: (toolLabel: string) => `${toolLabel} 会自动识别并加载这些 skill pack。`,
-      launchNote: (toolLabel: string) => `安装完成后启动 ${toolLabel} 即可使用所选仓库。`,
+      step1Windows: '打开 PowerShell，进入目标项目根目录。',
+      step1Unix: '打开终端，进入目标项目根目录。',
+      step2: '执行为当前平台与工具生成的安装命令。',
+      step3: '确认仓库已写入目标目录。',
+      pathNote: (skillPath: string) => `所选仓库将安装至 \`${skillPath}\`。`,
+      toolNote: (toolLabel: string) => `${toolLabel} 将自动识别并加载。`,
+      launchNote: (toolLabel: string) => `安装完成后启动 ${toolLabel} 即可调用。`,
     },
   };
 

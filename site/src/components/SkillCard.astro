@@ -15,54 +15,130 @@ interface Props {
   rank: number;
 }
 
-const { id, name, summary, author, repository, skill_count, stars, tags, rank } = Astro.props;
-const searchText = [name, summary.en, summary.zh, author, ...tags].join(' ').toLowerCase();
+const { id, name, summary, author, repository, license, skill_count, stars, tags, rank } = Astro.props;
+const searchText = [name, summary.en, summary.zh, author, repository, license, ...tags].join(' ').toLowerCase();
+const detailId = `skill-detail-${id}`;
+const titleId = `skill-title-${id}`;
 ---
 
 <article
   class:list={[
-    'skill-card flex items-center gap-3 px-4 py-3 transition sm:gap-4 sm:px-5',
+    'skill-card flex flex-col px-4 py-3 transition sm:px-5',
     rank === 1 ? '' : 'border-t border-[#e8e6dc]',
   ]}
   data-skill-id={id}
   data-search={searchText}
 >
-  <label class="inline-flex shrink-0 cursor-pointer items-center">
-    <input
-      type="checkbox"
-      class="skill-checkbox peer sr-only"
-      aria-label={`Select ${name}`}
-      data-skill-id={id}
-      data-skill-name={name}
-      data-skill-count={String(skill_count)}
-    />
-    <span class="flex h-8 w-8 items-center justify-center rounded-[12px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5]">
-      <svg viewBox="0 0 20 20" fill="none" class="h-4 w-4" aria-hidden="true">
-        <path d="M4.5 10.5 8 14l7.5-8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-      </svg>
-    </span>
-  </label>
+  <div class="flex items-start gap-3 sm:gap-4">
+    <label class="skill-card__selection inline-flex shrink-0 cursor-pointer items-center pt-1">
+      <input
+        type="checkbox"
+        class="skill-checkbox peer sr-only"
+        aria-label={`Select ${name}`}
+        data-skill-id={id}
+        data-skill-name={name}
+        data-skill-count={String(skill_count)}
+      />
+      <span class="flex h-8 w-8 items-center justify-center rounded-[12px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5]">
+        <svg viewBox="0 0 20 20" fill="none" class="h-4 w-4" aria-hidden="true">
+          <path d="M4.5 10.5 8 14l7.5-8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+        </svg>
+      </span>
+    </label>
 
-  <div class="min-w-0 flex-1">
-    <div class="flex min-w-0 items-center gap-2">
-      <h3 class="truncate text-[1.08rem] leading-tight text-[#141413] sm:text-[1.16rem]">{name}</h3>
-      <a
-        href={repository}
-        target="_blank"
-        rel="noreferrer"
-        class="hidden truncate text-xs text-[#87867f] underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413] sm:inline"
+    <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-3 rounded-[20px]" data-detail-toggle>
+      <div class="min-w-0 flex-1">
+        <h3 id={titleId} class="truncate text-[var(--af-text-feat)] leading-[1.2] text-[#141413]">{name}</h3>
+        <p class="compact-clamp mt-1 text-sm leading-6 text-[#5e5d59]">
+          <span class="lang-en">{summary.en}</span>
+          <span class="lang-zh">{summary.zh}</span>
+        </p>
+      </div>
+
+      <div class="shrink-0 text-right text-xs leading-5 text-[#87867f] sm:text-sm">
+        <p>
+          {formatCount(stars)}
+          <span class="lang-en"> stars</span>
+          <span class="lang-zh"> star</span>
+        </p>
+        <p>
+          {formatCount(skill_count)}
+          <span class="lang-en"> skills</span>
+          <span class="lang-zh"> skill</span>
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="skill-card__toggle inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e8e6dc] bg-[#f5f4ed] text-[#5e5d59]"
+        aria-expanded="false"
+        aria-controls={detailId}
       >
-        @{author}
-      </a>
+        <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+          <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+        </svg>
+      </button>
     </div>
-    <p class="compact-clamp mt-1 text-sm leading-6 text-[#5e5d59]">
-      <span class="lang-en">{summary.en}</span>
-      <span class="lang-zh">{summary.zh}</span>
-    </p>
   </div>
 
-  <div class="shrink-0 text-right text-xs leading-5 text-[#87867f] sm:text-sm">
-    <p>{formatCount(stars)}<span class="hidden sm:inline"> stars</span></p>
-    <p>{formatCount(skill_count)}<span class="hidden sm:inline"> skills</span></p>
+  <div class="skill-card__detail-shell">
+    <div id={detailId} class="skill-card__detail-panel" role="region" aria-labelledby={titleId} aria-hidden="true" inert>
+      <div class="skill-card__detail-inner mt-3 border-t border-[#f0eee6] pt-3">
+        <p class="text-sm leading-7 text-[#5e5d59]">
+          <span class="lang-en">{summary.en}</span>
+          <span class="lang-zh">{summary.zh}</span>
+        </p>
+
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2.5 py-1 text-[var(--af-text-label)] leading-5 text-[#5e5d59]">
+              #{tag}
+            </li>
+          ))}
+        </ul>
+
+        <dl class="skill-card__meta mt-3 grid gap-x-4 gap-y-2 text-sm leading-7 text-[#4d4c48] sm:grid-cols-[72px_minmax(0,1fr)]">
+          <div class="contents">
+            <dt class="text-[#87867f]">
+              <span class="lang-en">Author</span>
+              <span class="lang-zh">作者</span>
+            </dt>
+            <dd>
+              <a
+                href={`https://github.com/${author}`}
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413]"
+              >
+                @{author}
+              </a>
+            </dd>
+          </div>
+          <div class="contents">
+            <dt class="text-[#87867f]">
+              <span class="lang-en">License</span>
+              <span class="lang-zh">许可</span>
+            </dt>
+            <dd>{license}</dd>
+          </div>
+          <div class="contents">
+            <dt class="text-[#87867f]">
+              <span class="lang-en">Repository</span>
+              <span class="lang-zh">仓库</span>
+            </dt>
+            <dd>
+              <a
+                href={repository}
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-[#d1cfc5] underline-offset-4 hover:text-[#141413]"
+              >
+                GitHub
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   </div>
 </article>

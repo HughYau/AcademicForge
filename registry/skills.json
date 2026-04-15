@@ -5,7 +5,7 @@
       "name": "Superpowers",
       "summary": {
         "en": "15 workflow-oriented skills for planning, debugging, TDD, code review, and verification.",
-        "zh": "15 个流程型技能：规划、调试、TDD、代码审查、验证。"
+        "zh": "15 个流程型 skill：规划、调试、TDD、代码审查、验证。"
       },
       "author": "obra",
       "repository": "https://github.com/obra/superpowers",
@@ -25,7 +25,7 @@
       "name": "Scientific Agent Skills",
       "summary": {
         "en": "133 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
-        "zh": "133 个科研工作流 skills，涵盖生物信息、化学信息、临床研究等 15+ 领域。"
+        "zh": "133 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
       },
       "author": "K-Dense-AI",
       "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
@@ -63,7 +63,7 @@
       "name": "AI Research Skills",
       "summary": {
         "en": "82 expert AI research and engineering skills covering model architecture, finetuning, RLHF, inference, and 20 workflow categories.",
-        "zh": "82 个专家级 AI 研究工程 skills，涵盖模型架构、微调、RLHF、推理等 20 个类别。"
+        "zh": "82 个 AI 研究与工程 skill，覆盖模型架构、微调、RLHF、推理等 20 类。"
       },
       "author": "Orchestra-Research",
       "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
@@ -121,7 +121,7 @@
       "name": "Paper Polish Workflow",
       "summary": {
         "en": "15 workflow skills for paper translation, polishing, mock review, and submission preparation.",
-        "zh": "15 个论文翻译、润色、审稿模拟与投稿工作流技能。"
+        "zh": "15 个论文翻译、润色、审稿模拟与投稿工作流 skill。"
       },
       "author": "Lylll9436",
       "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",

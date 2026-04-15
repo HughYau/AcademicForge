@@ -1,4 +1,6 @@
 ---
+import { CATEGORY_LABELS, CATEGORY_ORDER, getSkillCategory } from '../lib/categories';
+import type { Category } from '../lib/categories';
 import { formatCount } from '../lib/registry';
 import type { SkillRecord } from '../lib/registry';
 import SkillCard from './SkillCard.astro';
@@ -10,31 +12,41 @@ interface Props {
 }
 
 const { skills, repositoryCount, totalSkillCount } = Astro.props;
+
+const groupedSkills = Object.fromEntries(
+  CATEGORY_ORDER.map((category) => [category, [] as SkillRecord[]]),
+) as Record<Category, SkillRecord[]>;
+
+skills.forEach((skill) => {
+  groupedSkills[getSkillCategory(skill.id)].push(skill);
+});
+
+const categories = CATEGORY_ORDER.filter((category) => groupedSkills[category].length > 0);
 ---
 
 <section id="library" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
   <div class="flex flex-col gap-3 border-b border-[#e8e6dc] pb-4 lg:flex-row lg:items-end lg:justify-between">
     <div class="space-y-2">
       <p class="text-[11px] uppercase tracking-[0.24em] text-[#c96442]">
-        <span class="lang-en">Repository picker</span>
-        <span class="lang-zh">仓库选择</span>
+        <span class="lang-en">Repositories</span>
+        <span class="lang-zh">仓库目录</span>
       </p>
       <h1 class="text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.4rem] lg:text-[2.8rem]">
         <span class="lang-en">Pick what you need.</span>
-        <span class="lang-zh">只选你需要的。</span>
+        <span class="lang-zh">按需勾选。</span>
       </h1>
       <div class="flex flex-wrap gap-2 text-xs text-[#5e5d59] sm:text-sm">
         <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
           <span class="lang-en">{formatCount(repositoryCount)} repositories</span>
-          <span class="lang-zh">{formatCount(repositoryCount)} 个仓库</span>
+          <span class="lang-zh">共 {formatCount(repositoryCount)} 个仓库</span>
         </span>
         <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
           <span class="lang-en">{formatCount(totalSkillCount)} skills</span>
-          <span class="lang-zh">{formatCount(totalSkillCount)} 个 skills</span>
+          <span class="lang-zh">共 {formatCount(totalSkillCount)} 个 skill</span>
         </span>
         <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
           <span class="lang-en">sorted by stars</span>
-          <span class="lang-zh">按 stars 排序</span>
+          <span class="lang-zh">按 star 排序</span>
         </span>
       </div>
     </div>
@@ -44,15 +56,37 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
       <input
         id="skill-search"
         type="search"
-        placeholder="Search repositories"
+        placeholder="Search repositories / authors / tags"
         class="w-full rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#141413] outline-none placeholder:text-[#87867f] focus:border-[#3898ec] focus:shadow-[0_0_0_1px_#3898ec]"
       />
     </label>
   </div>
 
-  <div id="skill-grid" class="mt-2 min-h-0 flex-1 rounded-[22px] bg-white shadow-[0_0_0_1px_#f0eee6]">
-    {skills.map((skill, index) => (
-      <SkillCard {...skill} rank={index + 1} />
+  <div id="skill-grid" class="mt-2 min-h-0 flex-1 space-y-3 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6]">
+    {categories.map((category) => (
+      <details class="skill-group rounded-[20px] border border-[#e8e6dc] bg-[#faf9f5]" open data-category={category} data-user-open="true">
+        <summary class="details-summary px-4 py-3.5">
+          <p class="text-sm font-medium text-[#141413]">
+            <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
+            <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
+          </p>
+
+          <span class="flex items-center gap-3 text-xs text-[#87867f]">
+            <span>{formatCount(groupedSkills[category].length)}</span>
+            <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+              <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+            </svg>
+          </span>
+        </summary>
+
+        <div class="details-body">
+          <div class="details-body__inner border-t border-[#f0eee6] bg-white">
+            {groupedSkills[category].map((skill, index) => (
+              <SkillCard {...skill} rank={index + 1} />
+            ))}
+          </div>
+        </div>
+      </details>
     ))}
   </div>
 
@@ -61,17 +95,19 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
 
 <script>
   const skillCards = Array.from(document.querySelectorAll<HTMLElement>('.skill-card'));
+  const skillGroups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.skill-group'));
   const searchInput = document.getElementById('skill-search') as HTMLInputElement | null;
   const emptyState = document.getElementById('skill-grid-empty');
+  const grid = document.getElementById('skill-grid');
 
   const translations = {
     en: {
-      placeholder: 'Search repositories',
-      empty: 'No repositories match your search.',
+      placeholder: 'Search repositories / authors / tags',
+      empty: 'No matching repositories.',
     },
     zh: {
-      placeholder: '搜索仓库',
-      empty: '没有匹配的仓库。',
+      placeholder: '搜索仓库 / 作者 / 标签',
+      empty: '无匹配结果。',
     },
   };
 
@@ -88,6 +124,24 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
     card.classList.toggle('is-selected', checkbox.checked);
   };
 
+  const setCardDetailState = (card: HTMLElement, expanded: boolean) => {
+    card.classList.toggle('is-expanded', expanded);
+
+    const toggle = card.querySelector<HTMLButtonElement>('.skill-card__toggle');
+    const detail = card.querySelector<HTMLElement>('.skill-card__detail-panel');
+
+    toggle?.setAttribute('aria-expanded', String(expanded));
+
+    if (detail) {
+      detail.setAttribute('aria-hidden', String(!expanded));
+      detail.toggleAttribute('inert', !expanded);
+    }
+  };
+
+  const toggleCardDetail = (card: HTMLElement) => {
+    setCardDetailState(card, !card.classList.contains('is-expanded'));
+  };
+
   const applyLocale = () => {
     const locale = getLocale();
 
@@ -102,6 +156,7 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
 
   const applyFilters = () => {
     const query = searchInput?.value.trim().toLowerCase() ?? '';
+    const hasQuery = query.length > 0;
     visibleCount = 0;
 
     skillCards.forEach((card) => {
@@ -114,10 +169,16 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
       }
     });
 
+    skillGroups.forEach((group) => {
+      const visibleCards = Array.from(group.querySelectorAll<HTMLElement>('.skill-card')).filter((card) => !card.classList.contains('hidden'));
+      const hasVisible = visibleCards.length > 0;
+
+      group.hidden = !hasVisible;
+      group.open = hasQuery ? hasVisible : group.dataset.userOpen !== 'false';
+    });
+
     const hasVisible = visibleCount > 0;
     emptyState?.classList.toggle('hidden', hasVisible);
-
-    const grid = document.getElementById('skill-grid');
     grid?.classList.toggle('hidden', !hasVisible);
 
     if (emptyState && !hasVisible) {
@@ -127,14 +188,27 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
 
   searchInput?.addEventListener('input', applyFilters);
 
+  skillGroups.forEach((group) => {
+    group.dataset.userOpen = String(group.open);
+    group.addEventListener('toggle', () => {
+      if ((searchInput?.value.trim() ?? '') === '') {
+        group.dataset.userOpen = String(group.open);
+      }
+    });
+  });
+
   document.addEventListener('click', (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
     }
 
-    const card = target.closest('.skill-card');
-    if (!(card instanceof HTMLElement)) {
+    const toggle = target.closest('.skill-card__toggle');
+    if (toggle instanceof HTMLButtonElement) {
+      const card = toggle.closest('.skill-card');
+      if (card instanceof HTMLElement) {
+        toggleCardDetail(card);
+      }
       return;
     }
 
@@ -142,13 +216,15 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
       return;
     }
 
-    const checkbox = card.querySelector('.skill-checkbox');
-    if (!(checkbox instanceof HTMLInputElement)) {
+    const surface = target.closest<HTMLElement>('[data-detail-toggle]');
+    if (!(surface instanceof HTMLElement)) {
       return;
     }
 
-    checkbox.checked = !checkbox.checked;
-    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+    const card = surface.closest('.skill-card');
+    if (card instanceof HTMLElement) {
+      toggleCardDetail(card);
+    }
   });
 
   document.addEventListener('change', (event) => {
@@ -161,6 +237,7 @@ const { skills, repositoryCount, totalSkillCount } = Astro.props;
   window.addEventListener('academicforge:locale-change', applyLocale);
 
   document.querySelectorAll<HTMLInputElement>('.skill-checkbox').forEach(updateCardSelectionState);
+  skillCards.forEach((card) => setCardDetailState(card, card.classList.contains('is-expanded')));
   applyFilters();
   applyLocale();
 </script>

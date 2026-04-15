@@ -8,95 +8,171 @@ import CodeBlock from './CodeBlock.astro';
       <span class="lang-en">Install command</span>
       <span class="lang-zh">安装命令</span>
     </p>
-    <h2 class="text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.3rem]">
+    <h2 class="text-[var(--af-text-sub)] leading-[1.1] text-[#141413]">
       <span class="lang-en">Copy. Paste. Run.</span>
       <span class="lang-zh">复制，粘贴，运行。</span>
     </h2>
     <p class="text-sm leading-7 text-[#5e5d59]">
-      <span class="lang-en">The command updates as soon as you change the selection.</span>
-      <span class="lang-zh">左侧一改选择，命令会立刻更新。</span>
+      <span class="lang-en">Command updates as you select.</span>
+      <span class="lang-zh">选择变化时，命令实时更新。</span>
     </p>
   </div>
 
   <div class="mt-4 grid gap-3 sm:grid-cols-2">
-    <label class="flex items-center justify-between gap-3 rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
-      <span>
-        <span class="lang-en">Platform</span>
-        <span class="lang-zh">平台</span>
-      </span>
-      <select id="platform-select" class="min-w-0 bg-transparent text-sm text-[#141413] outline-none">
+    <div class="disclosure" data-disclosure="platform">
+      <button
+        type="button"
+        class="disclosure__trigger"
+        data-disclosure-trigger
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-controls="platform-panel"
+      >
+        <span class="disclosure__copy">
+          <span class="disclosure__label">
+            <span class="lang-en">Platform</span>
+            <span class="lang-zh">平台</span>
+          </span>
+          <span class="disclosure__value" data-disclosure-value>Linux / macOS</span>
+        </span>
+        <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+          <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+        </svg>
+      </button>
+
+      <ul id="platform-panel" class="disclosure__panel" data-disclosure-panel role="listbox" hidden>
+        <li class="disclosure__option" data-disclosure-option data-value="linux" data-label-en="Linux / macOS" data-label-zh="Linux / macOS" role="option" tabindex="0">
+          <strong>Linux / macOS</strong>
+          <span class="lang-en">bash, zsh; curl one-liner</span>
+          <span class="lang-zh">bash / zsh；curl 单行安装</span>
+        </li>
+        <li class="disclosure__option" data-disclosure-option data-value="windows" data-label-en="Windows" data-label-zh="Windows" role="option" tabindex="-1">
+          <strong>Windows</strong>
+          <span class="lang-en">PowerShell; Invoke-WebRequest block</span>
+          <span class="lang-zh">PowerShell；Invoke-WebRequest 代码块</span>
+        </li>
+      </ul>
+
+      <select id="platform-select" hidden aria-hidden="true">
         <option value="linux">Linux / macOS</option>
         <option value="windows">Windows</option>
       </select>
-    </label>
+    </div>
 
-    <label class="flex items-center justify-between gap-3 rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
-      <span>
-        <span class="lang-en">Tool</span>
-        <span class="lang-zh">工具</span>
-      </span>
-      <select id="tool-select" class="min-w-0 bg-transparent text-sm text-[#141413] outline-none">
+    <div class="disclosure" data-disclosure="tool">
+      <button
+        type="button"
+        class="disclosure__trigger"
+        data-disclosure-trigger
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-controls="tool-panel"
+      >
+        <span class="disclosure__copy">
+          <span class="disclosure__label">
+            <span class="lang-en">Tool</span>
+            <span class="lang-zh">工具</span>
+          </span>
+          <span class="disclosure__value" data-disclosure-value>Claude Code</span>
+        </span>
+        <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+          <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+        </svg>
+      </button>
+
+      <ul id="tool-panel" class="disclosure__panel" data-disclosure-panel role="listbox" hidden>
+        <li class="disclosure__option" data-disclosure-option data-value="claude" data-label-en="Claude Code" data-label-zh="Claude Code" role="option" tabindex="0">
+          <strong>Claude Code</strong>
+          <span class="lang-en">Reads <code>.claude/skills</code> by default</span>
+          <span class="lang-zh">默认读取 <code>.claude/skills</code></span>
+        </li>
+        <li class="disclosure__option" data-disclosure-option data-value="opencode" data-label-en="OpenCode" data-label-zh="OpenCode" role="option" tabindex="-1">
+          <strong>OpenCode</strong>
+          <span class="lang-en">Reads <code>.opencode/skills</code> by default</span>
+          <span class="lang-zh">默认读取 <code>.opencode/skills</code></span>
+        </li>
+        <li class="disclosure__option" data-disclosure-option data-value="codex" data-label-en="Codex" data-label-zh="Codex" role="option" tabindex="-1">
+          <strong>Codex</strong>
+          <span class="lang-en">Reads <code>.codex/skills</code> by default</span>
+          <span class="lang-zh">默认读取 <code>.codex/skills</code></span>
+        </li>
+      </ul>
+
+      <select id="tool-select" hidden aria-hidden="true">
         <option value="claude">Claude Code</option>
         <option value="opencode">OpenCode</option>
         <option value="codex">Codex</option>
       </select>
-    </label>
+    </div>
   </div>
 
   <div class="mt-4 rounded-[20px] bg-white p-4 shadow-[0_0_0_1px_#f0eee6]">
     <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#5e5d59]">
       <span>
-        <span class="lang-en">Packs</span>
-        <span class="lang-zh">packs</span>
+        <span class="lang-en">Repositories</span>
+        <span class="lang-zh">仓库</span>
         :
         <strong id="selected-count" class="text-[#141413]">0</strong>
       </span>
       <span>
         <span class="lang-en">Skills</span>
-        <span class="lang-zh">skills</span>
+        <span class="lang-zh">skill</span>
         :
         <strong id="selected-total" class="text-[#c96442]">0</strong>
       </span>
     </div>
-    <p id="selected-list" class="mt-2 text-sm leading-7 text-[#87867f]">
-      <span class="lang-en">No repositories selected.</span>
-      <span class="lang-zh">还没有选择仓库。</span>
-    </p>
+    <p id="selected-list" class="mt-2 text-sm leading-7 text-[#87867f]">No repositories selected.</p>
   </div>
 
-  <div class="mt-4 flex min-h-0 flex-1 flex-col gap-3">
+  <div class="mt-4 space-y-2">
     <div>
       <p class="text-sm font-medium text-[#141413]">
         <span class="lang-en">Install</span>
         <span class="lang-zh">安装</span>
       </p>
-      <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">The install command is always visible here.</p>
+      <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">Install command stays visible here.</p>
     </div>
-    <CodeBlock id="builder-step2-code" code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-from-left>" lang="bash" />
-
-    <div class="grid gap-3 sm:grid-cols-2">
-      <div class="space-y-2">
-        <p class="text-sm font-medium text-[#141413]">
-          <span class="lang-en">Project root</span>
-          <span class="lang-zh">项目根目录</span>
-        </p>
-        <CodeBlock id="builder-step1-code" code="cd /path/to/your-project" lang="bash" />
-      </div>
-
-      <div class="space-y-2">
-        <p class="text-sm font-medium text-[#141413]">
-          <span class="lang-en">Verify</span>
-          <span class="lang-zh">验证</span>
-        </p>
-        <CodeBlock id="builder-step3-code" code="ls .claude/skills/" lang="bash" />
-      </div>
-    </div>
+    <CodeBlock id="builder-step2-code" code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>" lang="bash" />
   </div>
 
-  <div class="mt-4 rounded-[20px] border border-[#e8e6dc] bg-[#f5f4ed] p-4 text-sm leading-7 text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
-    <p id="install-path-note">Selected repositories will be installed into .claude/skills.</p>
-    <p id="install-tool-note">Claude Code will discover these skill packs automatically.</p>
-  </div>
+  <details class="advanced mt-4 rounded-[20px] border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]">
+    <summary class="details-summary px-4 py-3.5">
+      <span class="text-sm font-medium text-[#141413]">
+        <span class="lang-en">Advanced</span>
+        <span class="lang-zh">进阶</span>
+      </span>
+      <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
+        <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+      </svg>
+    </summary>
+
+    <div class="details-body">
+      <div class="details-body__inner px-4 pb-4">
+        <div class="grid gap-3 border-t border-[#f0eee6] pt-4 sm:grid-cols-2">
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-[#141413]">
+              <span class="lang-en">Project root</span>
+              <span class="lang-zh">项目根目录</span>
+            </p>
+            <CodeBlock id="builder-step1-code" code="cd /path/to/your-project" lang="bash" />
+          </div>
+
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-[#141413]">
+              <span class="lang-en">Verify</span>
+              <span class="lang-zh">验证</span>
+            </p>
+            <CodeBlock id="builder-step3-code" code="ls .claude/skills/" lang="bash" />
+          </div>
+        </div>
+
+        <div class="mt-3 rounded-[20px] border border-[#e8e6dc] bg-[#f5f4ed] p-4 text-sm leading-7 text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
+          <p id="install-path-note">Selected repositories will be installed into `.claude/skills`.</p>
+          <p id="install-tool-note">Claude Code will detect and load them automatically.</p>
+        </div>
+      </div>
+    </div>
+  </details>
 </section>
 
 <script>
@@ -108,6 +184,7 @@ import CodeBlock from './CodeBlock.astro';
   const toolSelect = document.getElementById('tool-select') as HTMLSelectElement | null;
   const pathNote = document.getElementById('install-path-note');
   const toolNote = document.getElementById('install-tool-note');
+  const disclosureRoots = Array.from(document.querySelectorAll<HTMLElement>('[data-disclosure]'));
 
   const scriptBase = 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts';
   const toolPaths: Record<string, { linux: string; windows: string }> = {
@@ -124,33 +201,34 @@ import CodeBlock from './CodeBlock.astro';
   const translations = {
     en: {
       empty: 'No repositories selected.',
-      commandHint: 'The install command is always visible here.',
-      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <pick-from-left>`,
+      commandHint: 'Install command stays visible here.',
+      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>`,
       commandEmptyWindows: [
         `$script = Join-Path $PWD 'forge-install.ps1'`,
         `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
-        `& $script -Tool claude -Skills '<pick-from-left>'`,
+        `& $script -Tool claude -Skills '<pick-repositories>'`,
         `Remove-Item $script`,
       ].join('\n'),
-      pathNote: (skillPath: string) => `Selected repositories will be installed into ${skillPath}.`,
-      toolNote: (toolLabel: string) => `${toolLabel} will discover these skill packs automatically.`,
+      pathNote: (skillPath: string) => `Selected repositories will be installed into \`${skillPath}\`.`,
+      toolNote: (toolLabel: string) => `${toolLabel} will detect and load them automatically.`,
     },
     zh: {
-      empty: '还没有选择仓库。',
-      commandHint: '安装命令会始终显示在这里。',
-      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <从左侧选择>`,
+      empty: '尚未选择。',
+      commandHint: '安装命令将在此同步显示。',
+      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <选择仓库>`,
       commandEmptyWindows: [
         `$script = Join-Path $PWD 'forge-install.ps1'`,
         `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
-        `& $script -Tool claude -Skills '<从左侧选择>'`,
+        `& $script -Tool claude -Skills '<选择仓库>'`,
         `Remove-Item $script`,
       ].join('\n'),
-      pathNote: (skillPath: string) => `所选仓库会安装到 ${skillPath}。`,
-      toolNote: (toolLabel: string) => `${toolLabel} 会自动识别并加载这些 skill pack。`,
+      pathNote: (skillPath: string) => `所选仓库将安装至 \`${skillPath}\`。`,
+      toolNote: (toolLabel: string) => `${toolLabel} 将自动识别并加载。`,
     },
   };
 
   const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
+  const formatNumber = (value: number) => new Intl.NumberFormat('en-US').format(value);
 
   const getCheckboxes = () => Array.from(document.querySelectorAll<HTMLInputElement>('.skill-checkbox'));
   const getSelectedCheckboxes = () => getCheckboxes().filter((checkbox) => checkbox.checked);
@@ -166,6 +244,115 @@ import CodeBlock from './CodeBlock.astro';
     if (langElement) {
       langElement.textContent = lang;
     }
+  };
+
+  const getDisclosureParts = (root: HTMLElement) => {
+    return {
+      select: root.querySelector<HTMLSelectElement>('select'),
+      trigger: root.querySelector<HTMLButtonElement>('[data-disclosure-trigger]'),
+      panel: root.querySelector<HTMLElement>('[data-disclosure-panel]'),
+      value: root.querySelector<HTMLElement>('[data-disclosure-value]'),
+      options: Array.from(root.querySelectorAll<HTMLElement>('[data-disclosure-option]')),
+    };
+  };
+
+  const syncDisclosure = (root: HTMLElement) => {
+    const { select, value, options } = getDisclosureParts(root);
+    const locale = getLocale();
+    const selectedValue = select?.value ?? '';
+    const selectedOption = options.find((option) => option.dataset.value === selectedValue) ?? options[0];
+
+    options.forEach((option) => {
+      const isSelected = option === selectedOption;
+      option.classList.toggle('is-selected', isSelected);
+      option.setAttribute('aria-selected', String(isSelected));
+      option.tabIndex = isSelected ? 0 : -1;
+    });
+
+    if (value && selectedOption) {
+      value.textContent = locale === 'zh'
+        ? selectedOption.dataset.labelZh ?? selectedOption.dataset.value ?? ''
+        : selectedOption.dataset.labelEn ?? selectedOption.dataset.value ?? '';
+    }
+  };
+
+  const syncAllDisclosures = () => {
+    disclosureRoots.forEach(syncDisclosure);
+  };
+
+  const closeDisclosure = (root: HTMLElement, restoreFocus = false) => {
+    const { trigger, panel } = getDisclosureParts(root);
+    root.classList.remove('is-open');
+    trigger?.setAttribute('aria-expanded', 'false');
+
+    if (panel) {
+      panel.hidden = true;
+    }
+
+    if (restoreFocus) {
+      trigger?.focus();
+    }
+  };
+
+  const closeAllDisclosures = (except?: HTMLElement) => {
+    disclosureRoots.forEach((root) => {
+      if (root !== except) {
+        closeDisclosure(root);
+      }
+    });
+  };
+
+  const focusDisclosureOption = (root: HTMLElement, index: number) => {
+    const { options } = getDisclosureParts(root);
+    if (options.length === 0) {
+      return;
+    }
+
+    const nextIndex = (index + options.length) % options.length;
+    options.forEach((option) => {
+      option.tabIndex = -1;
+    });
+    options[nextIndex].tabIndex = 0;
+    options[nextIndex].focus();
+  };
+
+  const openDisclosure = (root: HTMLElement, focusTarget: 'selected' | 'first' | 'last' = 'selected') => {
+    const { trigger, panel, options } = getDisclosureParts(root);
+    if (!trigger || !panel || options.length === 0) {
+      return;
+    }
+
+    closeAllDisclosures(root);
+    root.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+
+    const selectedIndex = options.findIndex((option) => option.classList.contains('is-selected'));
+    if (focusTarget === 'first') {
+      focusDisclosureOption(root, 0);
+      return;
+    }
+    if (focusTarget === 'last') {
+      focusDisclosureOption(root, options.length - 1);
+      return;
+    }
+    focusDisclosureOption(root, selectedIndex >= 0 ? selectedIndex : 0);
+  };
+
+  const selectDisclosureOption = (root: HTMLElement, value: string) => {
+    const { select } = getDisclosureParts(root);
+    if (!(select instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    if (select.value !== value) {
+      select.value = value;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    } else {
+      syncDisclosure(root);
+    }
+
+    closeDisclosure(root, true);
   };
 
   const renderSelectedList = (selected: HTMLInputElement[]) => {
@@ -235,11 +422,11 @@ import CodeBlock from './CodeBlock.astro';
     }, 0);
 
     if (selectedCount) {
-      selectedCount.textContent = String(selected.length);
+      selectedCount.textContent = formatNumber(selected.length);
     }
 
     if (selectedTotal) {
-      selectedTotal.textContent = String(totalSkillCount);
+      selectedTotal.textContent = formatNumber(totalSkillCount);
     }
 
     renderSelectedList(selected);
@@ -247,8 +434,108 @@ import CodeBlock from './CodeBlock.astro';
   };
 
   const applyLocale = () => {
+    syncAllDisclosures();
     updateSelection();
   };
+
+  disclosureRoots.forEach((root) => {
+    const { trigger, panel } = getDisclosureParts(root);
+
+    trigger?.addEventListener('click', () => {
+      if (root.classList.contains('is-open')) {
+        closeDisclosure(root, true);
+      } else {
+        openDisclosure(root);
+      }
+    });
+
+    trigger?.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openDisclosure(root, event.key === 'ArrowDown' ? 'first' : 'selected');
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        openDisclosure(root, 'last');
+      }
+
+      if (event.key === 'Escape') {
+        closeDisclosure(root);
+      }
+    });
+
+    panel?.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
+
+      const option = target.closest('[data-disclosure-option]');
+      if (!(option instanceof HTMLElement)) {
+        return;
+      }
+
+      selectDisclosureOption(root, option.dataset.value ?? '');
+    });
+
+    panel?.addEventListener('keydown', (event) => {
+      const { options } = getDisclosureParts(root);
+      const activeIndex = options.findIndex((option) => option === document.activeElement);
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeDisclosure(root, true);
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        focusDisclosureOption(root, activeIndex + 1);
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        focusDisclosureOption(root, activeIndex - 1);
+      }
+
+      if (event.key === 'Home') {
+        event.preventDefault();
+        focusDisclosureOption(root, 0);
+      }
+
+      if (event.key === 'End') {
+        event.preventDefault();
+        focusDisclosureOption(root, options.length - 1);
+      }
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        const activeOption = options[activeIndex >= 0 ? activeIndex : 0];
+        if (activeOption) {
+          selectDisclosureOption(root, activeOption.dataset.value ?? '');
+        }
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) {
+      return;
+    }
+
+    disclosureRoots.forEach((root) => {
+      if (!root.contains(target)) {
+        closeDisclosure(root);
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeAllDisclosures();
+    }
+  });
 
   document.addEventListener('change', (event) => {
     const target = event.target;
@@ -257,10 +544,16 @@ import CodeBlock from './CodeBlock.astro';
     }
   });
 
-  platformSelect?.addEventListener('change', updateSelection);
-  toolSelect?.addEventListener('change', updateSelection);
+  const handleSelectChange = () => {
+    syncAllDisclosures();
+    updateSelection();
+  };
+
+  platformSelect?.addEventListener('change', handleSelectChange);
+  toolSelect?.addEventListener('change', handleSelectChange);
   window.addEventListener('academicforge:locale-change', applyLocale);
 
+  syncAllDisclosures();
   updateSelection();
   applyLocale();
 </script>
