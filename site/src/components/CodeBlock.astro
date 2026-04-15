@@ -1,0 +1,95 @@
+---
+interface Props {
+  code: string;
+  lang?: string;
+  id?: string;
+}
+
+const {
+  code,
+  lang = 'bash',
+  id = `code-block-${Math.random().toString(36).slice(2, 9)}`,
+} = Astro.props;
+---
+
+<div class="overflow-hidden rounded-[20px] border border-[#30302e] bg-[#141413] shadow-[0_0_0_1px_#30302e]">
+  <div class="flex items-center justify-between border-b border-[#30302e] px-4 py-3">
+    <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#b0aea5]" data-code-lang={id}>
+      {lang}
+    </span>
+    <button
+      type="button"
+      data-copy-target={id}
+      data-label-en="Copy"
+      data-label-zh="复制"
+      data-copied-en="Copied"
+      data-copied-zh="已复制"
+      class="copy-btn rounded-full border border-[#30302e] bg-[#30302e] px-3 py-1 text-xs font-medium text-[#faf9f5] transition hover:bg-[#3d3d3a]"
+    >
+      Copy
+    </button>
+  </div>
+  <pre class="overflow-hidden whitespace-pre-wrap break-words p-4 text-sm leading-7 text-[#faf9f5]"><code id={id}>{code}</code></pre>
+</div>
+
+<script>
+  const copyWindow = window as { __academicForgeCopyBound?: boolean };
+  const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
+
+  const updateButtonLabel = (button: HTMLButtonElement) => {
+    if (button.dataset.copied === 'true') {
+      return;
+    }
+
+    button.textContent = getLocale() === 'zh' ? button.dataset.labelZh ?? '复制' : button.dataset.labelEn ?? 'Copy';
+  };
+
+  const updateAllCopyLabels = () => {
+    document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach(updateButtonLabel);
+  };
+
+  if (!copyWindow.__academicForgeCopyBound) {
+    copyWindow.__academicForgeCopyBound = true;
+
+    document.addEventListener('click', async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
+
+      const button = target.closest('.copy-btn');
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      const codeId = button.dataset.copyTarget;
+      if (!codeId) {
+        return;
+      }
+
+      const codeElement = document.getElementById(codeId);
+      if (!codeElement) {
+        return;
+      }
+
+      const text = codeElement.textContent?.trim() ?? '';
+      if (!text || !navigator.clipboard) {
+        return;
+      }
+
+      await navigator.clipboard.writeText(text);
+      button.dataset.copied = 'true';
+      button.textContent = getLocale() === 'zh' ? button.dataset.copiedZh ?? '已复制' : button.dataset.copiedEn ?? 'Copied';
+      button.classList.add('is-copied');
+
+      window.setTimeout(() => {
+        button.dataset.copied = 'false';
+        button.classList.remove('is-copied');
+        updateButtonLabel(button);
+      }, 2000);
+    });
+  }
+
+  window.addEventListener('academicforge:locale-change', updateAllCopyLabels);
+  updateAllCopyLabels();
+</script>

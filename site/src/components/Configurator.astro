@@ -1,0 +1,266 @@
+---
+import CodeBlock from './CodeBlock.astro';
+---
+
+<section id="install-builder" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5 lg:h-full">
+  <div class="space-y-2 border-b border-[#e8e6dc] pb-4">
+    <p class="text-[11px] uppercase tracking-[0.24em] text-[#c96442]">
+      <span class="lang-en">Install command</span>
+      <span class="lang-zh">安装命令</span>
+    </p>
+    <h2 class="text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.3rem]">
+      <span class="lang-en">Copy. Paste. Run.</span>
+      <span class="lang-zh">复制，粘贴，运行。</span>
+    </h2>
+    <p class="text-sm leading-7 text-[#5e5d59]">
+      <span class="lang-en">The command updates as soon as you change the selection.</span>
+      <span class="lang-zh">左侧一改选择，命令会立刻更新。</span>
+    </p>
+  </div>
+
+  <div class="mt-4 grid gap-3 sm:grid-cols-2">
+    <label class="flex items-center justify-between gap-3 rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
+      <span>
+        <span class="lang-en">Platform</span>
+        <span class="lang-zh">平台</span>
+      </span>
+      <select id="platform-select" class="min-w-0 bg-transparent text-sm text-[#141413] outline-none">
+        <option value="linux">Linux / macOS</option>
+        <option value="windows">Windows</option>
+      </select>
+    </label>
+
+    <label class="flex items-center justify-between gap-3 rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
+      <span>
+        <span class="lang-en">Tool</span>
+        <span class="lang-zh">工具</span>
+      </span>
+      <select id="tool-select" class="min-w-0 bg-transparent text-sm text-[#141413] outline-none">
+        <option value="claude">Claude Code</option>
+        <option value="opencode">OpenCode</option>
+        <option value="codex">Codex</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="mt-4 rounded-[20px] bg-white p-4 shadow-[0_0_0_1px_#f0eee6]">
+    <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#5e5d59]">
+      <span>
+        <span class="lang-en">Packs</span>
+        <span class="lang-zh">packs</span>
+        :
+        <strong id="selected-count" class="text-[#141413]">0</strong>
+      </span>
+      <span>
+        <span class="lang-en">Skills</span>
+        <span class="lang-zh">skills</span>
+        :
+        <strong id="selected-total" class="text-[#c96442]">0</strong>
+      </span>
+    </div>
+    <p id="selected-list" class="mt-2 text-sm leading-7 text-[#87867f]">
+      <span class="lang-en">No repositories selected.</span>
+      <span class="lang-zh">还没有选择仓库。</span>
+    </p>
+  </div>
+
+  <div class="mt-4 flex min-h-0 flex-1 flex-col gap-3">
+    <div>
+      <p class="text-sm font-medium text-[#141413]">
+        <span class="lang-en">Install</span>
+        <span class="lang-zh">安装</span>
+      </p>
+      <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">The install command is always visible here.</p>
+    </div>
+    <CodeBlock id="builder-step2-code" code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-from-left>" lang="bash" />
+
+    <div class="grid gap-3 sm:grid-cols-2">
+      <div class="space-y-2">
+        <p class="text-sm font-medium text-[#141413]">
+          <span class="lang-en">Project root</span>
+          <span class="lang-zh">项目根目录</span>
+        </p>
+        <CodeBlock id="builder-step1-code" code="cd /path/to/your-project" lang="bash" />
+      </div>
+
+      <div class="space-y-2">
+        <p class="text-sm font-medium text-[#141413]">
+          <span class="lang-en">Verify</span>
+          <span class="lang-zh">验证</span>
+        </p>
+        <CodeBlock id="builder-step3-code" code="ls .claude/skills/" lang="bash" />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 rounded-[20px] border border-[#e8e6dc] bg-[#f5f4ed] p-4 text-sm leading-7 text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
+    <p id="install-path-note">Selected repositories will be installed into .claude/skills.</p>
+    <p id="install-tool-note">Claude Code will discover these skill packs automatically.</p>
+  </div>
+</section>
+
+<script>
+  const installCommandCopy = document.getElementById('install-command-copy');
+  const selectedCount = document.getElementById('selected-count');
+  const selectedTotal = document.getElementById('selected-total');
+  const selectedList = document.getElementById('selected-list');
+  const platformSelect = document.getElementById('platform-select') as HTMLSelectElement | null;
+  const toolSelect = document.getElementById('tool-select') as HTMLSelectElement | null;
+  const pathNote = document.getElementById('install-path-note');
+  const toolNote = document.getElementById('install-tool-note');
+
+  const scriptBase = 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts';
+  const toolPaths: Record<string, { linux: string; windows: string }> = {
+    claude: { linux: '.claude/skills', windows: '.claude\\skills' },
+    opencode: { linux: '.opencode/skills', windows: '.opencode\\skills' },
+    codex: { linux: '.codex/skills', windows: '.codex\\skills' },
+  };
+  const toolLabels: Record<string, string> = {
+    claude: 'Claude Code',
+    opencode: 'OpenCode',
+    codex: 'Codex',
+  };
+
+  const translations = {
+    en: {
+      empty: 'No repositories selected.',
+      commandHint: 'The install command is always visible here.',
+      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <pick-from-left>`,
+      commandEmptyWindows: [
+        `$script = Join-Path $PWD 'forge-install.ps1'`,
+        `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
+        `& $script -Tool claude -Skills '<pick-from-left>'`,
+        `Remove-Item $script`,
+      ].join('\n'),
+      pathNote: (skillPath: string) => `Selected repositories will be installed into ${skillPath}.`,
+      toolNote: (toolLabel: string) => `${toolLabel} will discover these skill packs automatically.`,
+    },
+    zh: {
+      empty: '还没有选择仓库。',
+      commandHint: '安装命令会始终显示在这里。',
+      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <从左侧选择>`,
+      commandEmptyWindows: [
+        `$script = Join-Path $PWD 'forge-install.ps1'`,
+        `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
+        `& $script -Tool claude -Skills '<从左侧选择>'`,
+        `Remove-Item $script`,
+      ].join('\n'),
+      pathNote: (skillPath: string) => `所选仓库会安装到 ${skillPath}。`,
+      toolNote: (toolLabel: string) => `${toolLabel} 会自动识别并加载这些 skill pack。`,
+    },
+  };
+
+  const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
+
+  const getCheckboxes = () => Array.from(document.querySelectorAll<HTMLInputElement>('.skill-checkbox'));
+  const getSelectedCheckboxes = () => getCheckboxes().filter((checkbox) => checkbox.checked);
+
+  const setCodeBlock = (id: string, code: string, lang: string) => {
+    const codeElement = document.getElementById(id);
+    const langElement = document.querySelector<HTMLElement>(`[data-code-lang="${id}"]`);
+
+    if (codeElement) {
+      codeElement.textContent = code;
+    }
+
+    if (langElement) {
+      langElement.textContent = lang;
+    }
+  };
+
+  const renderSelectedList = (selected: HTMLInputElement[]) => {
+    if (!selectedList) {
+      return;
+    }
+
+    if (selected.length === 0) {
+      selectedList.textContent = translations[getLocale()].empty;
+      return;
+    }
+
+    selectedList.textContent = selected
+      .map((checkbox) => checkbox.dataset.skillName ?? checkbox.dataset.skillId ?? '')
+      .filter(Boolean)
+      .join(', ');
+  };
+
+  const renderCommands = (selected: HTMLInputElement[]) => {
+    const locale = getLocale();
+    const tool = toolSelect?.value ?? 'claude';
+    const platform = platformSelect?.value ?? 'linux';
+    const isWindows = platform === 'windows';
+    const toolPath = toolPaths[tool] ?? toolPaths.claude;
+    const skillPath = isWindows ? toolPath.windows : toolPath.linux;
+    const toolLabel = toolLabels[tool] ?? tool;
+    const skillList = selected.map((checkbox) => checkbox.dataset.skillId ?? '').filter(Boolean).join(',');
+    const codeLang = isWindows ? 'powershell' : 'bash';
+    const cdCommand = isWindows ? 'cd C:\\path\\to\\your-project' : 'cd /path/to/your-project';
+    const installCommand = selected.length === 0
+      ? (isWindows ? translations[locale].commandEmptyWindows : translations[locale].commandEmptyLinux)
+      : isWindows
+        ? [
+            `$script = Join-Path $PWD 'forge-install.ps1'`,
+            `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
+            `& $script -Tool ${tool} -Skills '${skillList}'`,
+            `Remove-Item $script`,
+          ].join('\n')
+        : [
+            `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- \\`,
+            `  --tool ${tool} \\`,
+            `  --skills ${skillList}`,
+          ].join('\n');
+    const verifyCommand = isWindows ? `dir ${skillPath}` : `ls ${skillPath}/`;
+
+    setCodeBlock('builder-step1-code', cdCommand, codeLang);
+    setCodeBlock('builder-step2-code', installCommand, codeLang);
+    setCodeBlock('builder-step3-code', verifyCommand, codeLang);
+
+    if (installCommandCopy) {
+      installCommandCopy.textContent = translations[locale].commandHint;
+    }
+
+    if (pathNote) {
+      pathNote.textContent = translations[locale].pathNote(skillPath);
+    }
+
+    if (toolNote) {
+      toolNote.textContent = translations[locale].toolNote(toolLabel);
+    }
+  };
+
+  const updateSelection = () => {
+    const selected = getSelectedCheckboxes();
+    const totalSkillCount = selected.reduce((sum, checkbox) => {
+      return sum + Number(checkbox.dataset.skillCount ?? 0);
+    }, 0);
+
+    if (selectedCount) {
+      selectedCount.textContent = String(selected.length);
+    }
+
+    if (selectedTotal) {
+      selectedTotal.textContent = String(totalSkillCount);
+    }
+
+    renderSelectedList(selected);
+    renderCommands(selected);
+  };
+
+  const applyLocale = () => {
+    updateSelection();
+  };
+
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLInputElement && target.classList.contains('skill-checkbox')) {
+      updateSelection();
+    }
+  });
+
+  platformSelect?.addEventListener('change', updateSelection);
+  toolSelect?.addEventListener('change', updateSelection);
+  window.addEventListener('academicforge:locale-change', applyLocale);
+
+  updateSelection();
+  applyLocale();
+</script>

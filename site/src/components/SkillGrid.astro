@@ -1,0 +1,166 @@
+---
+import { formatCount } from '../lib/registry';
+import type { SkillRecord } from '../lib/registry';
+import SkillCard from './SkillCard.astro';
+
+interface Props {
+  skills: SkillRecord[];
+  repositoryCount: number;
+  totalSkillCount: number;
+}
+
+const { skills, repositoryCount, totalSkillCount } = Astro.props;
+---
+
+<section id="library" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
+  <div class="flex flex-col gap-3 border-b border-[#e8e6dc] pb-4 lg:flex-row lg:items-end lg:justify-between">
+    <div class="space-y-2">
+      <p class="text-[11px] uppercase tracking-[0.24em] text-[#c96442]">
+        <span class="lang-en">Repository picker</span>
+        <span class="lang-zh">仓库选择</span>
+      </p>
+      <h1 class="text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.4rem] lg:text-[2.8rem]">
+        <span class="lang-en">Pick what you need.</span>
+        <span class="lang-zh">只选你需要的。</span>
+      </h1>
+      <div class="flex flex-wrap gap-2 text-xs text-[#5e5d59] sm:text-sm">
+        <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
+          <span class="lang-en">{formatCount(repositoryCount)} repositories</span>
+          <span class="lang-zh">{formatCount(repositoryCount)} 个仓库</span>
+        </span>
+        <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
+          <span class="lang-en">{formatCount(totalSkillCount)} skills</span>
+          <span class="lang-zh">{formatCount(totalSkillCount)} 个 skills</span>
+        </span>
+        <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
+          <span class="lang-en">sorted by stars</span>
+          <span class="lang-zh">按 stars 排序</span>
+        </span>
+      </div>
+    </div>
+
+    <label class="block w-full lg:max-w-sm">
+      <span class="sr-only">Search repositories</span>
+      <input
+        id="skill-search"
+        type="search"
+        placeholder="Search repositories"
+        class="w-full rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#141413] outline-none placeholder:text-[#87867f] focus:border-[#3898ec] focus:shadow-[0_0_0_1px_#3898ec]"
+      />
+    </label>
+  </div>
+
+  <div id="skill-grid" class="mt-2 min-h-0 flex-1 rounded-[22px] bg-white shadow-[0_0_0_1px_#f0eee6]">
+    {skills.map((skill, index) => (
+      <SkillCard {...skill} rank={index + 1} />
+    ))}
+  </div>
+
+  <div id="skill-grid-empty" class="hidden rounded-[22px] bg-white px-6 py-10 text-center text-[#87867f] shadow-[0_0_0_1px_#f0eee6]"></div>
+</section>
+
+<script>
+  const skillCards = Array.from(document.querySelectorAll<HTMLElement>('.skill-card'));
+  const searchInput = document.getElementById('skill-search') as HTMLInputElement | null;
+  const emptyState = document.getElementById('skill-grid-empty');
+
+  const translations = {
+    en: {
+      placeholder: 'Search repositories',
+      empty: 'No repositories match your search.',
+    },
+    zh: {
+      placeholder: '搜索仓库',
+      empty: '没有匹配的仓库。',
+    },
+  };
+
+  let visibleCount = skillCards.length;
+
+  const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
+
+  const updateCardSelectionState = (checkbox: HTMLInputElement) => {
+    const card = checkbox.closest('.skill-card');
+    if (!(card instanceof HTMLElement)) {
+      return;
+    }
+
+    card.classList.toggle('is-selected', checkbox.checked);
+  };
+
+  const applyLocale = () => {
+    const locale = getLocale();
+
+    if (searchInput) {
+      searchInput.placeholder = translations[locale].placeholder;
+    }
+
+    if (emptyState && visibleCount === 0) {
+      emptyState.textContent = translations[locale].empty;
+    }
+  };
+
+  const applyFilters = () => {
+    const query = searchInput?.value.trim().toLowerCase() ?? '';
+    visibleCount = 0;
+
+    skillCards.forEach((card) => {
+      const search = card.dataset.search ?? '';
+      const isVisible = !query || search.includes(query);
+
+      card.classList.toggle('hidden', !isVisible);
+      if (isVisible) {
+        visibleCount += 1;
+      }
+    });
+
+    const hasVisible = visibleCount > 0;
+    emptyState?.classList.toggle('hidden', hasVisible);
+
+    const grid = document.getElementById('skill-grid');
+    grid?.classList.toggle('hidden', !hasVisible);
+
+    if (emptyState && !hasVisible) {
+      emptyState.textContent = translations[getLocale()].empty;
+    }
+  };
+
+  searchInput?.addEventListener('input', applyFilters);
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const card = target.closest('.skill-card');
+    if (!(card instanceof HTMLElement)) {
+      return;
+    }
+
+    if (target.closest('a, button, input, label')) {
+      return;
+    }
+
+    const checkbox = card.querySelector('.skill-checkbox');
+    if (!(checkbox instanceof HTMLInputElement)) {
+      return;
+    }
+
+    checkbox.checked = !checkbox.checked;
+    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLInputElement && target.classList.contains('skill-checkbox')) {
+      updateCardSelectionState(target);
+    }
+  });
+
+  window.addEventListener('academicforge:locale-change', applyLocale);
+
+  document.querySelectorAll<HTMLInputElement>('.skill-checkbox').forEach(updateCardSelectionState);
+  applyFilters();
+  applyLocale();
+</script>

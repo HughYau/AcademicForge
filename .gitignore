@@ -29,3 +29,7 @@ LOCAL_SKILLS_INTRO.md
 CLAUDE.md
 example/
 .claude/
+site/node_modules/
+site/dist/
+site/.astro/
+DESIGN.md

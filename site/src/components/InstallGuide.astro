@@ -1,0 +1,221 @@
+---
+import CodeBlock from './CodeBlock.astro';
+---
+
+<div id="install-guide-overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-[rgba(20,20,19,0.6)] p-4">
+  <div class="w-full max-w-4xl overflow-hidden rounded-[32px] border border-[#e8e6dc] bg-[#faf9f5] shadow-[0_24px_120px_rgba(20,20,19,0.24)]">
+    <div class="flex items-center justify-between border-b border-[#e8e6dc] px-6 py-5">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c96442]">
+          <span class="lang-en">Install guide</span>
+          <span class="lang-zh">安装引导</span>
+        </p>
+        <h2 class="mt-2 text-3xl leading-tight text-[#141413]">
+          <span class="lang-en">Install the selected repositories into the current project in three steps.</span>
+          <span class="lang-zh">按三步把所选仓库装进当前项目。</span>
+        </h2>
+      </div>
+      <button id="guide-close" type="button" class="rounded-full border border-[#e8e6dc] bg-white px-3 py-2 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6] transition hover:bg-[#f5f4ed]">
+        <span class="lang-en">Close</span>
+        <span class="lang-zh">关闭</span>
+      </button>
+    </div>
+
+    <div class="max-h-[80vh] space-y-6 overflow-y-auto px-6 py-6">
+      <section class="space-y-3 rounded-[24px] border border-[#e8e6dc] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+        <div>
+          <p class="text-sm font-semibold text-[#c96442]">
+            <span class="lang-en">Step 1</span>
+            <span class="lang-zh">第 1 步</span>
+          </p>
+          <p id="guide-step1-copy" class="mt-1 text-sm leading-7 text-[#5e5d59]">Open your terminal and move into the project root.</p>
+        </div>
+        <CodeBlock id="guide-step1-code" code="cd /path/to/your-project" lang="bash" />
+      </section>
+
+      <section class="space-y-3 rounded-[24px] border border-[#e8e6dc] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+        <div>
+          <p class="text-sm font-semibold text-[#c96442]">
+            <span class="lang-en">Step 2</span>
+            <span class="lang-zh">第 2 步</span>
+          </p>
+          <p id="guide-step2-copy" class="mt-1 text-sm leading-7 text-[#5e5d59]">Run the generated install command for the selected tool and platform.</p>
+        </div>
+        <CodeBlock id="guide-step2-code" code="curl -sSL https://example.invalid/forge-install.sh | bash -s -- --tool claude --skills humanizer" lang="bash" />
+      </section>
+
+      <section class="space-y-3 rounded-[24px] border border-[#e8e6dc] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+        <div>
+          <p class="text-sm font-semibold text-[#c96442]">
+            <span class="lang-en">Step 3</span>
+            <span class="lang-zh">第 3 步</span>
+          </p>
+          <p id="guide-step3-copy" class="mt-1 text-sm leading-7 text-[#5e5d59]">Verify that the repositories landed in the expected target directory.</p>
+        </div>
+        <CodeBlock id="guide-step3-code" code="ls .claude/skills/" lang="bash" />
+      </section>
+
+      <div class="rounded-[24px] border border-[#e8e6dc] bg-[#f5f4ed] p-5 text-sm leading-7 text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6]">
+        <p id="guide-path-note">Selected repositories will be installed into .claude/skills.</p>
+        <p id="guide-tool-note">Claude Code will discover these skill packs automatically.</p>
+        <p id="guide-launch-note">Start your tool after installation to use the selected repositories.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const overlay = document.getElementById('install-guide-overlay');
+  const closeButton = document.getElementById('guide-close');
+
+  const step1Copy = document.getElementById('guide-step1-copy');
+  const step2Copy = document.getElementById('guide-step2-copy');
+  const step3Copy = document.getElementById('guide-step3-copy');
+  const pathNote = document.getElementById('guide-path-note');
+  const toolNote = document.getElementById('guide-tool-note');
+  const launchNote = document.getElementById('guide-launch-note');
+
+  const scriptBase = 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts';
+  const toolPaths: Record<string, { linux: string; windows: string }> = {
+    claude: { linux: '.claude/skills', windows: '.claude\\skills' },
+    opencode: { linux: '.opencode/skills', windows: '.opencode\\skills' },
+    codex: { linux: '.codex/skills', windows: '.codex\\skills' },
+  };
+  const toolLabels: Record<string, string> = {
+    claude: 'Claude Code',
+    opencode: 'OpenCode',
+    codex: 'Codex',
+  };
+
+  const translations = {
+    en: {
+      step1Windows: 'Open PowerShell and move into the project root where you want these repositories installed.',
+      step1Unix: 'Open your terminal and move into the project root where you want these repositories installed.',
+      step2: 'Run the generated install command for the selected tool and platform.',
+      step3: 'Verify that the repositories landed in the expected target directory.',
+      pathNote: (skillPath: string) => `Selected repositories will be installed into ${skillPath}.`,
+      toolNote: (toolLabel: string) => `${toolLabel} will discover these skill packs automatically.`,
+      launchNote: (toolLabel: string) => `Start ${toolLabel} after installation to use the selected repositories.`,
+    },
+    zh: {
+      step1Windows: '打开 PowerShell，并进入你希望安装这些仓库的项目根目录。',
+      step1Unix: '打开终端，并进入你希望安装这些仓库的项目根目录。',
+      step2: '运行针对当前平台和工具生成的安装命令。',
+      step3: '检查这些仓库是否已经落到目标目录。',
+      pathNote: (skillPath: string) => `所选仓库会安装到 ${skillPath}。`,
+      toolNote: (toolLabel: string) => `${toolLabel} 会自动识别并加载这些 skill pack。`,
+      launchNote: (toolLabel: string) => `安装完成后启动 ${toolLabel} 即可使用所选仓库。`,
+    },
+  };
+
+  const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
+  let currentGuide: { skills: string[]; platform: string; tool: string } | null = null;
+
+  const setCodeBlock = (id: string, code: string, lang: string) => {
+    const codeElement = document.getElementById(id);
+    const langElement = document.querySelector<HTMLElement>(`[data-code-lang="${id}"]`);
+
+    if (codeElement) {
+      codeElement.textContent = code;
+    }
+
+    if (langElement) {
+      langElement.textContent = lang;
+    }
+  };
+
+  const renderGuide = () => {
+    if (!currentGuide) {
+      return;
+    }
+
+    const { skills, platform, tool } = currentGuide;
+    const locale = getLocale();
+    const isWindows = platform === 'windows';
+    const toolPath = toolPaths[tool] ?? toolPaths.claude;
+    const skillPath = isWindows ? toolPath.windows : toolPath.linux;
+    const skillList = skills.join(',');
+    const toolLabel = toolLabels[tool] ?? tool;
+
+    const cdCommand = isWindows ? 'cd C:\\path\\to\\your-project' : 'cd /path/to/your-project';
+    const installCommand = isWindows
+      ? [
+          `$script = Join-Path $PWD 'forge-install.ps1'`,
+          `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
+          `& $script -Tool ${tool} -Skills '${skillList}'`,
+          `Remove-Item $script`,
+        ].join('\n')
+      : [
+          `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- \\`,
+          `  --tool ${tool} \\`,
+          `  --skills ${skillList}`,
+        ].join('\n');
+    const verifyCommand = isWindows ? `dir ${skillPath}` : `ls ${skillPath}/`;
+
+    if (step1Copy) {
+      step1Copy.textContent = isWindows ? translations[locale].step1Windows : translations[locale].step1Unix;
+    }
+
+    if (step2Copy) {
+      step2Copy.textContent = translations[locale].step2;
+    }
+
+    if (step3Copy) {
+      step3Copy.textContent = translations[locale].step3;
+    }
+
+    setCodeBlock('guide-step1-code', cdCommand, isWindows ? 'powershell' : 'bash');
+    setCodeBlock('guide-step2-code', installCommand, isWindows ? 'powershell' : 'bash');
+    setCodeBlock('guide-step3-code', verifyCommand, isWindows ? 'powershell' : 'bash');
+
+    if (pathNote) {
+      pathNote.textContent = translations[locale].pathNote(skillPath);
+    }
+    if (toolNote) {
+      toolNote.textContent = translations[locale].toolNote(toolLabel);
+    }
+    if (launchNote) {
+      launchNote.textContent = translations[locale].launchNote(toolLabel);
+    }
+  };
+
+  const openGuide = (skills: string[], platform: string, tool: string) => {
+    currentGuide = { skills, platform, tool };
+    renderGuide();
+
+    overlay?.classList.remove('hidden');
+    overlay?.classList.add('flex');
+  };
+
+  const closeGuide = () => {
+    overlay?.classList.add('hidden');
+    overlay?.classList.remove('flex');
+  };
+
+  document.addEventListener('generate-command', (event) => {
+    const detail = (event as CustomEvent).detail as { skills: string[]; platform: string; tool: string };
+    if (!detail?.skills?.length) {
+      return;
+    }
+
+    openGuide(detail.skills, detail.platform, detail.tool);
+  });
+
+  window.addEventListener('academicforge:locale-change', () => {
+    if (currentGuide && !overlay?.classList.contains('hidden')) {
+      renderGuide();
+    }
+  });
+
+  closeButton?.addEventListener('click', closeGuide);
+  overlay?.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      closeGuide();
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeGuide();
+    }
+  });
+</script>

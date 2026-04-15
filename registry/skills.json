@@ -1,0 +1,139 @@
+{
+  "skills": [
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "summary": {
+        "en": "15 workflow-oriented skills for planning, debugging, TDD, code review, and verification.",
+        "zh": "15 个流程型技能：规划、调试、TDD、代码审查、验证。"
+      },
+      "author": "obra",
+      "repository": "https://github.com/obra/superpowers",
+      "license": "MIT",
+      "skill_count": 15,
+      "stars": 152103,
+      "tags": ["workflow", "planning", "debugging", "tdd", "code-review"],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/obra/superpowers.git",
+        "sparse_path": "skills"
+      },
+      "post_install": []
+    },
+    {
+      "id": "scientific-agent-skills",
+      "name": "Scientific Agent Skills",
+      "summary": {
+        "en": "133 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
+        "zh": "133 个科研工作流 skills，涵盖生物信息、化学信息、临床研究等 15+ 领域。"
+      },
+      "author": "K-Dense-AI",
+      "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "license": "MIT",
+      "skill_count": 133,
+      "stars": 18454,
+      "tags": ["science", "research", "bioinformatics", "chemistry", "clinical"],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git"
+      },
+      "post_install": ["clean_ads"]
+    },
+    {
+      "id": "humanizer",
+      "name": "Humanizer",
+      "summary": {
+        "en": "Academic tone polishing, readability cleanup, and de-AI writing refinements.",
+        "zh": "学术语气润色、可读性优化、减少 AI 痕迹的写作修订。"
+      },
+      "author": "blader",
+      "repository": "https://github.com/blader/humanizer",
+      "license": "See repository",
+      "skill_count": 1,
+      "stars": 13836,
+      "tags": ["writing", "tone", "readability", "academic-style"],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/blader/humanizer.git"
+      },
+      "post_install": []
+    },
+    {
+      "id": "AI-research-SKILLs",
+      "name": "AI Research Skills",
+      "summary": {
+        "en": "82 expert AI research and engineering skills covering model architecture, finetuning, RLHF, inference, and 20 workflow categories.",
+        "zh": "82 个专家级 AI 研究工程 skills，涵盖模型架构、微调、RLHF、推理等 20 个类别。"
+      },
+      "author": "Orchestra-Research",
+      "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
+      "license": "MIT",
+      "skill_count": 82,
+      "stars": 6837,
+      "tags": ["AI", "deep-learning", "LLM", "training", "inference"],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git"
+      },
+      "post_install": []
+    },
+    {
+      "id": "humanizer-zh",
+      "name": "Humanizer ZH",
+      "summary": {
+        "en": "Chinese rewriting and tone polishing that reduces AI traces while preserving the original meaning.",
+        "zh": "中文去 AI 痕迹、自然化改写、保留原意的语气润色。"
+      },
+      "author": "op7418",
+      "repository": "https://github.com/op7418/Humanizer-zh",
+      "license": "MIT",
+      "skill_count": 1,
+      "stars": 6047,
+      "tags": ["chinese", "writing", "tone", "de-ai"],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/op7418/Humanizer-zh.git"
+      },
+      "post_install": []
+    },
+    {
+      "id": "scientific-visualization",
+      "name": "Scientific Visualization",
+      "summary": {
+        "en": "Publication-grade charting templates, colorblind-safe palettes, and export guidance for research figures.",
+        "zh": "出版级科研图表：期刊样式模板、色盲友好配色、导出优化。"
+      },
+      "author": "AcademicForge",
+      "repository": "https://github.com/HughYau/AcademicForge",
+      "license": "MIT",
+      "skill_count": 1,
+      "stars": 801,
+      "tags": ["visualization", "matplotlib", "publication", "figures"],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparse_path": "skills/scientific-visualization"
+      },
+      "post_install": []
+    },
+    {
+      "id": "paper-polish-workflow-skill",
+      "name": "Paper Polish Workflow",
+      "summary": {
+        "en": "15 workflow skills for paper translation, polishing, mock review, and submission preparation.",
+        "zh": "15 个论文翻译、润色、审稿模拟与投稿工作流技能。"
+      },
+      "author": "Lylll9436",
+      "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",
+      "license": "MIT",
+      "skill_count": 15,
+      "stars": 225,
+      "tags": ["writing", "translation", "polishing", "peer-review", "submission"],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill.git"
+      },
+      "post_install": []
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**A curated skill collection for academic writing and research**
+**A skill selection and installation platform for academic writing and research workflows**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
@@ -11,44 +11,53 @@
 
 ## 📖 What is a Forge?
 
-The name "Forge" is inspired by **Minecraft's mod loader system** — just as Minecraft Forge provides modpacks that integrate various mods for specific gameplay experiences, **Academic Forge** integrates multiple AI coding assistant skills for an academic writing workflow.
+The name "Forge" is inspired by **Minecraft's mod loader system**. In the current version, **Academic Forge** is no longer just a whole-repository install. It acts as a curated registry plus installer flow: browse packs, generate a command, and install only what your project actually needs.
 
-- 🔧 **Integration over Installation** - A curated collection that works well together, not scattered installs
-- 🎯 **Purpose-Built** - Only academic-relevant skills, avoiding the accuracy drop from too many skills
-- 🔄 **Automatic Updates** - Skills stay current via git submodules plus skills-only sync
-- 🤝 **Community-Driven** - Built on the excellent work of multiple skill creators
+- 🔧 **Pick only what you need** - Install selected skill packs instead of cloning an entire bundle into every project
+- 🎯 **Academic-first curation** - Focused on research writing, scientific workflows, visualization, and academic polishing
+- 🧭 **Single source of truth** - The site, generated commands, and install scripts all read from `registry/skills.json`
+- 🤝 **Community-built** - Aggregates excellent work from multiple skill authors and upstream repositories
 
 ## 🚀 Quick Start
 
-### Installation
+### Option 1: Use the configurator site
+
+Open `https://hughyau.github.io/AcademicForge/` and follow this flow:
+
+1. Select the skill packs your project needs
+2. Choose your platform and tool
+3. Copy the generated install command and run it from your project root
+
+### Option 2: Run the installer directly
+
+This is convenient for documentation snippets, scripted installs, and CI workflows.
 
 **macOS/Linux:**
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- \
+  --tool claude \
+  --skills humanizer,superpowers
 ```
 
 **Windows (PowerShell):**
 ```powershell
 cd your-project
-irm https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.ps1 | iex
+$script = Join-Path $PWD 'forge-install.ps1'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.ps1' -OutFile $script
+& $script -Tool claude -Skills 'humanizer,superpowers'
+Remove-Item $script
 ```
-
-**Specify target tool (optional):**
-```bash
-bash install.sh --tool claude     # Install to .claude/skills/
-bash install.sh --tool opencode   # Install to .opencode/skills/
-bash install.sh /custom/path      # Custom path
-```
-
-> Without `--tool`, the script auto-detects: prefers `.claude/` if it exists, otherwise `.opencode/`.
 
 ### Verify Installation
 
 ```bash
-bash scripts/verify.sh       # Check all skills are properly installed
-bash scripts/list-skills.sh  # List all installed skills
+ls .claude/skills/
+ls .opencode/skills/
+ls .codex/skills/
 ```
+
+> The exact verification path depends on `--tool`: `claude -> .claude/skills/`, `opencode -> .opencode/skills/`, `codex -> .codex/skills/`.
 
 ### After Installation
 
@@ -149,9 +158,11 @@ To prevent potential **Prompt Injection attacks** (which might hijack AI behavio
 - **Blacklist Filtering**: Via `scripts/skill-blacklist.txt`, the installation and update scripts automatically remove specific upstream files known to contain malicious prompts, low-quality instructions, or confusing context.
 - **Post-Prompt Sanitization (Clean-AdInsertions)**: After downloading and syncing upstream content, the configuration runs sanitization functions (such as `Clean-AdInsertions`) that use Regex pattern matching to strip out irrelevant third-party platform promotions, sponsor advertisements, and other attached commands. This ensures that the provided context fed to the AI assistant remains safe and pure.
 
-## 🔧 Managing Skills
+## 🔧 Maintaining This Repository
 
-### Update
+This section is mainly for repository maintainers. End users only need the configurator site or the installer scripts above.
+
+### Update upstream sources
 
 ```bash
 ./scripts/update.sh  # or Windows: .\scripts\update.ps1
@@ -161,7 +172,7 @@ To prevent potential **Prompt Injection attacks** (which might hijack AI behavio
 
 ### Configuration
 
-Edit `config.enabled` in `forge.yaml` to enable/disable specific skill packs:
+Repository maintainers can edit `config.enabled` in `forge.yaml` to enable or disable which upstream packs are synced into this repository:
 
 ```yaml
 config:
@@ -187,10 +198,10 @@ A: No. Skills are automatically selected and invoked by the AI assistant based o
 A: No. Skills are reference information for the AI, not runtime overhead. Response speed is unaffected.
 
 **Q: How is this different from installing skills individually?**
-A: Academic Forge curates compatible skill combinations, avoids conflicts, and provides one-click install, automatic updates, and ad sanitization.
+A: Academic Forge solves three separate problems at once: what to install, how to install it, and how to keep the flow consistent across tools. You can compose packs from multiple sources without manually hunting for repositories and install paths one by one.
 
 **Q: How do I uninstall?**
-A: Run `bash scripts/uninstall.sh` (Windows: `.\scripts\uninstall.ps1`), or simply delete the installation directory.
+A: Delete the installed pack directories under your selected tool path, for example `rm -rf .claude/skills/humanizer`, or re-run the configurator with a different selection.
 
 ## 🎓 Use Cases
 
@@ -205,7 +216,10 @@ A: Run `bash scripts/uninstall.sh` (Windows: `.\scripts\uninstall.ps1`), or simp
 
 ```
 academic-forge/
-├── forge.yaml             # Forge metadata and skill enable/disable config
+├── forge.yaml             # Forge metadata and repository maintenance config
+├── registry/
+│   └── skills.json        # Source of truth for the public configurator
+├── site/                  # Astro static configurator site
 ├── skills/
 │   ├── scientific-agent-skills/     (submodule)
 │   ├── AI-research-SKILLs/          (submodule)
@@ -215,13 +229,12 @@ academic-forge/
 │   ├── superpowers/                 (skills-only sync)
 │   └── scientific-visualization/    (local built-in)
 └── scripts/
-    ├── lib.sh / lib.ps1             # Shared functions
-    ├── install.sh/.ps1              # Installation
-    ├── update.sh/.ps1               # Update all skills
+    ├── forge-install.sh/.ps1        # Parameterized end-user installer
+    ├── lib.sh / lib.ps1             # Shared maintenance helpers
+    ├── update.sh/.ps1               # Update all upstream sources
     ├── download-skills.sh/.ps1      # Download/re-sync skills
-    ├── verify.sh/.ps1               # Verify installation
-    ├── list-skills.sh/.ps1          # List installed skills
-    └── uninstall.sh/.ps1            # Uninstall
+    ├── verify.sh/.ps1               # Repository verification helpers
+    └── uninstall.sh/.ps1            # Remove a full cloned repo install
 ```
 
 ## 📄 Documentation

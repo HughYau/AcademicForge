@@ -136,10 +136,10 @@ config:
 
 # Installation instructions
 installation:
-  method: "hybrid-submodule-and-skills-sync"
+  method: "registry-installer"
   commands:
-    - "git clone --recursive https://github.com/HughYau/AcademicForge .opencode/skills/academic-forge"
-    - "# Or update existing: git submodule update --init --recursive && bash scripts/download-skills.sh"
+    - "curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- --tool claude --skills humanizer,superpowers"
+    - "powershell -NoProfile -Command \"$script = Join-Path $PWD 'forge-install.ps1'; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.ps1' -OutFile $script; & $script -Tool claude -Skills 'humanizer,superpowers'; Remove-Item $script\""
 
 # Update instructions
 update:
@@ -154,9 +154,12 @@ compatibility:
   dependencies: []  # List any external dependencies required
   
 notes: |
-  Academic Forge uses git submodules to integrate skills from their original
-  repositories where possible. superpowers is intentionally distributed as a
-  skills-only snapshot (no submodule):
+  registry/skills.json is the source of truth for the public configurator site
+  and the parameterized forge-install scripts.
+
+  Academic Forge still uses git submodules to integrate skills from their
+  original repositories where possible for repository maintenance. superpowers
+  is intentionally distributed as a skills-only snapshot (no submodule):
   - skills/scientific-agent-skills synced from https://github.com/K-Dense-AI/scientific-agent-skills
   - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
   - skills/scientific-visualization is maintained locally in this repository

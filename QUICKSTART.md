@@ -1,81 +1,80 @@
-# ⚡ Academic Forge 快速入门（5 分钟）
+# Academic Forge 快速入门
 
-这份指南帮助你在 **5 分钟内**把 Academic Forge 安装到项目中并开始使用。  
-适用于 Claude Code / OpenCode 场景。
+这份指南帮助你在几分钟内用新的选配式安装流程把 skill pack 装进项目。
 
-## 1) 前置准备（约 1 分钟）
+## 1. 前置准备
 
-请先确认：
+- 已安装 `git`
+- 准备好目标工具：Claude Code、OpenCode 或 Codex
+- 进入一个你希望放置 skills 的项目目录
 
-- 已安装 **Git**（`git` 命令可用）
-- 已安装并可使用 AI 助手环境（Claude Code 或 OpenCode）
-- 你当前位于一个项目目录中（建议新建空目录测试）
+## 2. 选择安装方式
 
-> 不需要手动下载每个 skills 仓库，安装脚本会自动完成。
+### 方式一：使用选配站
 
-## 2) 一键安装（约 2 分钟）
+打开 `https://hughyau.github.io/AcademicForge/`，完成三步：
 
-### macOS / Linux
+1. 勾选想安装的 skill pack
+2. 选择平台和工具
+3. 复制生成的安装命令并执行
+
+### 方式二：直接运行安装脚本
+
+macOS / Linux:
 
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- \
+  --tool claude \
+  --skills humanizer,superpowers
 ```
 
-### Windows（PowerShell）
+Windows PowerShell:
 
 ```powershell
 cd your-project
-irm https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/install.ps1 | iex
+$script = Join-Path $PWD 'forge-install.ps1'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.ps1' -OutFile $script
+& $script -Tool claude -Skills 'humanizer,superpowers'
+Remove-Item $script
 ```
 
-### 可选：指定安装目标
+## 3. 验证安装
 
-- Claude Code：安装到 `.claude/skills/academic-forge`
-- OpenCode：安装到 `.opencode/skills/academic-forge`
-
-示例：
+根据你选择的工具检查目录：
 
 ```bash
-bash install.sh --tool claude
-bash install.sh --tool opencode
-bash install.sh /custom/path
+ls .claude/skills/
+ls .opencode/skills/
+ls .codex/skills/
 ```
 
-> 不指定参数时会自动检测：优先 `.claude/`，否则 `.opencode/`。
-
-## 3) 验证安装（约 1 分钟）
-
-在已安装后的目录中运行：
-
-```bash
-bash scripts/verify.sh
-bash scripts/list-skills.sh
-```
-
-Windows 也可使用：
+Windows 可以改用：
 
 ```powershell
-.\scripts\verify.ps1
-.\scripts\list-skills.ps1
+dir .claude\skills
+dir .opencode\skills
+dir .codex\skills
 ```
 
-如果输出显示所有技能正常，即安装成功。
+如果目录下已经出现你选择的 pack，例如 `humanizer`、`superpowers`，说明安装成功。
 
-## 4) 立刻开始用（约 1 分钟）
+## 4. 立刻开始使用
 
-安装后 **无需手动触发 skills**，直接对话即可，系统会自动匹配调用。
+安装后的 skills 会被工具自动发现，你可以直接开始对话，例如：
 
-你可以先试这些提示词：
+- 帮我把这段摘要润色成更自然的学术英文
+- 分析这份 CSV 并生成投稿级图表
+- 把这段中文摘要改得更自然，保留原意但去掉 AI 味
 
-- 「帮我用 LaTeX 生成一份深度学习论文大纲」
-- 「分析这份 CSV 并生成投稿级图表」
-- 「把这段中文摘要改得更自然，去掉 AI 味，但保留学术表达」
-- 「把这段摘要润色成更学术、自然的英文」
+## 5. 卸载与调整
 
-## 常用后续操作
+- 卸载某个 pack：直接删除对应目录，例如 `.claude/skills/humanizer`
+- 调整组合：重新运行选配站或安装脚本，传入新的 `--skills`
 
-### 更新全部 Skills
+## 6. 维护仓库
+
+如果你是在维护 AcademicForge 仓库本身，而不是安装 skill pack 到项目里，可以继续使用：
 
 ```bash
 ./scripts/update.sh
@@ -86,36 +85,3 @@ Windows：
 ```powershell
 .\scripts\update.ps1
 ```
-
-### 卸载
-
-```bash
-bash scripts/uninstall.sh
-```
-
-Windows：
-
-```powershell
-.\scripts\uninstall.ps1
-```
-
-## 常见问题（超短版）
-
-**Q：为什么我没有看到“手动启用 skill”的步骤？**  
-A：skills 会由 AI 助手根据上下文自动选择，不同AI助手也有指定指定技能的能力。
-
-**Q：装很多 skills 会变慢吗？**  
-A：不会显著影响响应速度；skills 是上下文能力，不是额外运行进程。
-
-**Q：安装到哪里了？**  
-A：默认安装到项目内的 `.claude/skills/academic-forge` 或 `.opencode/skills/academic-forge`。
-
----
-
-如果你是第一次使用，建议接着阅读：
-
-- [README.md](./README.md)（完整说明）
-- [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)（来源与许可证）
-- [forge.yaml](./forge.yaml)（启用/禁用技能包）
-
-祝你写作顺利、实验顺利、投稿顺利。🎓✨

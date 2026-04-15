@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AcademicForge">
+  <rect width="64" height="64" rx="16" fill="#0f172a"></rect>
+  <path d="M14 44 24 18h8l-10 26h-8Zm18 0 10-26h8L40 44h-8Z" fill="#22d3ee"></path>
+  <path d="M20 34h24" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"></path>
+</svg>

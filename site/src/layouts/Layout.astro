@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Browse star-ranked AI skill repositories and generate install commands for Claude Code, OpenCode, or Codex.',
+} = Astro.props;
+
+const faviconHref = `${import.meta.env.BASE_URL}favicon.svg`;
+---
+
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen antialiased">
+    <div class="min-h-screen">
+      <header class="sticky top-0 z-40 border-b border-[#e8e6dc]/90 bg-[rgba(245,244,237,0.9)] backdrop-blur-xl">
+        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-4 sm:px-6">
+          <a href="#home" class="flex min-w-0 items-baseline gap-3 text-[#141413]">
+            <span class="shrink-0 text-lg font-medium tracking-[-0.02em]">AcademicForge</span>
+            <span class="hidden truncate text-sm text-[#87867f] sm:inline">
+              <span class="lang-en">Pick skills, copy commands</span>
+              <span class="lang-zh">选技能，复制命令</span>
+            </span>
+          </a>
+
+          <div class="flex items-center gap-4">
+            <a
+              href="https://github.com/HughYau/AcademicForge"
+              class="hidden text-sm text-[#5e5d59] underline decoration-[#d1cfc5] underline-offset-4 transition hover:text-[#141413] md:inline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+
+            <div class="locale-switch inline-flex items-center rounded-full p-1">
+              <button type="button" class="locale-toggle rounded-full px-3 py-2 text-sm font-medium" data-set-locale="en" aria-pressed="true">
+                EN
+              </button>
+              <button type="button" class="locale-toggle rounded-full px-3 py-2 text-sm font-medium" data-set-locale="zh" aria-pressed="false">
+                中文
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <slot />
+    </div>
+
+    <script>
+      const root = document.documentElement;
+      const localeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-set-locale]'));
+
+      const setLocale = (locale: 'en' | 'zh') => {
+        root.dataset.lang = locale;
+        root.lang = locale === 'zh' ? 'zh-CN' : 'en';
+
+        localeButtons.forEach((button) => {
+          const isActive = button.dataset.setLocale === locale;
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        window.dispatchEvent(new CustomEvent('academicforge:locale-change', {
+          detail: { locale },
+        }));
+      };
+
+      localeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setLocale(button.dataset.setLocale === 'zh' ? 'zh' : 'en');
+        });
+      });
+
+      setLocale(root.dataset.lang === 'zh' ? 'zh' : 'en');
+    </script>
+  </body>
+</html>

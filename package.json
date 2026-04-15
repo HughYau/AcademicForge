@@ -1,0 +1,11 @@
+{
+  "name": "academicforge",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "npm --prefix site run dev --",
+    "build": "npm --prefix site run build --",
+    "preview": "npm --prefix site run preview --",
+    "site:install": "npm --prefix site install"
+  }
+}
