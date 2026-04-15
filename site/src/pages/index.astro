@@ -18,8 +18,8 @@ const totalSkillCount = skills.reduce((sum, skill) => sum + skill.skill_count, 0
   title="AcademicForge | Star-ranked AI skill library"
   description="Browse star-ranked AI skill repositories and generate install commands for Claude Code, OpenCode, or Codex."
 >
-  <main id="home" class="mx-auto max-w-[1440px] px-4 py-4 sm:px-6 sm:py-5 lg:h-[calc(100svh-73px)] lg:overflow-hidden lg:py-6">
-    <section class="grid gap-4 lg:h-full lg:grid-cols-[minmax(0,1.18fr)_420px] xl:grid-cols-[minmax(0,1.22fr)_460px]">
+  <main id="home" class="mx-auto max-w-[1680px] px-4 py-4 sm:px-6 sm:py-5 lg:h-[calc(100svh-73px)] lg:overflow-hidden lg:py-6">
+    <section class="grid gap-4 lg:h-full lg:grid-cols-[minmax(0,1.42fr)_390px] xl:grid-cols-[minmax(0,1.55fr)_405px]">
       <SkillGrid skills={skills} repositoryCount={repositoryCount} totalSkillCount={totalSkillCount} />
       <Configurator />
     </section>

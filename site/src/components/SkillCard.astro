@@ -43,7 +43,7 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
 <article
   class:list={[
     'skill-card rounded-[18px] border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]',
-    compact ? 'skill-card--compact px-3 py-2' : 'px-3.5 py-3',
+    compact ? 'skill-card--compact px-3.5 py-3' : 'px-4 py-3.5',
   ]}
   data-skill-id={id}
   data-search={searchText}
@@ -68,7 +68,10 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
     <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-2" data-detail-toggle>
       <div class="min-w-0 flex-1">
         <div class="flex min-w-0 items-center gap-1.5">
-          <h3 id={titleId} class:list={[compact ? 'text-[1rem]' : 'text-[1.08rem]', 'truncate leading-[1.2] text-[#141413]']}>
+          <h3 id={titleId} class:list={[
+            compact ? 'text-[1.02rem]' : 'text-[1.12rem]',
+            'skill-card__title leading-[1.24] text-[#141413]',
+          ]}>
             {name}
           </h3>
           {compact && sourceLabel && <span class="skill-card__origin">{sourceLabel}</span>}

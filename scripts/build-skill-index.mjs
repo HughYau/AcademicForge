@@ -142,9 +142,10 @@ for (const collection of collections) {
 
     seenIds.add(id);
 
+    const hasExplicitSubdiscipline = Object.prototype.hasOwnProperty.call(classificationEntry, 'subdiscipline');
     const fallbackSubdiscipline = classificationEntry.category === 'research'
-      ? (classificationEntry.subdiscipline ?? 'other')
-      : undefined;
+      ? (hasExplicitSubdiscipline ? classificationEntry.subdiscipline : 'other')
+      : classificationEntry.subdiscipline;
 
     return {
       id,

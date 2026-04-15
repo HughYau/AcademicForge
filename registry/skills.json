@@ -620,7 +620,6 @@
           },
           "sparse_path": "scientific-skills/exploratory-data-analysis",
           "category": "research",
-          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -898,7 +897,6 @@
           },
           "sparse_path": "scientific-skills/hypothesis-generation",
           "category": "research",
-          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -1583,7 +1581,6 @@
           },
           "sparse_path": "scientific-skills/polars",
           "category": "research",
-          "subdiscipline": "other",
           "license": "https://github.com/pola-rs/polars/blob/main/LICENSE",
           "install": {
             "method": "sparse-checkout",
@@ -1901,7 +1898,6 @@
           },
           "sparse_path": "scientific-skills/pytorch-lightning",
           "category": "research",
-          "subdiscipline": "other",
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -2019,7 +2015,6 @@
           },
           "sparse_path": "scientific-skills/research-lookup",
           "category": "research",
-          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2098,7 +2093,6 @@
           },
           "sparse_path": "scientific-skills/scientific-brainstorming",
           "category": "research",
-          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2118,7 +2112,6 @@
           },
           "sparse_path": "scientific-skills/scientific-critical-thinking",
           "category": "research",
-          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2234,7 +2227,6 @@
           },
           "sparse_path": "scientific-skills/scikit-learn",
           "category": "research",
-          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2333,7 +2325,6 @@
           },
           "sparse_path": "scientific-skills/shap",
           "category": "research",
-          "subdiscipline": "other",
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2531,7 +2522,6 @@
           },
           "sparse_path": "scientific-skills/transformers",
           "category": "research",
-          "subdiscipline": "other",
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -2571,7 +2561,6 @@
           },
           "sparse_path": "scientific-skills/umap-learn",
           "category": "research",
-          "subdiscipline": "other",
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2762,7 +2751,6 @@
           },
           "sparse_path": "0-autoresearch-skill",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Autonomous Research",
             "Two-Loop Architecture",
@@ -2936,7 +2924,6 @@
           },
           "sparse_path": "02-tokenization/huggingface-tokenizers",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Tokenization",
             "HuggingFace",
@@ -2966,7 +2953,6 @@
           },
           "sparse_path": "02-tokenization/sentencepiece",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Tokenization",
             "SentencePiece",
@@ -3061,7 +3047,6 @@
           },
           "sparse_path": "03-fine-tuning/peft",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Fine-Tuning",
             "PEFT",
@@ -3624,7 +3609,6 @@
           },
           "sparse_path": "08-distributed-training/accelerate",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Distributed Training",
             "HuggingFace",
@@ -3654,7 +3638,6 @@
           },
           "sparse_path": "08-distributed-training/deepspeed",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "DeepSpeed",
             "Distributed Training",
@@ -3773,7 +3756,6 @@
           },
           "sparse_path": "08-distributed-training/ray-train",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Ray Train",
             "Distributed Training",
@@ -4652,7 +4634,6 @@
           },
           "sparse_path": "15-rag/sentence-transformers",
           "category": "research",
-          "subdiscipline": "other",
           "tags": [
             "Sentence Transformers",
             "Embeddings",
