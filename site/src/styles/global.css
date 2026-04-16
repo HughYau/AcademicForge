@@ -446,6 +446,50 @@ details[open] > .details-summary .chevron-icon,
   line-height: 1.5;
 }
 
+.selected-items--bounded {
+  max-height: clamp(3.75rem, 16svh, 8.5rem);
+  overflow-y: auto;
+  align-content: flex-start;
+  padding-right: 0.28rem;
+  scrollbar-gutter: stable;
+}
+
+.codeblock-pre--bounded {
+  max-height: clamp(7rem, 24svh, 12rem);
+  overflow: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
+}
+
+.selected-items--bounded,
+.codeblock-pre--bounded {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(135, 134, 127, 0.56) rgba(240, 238, 230, 0.72);
+}
+
+.selected-items--bounded::-webkit-scrollbar,
+.codeblock-pre--bounded::-webkit-scrollbar {
+  width: 0.56rem;
+  height: 0.56rem;
+}
+
+.selected-items--bounded::-webkit-scrollbar-track,
+.codeblock-pre--bounded::-webkit-scrollbar-track {
+  background: rgba(240, 238, 230, 0.72);
+  border-radius: 999px;
+}
+
+.selected-items--bounded::-webkit-scrollbar-thumb,
+.codeblock-pre--bounded::-webkit-scrollbar-thumb {
+  background: rgba(135, 134, 127, 0.56);
+  border-radius: 999px;
+}
+
+.selected-items--bounded::-webkit-scrollbar-thumb:hover,
+.codeblock-pre--bounded::-webkit-scrollbar-thumb:hover {
+  background: rgba(94, 93, 89, 0.72);
+}
+
 .selected-item {
   display: inline-flex;
   align-items: center;

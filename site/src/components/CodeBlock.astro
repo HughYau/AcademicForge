@@ -3,16 +3,20 @@ interface Props {
   code: string;
   lang?: string;
   id?: string;
+  rootClass?: string;
+  preClass?: string;
 }
 
 const {
   code,
   lang = 'bash',
   id = `code-block-${Math.random().toString(36).slice(2, 9)}`,
+  rootClass = '',
+  preClass = '',
 } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-[20px] border border-[#30302e] bg-[#141413] shadow-[0_0_0_1px_#30302e]">
+<div class:list={['overflow-hidden rounded-[20px] border border-[#30302e] bg-[#141413] shadow-[0_0_0_1px_#30302e]', rootClass]}>
   <div class="flex items-center justify-between border-b border-[#30302e] px-4 py-3">
     <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#b0aea5]" data-code-lang={id}>
       {lang}
@@ -29,7 +33,7 @@ const {
       Copy
     </button>
   </div>
-  <pre class="overflow-hidden whitespace-pre-wrap break-words p-4 text-sm leading-7 text-[#faf9f5]"><code id={id}>{code}</code></pre>
+  <pre class:list={['overflow-hidden whitespace-pre-wrap break-words p-4 text-sm leading-7 text-[#faf9f5]', preClass]}><code id={id}>{code}</code></pre>
 </div>
 
 <script>

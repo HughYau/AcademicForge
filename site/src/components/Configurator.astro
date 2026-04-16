@@ -121,7 +121,7 @@ import CodeBlock from './CodeBlock.astro';
         <strong id="selected-total" class="text-[#c96442]">0</strong>
       </span>
     </div>
-    <div id="selected-list" class="selected-items mt-2 text-sm text-[#87867f]">No repositories selected.</div>
+    <div id="selected-list" class="selected-items selected-items--bounded mt-2 text-sm text-[#87867f]">No repositories selected.</div>
   </div>
 
   <div class="mt-4 space-y-2">
@@ -132,7 +132,12 @@ import CodeBlock from './CodeBlock.astro';
       </p>
       <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">Install command stays visible here.</p>
     </div>
-    <CodeBlock id="builder-step2-code" code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>" lang="bash" />
+    <CodeBlock
+      id="builder-step2-code"
+      code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>"
+      lang="bash"
+      preClass="codeblock-pre--bounded"
+    />
   </div>
 
   <details class="advanced mt-4 rounded-[20px] border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]">
