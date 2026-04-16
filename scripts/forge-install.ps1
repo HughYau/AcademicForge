@@ -2,25 +2,30 @@ param(
     [string]$Tool = "",
     [string]$Skills = "",
     [string]$Path = "",
+    [Alias('Registry')]
+    [string]$RegistrySourcePath = "",
     [switch]$Help
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$RegistryUrl = if ($env:FORGE_REGISTRY_URL) {
+$RegistrySource = if ($RegistrySourcePath) {
+    $RegistrySourcePath
+} elseif ($env:FORGE_REGISTRY_URL) {
     $env:FORGE_REGISTRY_URL
 } else {
-    "https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/registry/skills.json"
+    "https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/registry/skills.json"
 }
 
 function Show-Usage {
-    Write-Host "Usage: .\forge-install.ps1 -Tool <claude|opencode|codex> -Skills <id1,id2,...> [-Path <dir>]"
+    Write-Host "Usage: .\forge-install.ps1 -Tool <claude|opencode|codex> -Skills <id1,id2,...> [-Path <dir>] [-Registry <path-or-url>]"
     Write-Host ""
     Write-Host "Options:"
     Write-Host "  -Tool     Target tool: claude, opencode, or codex"
     Write-Host "  -Skills   Comma-separated skill IDs from the registry"
     Write-Host "  -Path     Custom install path (overrides -Tool default)"
+    Write-Host "  -Registry Registry JSON file path or URL"
     Write-Host "  -Help     Show this help"
 }
 
@@ -30,7 +35,19 @@ function Get-SkillRecord {
         [Parameter(Mandatory = $true)][string]$SkillId
     )
 
-    foreach ($skill in $Registry.skills) {
+    if ($Registry -is [string]) {
+        $Registry = $Registry | ConvertFrom-Json
+    } elseif ($Registry -is [System.Array] -and $Registry.Count -gt 0 -and $Registry[0] -is [string]) {
+        $Registry = ($Registry -join "`n") | ConvertFrom-Json
+    }
+
+    $skills = if ($Registry.PSObject.Properties.Name -contains 'skills') {
+        @($Registry.skills)
+    } else {
+        @($Registry)
+    }
+
+    foreach ($skill in $skills) {
         if ($skill.id -eq $SkillId) {
             return $skill
         }
@@ -91,6 +108,29 @@ function Invoke-CleanAds {
     }
 }
 
+function Invoke-GitCheckoutRef {
+    param(
+        [Parameter(Mandatory = $true)][string]$RepositoryPath,
+        [string]$Ref = ""
+    )
+
+    if (-not $Ref) {
+        return $true
+    }
+
+    $checkoutExitCode = Invoke-GitQuiet -C $RepositoryPath checkout --detach $Ref
+    if ($checkoutExitCode -eq 0) {
+        return $true
+    }
+
+    $fetchExitCode = Invoke-GitQuiet -C $RepositoryPath fetch --depth 1 origin $Ref
+    if ($fetchExitCode -ne 0) {
+        return $false
+    }
+
+    return (Invoke-GitQuiet -C $RepositoryPath checkout --detach FETCH_HEAD) -eq 0
+}
+
 if ($Help) {
     Show-Usage
     exit 0
@@ -135,8 +175,12 @@ Write-Host ""
 $registryFile = [System.IO.Path]::GetTempFileName()
 
 try {
-    Write-Host "Downloading skill registry..." -ForegroundColor Blue
-    Invoke-WebRequest -Uri $RegistryUrl -OutFile $registryFile
+    Write-Host "Loading skill registry..." -ForegroundColor Blue
+    if (Test-Path -LiteralPath $RegistrySource) {
+        Copy-Item -LiteralPath $RegistrySource -Destination $registryFile -Force
+    } else {
+        Invoke-WebRequest -Uri $RegistrySource -OutFile $registryFile
+    }
     $registry = Get-Content -LiteralPath $registryFile -Raw -Encoding UTF8 | ConvertFrom-Json
     Write-Host "Registry loaded." -ForegroundColor Green
     Write-Host ""
@@ -169,9 +213,15 @@ try {
         try {
             switch ($skill.install.method) {
                 "git-clone" {
-                    $exitCode = Invoke-GitQuiet clone --depth 1 $skill.install.url $target
+                    $gitArgs = @('clone', '--depth', '1')
+                    $gitArgs += @($skill.install.url, $target)
+                    $exitCode = Invoke-GitQuiet @gitArgs
                     if ($exitCode -ne 0) {
                         throw "Failed to clone $($skill.install.url)"
+                    }
+
+                    if (-not (Invoke-GitCheckoutRef -RepositoryPath $target -Ref $skill.install.ref)) {
+                        throw "Failed to checkout ref $($skill.install.ref)"
                     }
 
                     $gitDir = Join-Path $target ".git"
@@ -192,9 +242,15 @@ try {
 
                     $tmpDir = Join-Path ([System.IO.Path]::GetTempPath()) ("forge-" + $skillId + "-" + [System.Guid]::NewGuid().ToString("N"))
                     try {
-                        $cloneExitCode = Invoke-GitQuiet clone --depth 1 --filter=blob:none --sparse $skill.install.url $tmpDir
+                        $cloneArgs = @('clone', '--depth', '1', '--filter=blob:none', '--sparse')
+                        $cloneArgs += @($skill.install.url, $tmpDir)
+                        $cloneExitCode = Invoke-GitQuiet @cloneArgs
                         if ($cloneExitCode -ne 0) {
                             throw "Failed to sparse-checkout $($skill.install.url)"
+                        }
+
+                        if (-not (Invoke-GitCheckoutRef -RepositoryPath $tmpDir -Ref $skill.install.ref)) {
+                            throw "Failed to checkout ref $($skill.install.ref)"
                         }
 
                         $sparseExitCode = Invoke-GitQuiet -C $tmpDir sparse-checkout set $skill.install.sparse_path

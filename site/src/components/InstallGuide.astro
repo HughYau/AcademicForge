@@ -65,6 +65,14 @@ import CodeBlock from './CodeBlock.astro';
 </div>
 
 <script>
+  import {
+    SCRIPT_BASE,
+    TOOL_PATHS,
+    buildInstallCommand,
+    buildVerifyCommand,
+    getToolPath,
+  } from '../lib/install-command.mjs';
+
   const overlay = document.getElementById('install-guide-overlay');
   const closeButton = document.getElementById('guide-close');
 
@@ -75,12 +83,6 @@ import CodeBlock from './CodeBlock.astro';
   const toolNote = document.getElementById('guide-tool-note');
   const launchNote = document.getElementById('guide-launch-note');
 
-  const scriptBase = 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts';
-  const toolPaths: Record<string, { linux: string; windows: string }> = {
-    claude: { linux: '.claude/skills', windows: '.claude\\skills' },
-    opencode: { linux: '.opencode/skills', windows: '.opencode\\skills' },
-    codex: { linux: '.codex/skills', windows: '.codex\\skills' },
-  };
   const toolLabels: Record<string, string> = {
     claude: 'Claude Code',
     opencode: 'OpenCode',
@@ -132,25 +134,17 @@ import CodeBlock from './CodeBlock.astro';
     const { skills, platform, tool } = currentGuide;
     const locale = getLocale();
     const isWindows = platform === 'windows';
-    const toolPath = toolPaths[tool] ?? toolPaths.claude;
-    const skillPath = isWindows ? toolPath.windows : toolPath.linux;
+    const skillPath = getToolPath({ platform, tool });
     const skillList = skills.join(',');
     const toolLabel = toolLabels[tool] ?? tool;
 
     const cdCommand = isWindows ? 'cd C:\\path\\to\\your-project' : 'cd /path/to/your-project';
-    const installCommand = isWindows
-      ? [
-          `$script = Join-Path $PWD 'forge-install.ps1'`,
-          `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
-          `& $script -Tool ${tool} -Skills '${skillList}'`,
-          `Remove-Item $script`,
-        ].join('\n')
-      : [
-          `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- \\`,
-          `  --tool ${tool} \\`,
-          `  --skills ${skillList}`,
-        ].join('\n');
-    const verifyCommand = isWindows ? `dir ${skillPath}` : `ls ${skillPath}/`;
+    const installCommand = buildInstallCommand({
+      platform,
+      tool,
+      skillIds: skills,
+    });
+    const verifyCommand = buildVerifyCommand({ platform, tool });
 
     if (step1Copy) {
       step1Copy.textContent = isWindows ? translations[locale].step1Windows : translations[locale].step1Unix;

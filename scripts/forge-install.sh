@@ -12,17 +12,18 @@ NC='\033[0m'
 TOOL=""
 SKILLS=""
 INSTALL_PATH=""
-REGISTRY_URL="${FORGE_REGISTRY_URL:-https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/registry/skills.json}"
+REGISTRY_SOURCE="${FORGE_REGISTRY_URL:-https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/registry/skills.json}"
 REGISTRY_FILE=""
 
 usage() {
   cat <<'EOF'
-Usage: forge-install.sh --tool <claude|opencode|codex> --skills <id1,id2,...> [--path <dir>]
+Usage: forge-install.sh --tool <claude|opencode|codex> --skills <id1,id2,...> [--path <dir>] [--registry <path-or-url>]
 
 Options:
   --tool     Target tool: claude, opencode, or codex
   --skills   Comma-separated skill IDs from the registry
   --path     Custom install path (overrides --tool default)
+  --registry Registry JSON file path or URL
   --help     Show this help
 EOF
 }
@@ -59,6 +60,14 @@ while [[ $# -gt 0 ]]; do
         exit 1
       }
       INSTALL_PATH="$2"
+      shift 2
+      ;;
+    --registry)
+      [[ $# -ge 2 ]] || {
+        echo -e "${RED}Error: --registry requires a value${NC}"
+        exit 1
+      }
+      REGISTRY_SOURCE="$2"
       shift 2
       ;;
     --help|-h)
@@ -116,11 +125,22 @@ echo ""
 
 REGISTRY_FILE="$(mktemp "${TMPDIR:-/tmp}/forge-registry.XXXXXX.json")"
 
-echo -e "${BLUE}Downloading skill registry...${NC}"
-if ! curl -fsSL "$REGISTRY_URL" -o "$REGISTRY_FILE"; then
-  echo -e "${RED}Error: failed to download registry from $REGISTRY_URL${NC}"
-  exit 1
-fi
+echo -e "${BLUE}Loading skill registry...${NC}"
+case "$REGISTRY_SOURCE" in
+  http://*|https://*)
+    if ! curl -fsSL "$REGISTRY_SOURCE" -o "$REGISTRY_FILE"; then
+      echo -e "${RED}Error: failed to download registry from $REGISTRY_SOURCE${NC}"
+      exit 1
+    fi
+    ;;
+  *)
+    if [[ ! -f "$REGISTRY_SOURCE" ]]; then
+      echo -e "${RED}Error: registry file '$REGISTRY_SOURCE' does not exist${NC}"
+      exit 1
+    fi
+    cp "$REGISTRY_SOURCE" "$REGISTRY_FILE"
+    ;;
+esac
 echo -e "${GREEN}Registry loaded.${NC}"
 echo ""
 
@@ -218,6 +238,7 @@ for raw_id in "${SKILL_IDS[@]}"; do
 
   METHOD="$(json_extract "$sid" "install.method" 2>/dev/null || true)"
   URL="$(json_extract "$sid" "install.url" 2>/dev/null || true)"
+  REF="$(json_extract "$sid" "install.ref" 2>/dev/null || true)"
 
   if [[ -z "$METHOD" || -z "$URL" ]]; then
     echo -e "${RED}  Skill '$sid' not found in registry. Skipping.${NC}"
@@ -230,7 +251,11 @@ for raw_id in "${SKILL_IDS[@]}"; do
 
   case "$METHOD" in
     git-clone)
-      if git clone --depth 1 "$URL" "$TARGET" >/dev/null 2>&1; then
+      clone_args=(clone --depth 1)
+      [[ -n "$REF" ]] && clone_args+=(--branch "$REF")
+      clone_args+=("$URL" "$TARGET")
+
+      if git "${clone_args[@]}" >/dev/null 2>&1; then
         rm -rf "$TARGET/.git"
         echo -e "${GREEN}  Cloned successfully.${NC}"
       else
@@ -248,7 +273,11 @@ for raw_id in "${SKILL_IDS[@]}"; do
       fi
 
       TMPDIR="$(mktemp -d "${TMPDIR:-/tmp}/forge-${sid}.XXXXXX")"
-      if git clone --depth 1 --filter=blob:none --sparse "$URL" "$TMPDIR" >/dev/null 2>&1; then
+      clone_args=(clone --depth 1 --filter=blob:none --sparse)
+      [[ -n "$REF" ]] && clone_args+=(--branch "$REF")
+      clone_args+=("$URL" "$TMPDIR")
+
+      if git "${clone_args[@]}" >/dev/null 2>&1; then
         if ! git -C "$TMPDIR" sparse-checkout set "$SPARSE_PATH" >/dev/null 2>&1; then
           rm -rf "$TMPDIR"
           echo -e "${RED}  Failed to set sparse-checkout path $SPARSE_PATH${NC}"

@@ -132,7 +132,7 @@ import CodeBlock from './CodeBlock.astro';
       </p>
       <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">Install command stays visible here.</p>
     </div>
-    <CodeBlock id="builder-step2-code" code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>" lang="bash" />
+    <CodeBlock id="builder-step2-code" code="curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>" lang="bash" />
   </div>
 
   <details class="advanced mt-4 rounded-[20px] border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]">
@@ -176,6 +176,13 @@ import CodeBlock from './CodeBlock.astro';
 </section>
 
 <script>
+  import {
+    SCRIPT_BASE,
+    buildInstallCommand,
+    buildVerifyCommand,
+    getToolPath,
+  } from '../lib/install-command.mjs';
+
   const installCommandCopy = document.getElementById('install-command-copy');
   const selectedCount = document.getElementById('selected-count');
   const selectedTotal = document.getElementById('selected-total');
@@ -186,12 +193,6 @@ import CodeBlock from './CodeBlock.astro';
   const toolNote = document.getElementById('install-tool-note');
   const disclosureRoots = Array.from(document.querySelectorAll<HTMLElement>('[data-disclosure]'));
 
-  const scriptBase = 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts';
-  const toolPaths: Record<string, { linux: string; windows: string }> = {
-    claude: { linux: '.claude/skills', windows: '.claude\\skills' },
-    opencode: { linux: '.opencode/skills', windows: '.opencode\\skills' },
-    codex: { linux: '.codex/skills', windows: '.codex\\skills' },
-  };
   const toolLabels: Record<string, string> = {
     claude: 'Claude Code',
     opencode: 'OpenCode',
@@ -202,10 +203,10 @@ import CodeBlock from './CodeBlock.astro';
     en: {
       empty: 'No repositories selected.',
       commandHint: 'Install command stays visible here.',
-      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>`,
+      commandEmptyLinux: `curl -sSL ${SCRIPT_BASE}/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>`,
       commandEmptyWindows: [
         `$script = Join-Path $PWD 'forge-install.ps1'`,
-        `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
+        `Invoke-WebRequest -Uri '${SCRIPT_BASE}/forge-install.ps1' -OutFile $script`,
         `& $script -Tool claude -Skills '<pick-repositories>'`,
         `Remove-Item $script`,
       ].join('\n'),
@@ -215,10 +216,10 @@ import CodeBlock from './CodeBlock.astro';
     zh: {
       empty: '尚未选择。',
       commandHint: '安装命令将在此同步显示。',
-      commandEmptyLinux: `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- --tool claude --skills <选择仓库>`,
+      commandEmptyLinux: `curl -sSL ${SCRIPT_BASE}/forge-install.sh | bash -s -- --tool claude --skills <选择仓库>`,
       commandEmptyWindows: [
         `$script = Join-Path $PWD 'forge-install.ps1'`,
-        `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
+        `Invoke-WebRequest -Uri '${SCRIPT_BASE}/forge-install.ps1' -OutFile $script`,
         `& $script -Tool claude -Skills '<选择仓库>'`,
         `Remove-Item $script`,
       ].join('\n'),
@@ -398,27 +399,19 @@ import CodeBlock from './CodeBlock.astro';
     const tool = toolSelect?.value ?? 'claude';
     const platform = platformSelect?.value ?? 'linux';
     const isWindows = platform === 'windows';
-    const toolPath = toolPaths[tool] ?? toolPaths.claude;
-    const skillPath = isWindows ? toolPath.windows : toolPath.linux;
+    const skillPath = getToolPath({ platform, tool });
     const toolLabel = toolLabels[tool] ?? tool;
-    const skillList = selected.map((checkbox) => checkbox.dataset.skillId ?? '').filter(Boolean).join(',');
+    const skillIds = selected.map((checkbox) => checkbox.dataset.skillId ?? '').filter(Boolean);
     const codeLang = isWindows ? 'powershell' : 'bash';
     const cdCommand = isWindows ? 'cd C:\\path\\to\\your-project' : 'cd /path/to/your-project';
     const installCommand = selected.length === 0
       ? (isWindows ? translations[locale].commandEmptyWindows : translations[locale].commandEmptyLinux)
-      : isWindows
-        ? [
-            `$script = Join-Path $PWD 'forge-install.ps1'`,
-            `Invoke-WebRequest -Uri '${scriptBase}/forge-install.ps1' -OutFile $script`,
-            `& $script -Tool ${tool} -Skills '${skillList}'`,
-            `Remove-Item $script`,
-          ].join('\n')
-        : [
-            `curl -sSL ${scriptBase}/forge-install.sh | bash -s -- \\`,
-            `  --tool ${tool} \\`,
-            `  --skills ${skillList}`,
-          ].join('\n');
-    const verifyCommand = isWindows ? `dir ${skillPath}` : `ls ${skillPath}/`;
+      : buildInstallCommand({
+          platform,
+          tool,
+          skillIds,
+        });
+    const verifyCommand = buildVerifyCommand({ platform, tool });
 
     setCodeBlock('builder-step1-code', cdCommand, codeLang);
     setCodeBlock('builder-step2-code', installCommand, codeLang);

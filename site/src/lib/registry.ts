@@ -8,6 +8,7 @@ export interface LocalizedText {
 export interface InstallRecord {
   method: string;
   url: string;
+  ref?: string;
   sparse_path?: string;
 }
 
