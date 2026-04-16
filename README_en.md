@@ -9,6 +9,12 @@
 
 </div>
 
+> [!WARNING] 
+> 📢 **MAJOR UPDATE & ARCHITECTURE SHIFT (2026-04-16)**
+> 
+> Academic Forge has undergone a major architectural upgrade! We strongly recommend using the **all-new [web-based Site-First Installer](https://hughyau.github.io/AcademicForge/)** to manage your Skills.
+
+
 ## 📖 What is a Forge?
 
 The name "Forge" is inspired by **Minecraft's mod loader system** — just as Minecraft Forge provides modpacks that integrate various mods for specific gameplay experiences, **Academic Forge** integrates multiple AI coding assistant skills for an academic writing workflow.
@@ -19,6 +25,21 @@ The name "Forge" is inspired by **Minecraft's mod loader system** — just as Mi
 - 🤝 **Community-Driven** - Built on the excellent work of multiple skill creators
 
 ## 🚀 Quick Start
+
+### 🌐 Using the New Site-First Installer (Highly Recommended)
+
+We have deployed an on-demand installer platform for the new framework (`site-first` branch). You **no longer need to pull massive source code or Submodules** into your project:
+
+1. Open [https://hughyau.github.io/AcademicForge/](https://hughyau.github.io/AcademicForge/)
+2. Uncheck the skill packs you DO NOT need, keeping those you do. Choose your environment tool.
+3. Click generate one-click install command.
+4. Paste the command into your local project's root folder!
+
+---
+
+### 📦 Legacy Full Installation (Submodules-based, Not Recommended)
+
+> ⚠️ Note: The installation method below is based on the deprecated legacy `master` branch. **It might be entirely removed in future releases.**
 
 ### Installation
 

@@ -11,6 +11,13 @@
 
 </div>
 
+> [!WARNING] 
+> 📢 **重大更新与架构调整公告 (2026-04-16)**
+> 
+> Academic Forge 已经进行重大升级！我们强烈**推荐优先使用全新的[基于网页的在线选配站 (Web Version)](https://hughyau.github.io/AcademicForge/)**来安装和管理你的 Skills。
+> 
+
+
 ## 📖 什么是 Forge（熔炉）？
 
 "Forge" 灵感来自 **Minecraft 的模组加载器系统**——就像 Minecraft Forge 整合包为特定游戏体验集成各种模组一样，**Academic Forge** 为学术写作工作流程整合多个 AI 编程助手技能。
@@ -22,15 +29,20 @@
 
 ## 🚀 快速开始
 
-### 使用选配站（推荐）
+### 🌐 使用全新选配站（强烈推荐！更轻量）
 
-打开 `https://hughyau.github.io/AcademicForge/`，按下面三步完成安装：
+我们已 部署了在线按需安装平台。在你的项目里 **不再需要拉取大量仓库源码和 Submodules 实体**：
 
-1. 勾选你当前项目需要的 skill pack
-2. 选择平台和工具（Claude Code / OpenCode / Codex）
-3. 复制生成的安装命令，在项目根目录执行
+1. 打开 [https://hughyau.github.io/AcademicForge/](https://hughyau.github.io/AcademicForge/)
+2. 在网页上简单勾选你当前项目需要的 skill pack 与你的平台（Claude Code / OpenCode / Codex）
+3. 单击生成一键安装命令
+4. 在你自己的项目根目录执行复制的命令即可完成！
 
-### 安装
+---
+
+### 📦 传统全量安装（基于 Submodules，不推荐）
+
+> ⚠️ 注意：以下安装方式基于当前这个遗留分支（Legacy `master`）维护，**后续可能会被移除**。
 
 **macOS/Linux:**
 ```bash
