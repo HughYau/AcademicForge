@@ -72,11 +72,11 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
 <section id="library" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
   <div class="flex flex-col gap-3 border-b border-[#e8e6dc] pb-4 lg:flex-row lg:items-end lg:justify-between">
     <div class="space-y-2">
-      <p class="text-[11px] uppercase tracking-[0.24em] text-[#c96442]">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c96442]">
         <span class="lang-en">Repositories</span>
         <span class="lang-zh">仓库目录</span>
       </p>
-      <h1 class="text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.4rem] lg:text-[2.8rem]">
+      <h1 class="font-slab text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.4rem] lg:text-[2.8rem]">
         <span class="lang-en">Pick what you need.</span>
         <span class="lang-zh">按需勾选。</span>
       </h1>
@@ -151,7 +151,7 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
                 data-user-open="false"
               >
                 <summary class="details-summary px-3.5 py-2.5">
-                  <p class="text-sm font-medium text-[#141413]">
+                  <p class="font-slab text-sm font-medium text-[#141413]">
                     <span aria-hidden="true">{SUBDISCIPLINE_LABELS[subdiscipline].icon}</span>
                     <span class="ml-2 lang-en">{SUBDISCIPLINE_LABELS[subdiscipline].en}</span>
                     <span class="ml-2 lang-zh">{SUBDISCIPLINE_LABELS[subdiscipline].zh}</span>
@@ -166,7 +166,7 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
                 </summary>
 
                 <div class="details-body">
-                  <div class="details-body__inner border-t border-[#f0eee6] p-3 bg-white sm:p-4">
+                  <div class="details-body__inner border-t border-[#f0eee6] bg-white p-3 sm:p-4">
                     <div class="skill-card-grid skill-card-grid--dense">
                       {researchSubSkillsBySubdiscipline[subdiscipline].map((skill, index) => (
                         <SkillCard {...skill} compact rank={index + 1} />

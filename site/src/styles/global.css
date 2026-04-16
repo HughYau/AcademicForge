@@ -16,7 +16,7 @@
   --af-oxford: #002147;
   --af-forgegold: #ffb300;
 
-  --af-font-serif: "Fraunces", "Noto Serif SC", Georgia, "Songti SC", "STSong", serif;
+  --af-font-serif: "Roboto Slab", "Noto Serif SC", Georgia, "Songti SC", "STSong", serif;
   --af-font-slab: "Roboto Slab", "Noto Serif SC", Georgia, "Songti SC", "STSong", serif;
   --af-font-cjk: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
   --af-font-sans: "Inter", -apple-system, "PingFang SC", "Microsoft YaHei", BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -90,14 +90,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--af-font-serif);
-  font-weight: 500;
+  font-family: var(--af-font-slab);
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: normal;
 }
 
 h1 {
   line-height: 1.1;
+}
+
+.lang-zh {
+  font-family: var(--af-font-cjk);
 }
 
 code,
