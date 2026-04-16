@@ -13,8 +13,12 @@
   --af-focus: #3898ec;
   --af-sand: #e8e6dc;
   --af-ring: #d1cfc5;
+  --af-oxford: #002147;
+  --af-forgegold: #ffb300;
 
   --af-font-serif: "Fraunces", "Noto Serif SC", Georgia, "Songti SC", "STSong", serif;
+  --af-font-slab: "Roboto Slab", "Noto Serif SC", Georgia, "Songti SC", "STSong", serif;
+  --af-font-cjk: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
   --af-font-sans: "Inter", -apple-system, "PingFang SC", "Microsoft YaHei", BlinkMacSystemFont, "Segoe UI", sans-serif;
   --af-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 
@@ -34,6 +38,30 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+.font-slab {
+  font-family: var(--af-font-slab);
+}
+
+.font-cjk {
+  font-family: var(--af-font-cjk);
+}
+
+.text-oxford {
+  color: var(--af-oxford);
+}
+
+.text-forgegold {
+  color: var(--af-forgegold);
+}
+
+.bg-oxford {
+  background-color: var(--af-oxford);
+}
+
+.bg-forgegold {
+  background-color: var(--af-forgegold);
 }
 
 html[data-lang='en'] .lang-zh {

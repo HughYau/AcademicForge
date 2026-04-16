@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ForgeLogo from '../components/ForgeLogo.astro';
 
 interface Props {
   title: string;
@@ -13,6 +14,9 @@ const {
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const faviconHref = `${baseUrl}favicon.svg`;
+const githubRepo = 'HughYau/AcademicForge';
+const githubUrl = `https://github.com/${githubRepo}`;
+const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style=social`;
 ---
 
 <!doctype html>
@@ -24,8 +28,8 @@ const faviconHref = `${baseUrl}favicon.svg`;
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;700&display=swap" />
     <link rel="icon" type="image/svg+xml" href={faviconHref} />
     <title>{title}</title>
   </head>
@@ -33,22 +37,32 @@ const faviconHref = `${baseUrl}favicon.svg`;
     <div class="min-h-screen">
       <header class="sticky top-0 z-40 border-b border-[#e8e6dc]/90 bg-[rgba(245,244,237,0.9)] backdrop-blur-xl">
         <div class="mx-auto flex max-w-[1680px] items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <a href="#home" class="flex min-w-0 items-baseline gap-3 text-[#141413]">
-            <span class="shrink-0 text-lg font-medium tracking-[-0.02em]">AcademicForge</span>
-            <span class="hidden truncate text-sm text-[#87867f] sm:inline">
-              <span class="lang-en">Pick skills, copy commands</span>
-              <span class="lang-zh">选仓库，取命令</span>
+          <a href="#home" class="flex min-w-0 items-center gap-3 text-[#141413]">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]">
+              <ForgeLogo class="h-7 w-7" title="AcademicForge" />
+            </span>
+
+            <span class="min-w-0">
+              <span class="block truncate font-slab text-xl leading-none tracking-tight text-oxford">
+                Academic<span class="font-bold text-forgegold">Forge</span>
+              </span>
+              <span class="hidden truncate text-xs text-[#87867f] md:block">
+                <span class="lang-en">One Forge, All Skills.</span>
+                <span class="lang-zh font-cjk font-bold">一站在手，万技我有。</span>
+              </span>
             </span>
           </a>
 
           <div class="flex items-center gap-4">
             <a
-              href="https://github.com/HughYau/AcademicForge"
-              class="hidden text-sm text-[#5e5d59] underline decoration-[#d1cfc5] underline-offset-4 transition hover:text-[#141413] md:inline"
+              href={githubUrl}
+              class="hidden items-center gap-2 rounded-full border border-[#d9d6c9] bg-white px-3 py-1.5 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6] transition hover:border-[#c9c6b8] hover:bg-[#faf9f5] md:inline-flex"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              <span class="lang-en">Star on GitHub</span>
+              <span class="lang-zh">去 GitHub 点赞</span>
+              <img src={githubStarBadge} alt="AcademicForge stars on GitHub" class="h-5 w-auto" loading="lazy" decoding="async" />
             </a>
 
             <div class="locale-switch inline-flex items-center rounded-full p-1">

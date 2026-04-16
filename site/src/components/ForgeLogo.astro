@@ -1,9 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AcademicForge">
-  <rect width="64" height="64" rx="14" fill="#f8fafc"></rect>
+---
+interface Props {
+  class?: string;
+  title?: string;
+}
+
+const {
+  class: className = 'h-12 w-12',
+  title = 'AcademicForge logo',
+} = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={title}
+>
   <path d="M12 50h40v4H12zM20 44h24l4 6H16l4-6z" fill="#002147"></path>
   <path d="M16 36h32v8H16z" fill="#002147"></path>
   <path d="M10 26h46c2 0 4 2 4 4v4H6v-4c0-2 2-4 4-4z" fill="#002147"></path>
   <path d="M22 26V16l10 10V16l10 10" stroke="#FFB300" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+
   <path d="M32 4l-8 12v6l8 4 8-4v-6L32 4z" fill="#002147"></path>
   <circle cx="32" cy="18" r="2" fill="#FFB300"></circle>
   <path d="M32 4v12" stroke="#FFB300" stroke-width="2"></path>
