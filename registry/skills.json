@@ -5440,6 +5440,31 @@
       "post_install": []
     },
     {
+      "id": "qiushi-skill",
+      "name": "Qiushi Skill",
+      "summary": {
+        "en": "Methodology-first skill collection that drives agents to investigate facts, focus priorities, iterate in practice, and complete work with disciplined process.",
+        "zh": "方法论优先的 skill 合集：先调查事实、抓重点、实践迭代，并以流程纪律推动任务闭环。"
+      },
+      "author": "HughYau",
+      "repository": "https://github.com/HughYau/qiushi-skill",
+      "license": "MIT",
+      "skill_count": 11,
+      "stars": 2700,
+      "tags": [
+        "workflow",
+        "methodology",
+        "agents",
+        "investigation",
+        "planning"
+      ],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/HughYau/qiushi-skill.git"
+      },
+      "post_install": []
+    },
+    {
       "id": "scientific-visualization",
       "name": "Scientific Visualization",
       "summary": {
@@ -5461,6 +5486,31 @@
         "method": "sparse-checkout",
         "url": "https://github.com/HughYau/AcademicForge.git",
         "sparse_path": "skills/scientific-visualization"
+      },
+      "post_install": []
+    },
+    {
+      "id": "posterskill",
+      "name": "PosterSkill",
+      "summary": {
+        "en": "Generate print-ready conference posters from paper content and website assets, then refine layouts with an interactive visual editor.",
+        "zh": "基于论文与项目网站素材生成可打印会议海报，并通过交互式可视化编辑器持续优化版式。"
+      },
+      "author": "ethanweber",
+      "repository": "https://github.com/ethanweber/posterskill",
+      "license": "See repository",
+      "skill_count": 1,
+      "stars": 473,
+      "tags": [
+        "poster",
+        "visualization",
+        "figures",
+        "layout",
+        "conference"
+      ],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/ethanweber/posterskill.git"
       },
       "post_install": []
     },

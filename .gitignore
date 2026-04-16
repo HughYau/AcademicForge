@@ -33,3 +33,4 @@ site/node_modules/
 site/dist/
 site/.astro/
 DESIGN.md
+/.opencode
