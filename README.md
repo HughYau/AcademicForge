@@ -1,11 +1,17 @@
 # 🎓 Academic Forge
 
+
 <div align="center">
 
 **为学术写作整合的 Claude Code / OpenCode 技能集合**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
+
+<p align="center">
+  <a href="https://hughyau.com/AcademicForge/">
+    <img src="https://img.shields.io/badge/%E4%B8%80%E9%94%AE%E4%BD%93%E9%AA%8C-Academic%20Forge-blue?style=for-the-badge" alt="一键体验 Academic Forge">
+  </a>
+</p>
 
 [English](./README_en.md) | 简体中文
 

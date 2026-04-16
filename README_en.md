@@ -4,8 +4,13 @@
 
 **A curated skill collection for academic writing and research**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
+
+<p align="center">
+  <a href="https://hughyau.com/AcademicForge/">
+    <img src="https://img.shields.io/badge/Experience-Academic%20Forge-blue?style=for-the-badge" alt="Experience Academic Forge">
+  </a>
+</p>
 
 </div>
 
