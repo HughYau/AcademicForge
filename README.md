@@ -22,6 +22,14 @@
 
 ## 🚀 快速开始
 
+### 使用选配站（推荐）
+
+打开 `https://hughyau.github.io/AcademicForge/`，按下面三步完成安装：
+
+1. 勾选你当前项目需要的 skill pack
+2. 选择平台和工具（Claude Code / OpenCode / Codex）
+3. 复制生成的安装命令，在项目根目录执行
+
 ### 安装
 
 **macOS/Linux:**
