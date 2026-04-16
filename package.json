@@ -6,6 +6,11 @@
     "dev": "npm --prefix site run dev --",
     "build": "npm --prefix site run build --",
     "preview": "npm --prefix site run preview --",
-    "site:install": "npm --prefix site install"
+    "site:install": "npm --prefix site install",
+    "validate:registry": "node scripts/validate-registry.mjs",
+    "test:site": "node --test site/src/lib/install-command.test.mjs",
+    "test:scripts": "node --test scripts/tests/build-skill-index.test.mjs scripts/tests/validate-registry.test.mjs",
+    "test": "npm run test:site && npm run test:scripts",
+    "ci:validate": "npm run validate:registry && npm run test && npm run build"
   }
 }

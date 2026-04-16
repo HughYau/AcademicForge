@@ -47,7 +47,8 @@
       ],
       "install": {
         "method": "git-clone",
-        "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git"
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+        "ref": "eb20fb0dcb0b1dadaa3db2737188f0755bbc4770"
       },
       "post_install": [
         "clean_ads"
@@ -2737,7 +2738,8 @@
       ],
       "install": {
         "method": "git-clone",
-        "url": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git"
+        "url": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git",
+        "ref": "22bca4dbc2a8319f0819d053b30045e467985eff"
       },
       "post_install": [],
       "is_collection": true,
@@ -5485,6 +5487,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/HughYau/AcademicForge.git",
+        "ref": "site-first",
         "sparse_path": "skills/scientific-visualization"
       },
       "post_install": []

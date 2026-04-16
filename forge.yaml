@@ -1,171 +1,36 @@
 forge:
   name: "academic-forge"
   version: "1.0.0"
-  description: "A curated skill collection for academic writing and research across modern AI agents"
-  author: "your-username"
+  description: "A site-first academic skill catalog and installer"
   repository: "https://github.com/HughYau/AcademicForge"
+  homepage: "https://hughyau.github.io/AcademicForge/"
   license: "MIT"
-  homepage: "https://github.com/HughYau/AcademicForge"
-  
-  # Forge metadata
-  category: "academic"
-  tags:
-    - academic-writing
-    - research
-    - scientific-papers
-    - latex
-    - citations
-    - thesis
-  
-  # Minimum Claude Code version (if applicable)
-  requires:
-    claude_code: ">=1.0.0"
 
-# Included skills with their metadata
-skills:
-  - name: "scientific-agent-skills"
-    path: "skills/scientific-agent-skills"
-    repository: "https://github.com/K-Dense-AI/scientific-agent-skills"
-    author: "K-Dense-AI"
-    license: "MIT"
-    description: "Comprehensive scientific and research workflows for any AI agent"
-    tags:
-      - scientific-workflows
-      - scientific-databases
-      - scientific-python
-      - scientific-writing
-    
-  - name: "AI-research-SKILLs"
-    path: "skills/AI-research-SKILLs"
-    repository: "https://github.com/orchestra-research/AI-research-SKILLs"
-    author: "orchestra-research"
-    license: "See repository"
-    description: "Research methodology, experimental design, and data analysis"
-    tags:
-      - research-methodology
-      - experimental-design
-      - data-analysis
-      - statistics
-    
-  - name: "humanizer"
-    path: "skills/humanizer"
-    repository: "https://github.com/blader/humanizer"
-    author: "blader"
-    license: "See repository"
-    description: "Academic tone refinement and readability improvement"
-    tags:
-      - tone-refinement
-      - readability
-      - academic-style
-      - editing
+branch_model:
+  public: "site-first"
+  legacy: "master"
 
-  - name: "humanizer-zh"
-    path: "skills/humanizer-zh"
-    repository: "https://github.com/op7418/Humanizer-zh"
-    author: "op7418"
-    license: "MIT"
-    description: "Chinese AI-writing humanization and de-AI rewriting"
-    tags:
-      - chinese-writing
-      - tone-refinement
-      - de-ai
-      - readability
+runtime:
+  source_of_truth: "registry/skills.json"
+  local_skill_content:
+    - "skills/scientific-visualization"
 
-  - name: "superpowers"
-    path: "skills/superpowers"
-    repository: "https://github.com/obra/superpowers"
-    author: "obra"
-    license: "MIT"
-    description: "Agentic development workflow skills (synced from upstream skills/ directory only)"
-    tags:
-      - planning
-      - workflow
-      - debugging
-      - tdd
-
-  - name: "paper-polish-workflow-skill"
-    path: "skills/paper-polish-workflow-skill"
-    repository: "https://github.com/Lylll9436/Paper-Polish-Workflow-skill"
-    author: "Lylll9436"
-    license: "MIT"
-    description: "Academic paper translation, polishing, peer-review simulation, and submission workflow pack"
-    tags:
-      - academic-writing
-      - translation
-      - polishing
-      - peer-review
-      - submission
-
-  - name: "scientific-visualization"
-    path: "skills/scientific-visualization"
-    repository: "local (this repository)"
-    author: "Academic Forge contributors"
-    license: "MIT"
-    description: "Local publication-focused scientific plotting skill (matplotlib/seaborn/plotly)"
-    tags:
-      - visualization
-      - publication-figures
-      - matplotlib
-      - seaborn
-      - plotly
-
-# Configuration options for users
-config:
-  # Auto-update behavior
-  auto_update: false  # Set to true to check for updates automatically
-  
-  # Skill priority (higher = invoked first when multiple skills match)
-  priority:
-    scientific-agent-skills: 10
-    AI-research-SKILLs: 9
-    superpowers: 8
-    paper-polish-workflow-skill: 8
-    scientific-visualization: 8
-    humanizer: 7
-    humanizer-zh: 7
-  
-  # Enable/disable individual skills
-  enabled:
-    scientific-agent-skills: true
-    AI-research-SKILLs: true
-    superpowers: true
-    paper-polish-workflow-skill: true
-    scientific-visualization: true
-    humanizer: true
-    humanizer-zh: true
-
-# Installation instructions
 installation:
   method: "registry-installer"
   commands:
-    - "curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- --tool claude --skills humanizer,superpowers"
-    - "powershell -NoProfile -Command \"$script = Join-Path $PWD 'forge-install.ps1'; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.ps1' -OutFile $script; & $script -Tool claude -Skills 'humanizer,superpowers'; Remove-Item $script\""
+    - "curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- --tool claude --skills humanizer,superpowers"
+    - "powershell -NoProfile -Command \"$script = Join-Path $PWD 'forge-install.ps1'; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.ps1' -OutFile $script; & $script -Tool claude -Skills 'humanizer,superpowers'; Remove-Item $script\""
 
-# Update instructions
 update:
-  method: "hybrid-submodule-and-skills-sync"
+  method: "site-first-catalog"
   commands:
-    - "cd .opencode/skills/academic-forge"
-    - "./scripts/update.sh"
+    - "node scripts/build-skill-index.mjs --check"
+    - "node scripts/validate-registry.mjs"
 
-# Compatibility notes
-compatibility:
-  conflicts: []  # List any known skill conflicts
-  dependencies: []  # List any external dependencies required
-  
 notes: |
-  registry/skills.json is the source of truth for the public configurator site
-  and the parameterized forge-install scripts.
+  The `site-first` branch is the public branch used by the GitHub Pages site,
+  `registry/skills.json`, and the installer scripts.
 
-  Academic Forge still uses git submodules to integrate skills from their
-  original repositories where possible for repository maintenance. superpowers
-  is intentionally distributed as a skills-only snapshot (no submodule):
-  - skills/scientific-agent-skills synced from https://github.com/K-Dense-AI/scientific-agent-skills
-  - skills/superpowers synced from https://github.com/obra/superpowers/tree/main/skills
-  - skills/scientific-visualization is maintained locally in this repository
-    (no upstream sync dependency)
+  The `master` branch remains available as a legacy compatibility line.
 
-  All skills retain their original licenses and authorship.
-  
-  This forge is inspired by Minecraft's mod loader concept, providing a curated
-  collection of skills that work well together for academic writing workflows.
+  Only `skills/scientific-visualization` is maintained locally on `site-first`.

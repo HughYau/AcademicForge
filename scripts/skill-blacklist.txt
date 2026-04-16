@@ -1,4 +1,0 @@
-# Skill paths to remove after sync/install/update
-# One relative path per line (from repository root)
-# Lines starting with # are comments
-# No active blacklist entries right now.

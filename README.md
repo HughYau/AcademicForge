@@ -5,53 +5,59 @@
 **面向 Claude Code / OpenCode / Codex 的学术 Skill 选配与安装平台**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-7-blue.svg)](./skills)
 
 [English](./README_en.md) | 简体中文
 
 </div>
 
-## 📖 什么是 Forge（熔炉）？
+> 分支模型
+> - `site-first`：公开站点分支，也是 GitHub Pages、`registry/skills.json` 和安装脚本的来源。
+> - `master`：保留旧架构的 legacy 兼容分支。
 
-"Forge" 灵感来自 **Minecraft 的模组加载器系统**。在当前版本中，**Academic Forge** 不再要求整仓安装，而是把学术场景常用的 skill pack 收敛进统一 registry，让你先选配、再生成命令、最后按需安装。
+## 什么是 Academic Forge
 
-- 🔧 **按需选配** - 不必整仓复制，只安装当前项目真正需要的 skill pack
-- 🎯 **学术聚焦** - 围绕论文写作、科研工作流、可视化与学术润色场景筛选来源
-- 🧭 **同源驱动** - 网站浏览、命令生成、安装脚本都基于同一份 `registry/skills.json`
-- 🤝 **社区构建** - 建立在多个 skill 作者与上游仓库的优秀工作之上
+Academic Forge 是一个 **site-first catalog + installer**。
 
-## 🚀 快速开始
+你不需要整仓复制全部 skill，只需要：
 
-### 方式一：使用选配站（推荐）
+1. 在站点里浏览和勾选需要的 pack
+2. 生成安装命令
+3. 在自己的项目根目录执行
 
-打开 `https://hughyau.github.io/AcademicForge/`，按下面三步完成安装：
+核心原则：
 
-1. 勾选你当前项目需要的 skill pack
-2. 选择平台和工具（Claude Code / OpenCode / Codex）
-3. 复制生成的安装命令，在项目根目录执行
+- 站点、安装脚本、命令生成都基于同一份 `registry/skills.json`
+- `site-first` 是公开入口
+- 本仓库只保留一个本地维护 skill：`skills/scientific-visualization`
+
+## 快速开始
+
+### 方式一：使用选配站
+
+打开 `https://hughyau.github.io/AcademicForge/`。
 
 ### 方式二：直接运行安装脚本
 
-适合写文档示例、脚本化安装或 CI 场景。
+macOS / Linux:
 
-**macOS/Linux:**
 ```bash
 cd your-project
-curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.sh | bash -s -- \
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- \
   --tool claude \
   --skills humanizer,superpowers
 ```
 
-**Windows (PowerShell):**
+Windows PowerShell:
+
 ```powershell
 cd your-project
 $script = Join-Path $PWD 'forge-install.ps1'
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/master/scripts/forge-install.ps1' -OutFile $script
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.ps1' -OutFile $script
 & $script -Tool claude -Skills 'humanizer,superpowers'
 Remove-Item $script
 ```
 
-### 验证安装
+验证安装：
 
 ```bash
 ls .claude/skills/
@@ -59,188 +65,48 @@ ls .opencode/skills/
 ls .codex/skills/
 ```
 
-> 实际路径取决于你选择的 `--tool`：`claude -> .claude/skills/`，`opencode -> .opencode/skills/`，`codex -> .codex/skills/`。
+## 本地维护内容
 
-## 📦 包含的 Skills
+`site-first` 分支中，唯一保留在仓库内的本地 skill 是：
 
-| 技能包 | 数量 | 擅长领域 | 来源 |
-|--------|------|----------|------|
-| [scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) | 133 | 科研工作流、科学数据库、科学计算、科学写作 | [@K-Dense-AI](https://github.com/K-Dense-AI) |
-| [AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs) | 82 | AI 研究方法、训练、推理、评估 | [@zechenzhangAGI](https://github.com/zechenzhangAGI) |
-| [superpowers](https://github.com/obra/superpowers) | 15 | 规划、调试、TDD、代码审查 | [@obra](https://github.com/obra) |
-| [paper-polish-workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill) | 15 | 论文翻译、润色、审稿模拟与投稿工作流 | [@Lylll9436](https://github.com/Lylll9436) |
-| [scientific-visualization](./skills/scientific-visualization) | 1 | 出版级图表、色盲友好配色 | 本地维护 |
-| [humanizer](https://github.com/blader/humanizer) | 1 | 学术语气润色、可读性优化 | [@blader](https://github.com/blader) |
-| [humanizer-zh](https://github.com/op7418/Humanizer-zh) | 1 | 中文去 AI 味、自然化改写、学术中文润色 | [@op7418](https://github.com/op7418) |
+- `skills/scientific-visualization`
 
-> 所有 Skills 保留其原始许可证和作者身份。详细归属请查看 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md)。
+其他 pack 都通过 `registry/skills.json` 描述，并在安装时从各自来源仓库获取。
 
-<details>
-<summary><b>📋 查看每个 Skills 的详细内容</b></summary>
+## 维护 `site-first`
 
-### scientific-agent-skills (133 Skills)
-- **许可证**: MIT
-- **覆盖范围**: 133 个即用型科研与科学 skills，涵盖 15+ 领域
-- **兼容性**: 已升级为遵循开放 `Agent Skills` 标准的通用技能库，不再局限于 Claude
-- **包含内容**:
-  - 🧬 **生物信息学与基因组学** - BioPython, Scanpy, 单细胞RNA-seq, 变异注释
-  - 🧪 **化学信息学与药物发现** - RDKit, DeepChem, 分子对接, 虚拟筛选
-  - 🏥 **临床研究** - ClinicalTrials.gov, ClinVar, FDA数据库, 药物基因组学
-  - 📊 **数据分析** - 统计分析, matplotlib, seaborn, 出版级图表
-  - 📚 **科学交流** - LaTeX格式化, 引用管理, 同行评审, 海报/幻灯片/图示
-  - 🔬 **实验室自动化** - PyLabRobot, Benchling, Opentrons集成
-  - 🤖 **机器学习** - PyTorch Lightning, scikit-learn, 深度学习工作流
-  - 🗃️ **数据库** - 78+ 科学数据库与更多聚合入口 (PubMed, OpenAlex, ChEMBL, UniProt 等)
-- **最适合**: 从文献综述到论文发表的多步骤科学工作流程
-- **广告净化**: 脚本每次安装/下载/更新后自动移除各 SKILL.md 中内嵌的平台推广段落，保持 skill 内容纯净
-
-### AI-research-SKILLs (82 Skills)
-- **许可证**: MIT
-- **覆盖范围**: 82 个专家级AI研究工程 skills，涵盖 20 个类别
-- **包含内容**:
-  - 🏗️ **模型架构** - LitGPT, Mamba, RWKV, NanoGPT, TorchTitan (5个skills)
-  - 🎯 **微调** - Axolotl, LLaMA-Factory, PEFT, Unsloth (4个skills)
-  - 🎓 **后训练** - TRL, GRPO, OpenRLHF, SimPO, verl (8个RLHF/DPO skills)
-  - ⚡ **分布式训练** - DeepSpeed, FSDP, Megatron-Core, Accelerate (6个skills)
-  - 🚀 **优化** - Flash Attention, bitsandbytes, GPTQ, AWQ (6个skills)
-  - 🔥 **推理** - vLLM, TensorRT-LLM, SGLang, llama.cpp (4个skills)
-  - 📊 **评估** - lm-eval-harness, BigCode, NeMo Evaluator (3个skills)
-  - 🤖 **Agents与RAG** - LangChain, LlamaIndex, Chroma, FAISS (9个skills)
-  - 🎨 **多模态** - CLIP, Whisper, LLaVA, Stable Diffusion (7个skills)
-  - 📝 **机器学习论文写作** - NeurIPS, ICML, ICLR, ACL的LaTeX模板 (1个skill)
-- **文档质量**: 每个 skill 约 420 行 + 300KB+ 参考资料
-- **最适合**: 从假设到论文发表的AI研究工作流程
-
-### humanizer
-- **许可证**: 查看原始仓库
-- **用途**: 优化学术语气、提高可读性、避免 AI 检测特征
-- **最适合**: 润色草稿、保持学术声调、同行评审准备
-
-### humanizer-zh
-- **许可证**: MIT
-- **用途**: 中文去 AI 痕迹、自然化改写、保留原意的语气润色
-- **最适合**: 中文摘要、中文论文段落、双语改写后的中文定稿
-
-### superpowers（仅包含 `skills/`）
-- **许可证**: MIT
-- **定位**: 一个"流程型技能库"，强调 **先设计、后实现、再验证** 的工程纪律
-- **核心技能**:
-  - `brainstorming`：把模糊需求收敛成可执行方案
-  - `writing-plans` / `executing-plans`：把任务拆到可验证的粒度
-  - `systematic-debugging`：按步骤定位根因，避免拍脑袋修 bug
-  - `test-driven-development`：以测试驱动最小改动实现
-  - `requesting-code-review` / `receiving-code-review`：形成闭环复盘
-  - `verification-before-completion`：在宣告完成前做证据化验证
-
-### scientific-visualization（本地内置 Skill）
-- **许可证**: MIT
-- **定位**: 面向科研论文与报告的可视化增强
-- **核心能力**:
-  - 出版级样式模板（期刊风格、字体/线宽/配色一致化）
-  - 多子图布局与标注规范（panel labels、legend、单位、误差线）
-  - 色盲友好配色与灰度可读性校验
-  - 导出优化（PDF/EPS/TIFF/PNG，分辨率与尺寸对齐投稿要求）
-
-</details>
-
-## 🛡️ 防御 Prompt 注入与内容净化
-
-为了防止部分上游 Skills 中可能包含的 **Prompt 注入攻击**（如劫持 AI 行为）或破坏上下文的无关广告，本仓库在同步与安装流程中内置了以下机制：
-
-- **黑名单屏蔽 (Blacklist)**：通过维护 `scripts/skill-blacklist.txt`，安装向导和更新脚本会自动移除已知的含有恶意 Prompt、质量低下或会导致上下文混乱的特定文件。
-- **Prompt 后置清理 (Clean-AdInsertions)**：在上游内容同步后，脚本会自动执行清洗策略（如 `Clean-AdInsertions` 函数），通过正则匹配自动剥离 SKILL 文件中夹带的第三方平台引流、赞助广告等附加指令，确保输入给 AI 助手的 Prompt 内容纯净、安全。
-
-## 🔧 维护仓库
-
-下面内容主要面向维护本仓库的贡献者；普通使用者只需要使用选配站或安装脚本即可。
-
-### 更新上游来源
+常用本地命令：
 
 ```bash
-./scripts/update.sh  # 或 Windows: .\scripts\update.ps1
+npm run site:install
+npm run build
+npm run preview
+npm run validate:registry
+npm run ci:validate
+node scripts/build-skill-index.mjs --check
 ```
 
-> 所有脚本支持从任意目录运行，会自动定位仓库根目录。
+本地安装器冒烟测试：
 
-### 配置同步行为
-
-对维护仓库的贡献者，可以编辑 `forge.yaml` 中的 `config.enabled` 来启用或禁用同步到本仓库的特定技能包：
-
-```yaml
-config:
-  enabled:
-    scientific-agent-skills: true
-    humanizer: false  # 设为 false 会在下次同步后移除
-    humanizer-zh: false  # 设为 false 会在下次同步后移除
+```bash
+"D:\Application\Git\bin\bash.exe" scripts/tests/forge-install-local-registry.sh
+pwsh -File scripts/tests/forge-install-local-registry.ps1
 ```
 
-如需屏蔽特定上游 skill（而非整个技能包），编辑 `scripts/skill-blacklist.txt`。
+## GitHub Pages
 
-### 自动更新
+- GitHub Pages 只从 `site-first` 分支部署
+- 仓库设置中应把 `Settings -> Pages -> Source` 设为 `GitHub Actions`
+- 分支开发阶段用 `npm run preview` 本地预览，不依赖分支级在线预览
 
-本仓库配置了自动化工作流程，**每周一 09:00 UTC**（北京时间 17:00）自动更新所有上游 skills 来源。
+## 文档
 
-## ❓ 常见问题
+- [快速入门](./QUICKSTART.md)
+- [Skill 归属](./ATTRIBUTIONS.md)
+- [site-first 设计 spec](./docs/superpowers/specs/2026-04-16-site-first-light-catalog-repo-design.md)
+- [site-first 实施计划](./docs/superpowers/plans/2026-04-16-site-first-branch-implementation.md)
 
-**Q: 技能怎么触发？需要手动调用吗？**
-A: 不需要。技能由 AI 助手根据你的提示词自动选择并调用。你只需正常对话即可。
+## 许可证
 
-**Q: 装了这么多技能会变慢吗？**
-A: 不会影响响应速度。Skills 只是提供给 AI 的参考信息，不会增加运行开销。
-
-**Q: 和手动装单个 skill 有什么区别？**
-A: Academic Forge 解决的是“选什么、怎么装、怎么保持一致”这三个问题。你可以按需组合多个来源的 skill pack，而不是手动逐个查仓库、逐个决定安装路径。
-
-**Q: 怎么卸载？**
-A: 删除对应工具目录下的 skill pack 文件夹即可，例如 `rm -rf .claude/skills/humanizer`，或重新运行选配脚本安装新的组合。
-
-## 🎓 使用案例
-
-- 📝 **撰写研究论文** - 从大纲到提交就绪的手稿
-- 🔬 **实验设计** - 规划和记录研究方法
-- 📊 **数据分析** - 统计分析和结果解释
-- 🖼️ **科研绘图** - 生成或改造投稿级图表
-- 📚 **文献综述** - 组织和综合学术资源
-- ✍️ **学位论文写作** - 长篇学术文档管理
-
-## 📄 文档
-
-- [快速入门指南](./QUICKSTART.md) - 5 分钟上手
-- [Skills归属](./ATTRIBUTIONS.md) - 详细的作者信息和许可证
-- [贡献指南](./CONTRIBUTING.md) - 如何贡献或创建你自己的 forge
-
-## 🤝 贡献
-
-发现了一个非常适合学术写作的Skills？请查看 [CONTRIBUTING.md](./CONTRIBUTING.md) 了解如何：
-
-- 建议新Skills
-- 报告问题
-- 改进文档
-- 创建你自己领域的 forge
-
-## 📄 许可证
-
-**forge 结构**（脚本、配置、文档）采用 [MIT 许可证](./LICENSE)。
-
-**单个Skills**保留其原始许可证 - 详见 [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) 和每个Skills的仓库。
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=HughYau%2FAcademicForge&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&legend=top-left" />
- </picture>
-</a>
-
----
-
-<div align="center">
-
-**为学术研究社区用 💙 构建**
-
-⭐ 如果这个 forge 对你的研究有帮助，请给本仓库和各个Skills仓库点星！
-
-</div>
-
+- 仓库结构、站点、脚本和本地内容采用 [MIT](./LICENSE)
+- 第三方 skill 保留其各自许可证与作者信息

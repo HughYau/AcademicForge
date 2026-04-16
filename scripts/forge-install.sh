@@ -222,6 +222,21 @@ PY
   fi
 }
 
+checkout_ref() {
+  local repo_dir="$1"
+  local ref="$2"
+
+  if [[ -z "$ref" ]]; then
+    return 0
+  fi
+
+  if git -C "$repo_dir" checkout --detach "$ref" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  git -C "$repo_dir" fetch --depth 1 origin "$ref" >/dev/null 2>&1 && git -C "$repo_dir" checkout --detach FETCH_HEAD >/dev/null 2>&1
+}
+
 SUCCESS=()
 FAILED=()
 
@@ -252,10 +267,15 @@ for raw_id in "${SKILL_IDS[@]}"; do
   case "$METHOD" in
     git-clone)
       clone_args=(clone --depth 1)
-      [[ -n "$REF" ]] && clone_args+=(--branch "$REF")
       clone_args+=("$URL" "$TARGET")
 
       if git "${clone_args[@]}" >/dev/null 2>&1; then
+        if ! checkout_ref "$TARGET" "$REF"; then
+          echo -e "${RED}  Failed to checkout ref $REF${NC}"
+          rm -rf "$TARGET"
+          FAILED+=("$sid")
+          continue
+        fi
         rm -rf "$TARGET/.git"
         echo -e "${GREEN}  Cloned successfully.${NC}"
       else
@@ -274,10 +294,15 @@ for raw_id in "${SKILL_IDS[@]}"; do
 
       TMPDIR="$(mktemp -d "${TMPDIR:-/tmp}/forge-${sid}.XXXXXX")"
       clone_args=(clone --depth 1 --filter=blob:none --sparse)
-      [[ -n "$REF" ]] && clone_args+=(--branch "$REF")
       clone_args+=("$URL" "$TMPDIR")
 
       if git "${clone_args[@]}" >/dev/null 2>&1; then
+        if ! checkout_ref "$TMPDIR" "$REF"; then
+          rm -rf "$TMPDIR"
+          echo -e "${RED}  Failed to checkout ref $REF${NC}"
+          FAILED+=("$sid")
+          continue
+        fi
         if ! git -C "$TMPDIR" sparse-checkout set "$SPARSE_PATH" >/dev/null 2>&1; then
           rm -rf "$TMPDIR"
           echo -e "${RED}  Failed to set sparse-checkout path $SPARSE_PATH${NC}"

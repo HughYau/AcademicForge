@@ -2,7 +2,7 @@ name: Deploy Site to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [site-first]
     paths:
       - 'site/**'
       - 'registry/**'
