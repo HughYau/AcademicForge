@@ -35,9 +35,9 @@ const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style
   </head>
   <body class="min-h-screen antialiased">
     <div class="min-h-screen">
-      <header class="sticky top-0 z-40 border-b border-[#e8e6dc]/90 bg-[rgba(245,244,237,0.9)] backdrop-blur-xl">
-        <div class="mx-auto flex max-w-[1680px] items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:py-6">
-          <a href="#home" class="flex min-w-0 items-center gap-4 text-[#141413]">
+      <header class="sticky inset-x-0 top-0 z-40 border-b border-[#e8e6dc]/90 bg-[rgba(245,244,237,0.9)] backdrop-blur-xl">
+        <div class="mx-auto flex w-full min-w-0 items-center justify-between gap-3 px-4 py-4 sm:w-[92%] sm:px-0 sm:gap-4 sm:py-5 lg:w-[90%] lg:py-6">
+          <a href="#home" class="flex min-w-0 items-center gap-3 text-[#141413] sm:gap-4">
             <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6] lg:h-[3.25rem] lg:w-[3.25rem]">
               <ForgeLogo class="h-9 w-9" title="AcademicForge" />
             </span>
@@ -53,7 +53,7 @@ const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style
             </span>
           </a>
 
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 sm:gap-4">
             <a
               href={githubUrl}
               class="hidden items-center gap-2 rounded-full border border-[#d9d6c9] bg-white px-3 py-1.5 text-sm text-[#4d4c48] shadow-[0_0_0_1px_#f0eee6] transition hover:border-[#c9c6b8] hover:bg-[#faf9f5] md:inline-flex"
