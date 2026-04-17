@@ -106,12 +106,25 @@ if [[ -z "$INSTALL_PATH" ]]; then
   esac
 fi
 
-for cmd in git curl python3; do
+for cmd in git curl; do
   if ! command -v "$cmd" >/dev/null 2>&1; then
     echo -e "${RED}Error: '$cmd' is required but not installed.${NC}"
     exit 1
   fi
 done
+
+PYTHON_CMD=""
+for candidate in python3 python; do
+  if command -v "$candidate" >/dev/null 2>&1 && "$candidate" -c "import sys" >/dev/null 2>&1; then
+    PYTHON_CMD="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$PYTHON_CMD" ]]; then
+  echo -e "${RED}Error: either 'python3' or 'python' is required but not installed.${NC}"
+  exit 1
+fi
 
 echo ""
 echo -e "${BLUE}===============================================${NC}"
@@ -150,7 +163,7 @@ json_extract() {
   local skill_id="$1"
   local field_path="$2"
 
-  SKILL_ID="$skill_id" FIELD_PATH="$field_path" python3 - "$REGISTRY_FILE" <<'PY'
+  SKILL_ID="$skill_id" FIELD_PATH="$field_path" "$PYTHON_CMD" - "$REGISTRY_FILE" <<'PY'
 import json
 import os
 import sys
@@ -197,7 +210,7 @@ post_clean_ads() {
   local target_dir="$1"
   local cleaned_count
 
-  cleaned_count="$(TARGET_DIR="$target_dir" python3 - <<'PY'
+  cleaned_count="$(TARGET_DIR="$target_dir" "$PYTHON_CMD" - <<'PY'
 from pathlib import Path
 import os
 import re

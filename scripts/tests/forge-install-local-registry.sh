@@ -17,11 +17,28 @@ cleanup() {
 trap cleanup EXIT
 
 mkdir -p "$BIN_DIR"
+if command -v python >/dev/null 2>&1; then
+  REAL_PYTHON="$(command -v python)"
+elif command -v python3 >/dev/null 2>&1; then
+  REAL_PYTHON="$(command -v python3)"
+else
+  echo "python is required for this test" >&2
+  exit 1
+fi
+
 cat > "$BIN_DIR/python3" <<'SH'
 #!/usr/bin/env bash
-python "$@"
+echo "python3 shim intentionally unavailable in this test" >&2
+exit 127
 SH
 chmod +x "$BIN_DIR/python3"
+
+cat > "$BIN_DIR/python" <<SH
+#!/usr/bin/env bash
+exec "$REAL_PYTHON" "\$@"
+SH
+chmod +x "$BIN_DIR/python"
+
 export PATH="$BIN_DIR:$PATH"
 
 cat > "$REGISTRY_FILE" <<JSON
