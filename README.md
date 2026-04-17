@@ -49,8 +49,7 @@
 4. 在你自己的项目根目录执行复制的命令即可完成！
 
 <p align="center">
-  <video src="./assets/demo_github.mp4" controls muted playsinline width="960">
-    你的浏览器不支持 video 标签。
+  <video src="https://github.com/user-attachments/assets/3b539896-6380-4ac4-9ae9-9b79ed7adaf3" controls width="960">
   </video>
 </p>
 

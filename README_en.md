@@ -46,8 +46,7 @@ We have deployed an on-demand installer platform for the new framework (`site-fi
 4. Paste the command into your local project's root folder!
 
 <p align="center">
-  <video src="./assets/demo_github.mp4" controls muted playsinline width="960">
-    Your browser does not support the video tag.
+  <video src="https://github.com/user-attachments/assets/3b539896-6380-4ac4-9ae9-9b79ed7adaf3" controls width="960">
   </video>
 </p>
 
