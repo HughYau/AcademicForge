@@ -49,16 +49,16 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
   data-search={searchText}
 >
   <div class="flex items-start gap-2.5">
-    <label class="skill-card__selection inline-flex shrink-0 cursor-pointer items-center pt-0.5">
+    <label class="skill-card__selection relative inline-flex shrink-0 cursor-pointer items-center pt-0.5">
       <input
         type="checkbox"
-        class="skill-checkbox peer sr-only"
+        class="skill-checkbox peer absolute inset-0 m-0 h-full w-full cursor-pointer opacity-0"
         aria-label={`Select ${name}`}
         data-skill-id={id}
         data-skill-name={compact ? id : name}
         data-skill-count={String(count)}
       />
-      <span class="flex h-7 w-7 items-center justify-center rounded-[10px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5]">
+      <span class="flex h-7 w-7 items-center justify-center rounded-[10px] border border-[#d1cfc5] bg-white text-transparent shadow-[0_0_0_1px_#f0eee6] transition peer-checked:border-[#c96442] peer-checked:bg-[#c96442] peer-checked:text-[#faf9f5] peer-focus-visible:border-[#3898ec] peer-focus-visible:shadow-[0_0_0_1px_#3898ec]">
         <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5" aria-hidden="true">
           <path d="M4.5 10.5 8 14l7.5-8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
         </svg>
