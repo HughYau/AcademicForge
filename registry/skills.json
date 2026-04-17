@@ -27,6 +27,32 @@
       "post_install": []
     },
     {
+      "id": "andrej-karpathy-skills",
+      "name": "Karpathy-Inspired Claude Code Guidelines",
+      "summary": {
+        "en": "A practical workflow skill focused on four coding principles: Think Before Coding, Simplicity First, Surgical Changes, and Goal-Driven Execution.",
+        "zh": "面向编码流程的实践型 skill，聚焦四项原则：先思考、保简单、做精准改动、以可验证目标驱动执行。"
+      },
+      "author": "forrestchang",
+      "repository": "https://github.com/forrestchang/andrej-karpathy-skills",
+      "license": "MIT",
+      "skill_count": 1,
+      "stars": 52100,
+      "tags": [
+        "workflow",
+        "process",
+        "guidelines",
+        "simplicity",
+        "verification"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/forrestchang/andrej-karpathy-skills.git",
+        "sparse_path": "skills"
+      },
+      "post_install": []
+    },
+    {
       "id": "scientific-agent-skills",
       "name": "Scientific Agent Skills",
       "summary": {

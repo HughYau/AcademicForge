@@ -35,6 +35,7 @@ export const SUBDISCIPLINE_LABELS: Record<Subdiscipline, { en: string; zh: strin
 
 export const SKILL_CATEGORY: Partial<Record<string, Category>> = {
   superpowers: 'workflow',
+  'andrej-karpathy-skills': 'workflow',
   'qiushi-skill': 'workflow',
   humanizer: 'writing',
   'humanizer-zh': 'writing',
