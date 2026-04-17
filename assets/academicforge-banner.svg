@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-label="AcademicForge Header Image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FCFBFA" />
+      <stop offset="100%" stop-color="#EBE7DD" />
+    </linearGradient>
+    <radialGradient id="accent" cx="15%" cy="10%" r="70%">
+      <stop offset="0%" stop-color="#E7A086" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#E7A086" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="accent2" cx="85%" cy="90%" r="60%">
+      <stop offset="0%" stop-color="#FFB300" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#FFB300" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#002147" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#002147" flood-opacity="0.06"/>
+    </filter>
+    <g id="logo-mark">
+      <path d="M12 50h40v4H12zM20 44h24l4 6H16l4-6z" fill="#002147" />
+      <path d="M16 36h32v8H16z" fill="#002147" />
+      <path d="M10 26h46c2 0 4 2 4 4v4H6v-4c0-2 2-4 4-4z" fill="#002147" />
+      <path d="M22 26V16l10 10V16l10 10" stroke="#FFB300" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <path d="M32 4l-8 12v6l8 4 8-4v-6L32 4z" fill="#002147" />
+      <circle cx="32" cy="18" r="2" fill="#FFB300" />
+      <path d="M32 4v12" stroke="#FFB300" stroke-width="2" />
+    </g>
+  </defs>
+  <rect width="1280" height="320" fill="url(#bg)" />
+  <rect width="1280" height="320" fill="url(#grid)" />
+  <rect width="1280" height="320" fill="url(#accent)" />
+  <rect width="1280" height="320" fill="url(#accent2)" />
+
+  <g transform="translate(80, 80)">
+    <rect x="0" y="0" width="160" height="160" rx="36" fill="#ffffff" stroke="#E6E2D6" stroke-width="2" filter="url(#shadow)" />
+    <use href="#logo-mark" transform="scale(2) translate(8, 8)" />
+  </g>
+
+  <g transform="translate(280, 110)">
+    <text x="0" y="60" font-family="Georgia, 'Noto Serif SC', serif" font-size="72">
+      <tspan fill="#002147" font-weight="700">Academic </tspan>
+      <tspan fill="#E69500" font-weight="800">Forge</tspan>
+    </text>
+    <text x="4" y="115" fill="#4B5563" font-family="Inter, 'Segoe UI', sans-serif" font-size="28" font-weight="600" letter-spacing="0.5">One Forge, All Skills. <tspan fill="#9CA3AF" font-weight="400" font-size="24"> |  Site-first academic skill catalog and installer</tspan></text>
+  </g>
+
+  <text x="1200" y="280" text-anchor="end" fill="#9CA3AF" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="500">https://hughyau.github.io/AcademicForge/</text>
+</svg>

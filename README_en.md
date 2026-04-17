@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/academicforge-banner.svg" alt="AcademicForge Header Image" />
+</p>
+
 # 🎓 Academic Forge
 
 <div align="center">
