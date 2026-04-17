@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="AcademicForge Open Graph Image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f4ed" />
+      <stop offset="100%" stop-color="#ece8dc" />
+    </linearGradient>
+    <radialGradient id="accent" cx="0.15" cy="0.1" r="0.65">
+      <stop offset="0%" stop-color="#e7a086" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#e7a086" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#accent)" />
+
+  <g transform="translate(90 86)">
+    <rect x="0" y="0" width="96" height="96" rx="20" fill="#ffffff" stroke="#e8e6dc" />
+    <g transform="translate(16 16)">
+      <path d="M12 50h40v4H12zM20 44h24l4 6H16l4-6z" fill="#002147" />
+      <path d="M16 36h32v8H16z" fill="#002147" />
+      <path d="M10 26h46c2 0 4 2 4 4v4H6v-4c0-2 2-4 4-4z" fill="#002147" />
+      <path d="M22 26V16l10 10V16l10 10" stroke="#FFB300" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <path d="M32 4l-8 12v6l8 4 8-4v-6L32 4z" fill="#002147" />
+      <circle cx="32" cy="18" r="2" fill="#FFB300" />
+      <path d="M32 4v12" stroke="#FFB300" stroke-width="2" />
+    </g>
+  </g>
+
+  <g transform="translate(210 110)">
+    <text x="0" y="96" fill="#002147" font-family="Georgia, 'Noto Serif SC', serif" font-size="88" font-weight="600">Academic</text>
+    <text x="452" y="96" fill="#ffb300" font-family="Georgia, 'Noto Serif SC', serif" font-size="88" font-weight="700">Forge</text>
+    <text x="2" y="172" fill="#5e5d59" font-family="Inter, 'Segoe UI', sans-serif" font-size="46">One Forge, All Skills.</text>
+    <text x="2" y="224" fill="#5e5d59" font-family="Inter, 'Segoe UI', sans-serif" font-size="40">Site-first academic skill catalog and installer</text>
+  </g>
+
+  <g transform="translate(90 500)">
+    <rect x="0" y="0" width="1020" height="1" fill="#d8d4c8" />
+    <text x="0" y="44" fill="#87867f" font-family="Inter, 'Segoe UI', sans-serif" font-size="24">https://hughyau.github.io/AcademicForge/</text>
+  </g>
+</svg>

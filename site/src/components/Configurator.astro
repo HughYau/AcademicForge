@@ -130,7 +130,7 @@ import CodeBlock from './CodeBlock.astro';
         <span class="lang-en">Install</span>
         <span class="lang-zh">安装</span>
       </p>
-      <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">Install command stays visible here.</p>
+      <p id="install-command-copy" class="mt-1 text-sm leading-7 text-[#87867f]">Pick a tool, platform, and skills to generate your install command.</p>
     </div>
     <CodeBlock
       id="builder-step2-code"
@@ -144,7 +144,7 @@ import CodeBlock from './CodeBlock.astro';
     <summary class="details-summary px-4 py-3.5">
       <span class="font-slab text-sm font-medium text-[#141413]">
         <span class="lang-en">Advanced</span>
-        <span class="lang-zh"高级</span>
+        <span class="lang-zh">高级</span>
       </span>
       <svg viewBox="0 0 16 16" fill="none" class="chevron-icon" aria-hidden="true">
         <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
@@ -207,7 +207,7 @@ import CodeBlock from './CodeBlock.astro';
   const translations = {
     en: {
       empty: 'No repositories selected.',
-      commandHint: 'Install command stays visible here.',
+      commandHint: 'Pick a tool, platform, and skills to generate your install command.',
       commandEmptyLinux: `curl -sSL ${SCRIPT_BASE}/forge-install.sh | bash -s -- --tool claude --skills <pick-repositories>`,
       commandEmptyWindows: [
         `$script = Join-Path $PWD 'forge-install.ps1'`,
@@ -220,7 +220,7 @@ import CodeBlock from './CodeBlock.astro';
     },
     zh: {
       empty: '尚未选择。',
-      commandHint: '安装命令将在此同步显示。',
+      commandHint: '选择工具、平台和技能后，这里会生成可直接运行的安装命令。',
       commandEmptyLinux: `curl -sSL ${SCRIPT_BASE}/forge-install.sh | bash -s -- --tool claude --skills <选择仓库>`,
       commandEmptyWindows: [
         `$script = Join-Path $PWD 'forge-install.ps1'`,

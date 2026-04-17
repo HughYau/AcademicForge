@@ -14,6 +14,9 @@ const {
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const faviconHref = `${baseUrl}favicon.svg`;
+const canonicalUrl = `https://hughyau.github.io${baseUrl}`;
+const ogImageHref = `${baseUrl}og-image.svg`;
+const googleAnalyticsId = 'G-R67NC4FQJ1';
 const githubRepo = 'HughYau/AcademicForge';
 const githubUrl = `https://github.com/${githubRepo}`;
 const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style=social`;
@@ -25,6 +28,23 @@ const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageHref} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageHref} />
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R67NC4FQJ1');
+    </script>
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

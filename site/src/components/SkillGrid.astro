@@ -123,6 +123,46 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
     ))}
   </div>
 
+  <div class="mt-2 flex flex-wrap items-center gap-1.5 text-[0.72rem] leading-5 text-[#87867f]">
+    <span class="skill-card__origin">SA</span>
+    <span>= Scientific Agent Skills by</span>
+    <a
+      href="https://github.com/K-Dense-AI"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @K-Dense-AI
+    </a>
+    <a
+      href="https://github.com/K-Dense-AI/scientific-agent-skills"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      (repo)
+    </a>
+    <span aria-hidden="true">·</span>
+    <span class="skill-card__origin">AIR</span>
+    <span>= AI Research Skills by</span>
+    <a
+      href="https://github.com/Orchestra-Research"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @Orchestra-Research
+    </a>
+    <a
+      href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      (repo)
+    </a>
+  </div>
+
   <div id="skill-grid" class="mt-3 min-h-0 flex-1 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6] sm:p-4">
     {visibleCategories.map((category) => (
       <section class:list={['skill-panel space-y-3', category === initialCategory ? '' : 'hidden']} data-category-panel={category}>
