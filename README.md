@@ -2,6 +2,7 @@
   <img src="./assets/academicforge-banner.svg" alt="AcademicForge Header Image" />
 </p>
 
+
 # 🎓 Academic Forge
 
 <div align="center">
@@ -23,7 +24,7 @@
 > [!WARNING] 
 > 📢 **重大更新与架构调整公告 (2026-04-16)**
 > 
-> Academic Forge 已经进行重大升级！我们强烈**推荐优先使用全新的[基于网页的在线选配站 (Web Version)](https://hughyau.github.io/AcademicForge/)**来安装和管理你的 Skills。
+> Academic Forge 已经进行重大升级！我们强烈**推荐优先使用全新的[基于网页的在线选配站 (Web Version)](https://hughyau.com/AcademicForge/)**来安装和管理你的 Skills。
 > 
 
 
@@ -42,10 +43,16 @@
 
 我们已 部署了在线按需安装平台。在你的项目里 **不再需要拉取大量仓库源码和 Submodules 实体**：
 
-1. 打开 [https://hughyau.github.io/AcademicForge/](https://hughyau.github.io/AcademicForge/)
+1. 打开 [https://hughyau.com/AcademicForge/](https://hughyau.com/AcademicForge/)
 2. 在网页上简单勾选你当前项目需要的 skill pack 与你的平台（Claude Code / OpenCode / Codex）
 3. 单击生成一键安装命令
 4. 在你自己的项目根目录执行复制的命令即可完成！
+
+<p align="center">
+  <video src="./assets/demo_github.mp4" controls muted playsinline width="960">
+    你的浏览器不支持 video 标签。
+  </video>
+</p>
 
 ---
 

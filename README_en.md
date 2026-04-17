@@ -2,6 +2,7 @@
   <img src="./assets/academicforge-banner.svg" alt="AcademicForge Header Image" />
 </p>
 
+
 # 🎓 Academic Forge
 
 <div align="center">
@@ -21,7 +22,7 @@
 > [!WARNING] 
 > 📢 **MAJOR UPDATE & ARCHITECTURE SHIFT (2026-04-16)**
 > 
-> Academic Forge has undergone a major architectural upgrade! We strongly recommend using the **all-new [web-based Site-First Installer](https://hughyau.github.io/AcademicForge/)** to manage your Skills.
+> Academic Forge has undergone a major architectural upgrade! We strongly recommend using the **all-new [web-based Site-First Installer](https://hughyau.com/AcademicForge/)** to manage your Skills.
 
 
 ## 📖 What is a Forge?
@@ -39,10 +40,16 @@ The name "Forge" is inspired by **Minecraft's mod loader system** — just as Mi
 
 We have deployed an on-demand installer platform for the new framework (`site-first` branch). You **no longer need to pull massive source code or Submodules** into your project:
 
-1. Open [https://hughyau.github.io/AcademicForge/](https://hughyau.github.io/AcademicForge/)
+1. Open [https://hughyau.com/AcademicForge/](https://hughyau.com/AcademicForge/)
 2. Uncheck the skill packs you DO NOT need, keeping those you do. Choose your environment tool.
 3. Click generate one-click install command.
 4. Paste the command into your local project's root folder!
+
+<p align="center">
+  <video src="./assets/demo_github.mp4" controls muted playsinline width="960">
+    Your browser does not support the video tag.
+  </video>
+</p>
 
 ---
 
