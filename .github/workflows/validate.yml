@@ -31,3 +31,4 @@ jobs:
       - run: npm ci --prefix site
       - run: npm run ci:validate
       - run: bash scripts/tests/forge-install-local-registry.sh
+      - run: bash scripts/tests/forge-install-multiple-sparse-checkouts.sh

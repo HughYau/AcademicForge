@@ -305,27 +305,27 @@ for raw_id in "${SKILL_IDS[@]}"; do
         continue
       fi
 
-      TMPDIR="$(mktemp -d "${TMPDIR:-/tmp}/forge-${sid}.XXXXXX")"
+      TMP_CHECKOUT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/forge-${sid}.XXXXXX")"
       clone_args=(clone --depth 1 --filter=blob:none --sparse)
-      clone_args+=("$URL" "$TMPDIR")
+      clone_args+=("$URL" "$TMP_CHECKOUT_DIR")
 
       if git "${clone_args[@]}" >/dev/null 2>&1; then
-        if ! checkout_ref "$TMPDIR" "$REF"; then
-          rm -rf "$TMPDIR"
+        if ! checkout_ref "$TMP_CHECKOUT_DIR" "$REF"; then
+          rm -rf "$TMP_CHECKOUT_DIR"
           echo -e "${RED}  Failed to checkout ref $REF${NC}"
           FAILED+=("$sid")
           continue
         fi
-        if ! git -C "$TMPDIR" sparse-checkout set "$SPARSE_PATH" >/dev/null 2>&1; then
-          rm -rf "$TMPDIR"
+        if ! git -C "$TMP_CHECKOUT_DIR" sparse-checkout set "$SPARSE_PATH" >/dev/null 2>&1; then
+          rm -rf "$TMP_CHECKOUT_DIR"
           echo -e "${RED}  Failed to set sparse-checkout path $SPARSE_PATH${NC}"
           FAILED+=("$sid")
           continue
         fi
 
-        SOURCE_DIR="$TMPDIR/$SPARSE_PATH"
+        SOURCE_DIR="$TMP_CHECKOUT_DIR/$SPARSE_PATH"
         if [[ ! -d "$SOURCE_DIR" ]]; then
-          rm -rf "$TMPDIR"
+          rm -rf "$TMP_CHECKOUT_DIR"
           echo -e "${RED}  Sparse path '$SPARSE_PATH' not found in repository.${NC}"
           FAILED+=("$sid")
           continue
@@ -338,10 +338,10 @@ for raw_id in "${SKILL_IDS[@]}"; do
           cp -R "${items[@]}" "$TARGET/"
         fi
         shopt -u dotglob nullglob
-        rm -rf "$TMPDIR"
+        rm -rf "$TMP_CHECKOUT_DIR"
         echo -e "${GREEN}  Sparse-checkout completed.${NC}"
       else
-        rm -rf "$TMPDIR"
+        rm -rf "$TMP_CHECKOUT_DIR"
         echo -e "${RED}  Failed to sparse-checkout $URL${NC}"
         FAILED+=("$sid")
         continue
