@@ -22,6 +22,13 @@ const collections = [
     clonePath: '',
     includeRootSkill: true,
   },
+  {
+    rootSkillId: 'academic-research-skills',
+    prefix: 'ars',
+    relativeRoot: '',
+    clonePath: '',
+    includeRootSkill: true,
+  },
 ];
 
 const args = new Set(process.argv.slice(2));

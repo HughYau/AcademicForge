@@ -34,9 +34,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added `academic-research-skills` as a registry-backed collection with 4 categorized sub-skills: deep research, academic paper writing, paper review, and academic pipeline orchestration
+- Added ARS source labels in compact skill cards and expanded site tests to cover all `site/src/lib/*.test.mjs`
 - Added `humanizer-zh` as a git submodule under `skills/humanizer-zh`, matching the integration strategy used for `humanizer`
 
 ### Changed
+- Refreshed registry star counts from GitHub and updated the redirected `andrej-karpathy-skills` repository URL to its canonical `multica-ai` owner
+- Updated generated collection indexes for Scientific Agent Skills, AI Research SKILLs, and Academic Research Skills
+- Removed `install.ref` pins from registry entries so installs follow the latest upstream repository version
 - Renamed the K-Dense scientific skills integration from `claude-scientific-skills` to `scientific-agent-skills`, including the submodule path, upstream URL, forge metadata, blacklist paths, verification scripts, and user-facing documentation
 
 ### Removed

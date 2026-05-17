@@ -224,5 +224,9 @@
   "air.verl": { "category": "research", "subdiscipline": "llm" },
   "air.vllm": { "category": "research", "subdiscipline": "llm" },
   "air.weights-and-biases": { "category": "research" },
-  "air.whisper": { "category": "research", "subdiscipline": "multimodal" }
+  "air.whisper": { "category": "research", "subdiscipline": "multimodal" },
+  "ars.academic-paper": { "category": "writing" },
+  "ars.academic-paper-reviewer": { "category": "writing" },
+  "ars.academic-pipeline": { "category": "workflow" },
+  "ars.deep-research": { "category": "research", "subdiscipline": "other" }
 }

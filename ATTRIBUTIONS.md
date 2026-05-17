@@ -6,15 +6,14 @@ This project integrates skills from multiple authors across the AI agent ecosyst
 
 Academic Forge uses a **hybrid integration model**:
 
-- Most skills are linked via git submodules
-- `paper-polish-workflow-skill` is linked via git submodule
-- `humanizer-zh` is linked via git submodule
-- `superpowers` is synced as a skills-only snapshot from upstream `skills/`
+- Most skills are described in `registry/skills.json` and installed from their upstream repositories on demand
+- Large upstream collections are scanned into categorized `sub_skills` entries for the site-first catalog
+- `superpowers` is installed from upstream `skills/` via sparse checkout
 - `scientific-visualization` is maintained locally in this repository (no upstream dependency)
 
 This means:
 
-- ✅ All original LICENSE files are preserved
+- ✅ External license metadata and source links are preserved in the registry
 - ✅ External skills link directly to their source repositories
 - ✅ Authors receive proper credit and GitHub attribution
 - ✅ Updates flow from the original repositories
@@ -34,7 +33,7 @@ This means:
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/scientific-agent-skills/LICENSE.md`
 
-**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 133 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
+**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 134 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
 
 ---
 
@@ -49,7 +48,7 @@ This means:
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/AI-research-SKILLs/LICENSE`
 
-**Why we included it**: The gold standard for AI research engineering workflows, with 82 expert-level skills covering the complete research lifecycle. Each skill contains ~420 lines of detailed documentation plus 300KB+ reference materials. Covers cutting-edge frameworks across model architecture (LitGPT, Mamba, RWKV), training (Axolotl, DeepSpeed, FSDP), post-training (TRL, OpenRLHF), inference (vLLM, TensorRT-LLM), and evaluation (lm-eval-harness). Invaluable for researchers and engineers working on LLMs, multimodal models, or publishing ML papers at top-tier conferences (NeurIPS, ICML, ICLR).
+**Why we included it**: The gold standard for AI research engineering workflows, with 92 expert-level skills covering the complete research lifecycle. Each skill contains detailed documentation and reference materials. Covers cutting-edge frameworks across model architecture (LitGPT, Mamba, RWKV), training (Axolotl, DeepSpeed, FSDP), post-training (TRL, OpenRLHF), inference (vLLM, TensorRT-LLM), and evaluation (lm-eval-harness). Invaluable for researchers and engineers working on LLMs, multimodal models, or publishing ML papers at top-tier conferences (NeurIPS, ICML, ICLR).
 
 ---
 
@@ -128,6 +127,21 @@ This means:
 
 ---
 
+### 8. academic-research-skills
+
+**Original Repository**: [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills)
+
+- **Author**: Imbad0202 / Cheng-I Wu
+- **License**: CC-BY-NC-4.0
+- **Included Version**: Installed from the current upstream default branch
+- **Purpose**: Deep research, academic paper writing, peer review, and end-to-end paper pipeline orchestration
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: See upstream `LICENSE`
+
+**Why we included it**: It provides a focused 4-skill academic workflow suite that maps directly onto common research-to-publication work: research, write, review, revise, and finalize.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -146,6 +160,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | superpowers | MIT | ✅ Yes | ✅ Yes |
 | paper-polish-workflow-skill | MIT | ✅ Yes | ✅ Yes |
 | scientific-visualization | MIT | ✅ Yes | ✅ Yes |
+| academic-research-skills | CC-BY-NC-4.0 | ❌ No | ✅ Yes |
 
 *Please check the original repository for current license information.
 
@@ -203,7 +218,7 @@ Want to add a skill to this forge? Please ensure:
 1. The skill has a clear, open-source license
 2. You have permission to include it (or it's clearly licensed for redistribution)
 3. You provide full attribution in this document
-4. You use a traceable integration method (prefer submodule; skills-only sync is acceptable when justified)
+4. You use a traceable integration method in `registry/skills.json`
 
 ## Version History
 
@@ -219,6 +234,7 @@ This document tracks which versions of each skill are included:
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
 | 2026-03-21 | paper-polish-workflow-skill | submodule from Lylll9436/Paper-Polish-Workflow-skill | Initial inclusion |
 | 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
+| 2026-05-17 | academic-research-skills | pinned from Imbad0202/academic-research-skills | Initial inclusion |
 
 To see the current linked submodule versions, run:
 ```bash

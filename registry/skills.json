@@ -11,7 +11,7 @@
       "repository": "https://github.com/obra/superpowers",
       "license": "MIT",
       "skill_count": 15,
-      "stars": 152103,
+      "stars": 194474,
       "tags": [
         "workflow",
         "planning",
@@ -33,11 +33,11 @@
         "en": "A practical workflow skill focused on four coding principles: Think Before Coding, Simplicity First, Surgical Changes, and Goal-Driven Execution.",
         "zh": "面向编码流程的实践型 skill，聚焦四项原则：先思考、保简单、做精准改动、以可验证目标驱动执行。"
       },
-      "author": "forrestchang",
-      "repository": "https://github.com/forrestchang/andrej-karpathy-skills",
-      "license": "MIT",
+      "author": "multica-ai",
+      "repository": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "license": "See repository",
       "skill_count": 1,
-      "stars": 52100,
+      "stars": 133123,
       "tags": [
         "workflow",
         "process",
@@ -47,7 +47,7 @@
       ],
       "install": {
         "method": "sparse-checkout",
-        "url": "https://github.com/forrestchang/andrej-karpathy-skills.git",
+        "url": "https://github.com/multica-ai/andrej-karpathy-skills.git",
         "sparse_path": "skills"
       },
       "post_install": []
@@ -63,7 +63,7 @@
       "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "license": "MIT",
       "skill_count": 134,
-      "stars": 18454,
+      "stars": 23438,
       "tags": [
         "science",
         "research",
@@ -73,8 +73,7 @@
       ],
       "install": {
         "method": "git-clone",
-        "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
-        "ref": "eb20fb0dcb0b1dadaa3db2737188f0755bbc4770"
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git"
       },
       "post_install": [
         "clean_ads"
@@ -647,6 +646,7 @@
           },
           "sparse_path": "scientific-skills/exploratory-data-analysis",
           "category": "research",
+          "subdiscipline": null,
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -924,6 +924,7 @@
           },
           "sparse_path": "scientific-skills/hypothesis-generation",
           "category": "research",
+          "subdiscipline": null,
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -1608,6 +1609,7 @@
           },
           "sparse_path": "scientific-skills/polars",
           "category": "research",
+          "subdiscipline": null,
           "license": "https://github.com/pola-rs/polars/blob/main/LICENSE",
           "install": {
             "method": "sparse-checkout",
@@ -1925,6 +1927,7 @@
           },
           "sparse_path": "scientific-skills/pytorch-lightning",
           "category": "research",
+          "subdiscipline": null,
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -2042,6 +2045,7 @@
           },
           "sparse_path": "scientific-skills/research-lookup",
           "category": "research",
+          "subdiscipline": null,
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2120,6 +2124,7 @@
           },
           "sparse_path": "scientific-skills/scientific-brainstorming",
           "category": "research",
+          "subdiscipline": null,
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2139,6 +2144,7 @@
           },
           "sparse_path": "scientific-skills/scientific-critical-thinking",
           "category": "research",
+          "subdiscipline": null,
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2254,6 +2260,7 @@
           },
           "sparse_path": "scientific-skills/scikit-learn",
           "category": "research",
+          "subdiscipline": null,
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2352,6 +2359,7 @@
           },
           "sparse_path": "scientific-skills/shap",
           "category": "research",
+          "subdiscipline": null,
           "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
@@ -2549,6 +2557,7 @@
           },
           "sparse_path": "scientific-skills/transformers",
           "category": "research",
+          "subdiscipline": null,
           "license": "Apache-2.0 license",
           "install": {
             "method": "sparse-checkout",
@@ -2588,6 +2597,7 @@
           },
           "sparse_path": "scientific-skills/umap-learn",
           "category": "research",
+          "subdiscipline": null,
           "license": "BSD-3-Clause license",
           "install": {
             "method": "sparse-checkout",
@@ -2730,7 +2740,7 @@
       "repository": "https://github.com/blader/humanizer",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 13836,
+      "stars": 19201,
       "tags": [
         "writing",
         "tone",
@@ -2744,6 +2754,99 @@
       "post_install": []
     },
     {
+      "id": "academic-research-skills",
+      "name": "Academic Research Skills",
+      "summary": {
+        "en": "4-skill academic research suite for deep research, paper writing, peer review, and end-to-end publication pipeline orchestration.",
+        "zh": "4 个学术研究 skill：深度研究、论文写作、论文评审，以及端到端发表流程编排。"
+      },
+      "author": "Imbad0202",
+      "repository": "https://github.com/Imbad0202/academic-research-skills",
+      "license": "CC-BY-NC-4.0",
+      "skill_count": 4,
+      "stars": 8707,
+      "tags": [
+        "academic",
+        "research",
+        "writing",
+        "peer-review",
+        "pipeline"
+      ],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/Imbad0202/academic-research-skills.git"
+      },
+      "post_install": [],
+      "is_collection": true,
+      "sub_skills": [
+        {
+          "id": "ars.academic-paper-reviewer",
+          "name": "academic-paper-reviewer",
+          "summary": {
+            "en": "Multi-perspective academic paper review with dynamic reviewer personas. Simulates 5 independent reviewers (EIC + 3 peer reviewers + Devil's Advocate) with field-specific expertise. Supports full review, re-review (verification), quick assessment, methodology focus, Socratic guided, and calibration modes. Triggers on: review paper, peer review, manuscript review, referee report, review my paper, critique paper, simulate review, editorial review, calibrate reviewer, reviewer calibration, measure reviewer accuracy.",
+            "zh": "Multi-perspective academic paper review with dynamic reviewer personas. Simulates 5 independent reviewers (EIC + 3 peer reviewers + Devil's Advocate) with field-specific expertise. Supports full review, re-review (verification), quick assessment, methodology focus, Socratic guided, and calibration modes. Triggers on: review paper, peer review, manuscript review, referee report, review my paper, critique paper, simulate review, editorial review, calibrate reviewer, reviewer calibration, measure reviewer accuracy."
+          },
+          "sparse_path": "academic-paper-reviewer",
+          "category": "writing",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Imbad0202/academic-research-skills.git",
+            "sparse_path": "academic-paper-reviewer"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ars.academic-paper",
+          "name": "academic-paper",
+          "summary": {
+            "en": "12-agent academic paper writing pipeline. 10 modes (full/plan/outline/revision/revision-coach/abstract/lit-review/format-convert/citation-check/disclosure). 6 paper types, 5 citation formats, bilingual abstracts, LaTeX/DOCX-via-Pandoc/PDF output. Style Calibration + Writing Quality Check + Anti-Patterns with IRON RULE markers. Triggers: write paper, academic paper, guide my paper, parse reviews, AI disclosure, 寫論文, 學術論文, 引導我寫論文, 審查意見.",
+            "zh": "12-agent academic paper writing pipeline. 10 modes (full/plan/outline/revision/revision-coach/abstract/lit-review/format-convert/citation-check/disclosure). 6 paper types, 5 citation formats, bilingual abstracts, LaTeX/DOCX-via-Pandoc/PDF output. Style Calibration + Writing Quality Check + Anti-Patterns with IRON RULE markers. Triggers: write paper, academic paper, guide my paper, parse reviews, AI disclosure, 寫論文, 學術論文, 引導我寫論文, 審查意見."
+          },
+          "sparse_path": "academic-paper",
+          "category": "writing",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Imbad0202/academic-research-skills.git",
+            "sparse_path": "academic-paper"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ars.academic-pipeline",
+          "name": "academic-pipeline",
+          "summary": {
+            "en": "Orchestrator for the full academic research pipeline: research -> write -> integrity check -> review -> revise -> re-review -> re-revise -> final integrity check -> finalize. Coordinates deep-research, academic-paper, and academic-paper-reviewer into a seamless 10-stage workflow with mandatory integrity verification, two-stage peer review, and reproducible quality gates. Triggers on: academic pipeline, research to paper, full paper workflow, paper pipeline, end-to-end paper, research-to-publication, complete paper workflow.",
+            "zh": "Orchestrator for the full academic research pipeline: research -> write -> integrity check -> review -> revise -> re-review -> re-revise -> final integrity check -> finalize. Coordinates deep-research, academic-paper, and academic-paper-reviewer into a seamless 10-stage workflow with mandatory integrity verification, two-stage peer review, and reproducible quality gates. Triggers on: academic pipeline, research to paper, full paper workflow, paper pipeline, end-to-end paper, research-to-publication, complete paper workflow."
+          },
+          "sparse_path": "academic-pipeline",
+          "category": "workflow",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Imbad0202/academic-research-skills.git",
+            "sparse_path": "academic-pipeline"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ars.deep-research",
+          "name": "deep-research",
+          "summary": {
+            "en": "Universal deep research agent team. 13-agent pipeline for rigorous academic research on any topic. 7 modes: full research, quick brief, paper review, lit-review, fact-check, Socratic guided research dialogue, and systematic review with optional meta-analysis. Covers research question formulation, Socratic mentoring, methodology design, systematic literature search, source verification, cross-source synthesis, risk of bias assessment, meta-analysis, APA 7.0 report compilation, editorial review, devil's advocate challenges, ethics review, and post-research literature monitoring. Triggers on: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, guide my research, help me think through, 研究, 深度研究, 文獻回顧, 文獻探討, 系統性回顧, 後設分析, 事實查核, 引導我的研究, 幫我釐清, 幫我想想, 我不確定要研究什麼, 研究方向, 研究主題.",
+            "zh": "Universal deep research agent team. 13-agent pipeline for rigorous academic research on any topic. 7 modes: full research, quick brief, paper review, lit-review, fact-check, Socratic guided research dialogue, and systematic review with optional meta-analysis. Covers research question formulation, Socratic mentoring, methodology design, systematic literature search, source verification, cross-source synthesis, risk of bias assessment, meta-analysis, APA 7.0 report compilation, editorial review, devil's advocate challenges, ethics review, and post-research literature monitoring. Triggers on: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, guide my research, help me think through, 研究, 深度研究, 文獻回顧, 文獻探討, 系統性回顧, 後設分析, 事實查核, 引導我的研究, 幫我釐清, 幫我想想, 我不確定要研究什麼, 研究方向, 研究主題."
+          },
+          "sparse_path": "deep-research",
+          "category": "research",
+          "subdiscipline": "other",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Imbad0202/academic-research-skills.git",
+            "sparse_path": "deep-research"
+          },
+          "post_install": []
+        }
+      ]
+    },
+    {
       "id": "AI-research-SKILLs",
       "name": "AI Research Skills",
       "summary": {
@@ -2754,7 +2857,7 @@
       "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
       "license": "MIT",
       "skill_count": 92,
-      "stars": 6837,
+      "stars": 8521,
       "tags": [
         "AI",
         "deep-learning",
@@ -2764,8 +2867,7 @@
       ],
       "install": {
         "method": "git-clone",
-        "url": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git",
-        "ref": "22bca4dbc2a8319f0819d053b30045e467985eff"
+        "url": "https://github.com/Orchestra-Research/AI-Research-SKILLs.git"
       },
       "post_install": [],
       "is_collection": true,
@@ -2779,6 +2881,7 @@
           },
           "sparse_path": "0-autoresearch-skill",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Autonomous Research",
             "Two-Loop Architecture",
@@ -2952,6 +3055,7 @@
           },
           "sparse_path": "02-tokenization/huggingface-tokenizers",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Tokenization",
             "HuggingFace",
@@ -2981,6 +3085,7 @@
           },
           "sparse_path": "02-tokenization/sentencepiece",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Tokenization",
             "SentencePiece",
@@ -3075,6 +3180,7 @@
           },
           "sparse_path": "03-fine-tuning/peft",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Fine-Tuning",
             "PEFT",
@@ -3637,6 +3743,7 @@
           },
           "sparse_path": "08-distributed-training/accelerate",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Distributed Training",
             "HuggingFace",
@@ -3666,6 +3773,7 @@
           },
           "sparse_path": "08-distributed-training/deepspeed",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "DeepSpeed",
             "Distributed Training",
@@ -3784,6 +3892,7 @@
           },
           "sparse_path": "08-distributed-training/ray-train",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Ray Train",
             "Distributed Training",
@@ -4662,6 +4771,7 @@
           },
           "sparse_path": "15-rag/sentence-transformers",
           "category": "research",
+          "subdiscipline": null,
           "tags": [
             "Sentence Transformers",
             "Embeddings",
@@ -5454,7 +5564,7 @@
       "repository": "https://github.com/op7418/Humanizer-zh",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 6047,
+      "stars": 7709,
       "tags": [
         "chinese",
         "writing",
@@ -5478,7 +5588,7 @@
       "repository": "https://github.com/HughYau/qiushi-skill",
       "license": "MIT",
       "skill_count": 11,
-      "stars": 2700,
+      "stars": 3088,
       "tags": [
         "workflow",
         "methodology",
@@ -5503,7 +5613,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 801,
+      "stars": 1027,
       "tags": [
         "visualization",
         "matplotlib",
@@ -5513,7 +5623,6 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/HughYau/AcademicForge.git",
-        "ref": "site-first",
         "sparse_path": "skills/scientific-visualization"
       },
       "post_install": []
@@ -5529,7 +5638,7 @@
       "repository": "https://github.com/ethanweber/posterskill",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 473,
+      "stars": 505,
       "tags": [
         "poster",
         "visualization",
@@ -5554,7 +5663,7 @@
       "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",
       "license": "MIT",
       "skill_count": 15,
-      "stars": 225,
+      "stars": 315,
       "tags": [
         "writing",
         "translation",

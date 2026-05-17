@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 
 import { collectSubSkills } from '../lib/skill-index.mjs';
 
-test('collectSubSkills skips disabled entries and preserves install.ref', () => {
+test('collectSubSkills skips disabled entries without pinning install.ref', () => {
   const rootDir = mkdtempSync(join(tmpdir(), 'skill-index-'));
 
   try {
@@ -45,7 +45,7 @@ test('collectSubSkills skips disabled entries and preserves install.ref', () => 
 
     assert.equal(subSkills.length, 1);
     assert.equal(subSkills[0].id, 'sa.demo-one');
-    assert.equal(subSkills[0].install.ref, 'main');
+    assert.equal(subSkills[0].install.ref, undefined);
     assert.equal(subSkills[0].sparse_path, 'scientific-skills/demo-one');
   } finally {
     rmSync(rootDir, { recursive: true, force: true });

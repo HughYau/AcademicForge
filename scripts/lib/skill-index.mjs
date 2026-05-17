@@ -138,7 +138,6 @@ export const collectSubSkills = ({
         install: {
           method: 'sparse-checkout',
           url: parentSkill.install.url,
-          ...(parentSkill.install.ref ? { ref: parentSkill.install.ref } : {}),
           sparse_path: relativeDir,
         },
         post_install: parentSkill.post_install ?? [],

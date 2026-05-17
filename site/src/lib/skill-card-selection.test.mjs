@@ -15,3 +15,9 @@ test('SkillCard keeps the checkbox in-place instead of using sr-only', () => {
   assert.match(skillCard, /class="skill-checkbox peer absolute inset-0 m-0 h-full w-full cursor-pointer opacity-0"/);
   assert.match(skillCard, /peer-focus-visible:border-\[#3898ec\] peer-focus-visible:shadow-\[0_0_0_1px_#3898ec\]/);
 });
+
+test('SkillCard labels ARS collection sub-skills in compact cards', () => {
+  const skillCard = read('site/src/components/SkillCard.astro');
+
+  assert.match(skillCard, /id\.startsWith\('ars\.'\) \? 'ARS'/);
+});
