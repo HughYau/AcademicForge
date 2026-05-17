@@ -36,11 +36,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added `academic-research-skills` as a registry-backed collection with 4 categorized sub-skills: deep research, academic paper writing, paper review, and academic pipeline orchestration
 - Added ARS source labels in compact skill cards and expanded site tests to cover all `site/src/lib/*.test.mjs`
+- Added Chinese summary translations for generated collection sub-skills and validation that blocks untranslated `summary.zh` fields
 - Added `humanizer-zh` as a git submodule under `skills/humanizer-zh`, matching the integration strategy used for `humanizer`
 
 ### Changed
 - Refreshed registry star counts from GitHub and updated the redirected `andrej-karpathy-skills` repository URL to its canonical `multica-ai` owner
-- Updated generated collection indexes for Scientific Agent Skills, AI Research SKILLs, and Academic Research Skills
+- Updated generated collection indexes for Scientific Agent Skills, AI Research SKILLs, and Academic Research Skills from their latest upstream default branches
 - Removed `install.ref` pins from registry entries so installs follow the latest upstream repository version
 - Renamed the K-Dense scientific skills integration from `claude-scientific-skills` to `scientific-agent-skills`, including the submodule path, upstream URL, forge metadata, blacklist paths, verification scripts, and user-facing documentation
 
@@ -48,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed `planning-with-files` from the curated skill set, install/update pipeline, verification scripts, and user-facing documentation
 
 ### Fixed
+- Fixed the PowerShell installer so registry entries without optional `install.ref` still install under `Set-StrictMode`
 - **脚本路径修复**: 所有脚本（install/update/download）现在支持从任意目录运行，自动定位仓库根目录
 - **CI 工作流补全**: 自动更新 PR 现在也会应用技能黑名单、清理 K-Dense 广告，并执行统一的同步后清理流程
 - **死代码清理**: 移除 update.sh / install.sh 中永远为真的 `$?` 检查

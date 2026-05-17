@@ -211,6 +211,12 @@ try {
         }
 
         try {
+            $installRef = if ($skill.install.PSObject.Properties.Match('ref').Count -gt 0) {
+                $skill.install.ref
+            } else {
+                ""
+            }
+
             switch ($skill.install.method) {
                 "git-clone" {
                     $gitArgs = @('clone', '--depth', '1')
@@ -220,8 +226,8 @@ try {
                         throw "Failed to clone $($skill.install.url)"
                     }
 
-                    if (-not (Invoke-GitCheckoutRef -RepositoryPath $target -Ref $skill.install.ref)) {
-                        throw "Failed to checkout ref $($skill.install.ref)"
+                    if (-not (Invoke-GitCheckoutRef -RepositoryPath $target -Ref $installRef)) {
+                        throw "Failed to checkout ref $installRef"
                     }
 
                     $gitDir = Join-Path $target ".git"
@@ -249,8 +255,8 @@ try {
                             throw "Failed to sparse-checkout $($skill.install.url)"
                         }
 
-                        if (-not (Invoke-GitCheckoutRef -RepositoryPath $tmpDir -Ref $skill.install.ref)) {
-                            throw "Failed to checkout ref $($skill.install.ref)"
+                        if (-not (Invoke-GitCheckoutRef -RepositoryPath $tmpDir -Ref $installRef)) {
+                            throw "Failed to checkout ref $installRef"
                         }
 
                         $sparseExitCode = Invoke-GitQuiet -C $tmpDir sparse-checkout set $skill.install.sparse_path

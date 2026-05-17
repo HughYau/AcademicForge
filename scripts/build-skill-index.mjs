@@ -6,6 +6,7 @@ import { collectSubSkills, withTemporaryClone } from './lib/skill-index.mjs';
 const repoRoot = resolve(import.meta.dirname, '..');
 const registryPath = resolve(repoRoot, 'registry/skills.json');
 const classificationPath = resolve(repoRoot, 'scripts/skill-classification.json');
+const translationsPath = resolve(repoRoot, 'scripts/skill-translations.zh.json');
 
 const collections = [
   {
@@ -37,6 +38,7 @@ const checkOnly = args.has('--check');
 const updateLeadingCount = (text, count) => text.replace(/^\d+/, String(count));
 
 const classification = JSON.parse(readFileSync(classificationPath, 'utf8'));
+const translations = JSON.parse(readFileSync(translationsPath, 'utf8'));
 const registry = JSON.parse(readFileSync(registryPath, 'utf8'));
 const seenIds = new Set();
 
@@ -59,6 +61,7 @@ for (const collection of collections) {
       prefix: collection.prefix,
       parentSkill,
       classification,
+      translations,
     }),
   );
 

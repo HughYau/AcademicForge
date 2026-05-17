@@ -5,7 +5,6 @@ $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $TempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ('forge-install-test-' + [System.Guid]::NewGuid().ToString('N'))
 $RegistryPath = Join-Path $TempRoot 'registry.json'
 $OutputPath = Join-Path $TempRoot 'output'
-$LocalRef = (& git -C $RepoRoot rev-parse HEAD).Trim()
 
 New-Item -ItemType Directory -Path $TempRoot | Out-Null
 
@@ -28,7 +27,6 @@ try {
                 install = @{
                     method = 'sparse-checkout'
                     url = $RepoRoot
-                    ref = $LocalRef
                     sparse_path = 'skills/scientific-visualization'
                 }
                 post_install = @()

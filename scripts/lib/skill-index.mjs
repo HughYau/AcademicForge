@@ -89,6 +89,7 @@ export const collectSubSkills = ({
   prefix,
   parentSkill,
   classification,
+  translations = {},
 }) => {
   const scanRoot = relativeRoot ? resolve(rootDir, relativeRoot) : rootDir;
 
@@ -128,7 +129,7 @@ export const collectSubSkills = ({
         name: displayName,
         summary: {
           en: frontmatter.description,
-          zh: frontmatter.description,
+          zh: translations[id] ?? frontmatter.description,
         },
         sparse_path: relativeDir,
         category: classificationEntry.category,

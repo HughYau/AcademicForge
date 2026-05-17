@@ -27,6 +27,10 @@ export function validateRegistry(registry, { repoRoot }) {
         errors.push("Local pack 'scientific-visualization' is missing from skills/scientific-visualization");
       }
     }
+
+    if (record.summary?.en && record.summary?.zh && record.summary.en.trim() === record.summary.zh.trim()) {
+      errors.push(`Skill '${record.id}' has untranslated summary.zh`);
+    }
   };
 
   for (const skill of registry.skills ?? []) {

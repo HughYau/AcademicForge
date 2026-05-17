@@ -8,7 +8,6 @@ TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/forge-install-test.XXXXXX")"
 REGISTRY_FILE="$TMP_DIR/registry.json"
 OUTPUT_DIR="$TMP_DIR/output"
 BIN_DIR="$TMP_DIR/bin"
-LOCAL_REF="$(git -C "$REPO_ROOT" rev-parse HEAD)"
 
 cleanup() {
   rm -rf "$TMP_DIR"
@@ -57,7 +56,6 @@ cat > "$REGISTRY_FILE" <<JSON
       "install": {
         "method": "sparse-checkout",
         "url": "$REPO_ROOT",
-        "ref": "$LOCAL_REF",
         "sparse_path": "skills/scientific-visualization"
       },
       "post_install": []

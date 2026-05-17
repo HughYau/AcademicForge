@@ -33,7 +33,7 @@ This means:
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/scientific-agent-skills/LICENSE.md`
 
-**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 134 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
+**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 137 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
 
 ---
 
@@ -48,7 +48,7 @@ This means:
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/AI-research-SKILLs/LICENSE`
 
-**Why we included it**: The gold standard for AI research engineering workflows, with 92 expert-level skills covering the complete research lifecycle. Each skill contains detailed documentation and reference materials. Covers cutting-edge frameworks across model architecture (LitGPT, Mamba, RWKV), training (Axolotl, DeepSpeed, FSDP), post-training (TRL, OpenRLHF), inference (vLLM, TensorRT-LLM), and evaluation (lm-eval-harness). Invaluable for researchers and engineers working on LLMs, multimodal models, or publishing ML papers at top-tier conferences (NeurIPS, ICML, ICLR).
+**Why we included it**: The gold standard for AI research engineering workflows, with 98 expert-level skills covering the complete research lifecycle. Each skill contains detailed documentation and reference materials. Covers cutting-edge frameworks across model architecture (LitGPT, Mamba, RWKV), training (Axolotl, DeepSpeed, FSDP), post-training (TRL, OpenRLHF), inference (vLLM, TensorRT-LLM), and evaluation (lm-eval-harness). Invaluable for researchers and engineers working on LLMs, multimodal models, or publishing ML papers at top-tier conferences (NeurIPS, ICML, ICLR).
 
 ---
 

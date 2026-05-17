@@ -41,10 +41,14 @@ test('collectSubSkills skips disabled entries without pinning install.ref', () =
         'sa.demo-one': { category: 'research', subdiscipline: 'life-sci' },
         'sa.skip-me': { category: 'research', disabled: true },
       },
+      translations: {
+        'sa.demo-one': 'Demo one 的中文摘要',
+      },
     });
 
     assert.equal(subSkills.length, 1);
     assert.equal(subSkills[0].id, 'sa.demo-one');
+    assert.equal(subSkills[0].summary.zh, 'Demo one 的中文摘要');
     assert.equal(subSkills[0].install.ref, undefined);
     assert.equal(subSkills[0].sparse_path, 'scientific-skills/demo-one');
   } finally {
