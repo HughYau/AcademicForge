@@ -25,20 +25,33 @@ export const parseFrontmatter = (content, filePath) => {
   }
 
   const fields = {};
-  match[1].split(/\r?\n/).forEach((line) => {
+  const lines = match[1].split(/\r?\n/);
+
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex];
     if (!line || /^\s/.test(line)) {
-      return;
+      continue;
     }
 
     const index = line.indexOf(':');
     if (index === -1) {
-      return;
+      continue;
     }
 
     const key = line.slice(0, index).trim();
-    const value = line.slice(index + 1).trim();
+    let value = line.slice(index + 1).trim();
+
+    if (['>-', '>', '|-', '|'].includes(value)) {
+      const blockLines = [];
+      while (lineIndex + 1 < lines.length && /^\s/.test(lines[lineIndex + 1])) {
+        lineIndex += 1;
+        blockLines.push(lines[lineIndex].trim());
+      }
+      value = value.startsWith('|') ? blockLines.join('\n') : blockLines.join(' ');
+    }
+
     fields[key] = value;
-  });
+  }
 
   return {
     name: fields.name ? stripQuotes(fields.name) : '',

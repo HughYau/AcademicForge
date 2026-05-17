@@ -4,7 +4,27 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 
-import { collectSubSkills } from '../lib/skill-index.mjs';
+import { collectSubSkills, parseFrontmatter } from '../lib/skill-index.mjs';
+
+test('parseFrontmatter supports folded YAML descriptions', () => {
+  const frontmatter = parseFrontmatter(
+    [
+      '---',
+      'name: nature-citation',
+      'description: >-',
+      '  Add strict Nature/CNS citations to manuscript text.',
+      '  Use when the user asks for supporting references.',
+      'license: MIT',
+      '---',
+    ].join('\n'),
+    'SKILL.md',
+  );
+
+  assert.equal(
+    frontmatter.description,
+    'Add strict Nature/CNS citations to manuscript text. Use when the user asks for supporting references.',
+  );
+});
 
 test('collectSubSkills skips disabled entries without pinning install.ref', () => {
   const rootDir = mkdtempSync(join(tmpdir(), 'skill-index-'));

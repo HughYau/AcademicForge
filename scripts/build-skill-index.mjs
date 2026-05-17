@@ -24,11 +24,11 @@ const collections = [
     includeRootSkill: true,
   },
   {
-    rootSkillId: 'academic-research-skills',
-    prefix: 'ars',
-    relativeRoot: '',
-    clonePath: '',
-    includeRootSkill: true,
+    rootSkillId: 'nature-skills',
+    prefix: 'ns',
+    relativeRoot: 'skills',
+    clonePath: 'skills',
+    includeRootSkill: false,
   },
 ];
 

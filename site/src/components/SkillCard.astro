@@ -37,7 +37,7 @@ const searchText = [id, name, summary.en, summary.zh, author ?? '', repository ?
 const detailSlug = id.replace(/[^a-zA-Z0-9_-]/g, '-');
 const detailId = `skill-detail-${detailSlug}`;
 const titleId = `skill-title-${detailSlug}`;
-const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' : id.startsWith('ars.') ? 'ARS' : '';
+const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' : id.startsWith('ns.') ? 'NS' : '';
 ---
 
 <article

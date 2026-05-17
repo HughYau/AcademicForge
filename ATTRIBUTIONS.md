@@ -127,18 +127,18 @@ This means:
 
 ---
 
-### 8. academic-research-skills
+### 8. nature-skills
 
-**Original Repository**: [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills)
+**Original Repository**: [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills)
 
-- **Author**: Imbad0202 / Cheng-I Wu
-- **License**: CC-BY-NC-4.0
+- **Author**: Yuan1z0825 / Yuan Yizhe
+- **License**: MIT License
 - **Included Version**: Installed from the current upstream default branch
-- **Purpose**: Deep research, academic paper writing, peer review, and end-to-end paper pipeline orchestration
-- **Modifications**: None (installed from upstream via git clone)
+- **Purpose**: Nature-style academic writing, polishing, citations, data availability, figures, paper reading, reviewer responses, slides, and literature search
+- **Modifications**: None (installed from upstream via git clone or sparse checkout for sub-skills)
 - **Original License Text**: See upstream `LICENSE`
 
-**Why we included it**: It provides a focused 4-skill academic workflow suite that maps directly onto common research-to-publication work: research, write, review, revise, and finalize.
+**Why we included it**: It provides a focused Nature-family publication workflow that complements Academic Forge's research, writing, citation, figure, and revision workflows with practical Chinese-author support.
 
 ---
 
@@ -160,7 +160,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | superpowers | MIT | ✅ Yes | ✅ Yes |
 | paper-polish-workflow-skill | MIT | ✅ Yes | ✅ Yes |
 | scientific-visualization | MIT | ✅ Yes | ✅ Yes |
-| academic-research-skills | CC-BY-NC-4.0 | ❌ No | ✅ Yes |
+| nature-skills | MIT | ✅ Yes | ✅ Yes |
 
 *Please check the original repository for current license information.
 
@@ -234,7 +234,7 @@ This document tracks which versions of each skill are included:
 | 2026-02-15 | superpowers (skills-only) | synced from obra/superpowers/skills | Initial inclusion |
 | 2026-03-21 | paper-polish-workflow-skill | submodule from Lylll9436/Paper-Polish-Workflow-skill | Initial inclusion |
 | 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
-| 2026-05-17 | academic-research-skills | pinned from Imbad0202/academic-research-skills | Initial inclusion |
+| 2026-05-17 | nature-skills | installed from Yuan1z0825/nature-skills | Initial inclusion |
 
 To see the current linked submodule versions, run:
 ```bash

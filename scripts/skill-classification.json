@@ -234,8 +234,13 @@
   "air.compiler": { "category": "research", "subdiscipline": "other" },
   "air.research-manager": { "category": "workflow" },
   "air.rigor-reviewer": { "category": "research", "subdiscipline": "other" },
-  "ars.academic-paper": { "category": "writing" },
-  "ars.academic-paper-reviewer": { "category": "writing" },
-  "ars.academic-pipeline": { "category": "workflow" },
-  "ars.deep-research": { "category": "research", "subdiscipline": "other" }
+  "ns.nature-academic-search": { "category": "research", "subdiscipline": "other" },
+  "ns.nature-citation": { "category": "writing" },
+  "ns.nature-data": { "category": "writing" },
+  "ns.nature-figure": { "category": "visualization" },
+  "ns.nature-paper2ppt": { "category": "visualization" },
+  "ns.nature-polishing": { "category": "writing" },
+  "ns.nature-reader": { "category": "writing" },
+  "ns.nature-response": { "category": "writing" },
+  "ns.nature-writing": { "category": "writing" }
 }

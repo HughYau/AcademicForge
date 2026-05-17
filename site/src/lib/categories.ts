@@ -39,7 +39,7 @@ export const SKILL_CATEGORY: Partial<Record<string, Category>> = {
   'qiushi-skill': 'workflow',
   humanizer: 'writing',
   'humanizer-zh': 'writing',
-  'academic-research-skills': 'writing',
+  'nature-skills': 'writing',
   'paper-polish-workflow-skill': 'writing',
   'scientific-agent-skills': 'research',
   'AI-research-SKILLs': 'research',
