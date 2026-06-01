@@ -1,4076 +1,4127 @@
 ## Updated Skills
 
-Submodule skills/scientific-agent-skills 63de55a..5bd00bf:
+Submodule skills/humanizer 8b3a178..a2ace14:
+  > Add em/en dash cut, gap-filling tell, and diff-anchored pattern (v2.7.0)
+  > Cleanup pass: cut bloat and fix the aggressiveness contradiction (v2.6.0)
+  > Replace WARP.md with tool-neutral AGENTS.md
+  > Merge pull request #84 from mvanhorn/fix/78-content-preservation
+  > Merge pull request #113 from philippdubach/detection-guidance
+  > Merge pull request #121 from Longman006/fix/section-26-attributive-vs-predicate-hyphens
+  > Merge pull request #119 from MackDing/mack/pr-20260519-1107-humanizer
+Submodule skills/scientific-agent-skills 5bd00bf..9312485:
   > chore: update security scan report [skip ci]
-  > Merge pull request #156 from Beifang/feature/pacsomatic
-  > Merge pull request #90 from StevenDillmann/feat/simbad-database-skill
-  > Update README.md for improved link formatting and table of contents consistency
-  > Bump version and added community contributions
+  > Update scvi-tools
+  > Update scikit-bio
+  > Update Modal skill
+  > Add bulk-rnaseq workflow skill
+  > Add pathway-enrichment skill
+  > Bump version
+  > Add support for Nextflow
+  > Bump version
+  > docs: update dependencies and skills documentation for dask, pymoo, and scanpy
+  > docs: update skills documentation for scientific-critical-thinking and stable-baselines3
+  > docs: update scikit-learn skill documentation and references
+  > docs: update research grants skill documentation and templates
+  > docs: update skills documentation for histolab and astropy
+  > docs: enhance README with new star encouragement section
+  > docs: update README to include Star History and refine skills usage descriptions
+  > Update directory for compatibility
+  > Update directory
+  > docs: update SKILL.md for bgpt-paper-search compatibility and usage instructions
+  > docs: update SKILL.md for Adaptyv API enhancements
+  > docs: update SKILL.md and related references for Benchling integration
+  > docs: update README and SKILL.md files for versioning and new features
+  > docs: update README to include Google Antigravity support and enhance follow-up information
+  > chore: keep agent guidance local
+  > docs: enhance README with contribution guidelines and citation practices
+  > chore: update metadata for scientific skills
+  > chore: update documentation and descriptions for scientific skills
+  > chore: update PyTorch Lightning documentation and installation instructions
+  > chore: update scientific-agent-skills version to 2.42.0
+  > Add suppor for LiteParse from LlamaIndex
+  > chore: bump scientific-agent-skills version to 2.41.0
+  > refactor: enhance medchem and esm documentation and functionality
+  > chore: update Biopython and Datamol documentation
+  > chore: update .gitignore and bump scientific-agent-skills version to 2.40.0
+  > Bump version
 diff --git a/update_summary.md b/update_summary.md
-index e08889b..98b6e19 100644
+index 7f6f6a1..98b6e19 100644
 --- a/update_summary.md
 +++ b/update_summary.md
-@@ -1,4063 +1,2 @@
+@@ -1,4076 +1,2 @@
  ## Updated Skills
  
--Submodule skills/scientific-agent-skills cbcae7b..63de55a:
+-Submodule skills/scientific-agent-skills 63de55a..5bd00bf:
 -  > chore: update security scan report [skip ci]
--  > Merge pull request #116 from robotlearning123/fix/neuropixels-broken-links
--  > Merge pull request #94 from jiaodu1307/fix/rdkit-skill-gzip-import-clean
--  > Merge pull request #125 from yarikoptic/enh-bids
--  > Merge pull request #147 from xiaolai/fix/nlpm-scanpy-license-typo
--  > Merge pull request #164 from mvanhorn/fix/159-research-lookup-yaml-frontmatter
--  > Merge pull request #165 from Travisma2233/venue-templates/add-elsarticle
+-  > Merge pull request #156 from Beifang/feature/pacsomatic
+-  > Merge pull request #90 from StevenDillmann/feat/simbad-database-skill
+-  > Update README.md for improved link formatting and table of contents consistency
+-  > Bump version and added community contributions
 -diff --git a/update_summary.md b/update_summary.md
--index d98bc33..98b6e19 100644
+-index e08889b..98b6e19 100644
 ---- a/update_summary.md
 -+++ b/update_summary.md
--@@ -1,4048 +1,2 @@
+-@@ -1,4063 +1,2 @@
 - ## Updated Skills
 - 
---Submodule skills/scientific-agent-skills 37a148b..cbcae7b:
+--Submodule skills/scientific-agent-skills cbcae7b..63de55a:
 --  > chore: update security scan report [skip ci]
---  > Merge pull request #143 from tgonzalezc5/feat/exa-search-skill
---diff --git a/skills/superpowers/executing-plans/SKILL.md b/skills/superpowers/executing-plans/SKILL.md
---index e67f94c..a591862 100644
------ a/skills/superpowers/executing-plans/SKILL.md
---+++ b/skills/superpowers/executing-plans/SKILL.md
---@@ -65,6 +65,6 @@ After all tasks complete and verified:
--- ## Integration
--- 
--- **Required workflow skills:**
----- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
---+- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
--- - **superpowers:writing-plans** - Creates the plan this skill executes
--- - **superpowers:finishing-a-development-branch** - Complete development after all tasks
---diff --git a/skills/superpowers/finishing-a-development-branch/SKILL.md b/skills/superpowers/finishing-a-development-branch/SKILL.md
---index c308b43..43da0ae 100644
------ a/skills/superpowers/finishing-a-development-branch/SKILL.md
---+++ b/skills/superpowers/finishing-a-development-branch/SKILL.md
---@@ -9,7 +9,7 @@ description: Use when implementation is complete, all tests pass, and you need t
--- 
--- Guide completion of development work by presenting clear options and handling chosen workflow.
--- 
----**Core principle:** Verify tests → Present options → Execute choice → Clean up.
---+**Core principle:** Verify tests → Detect environment → Present options → Execute choice → Clean up.
--- 
--- **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
--- 
---@@ -37,7 +37,24 @@ Stop. Don't proceed to Step 2.
--- 
--- **If tests pass:** Continue to Step 2.
--- 
----### Step 2: Determine Base Branch
---+### Step 2: Detect Environment
---+
---+**Determine workspace state before presenting options:**
---+
---+```bash
---+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---+```
---+
---+This determines which menu to show and how cleanup works:
---+
---+| State | Menu | Cleanup |
---+|-------|------|---------|
---+| `GIT_DIR == GIT_COMMON` (normal repo) | Standard 4 options | No worktree to clean up |
---+| `GIT_DIR != GIT_COMMON`, named branch | Standard 4 options | Provenance-based (see Step 6) |
---+| `GIT_DIR != GIT_COMMON`, detached HEAD | Reduced 3 options (no merge) | No cleanup (externally managed) |
---+
---+### Step 3: Determine Base Branch
--- 
--- ```bash
--- # Try common base branches
---@@ -46,9 +63,9 @@ git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null
--- 
--- Or ask: "This branch split from main - is that correct?"
--- 
----### Step 3: Present Options
---+### Step 4: Present Options
--- 
----Present exactly these 4 options:
---+**Normal repo and named-branch worktree — present exactly these 4 options:**
--- 
--- ```
--- Implementation complete. What would you like to do?
---@@ -61,30 +78,45 @@ Implementation complete. What would you like to do?
--- Which option?
--- ```
--- 
---+**Detached HEAD — present exactly these 3 options:**
---+
---+```
---+Implementation complete. You're on a detached HEAD (externally managed workspace).
---+
---+1. Push as new branch and create a Pull Request
---+2. Keep as-is (I'll handle it later)
---+3. Discard this work
---+
---+Which option?
---+```
---+
--- **Don't add explanation** - keep options concise.
--- 
----### Step 4: Execute Choice
---+### Step 5: Execute Choice
--- 
--- #### Option 1: Merge Locally
--- 
--- ```bash
----# Switch to base branch
----git checkout <base-branch>
---+# Get main repo root for CWD safety
---+MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
---+cd "$MAIN_ROOT"
--- 
----# Pull latest
---+# Merge first — verify success before removing anything
---+git checkout <base-branch>
--- git pull
----
----# Merge feature branch
--- git merge <feature-branch>
--- 
--- # Verify tests on merged result
--- <test command>
--- 
----# If tests pass
----git branch -d <feature-branch>
---+# Only after merge succeeds: cleanup worktree (Step 6), then delete branch
--- ```
--- 
----Then: Cleanup worktree (Step 5)
---+Then: Cleanup worktree (Step 6), then delete branch:
---+
---+```bash
---+git branch -d <feature-branch>
---+```
--- 
--- #### Option 2: Push and Create PR
--- 
---@@ -103,7 +135,7 @@ EOF
--- )"
--- ```
--- 
----Then: Cleanup worktree (Step 5)
---+**Do NOT clean up worktree** — user needs it alive to iterate on PR feedback.
--- 
--- #### Option 3: Keep As-Is
--- 
---@@ -127,36 +159,46 @@ Wait for exact confirmation.
--- 
--- If confirmed:
--- ```bash
----git checkout <base-branch>
----git branch -D <feature-branch>
---+MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
---+cd "$MAIN_ROOT"
--- ```
--- 
----Then: Cleanup worktree (Step 5)
---+Then: Cleanup worktree (Step 6), then force-delete branch:
---+```bash
---+git branch -D <feature-branch>
---+```
--- 
----### Step 5: Cleanup Worktree
---+### Step 6: Cleanup Workspace
--- 
----**For Options 1, 2, 4:**
---+**Only runs for Options 1 and 4.** Options 2 and 3 always preserve the worktree.
--- 
----Check if in worktree:
--- ```bash
----git worktree list | grep $(git branch --show-current)
---+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---+WORKTREE_PATH=$(git rev-parse --show-toplevel)
--- ```
--- 
----If yes:
---+**If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
---+
---+**If worktree path is under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`:** Superpowers created this worktree — we own cleanup.
---+
--- ```bash
----git worktree remove <worktree-path>
---+MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
---+cd "$MAIN_ROOT"
---+git worktree remove "$WORKTREE_PATH"
---+git worktree prune  # Self-healing: clean up any stale registrations
--- ```
--- 
----**For Option 3:** Keep worktree.
---+**Otherwise:** The host environment (harness) owns this workspace. Do NOT remove it. If your platform provides a workspace-exit tool, use it. Otherwise, leave the workspace in place.
--- 
--- ## Quick Reference
--- 
--- | Option | Merge | Push | Keep Worktree | Cleanup Branch |
--- |--------|-------|------|---------------|----------------|
----| 1. Merge locally | ✓ | - | - | ✓ |
----| 2. Create PR | - | ✓ | ✓ | - |
----| 3. Keep as-is | - | - | ✓ | - |
----| 4. Discard | - | - | - | ✓ (force) |
---+| 1. Merge locally | yes | - | - | yes |
---+| 2. Create PR | - | yes | yes | - |
---+| 3. Keep as-is | - | - | yes | - |
---+| 4. Discard | - | - | - | yes (force) |
--- 
--- ## Common Mistakes
--- 
---@@ -165,13 +207,25 @@ git worktree remove <worktree-path>
--- - **Fix:** Always verify tests before offering options
--- 
--- **Open-ended questions**
----- **Problem:** "What should I do next?" → ambiguous
----- **Fix:** Present exactly 4 structured options
---+- **Problem:** "What should I do next?" is ambiguous
---+- **Fix:** Present exactly 4 structured options (or 3 for detached HEAD)
--- 
----**Automatic worktree cleanup**
----- **Problem:** Remove worktree when might need it (Option 2, 3)
---+**Cleaning up worktree for Option 2**
---+- **Problem:** Remove worktree user needs for PR iteration
--- - **Fix:** Only cleanup for Options 1 and 4
--- 
---+**Deleting branch before removing worktree**
---+- **Problem:** `git branch -d` fails because worktree still references the branch
---+- **Fix:** Merge first, remove worktree, then delete branch
---+
---+**Running git worktree remove from inside the worktree**
---+- **Problem:** Command fails silently when CWD is inside the worktree being removed
---+- **Fix:** Always `cd` to main repo root before `git worktree remove`
---+
---+**Cleaning up harness-owned worktrees**
---+- **Problem:** Removing a worktree the harness created causes phantom state
---+- **Fix:** Only clean up worktrees under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`
---+
--- **No confirmation for discard**
--- - **Problem:** Accidentally delete work
--- - **Fix:** Require typed "discard" confirmation
---@@ -183,18 +237,15 @@ git worktree remove <worktree-path>
--- - Merge without verifying tests on result
--- - Delete work without confirmation
--- - Force-push without explicit request
---+- Remove a worktree before confirming merge success
---+- Clean up worktrees you didn't create (provenance check)
---+- Run `git worktree remove` from inside the worktree
--- 
--- **Always:**
--- - Verify tests before offering options
----- Present exactly 4 options
---+- Detect environment before presenting menu
---+- Present exactly 4 options (or 3 for detached HEAD)
--- - Get typed confirmation for Option 4
--- - Clean up worktree for Options 1 & 4 only
----
----## Integration
----
----**Called by:**
----- **subagent-driven-development** (Step 7) - After all tasks complete
----- **executing-plans** (Step 5) - After all batches complete
----
----**Pairs with:**
----- **using-git-worktrees** - Cleans up worktree created by that skill
---+- `cd` to main repo root before worktree removal
---+- Run `git worktree prune` after removal
---diff --git a/skills/superpowers/requesting-code-review/SKILL.md b/skills/superpowers/requesting-code-review/SKILL.md
---index fe7c8d9..34b8340 100644
------ a/skills/superpowers/requesting-code-review/SKILL.md
---+++ b/skills/superpowers/requesting-code-review/SKILL.md
---@@ -5,7 +5,7 @@ description: Use when completing tasks, implementing major features, or before m
--- 
--- # Requesting Code Review
--- 
----Dispatch superpowers:code-reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
---+Dispatch a code reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
--- 
--- **Core principle:** Review early, review often.
--- 
---@@ -29,16 +29,15 @@ BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
--- HEAD_SHA=$(git rev-parse HEAD)
--- ```
--- 
----**2. Dispatch code-reviewer subagent:**
---+**2. Dispatch code reviewer subagent:**
--- 
----Use Task tool with superpowers:code-reviewer type, fill template at `code-reviewer.md`
---+Use Task tool with `general-purpose` type, fill template at `code-reviewer.md`
--- 
--- **Placeholders:**
----- `{WHAT_WAS_IMPLEMENTED}` - What you just built
---+- `{DESCRIPTION}` - Brief summary of what you built
--- - `{PLAN_OR_REQUIREMENTS}` - What it should do
--- - `{BASE_SHA}` - Starting commit
--- - `{HEAD_SHA}` - Ending commit
----- `{DESCRIPTION}` - Brief summary
--- 
--- **3. Act on feedback:**
--- - Fix Critical issues immediately
---@@ -56,12 +55,11 @@ You: Let me request code review before proceeding.
--- BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
--- HEAD_SHA=$(git rev-parse HEAD)
--- 
----[Dispatch superpowers:code-reviewer subagent]
----  WHAT_WAS_IMPLEMENTED: Verification and repair functions for conversation index
---+[Dispatch code reviewer subagent]
---+  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
---   PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
---   BASE_SHA: a7981ec
---   HEAD_SHA: 3df7661
----  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
--- 
--- [Subagent returns]:
---   Strengths: Clean architecture, real tests
---@@ -82,7 +80,7 @@ You: [Fix progress indicators]
--- - Fix before moving to next task
--- 
--- **Executing Plans:**
----- Review after each batch (3 tasks)
---+- Review after each task or at natural checkpoints
--- - Get feedback, apply, continue
--- 
--- **Ad-Hoc Development:**
---diff --git a/skills/superpowers/requesting-code-review/code-reviewer.md b/skills/superpowers/requesting-code-review/code-reviewer.md
---index 3c427c9..525e4b4 100644
------ a/skills/superpowers/requesting-code-review/code-reviewer.md
---+++ b/skills/superpowers/requesting-code-review/code-reviewer.md
---@@ -1,111 +1,133 @@
----# Code Review Agent
---+# Code Reviewer Prompt Template
--- 
----You are reviewing code changes for production readiness.
---+Use this template when dispatching a code reviewer subagent.
--- 
----**Your task:**
----1. Review {WHAT_WAS_IMPLEMENTED}
----2. Compare against {PLAN_OR_REQUIREMENTS}
----3. Check code quality, architecture, testing
----4. Categorize issues by severity
----5. Assess production readiness
---+**Purpose:** Review completed work against requirements and code quality standards before it cascades into more work.
--- 
----## What Was Implemented
---+```
---+Task tool (general-purpose):
---+  description: "Review code changes"
---+  prompt: |
---+    You are a Senior Code Reviewer with expertise in software architecture,
---+    design patterns, and best practices. Your job is to review completed work
---+    against its plan or requirements and identify issues before they cascade.
--- 
----{DESCRIPTION}
---+    ## What Was Implemented
--- 
----## Requirements/Plan
---+    {DESCRIPTION}
--- 
----{PLAN_REFERENCE}
---+    ## Requirements / Plan
--- 
----## Git Range to Review
---+    {PLAN_OR_REQUIREMENTS}
--- 
----**Base:** {BASE_SHA}
----**Head:** {HEAD_SHA}
---+    ## Git Range to Review
--- 
----```bash
----git diff --stat {BASE_SHA}..{HEAD_SHA}
----git diff {BASE_SHA}..{HEAD_SHA}
----```
---+    **Base:** {BASE_SHA}
---+    **Head:** {HEAD_SHA}
--- 
----## Review Checklist
----
----**Code Quality:**
----- Clean separation of concerns?
----- Proper error handling?
----- Type safety (if applicable)?
----- DRY principle followed?
----- Edge cases handled?
----
----**Architecture:**
----- Sound design decisions?
----- Scalability considerations?
----- Performance implications?
----- Security concerns?
----
----**Testing:**
----- Tests actually test logic (not mocks)?
----- Edge cases covered?
----- Integration tests where needed?
----- All tests passing?
----
----**Requirements:**
----- All plan requirements met?
----- Implementation matches spec?
----- No scope creep?
----- Breaking changes documented?
----
----**Production Readiness:**
----- Migration strategy (if schema changes)?
----- Backward compatibility considered?
----- Documentation complete?
----- No obvious bugs?
----
----## Output Format
---+    ```bash
---+    git diff --stat {BASE_SHA}..{HEAD_SHA}
---+    git diff {BASE_SHA}..{HEAD_SHA}
---+    ```
--- 
----### Strengths
----[What's well done? Be specific.]
---+    ## What to Check
--- 
----### Issues
---+    **Plan alignment:**
---+    - Does the implementation match the plan / requirements?
---+    - Are deviations justified improvements, or problematic departures?
---+    - Is all planned functionality present?
--- 
----#### Critical (Must Fix)
----[Bugs, security issues, data loss risks, broken functionality]
---+    **Code quality:**
---+    - Clean separation of concerns?
---+    - Proper error handling?
---+    - Type safety where applicable?
---+    - DRY without premature abstraction?
---+    - Edge cases handled?
--- 
----#### Important (Should Fix)
----[Architecture problems, missing features, poor error handling, test gaps]
---+    **Architecture:**
---+    - Sound design decisions?
---+    - Reasonable scalability and performance?
---+    - Security concerns?
---+    - Integrates cleanly with surrounding code?
--- 
----#### Minor (Nice to Have)
----[Code style, optimization opportunities, documentation improvements]
---+    **Testing:**
---+    - Tests verify real behavior, not mocks?
---+    - Edge cases covered?
---+    - Integration tests where they matter?
---+    - All tests passing?
--- 
----**For each issue:**
----- File:line reference
----- What's wrong
----- Why it matters
----- How to fix (if not obvious)
---+    **Production readiness:**
---+    - Migration strategy if schema changed?
---+    - Backward compatibility considered?
---+    - Documentation complete?
---+    - No obvious bugs?
--- 
----### Recommendations
----[Improvements for code quality, architecture, or process]
---+    ## Calibration
--- 
----### Assessment
---+    Categorize issues by actual severity. Not everything is Critical.
---+    Acknowledge what was done well before listing issues — accurate praise
---+    helps the implementer trust the rest of the feedback.
---+
---+    If you find significant deviations from the plan, flag them specifically
---+    so the implementer can confirm whether the deviation was intentional.
---+    If you find issues with the plan itself rather than the implementation,
---+    say so.
---+
---+    ## Output Format
---+
---+    ### Strengths
---+    [What's well done? Be specific.]
---+
---+    ### Issues
--- 
----**Ready to merge?** [Yes/No/With fixes]
---+    #### Critical (Must Fix)
---+    [Bugs, security issues, data loss risks, broken functionality]
--- 
----**Reasoning:** [Technical assessment in 1-2 sentences]
---+    #### Important (Should Fix)
---+    [Architecture problems, missing features, poor error handling, test gaps]
--- 
----## Critical Rules
---+    #### Minor (Nice to Have)
---+    [Code style, optimization opportunities, documentation polish]
---+
---+    For each issue:
---+    - File:line reference
---+    - What's wrong
---+    - Why it matters
---+    - How to fix (if not obvious)
---+
---+    ### Recommendations
---+    [Improvements for code quality, architecture, or process]
---+
---+    ### Assessment
---+
---+    **Ready to merge?** [Yes | No | With fixes]
---+
---+    **Reasoning:** [1-2 sentence technical assessment]
---+
---+    ## Critical Rules
---+
---+    **DO:**
---+    - Categorize by actual severity
---+    - Be specific (file:line, not vague)
---+    - Explain WHY each issue matters
---+    - Acknowledge strengths
---+    - Give a clear verdict
---+
---+    **DON'T:**
---+    - Say "looks good" without checking
---+    - Mark nitpicks as Critical
---+    - Give feedback on code you didn't actually read
---+    - Be vague ("improve error handling")
---+    - Avoid giving a clear verdict
---+```
--- 
----**DO:**
----- Categorize by actual severity (not everything is Critical)
----- Be specific (file:line, not vague)
----- Explain WHY issues matter
----- Acknowledge strengths
----- Give clear verdict
---+**Placeholders:**
---+- `{DESCRIPTION}` — brief summary of what was built
---+- `{PLAN_OR_REQUIREMENTS}` — what it should do (plan file path, task text, or requirements)
---+- `{BASE_SHA}` — starting commit
---+- `{HEAD_SHA}` — ending commit
--- 
----**DON'T:**
----- Say "looks good" without checking
----- Mark nitpicks as Critical
----- Give feedback on code you didn't review
----- Be vague ("improve error handling")
----- Avoid giving a clear verdict
---+**Reviewer returns:** Strengths, Issues (Critical / Important / Minor), Recommendations, Assessment
--- 
--- ## Example Output
--- 
---diff --git a/skills/superpowers/subagent-driven-development/SKILL.md b/skills/superpowers/subagent-driven-development/SKILL.md
---index 5150b18..ea7ac8f 100644
------ a/skills/superpowers/subagent-driven-development/SKILL.md
---+++ b/skills/superpowers/subagent-driven-development/SKILL.md
---@@ -11,6 +11,8 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
--- 
--- **Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration
--- 
---+**Continuous execution:** Do not pause to check in with your human partner between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete. "Should I continue?" prompts and progress summaries waste their time — they asked you to execute the plan, so execute it.
---+
--- ## When to Use
--- 
--- ```dot
---@@ -265,7 +267,7 @@ Done!
--- ## Integration
--- 
--- **Required workflow skills:**
----- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
---+- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
--- - **superpowers:writing-plans** - Creates the plan this skill executes
--- - **superpowers:requesting-code-review** - Code review template for reviewer subagents
--- - **superpowers:finishing-a-development-branch** - Complete development after all tasks
---diff --git a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
---index a04201a..51f901a 100644
------ a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
---+++ b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
---@@ -7,14 +7,13 @@ Use this template when dispatching a code quality reviewer subagent.
--- **Only dispatch after spec compliance review passes.**
--- 
--- ```
----Task tool (superpowers:code-reviewer):
---+Task tool (general-purpose):
---   Use template at requesting-code-review/code-reviewer.md
--- 
----  WHAT_WAS_IMPLEMENTED: [from implementer's report]
---+  DESCRIPTION: [task summary, from implementer's report]
---   PLAN_OR_REQUIREMENTS: Task N from [plan-file]
---   BASE_SHA: [commit before task]
---   HEAD_SHA: [current commit]
----  DESCRIPTION: [task summary]
--- ```
--- 
--- **In addition to standard code quality concerns, the reviewer should check:**
---diff --git a/skills/superpowers/systematic-debugging/CREATION-LOG.md b/skills/superpowers/systematic-debugging/CREATION-LOG.md
---index 024d00a..9aa0309 100644
------ a/skills/superpowers/systematic-debugging/CREATION-LOG.md
---+++ b/skills/superpowers/systematic-debugging/CREATION-LOG.md
---@@ -4,7 +4,7 @@ Reference example of extracting, structuring, and bulletproofing a critical skil
--- 
--- ## Source Material
--- 
----Extracted debugging framework from `/Users/jesse/.claude/CLAUDE.md`:
---+Extracted debugging framework from `~/.claude/CLAUDE.md`:
--- - 4-phase systematic process (Investigation → Pattern Analysis → Hypothesis → Implementation)
--- - Core mandate: ALWAYS find root cause, NEVER fix symptoms
--- - Rules designed to resist time pressure and rationalization
---diff --git a/skills/superpowers/systematic-debugging/root-cause-tracing.md b/skills/superpowers/systematic-debugging/root-cause-tracing.md
---index 9484774..12ef522 100644
------ a/skills/superpowers/systematic-debugging/root-cause-tracing.md
---+++ b/skills/superpowers/systematic-debugging/root-cause-tracing.md
---@@ -33,7 +33,7 @@ digraph when_to_use {
--- 
--- ### 1. Observe the Symptom
--- ```
----Error: git init failed in /Users/jesse/project/packages/core
---+Error: git init failed in ~/project/packages/core
--- ```
--- 
--- ### 2. Find Immediate Cause
---diff --git a/skills/superpowers/using-git-worktrees/SKILL.md b/skills/superpowers/using-git-worktrees/SKILL.md
---index e153843..134d371 100644
------ a/skills/superpowers/using-git-worktrees/SKILL.md
---+++ b/skills/superpowers/using-git-worktrees/SKILL.md
---@@ -1,104 +1,117 @@
--- ---
--- name: using-git-worktrees
----description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification
---+description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback
--- ---
--- 
--- # Using Git Worktrees
--- 
--- ## Overview
--- 
----Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
---+Ensure work happens in an isolated workspace. Prefer your platform's native worktree tools. Fall back to manual git worktrees only when no native tool is available.
--- 
----**Core principle:** Systematic directory selection + safety verification = reliable isolation.
---+**Core principle:** Detect existing isolation first. Then use native tools. Then fall back to git. Never fight the harness.
--- 
--- **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
--- 
----## Directory Selection Process
---+## Step 0: Detect Existing Isolation
--- 
----Follow this priority order:
----
----### 1. Check Existing Directories
---+**Before creating anything, check if you are already in an isolated workspace.**
--- 
--- ```bash
----# Check in priority order
----ls -d .worktrees 2>/dev/null     # Preferred (hidden)
----ls -d worktrees 2>/dev/null      # Alternative
---+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---+BRANCH=$(git branch --show-current)
--- ```
--- 
----**If found:** Use that directory. If both exist, `.worktrees` wins.
----
----### 2. Check CLAUDE.md
---+**Submodule guard:** `GIT_DIR != GIT_COMMON` is also true inside git submodules. Before concluding "already in a worktree," verify you are not in a submodule:
--- 
--- ```bash
----grep -i "worktree.*director" CLAUDE.md 2>/dev/null
---+# If this returns a path, you're in a submodule, not a worktree — treat as normal repo
---+git rev-parse --show-superproject-working-tree 2>/dev/null
--- ```
--- 
----**If preference specified:** Use it without asking.
---+**If `GIT_DIR != GIT_COMMON` (and not a submodule):** You are already in a linked worktree. Skip to Step 3 (Project Setup). Do NOT create another worktree.
--- 
----### 3. Ask User
---+Report with branch state:
---+- On a branch: "Already in isolated workspace at `<path>` on branch `<name>`."
---+- Detached HEAD: "Already in isolated workspace at `<path>` (detached HEAD, externally managed). Branch creation needed at finish time."
--- 
----If no directory exists and no CLAUDE.md preference:
---+**If `GIT_DIR == GIT_COMMON` (or in a submodule):** You are in a normal repo checkout.
--- 
----```
----No worktree directory found. Where should I create worktrees?
---+Has the user already indicated their worktree preference in your instructions? If not, ask for consent before creating a worktree:
--- 
----1. .worktrees/ (project-local, hidden)
----2. ~/.config/superpowers/worktrees/<project-name>/ (global location)
---+> "Would you like me to set up an isolated worktree? It protects your current branch from changes."
--- 
----Which would you prefer?
----```
---+Honor any existing declared preference without asking. If the user declines consent, work in place and skip to Step 3.
---+
---+## Step 1: Create Isolated Workspace
---+
---+**You have two mechanisms. Try them in this order.**
---+
---+### 1a. Native Worktree Tools (preferred)
---+
---+The user has asked for an isolated workspace (Step 0 consent). Do you already have a way to create a worktree? It might be a tool with a name like `EnterWorktree`, `WorktreeCreate`, a `/worktree` command, or a `--worktree` flag. If you do, use it and skip to Step 3.
---+
---+Native tools handle directory placement, branch creation, and cleanup automatically. Using `git worktree add` when you have a native tool creates phantom state your harness can't see or manage.
---+
---+Only proceed to Step 1b if you have no native worktree tool available.
--- 
----## Safety Verification
---+### 1b. Git Worktree Fallback
--- 
----### For Project-Local Directories (.worktrees or worktrees)
---+**Only use this if Step 1a does not apply** — you have no native worktree tool available. Create a worktree manually using git.
---+
---+#### Directory Selection
---+
---+Follow this priority order. Explicit user preference always beats observed filesystem state.
---+
---+1. **Check your instructions for a declared worktree directory preference.** If the user has already specified one, use it without asking.
---+
---+2. **Check for an existing project-local worktree directory:**
---+   ```bash
---+   ls -d .worktrees 2>/dev/null     # Preferred (hidden)
---+   ls -d worktrees 2>/dev/null      # Alternative
---+   ```
---+   If found, use it. If both exist, `.worktrees` wins.
---+
---+3. **Check for an existing global directory:**
---+   ```bash
---+   project=$(basename "$(git rev-parse --show-toplevel)")
---+   ls -d ~/.config/superpowers/worktrees/$project 2>/dev/null
---+   ```
---+   If found, use it (backward compatibility with legacy global path).
---+
---+4. **If there is no other guidance available**, default to `.worktrees/` at the project root.
---+
---+#### Safety Verification (project-local directories only)
--- 
--- **MUST verify directory is ignored before creating worktree:**
--- 
--- ```bash
----# Check if directory is ignored (respects local, global, and system gitignore)
--- git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/dev/null
--- ```
--- 
----**If NOT ignored:**
----
----Per Jesse's rule "Fix broken things immediately":
----1. Add appropriate line to .gitignore
----2. Commit the change
----3. Proceed with worktree creation
---+**If NOT ignored:** Add to .gitignore, commit the change, then proceed.
--- 
--- **Why critical:** Prevents accidentally committing worktree contents to repository.
--- 
----### For Global Directory (~/.config/superpowers/worktrees)
----
----No .gitignore verification needed - outside project entirely.
---+Global directories (`~/.config/superpowers/worktrees/`) need no verification.
--- 
----## Creation Steps
----
----### 1. Detect Project Name
---+#### Create the Worktree
--- 
--- ```bash
--- project=$(basename "$(git rev-parse --show-toplevel)")
----```
--- 
----### 2. Create Worktree
---+# Determine path based on chosen location
---+# For project-local: path="$LOCATION/$BRANCH_NAME"
---+# For global: path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
--- 
----```bash
----# Determine full path
----case $LOCATION in
----  .worktrees|worktrees)
----    path="$LOCATION/$BRANCH_NAME"
----    ;;
----  ~/.config/superpowers/worktrees/*)
----    path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
----    ;;
----esac
----
----# Create worktree with new branch
--- git worktree add "$path" -b "$BRANCH_NAME"
--- cd "$path"
--- ```
--- 
----### 3. Run Project Setup
---+**Sandbox fallback:** If `git worktree add` fails with a permission error (sandbox denial), tell the user the sandbox blocked worktree creation and you're working in the current directory instead. Then run setup and baseline tests in place.
---+
---+## Step 3: Project Setup
--- 
--- Auto-detect and run appropriate setup:
--- 
---@@ -117,23 +130,20 @@ if [ -f pyproject.toml ]; then poetry install; fi
--- if [ -f go.mod ]; then go mod download; fi
--- ```
--- 
----### 4. Verify Clean Baseline
---+## Step 4: Verify Clean Baseline
--- 
----Run tests to ensure worktree starts clean:
---+Run tests to ensure workspace starts clean:
--- 
--- ```bash
----# Examples - use project-appropriate command
----npm test
----cargo test
----pytest
----go test ./...
---+# Use project-appropriate command
---+npm test / cargo test / pytest / go test ./...
--- ```
--- 
--- **If tests fail:** Report failures, ask whether to proceed or investigate.
--- 
--- **If tests pass:** Report ready.
--- 
----### 5. Report Location
---+### Report
--- 
--- ```
--- Worktree ready at <full-path>
---@@ -145,16 +155,32 @@ Ready to implement <feature-name>
--- 
--- | Situation | Action |
--- |-----------|--------|
---+| Already in linked worktree | Skip creation (Step 0) |
---+| In a submodule | Treat as normal repo (Step 0 guard) |
---+| Native worktree tool available | Use it (Step 1a) |
---+| No native tool | Git worktree fallback (Step 1b) |
--- | `.worktrees/` exists | Use it (verify ignored) |
--- | `worktrees/` exists | Use it (verify ignored) |
--- | Both exist | Use `.worktrees/` |
----| Neither exists | Check CLAUDE.md → Ask user |
---+| Neither exists | Check instruction file, then default `.worktrees/` |
---+| Global path exists | Use it (backward compat) |
--- | Directory not ignored | Add to .gitignore + commit |
---+| Permission error on create | Sandbox fallback, work in place |
--- | Tests fail during baseline | Report failures + ask |
--- | No package.json/Cargo.toml | Skip dependency install |
--- 
--- ## Common Mistakes
--- 
---+### Fighting the harness
---+
---+- **Problem:** Using `git worktree add` when the platform already provides isolation
---+- **Fix:** Step 0 detects existing isolation. Step 1a defers to native tools.
---+
---+### Skipping detection
---+
---+- **Problem:** Creating a nested worktree inside an existing one
---+- **Fix:** Always run Step 0 before creating anything
---+
--- ### Skipping ignore verification
--- 
--- - **Problem:** Worktree contents get tracked, pollute git status
---@@ -163,56 +189,27 @@ Ready to implement <feature-name>
--- ### Assuming directory location
--- 
--- - **Problem:** Creates inconsistency, violates project conventions
----- **Fix:** Follow priority: existing > CLAUDE.md > ask
---+- **Fix:** Follow priority: existing > global legacy > instruction file > default
--- 
--- ### Proceeding with failing tests
--- 
--- - **Problem:** Can't distinguish new bugs from pre-existing issues
--- - **Fix:** Report failures, get explicit permission to proceed
--- 
----### Hardcoding setup commands
----
----- **Problem:** Breaks on projects using different tools
----- **Fix:** Auto-detect from project files (package.json, etc.)
----
----## Example Workflow
----
----```
----You: I'm using the using-git-worktrees skill to set up an isolated workspace.
----
----[Check .worktrees/ - exists]
----[Verify ignored - git check-ignore confirms .worktrees/ is ignored]
----[Create worktree: git worktree add .worktrees/auth -b feature/auth]
----[Run npm install]
----[Run npm test - 47 passing]
----
----Worktree ready at /Users/jesse/myproject/.worktrees/auth
----Tests passing (47 tests, 0 failures)
----Ready to implement auth feature
----```
----
--- ## Red Flags
--- 
--- **Never:**
---+- Create a worktree when Step 0 detects existing isolation
---+- Use `git worktree add` when you have a native worktree tool (e.g., `EnterWorktree`). This is the #1 mistake — if you have it, use it.
---+- Skip Step 1a by jumping straight to Step 1b's git commands
--- - Create worktree without verifying it's ignored (project-local)
--- - Skip baseline test verification
--- - Proceed with failing tests without asking
----- Assume directory location when ambiguous
----- Skip CLAUDE.md check
--- 
--- **Always:**
----- Follow directory priority: existing > CLAUDE.md > ask
---+- Run Step 0 detection first
---+- Prefer native tools over git fallback
---+- Follow directory priority: existing > global legacy > instruction file > default
--- - Verify directory is ignored for project-local
--- - Auto-detect and run project setup
--- - Verify clean test baseline
----
----## Integration
----
----**Called by:**
----- **brainstorming** (Phase 4) - REQUIRED when design is approved and implementation follows
----- **subagent-driven-development** - REQUIRED before executing any tasks
----- **executing-plans** - REQUIRED before executing any tasks
----- Any skill needing isolated workspace
----
----**Pairs with:**
----- **finishing-a-development-branch** - REQUIRED for cleanup after work complete
---diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
---index 539b2b1..f50d40d 100644
------ a/skills/superpowers/using-superpowers/references/codex-tools.md
---+++ b/skills/superpowers/using-superpowers/references/codex-tools.md
---@@ -4,9 +4,9 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
--- 
--- | Skill references | Codex equivalent |
--- |-----------------|------------------|
----| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
---+| `Task` tool (dispatch subagent) | `spawn_agent` (see [Subagent dispatch requires multi-agent support](#subagent-dispatch-requires-multi-agent-support)) |
--- | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
----| Task returns result | `wait` |
---+| Task returns result | `wait_agent` |
--- | Task completes automatically | `close_agent` to free slot |
--- | `TodoWrite` (task tracking) | `update_plan` |
--- | `Skill` tool (invoke a skill) | Skills load natively — just follow the instructions |
---@@ -22,53 +22,12 @@ Add to your Codex config (`~/.codex/config.toml`):
--- multi_agent = true
--- ```
--- 
----This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
---+This enables `spawn_agent`, `wait_agent`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
--- 
----## Named agent dispatch
----
----Claude Code skills reference named agent types like `superpowers:code-reviewer`.
----Codex does not have a named agent registry — `spawn_agent` creates generic agents
----from built-in roles (`default`, `explorer`, `worker`).
----
----When a skill says to dispatch a named agent type:
----
----1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
----   local prompt template like `code-quality-reviewer-prompt.md`)
----2. Read the prompt content
----3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
----4. Spawn a `worker` agent with the filled content as the `message`
----
----| Skill instruction | Codex equivalent |
----|-------------------|------------------|
----| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
----| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
----
----### Message framing
----
----The `message` parameter is user-level input, not a system prompt. Structure it
----for maximum instruction adherence:
----
----```
----Your task is to perform the following. Follow the instructions below exactly.
----
----<agent-instructions>
----[filled prompt content from the agent's .md file]
----</agent-instructions>
----
----Execute this now. Output ONLY the structured response following the format
----specified in the instructions above.
----```
----
----- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
----- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
----- End with an explicit execution directive to prevent summarization of the instructions
----
----### When this workaround can be removed
----
----This approach compensates for Codex's plugin system not yet supporting an `agents`
----field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
----plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
----skills can dispatch named agent types directly.
---+Legacy note: Codex builds before `rust-v0.115.0` exposed spawned-agent
---+waiting as `wait`. Current Codex uses `wait_agent` for spawned agents. The
---+`wait` name now belongs to code-mode `exec/wait`, which resumes a yielded exec
---+cell by `cell_id`; it is not the spawned-agent result tool.
--- 
--- ## Environment Detection
--- 
---diff --git a/skills/superpowers/using-superpowers/references/copilot-tools.md b/skills/superpowers/using-superpowers/references/copilot-tools.md
---index 4316cdb..ae3cf5a 100644
------ a/skills/superpowers/using-superpowers/references/copilot-tools.md
---+++ b/skills/superpowers/using-superpowers/references/copilot-tools.md
---@@ -12,23 +12,13 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
--- | `Glob` (search files by name) | `glob` |
--- | `Skill` tool (invoke a skill) | `skill` |
--- | `WebFetch` | `web_fetch` |
----| `Task` tool (dispatch subagent) | `task` (see [Agent types](#agent-types)) |
---+| `Task` tool (dispatch subagent) | `task` with `agent_type: "general-purpose"` or `"explore"` |
--- | Multiple `Task` calls (parallel) | Multiple `task` calls |
--- | Task status/output | `read_agent`, `list_agents` |
--- | `TodoWrite` (task tracking) | `sql` with built-in `todos` table |
--- | `WebSearch` | No equivalent — use `web_fetch` with a search engine URL |
--- | `EnterPlanMode` / `ExitPlanMode` | No equivalent — stay in the main session |
--- 
----## Agent types
----
----Copilot CLI's `task` tool accepts an `agent_type` parameter:
----
----| Claude Code agent | Copilot CLI equivalent |
----|-------------------|----------------------|
----| `general-purpose` | `"general-purpose"` |
----| `Explore` | `"explore"` |
----| Named plugin agents (e.g. `superpowers:code-reviewer`) | Discovered automatically from installed plugins |
----
--- ## Async shell sessions
--- 
--- Copilot CLI supports persistent async shell sessions, which have no direct Claude Code equivalent:
---diff --git a/skills/superpowers/using-superpowers/references/gemini-tools.md b/skills/superpowers/using-superpowers/references/gemini-tools.md
---index f869803..91ef404 100644
------ a/skills/superpowers/using-superpowers/references/gemini-tools.md
---+++ b/skills/superpowers/using-superpowers/references/gemini-tools.md
---@@ -14,11 +14,29 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
--- | `Skill` tool (invoke a skill) | `activate_skill` |
--- | `WebSearch` | `google_web_search` |
--- | `WebFetch` | `web_fetch` |
----| `Task` tool (dispatch subagent) | No equivalent — Gemini CLI does not support subagents |
---+| `Task` tool (dispatch subagent) | `@agent-name` (see [Subagent support](#subagent-support)) |
--- 
----## No subagent support
---+## Subagent support
--- 
----Gemini CLI has no equivalent to Claude Code's `Task` tool. Skills that rely on subagent dispatch (`subagent-driven-development`, `dispatching-parallel-agents`) will fall back to single-session execution via `executing-plans`.
---+Gemini CLI supports subagents natively via the `@` syntax. Use the built-in `@generalist` agent to dispatch any task — it has access to all tools and follows the prompt you provide.
---+
---+When a skill says to dispatch a named agent type, use `@generalist` with the full prompt from the skill's prompt template:
---+
---+| Skill instruction | Gemini CLI equivalent |
---+|-------------------|----------------------|
---+| `Task tool (superpowers:implementer)` | `@generalist` with the filled `implementer-prompt.md` template |
---+| `Task tool (superpowers:spec-reviewer)` | `@generalist` with the filled `spec-reviewer-prompt.md` template |
---+| `Task tool (superpowers:code-reviewer)` | `@code-reviewer` (bundled agent) or `@generalist` with the filled review prompt |
---+| `Task tool (superpowers:code-quality-reviewer)` | `@generalist` with the filled `code-quality-reviewer-prompt.md` template |
---+| `Task tool (general-purpose)` with inline prompt | `@generalist` with your inline prompt |
---+
---+### Prompt filling
---+
---+Skills provide prompt templates with placeholders like `{WHAT_WAS_IMPLEMENTED}` or `[FULL TEXT of task]`. Fill all placeholders and pass the complete prompt as the message to `@generalist`. The prompt template itself contains the agent's role, review criteria, and expected output format — `@generalist` will follow it.
---+
---+### Parallel dispatch
---+
---+Gemini CLI supports parallel subagent dispatch. When a skill asks you to dispatch multiple independent subagent tasks in parallel, request all of those `@generalist` or named subagent tasks together in the same prompt. Keep dependent tasks sequential, but do not serialize independent subagent tasks just to preserve a simpler history.
--- 
--- ## Additional Gemini CLI tools
--- 
---diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
---index 0d9c00b..847412e 100644
------ a/skills/superpowers/writing-plans/SKILL.md
---+++ b/skills/superpowers/writing-plans/SKILL.md
---@@ -13,7 +13,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
--- 
--- **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
--- 
----**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
---+**Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
--- 
--- **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
--- - (User preferences for plan location override this default)
+--  > Merge pull request #116 from robotlearning123/fix/neuropixels-broken-links
+--  > Merge pull request #94 from jiaodu1307/fix/rdkit-skill-gzip-import-clean
+--  > Merge pull request #125 from yarikoptic/enh-bids
+--  > Merge pull request #147 from xiaolai/fix/nlpm-scanpy-license-typo
+--  > Merge pull request #164 from mvanhorn/fix/159-research-lookup-yaml-frontmatter
+--  > Merge pull request #165 from Travisma2233/venue-templates/add-elsarticle
 --diff --git a/update_summary.md b/update_summary.md
---index adc2819..2ff7b8d 100644
+--index d98bc33..98b6e19 100644
 ----- a/update_summary.md
 --+++ b/update_summary.md
---@@ -1,1955 +1,1036 @@
+--@@ -1,4048 +1,2 @@
 -- ## Updated Skills
 -- 
----Submodule skills/AI-research-SKILLs 9aff750..28f2d29:
----  > feat: add Agent-Native Research Artifact (ARA) category — 23rd, 3 skills
----Submodule skills/scientific-agent-skills 33b69c5..37a148b:
---+Submodule skills/scientific-agent-skills 37a148b..cbcae7b:
---   > chore: update security scan report [skip ci]
----  > Merge pull request #141 from renato-umeton/feature/autoskill
----  > Merge pull request #145 from xiaolai/fix/nlpm-uv-uv-pip-install
----  > Merge pull request #146 from xiaolai/fix/nlpm-latchbio-uv-install
----  > Add support of Hugging Science
----  > Add author
----  > Bump version
----  > Update Pyhealth
----  > docs: remove community section from README
----  > fix: disclose data transmission to api.parallel.ai and openrouter.ai in research-lookup (#149)
----  > feat: enhance infographic generation with context image support
----  > fix: upgrade infographic review to Gemini 3.1 Pro and harden review failure handling (#153)
+---Submodule skills/scientific-agent-skills 37a148b..cbcae7b:
+---  > chore: update security scan report [skip ci]
+---  > Merge pull request #143 from tgonzalezc5/feat/exa-search-skill
+---diff --git a/skills/superpowers/executing-plans/SKILL.md b/skills/superpowers/executing-plans/SKILL.md
+---index e67f94c..a591862 100644
+------ a/skills/superpowers/executing-plans/SKILL.md
+---+++ b/skills/superpowers/executing-plans/SKILL.md
+---@@ -65,6 +65,6 @@ After all tasks complete and verified:
+--- ## Integration
+--- 
+--- **Required workflow skills:**
+----- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+---+- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
+--- - **superpowers:writing-plans** - Creates the plan this skill executes
+--- - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+---diff --git a/skills/superpowers/finishing-a-development-branch/SKILL.md b/skills/superpowers/finishing-a-development-branch/SKILL.md
+---index c308b43..43da0ae 100644
+------ a/skills/superpowers/finishing-a-development-branch/SKILL.md
+---+++ b/skills/superpowers/finishing-a-development-branch/SKILL.md
+---@@ -9,7 +9,7 @@ description: Use when implementation is complete, all tests pass, and you need t
+--- 
+--- Guide completion of development work by presenting clear options and handling chosen workflow.
+--- 
+----**Core principle:** Verify tests → Present options → Execute choice → Clean up.
+---+**Core principle:** Verify tests → Detect environment → Present options → Execute choice → Clean up.
+--- 
+--- **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
+--- 
+---@@ -37,7 +37,24 @@ Stop. Don't proceed to Step 2.
+--- 
+--- **If tests pass:** Continue to Step 2.
+--- 
+----### Step 2: Determine Base Branch
+---+### Step 2: Detect Environment
+---+
+---+**Determine workspace state before presenting options:**
+---+
+---+```bash
+---+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---+```
+---+
+---+This determines which menu to show and how cleanup works:
+---+
+---+| State | Menu | Cleanup |
+---+|-------|------|---------|
+---+| `GIT_DIR == GIT_COMMON` (normal repo) | Standard 4 options | No worktree to clean up |
+---+| `GIT_DIR != GIT_COMMON`, named branch | Standard 4 options | Provenance-based (see Step 6) |
+---+| `GIT_DIR != GIT_COMMON`, detached HEAD | Reduced 3 options (no merge) | No cleanup (externally managed) |
+---+
+---+### Step 3: Determine Base Branch
+--- 
+--- ```bash
+--- # Try common base branches
+---@@ -46,9 +63,9 @@ git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null
+--- 
+--- Or ask: "This branch split from main - is that correct?"
+--- 
+----### Step 3: Present Options
+---+### Step 4: Present Options
+--- 
+----Present exactly these 4 options:
+---+**Normal repo and named-branch worktree — present exactly these 4 options:**
+--- 
+--- ```
+--- Implementation complete. What would you like to do?
+---@@ -61,30 +78,45 @@ Implementation complete. What would you like to do?
+--- Which option?
+--- ```
+--- 
+---+**Detached HEAD — present exactly these 3 options:**
+---+
+---+```
+---+Implementation complete. You're on a detached HEAD (externally managed workspace).
+---+
+---+1. Push as new branch and create a Pull Request
+---+2. Keep as-is (I'll handle it later)
+---+3. Discard this work
+---+
+---+Which option?
+---+```
+---+
+--- **Don't add explanation** - keep options concise.
+--- 
+----### Step 4: Execute Choice
+---+### Step 5: Execute Choice
+--- 
+--- #### Option 1: Merge Locally
+--- 
+--- ```bash
+----# Switch to base branch
+----git checkout <base-branch>
+---+# Get main repo root for CWD safety
+---+MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
+---+cd "$MAIN_ROOT"
+--- 
+----# Pull latest
+---+# Merge first — verify success before removing anything
+---+git checkout <base-branch>
+--- git pull
+----
+----# Merge feature branch
+--- git merge <feature-branch>
+--- 
+--- # Verify tests on merged result
+--- <test command>
+--- 
+----# If tests pass
+----git branch -d <feature-branch>
+---+# Only after merge succeeds: cleanup worktree (Step 6), then delete branch
+--- ```
+--- 
+----Then: Cleanup worktree (Step 5)
+---+Then: Cleanup worktree (Step 6), then delete branch:
+---+
+---+```bash
+---+git branch -d <feature-branch>
+---+```
+--- 
+--- #### Option 2: Push and Create PR
+--- 
+---@@ -103,7 +135,7 @@ EOF
+--- )"
+--- ```
+--- 
+----Then: Cleanup worktree (Step 5)
+---+**Do NOT clean up worktree** — user needs it alive to iterate on PR feedback.
+--- 
+--- #### Option 3: Keep As-Is
+--- 
+---@@ -127,36 +159,46 @@ Wait for exact confirmation.
+--- 
+--- If confirmed:
+--- ```bash
+----git checkout <base-branch>
+----git branch -D <feature-branch>
+---+MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
+---+cd "$MAIN_ROOT"
+--- ```
+--- 
+----Then: Cleanup worktree (Step 5)
+---+Then: Cleanup worktree (Step 6), then force-delete branch:
+---+```bash
+---+git branch -D <feature-branch>
+---+```
+--- 
+----### Step 5: Cleanup Worktree
+---+### Step 6: Cleanup Workspace
+--- 
+----**For Options 1, 2, 4:**
+---+**Only runs for Options 1 and 4.** Options 2 and 3 always preserve the worktree.
+--- 
+----Check if in worktree:
+--- ```bash
+----git worktree list | grep $(git branch --show-current)
+---+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---+WORKTREE_PATH=$(git rev-parse --show-toplevel)
+--- ```
+--- 
+----If yes:
+---+**If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
+---+
+---+**If worktree path is under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`:** Superpowers created this worktree — we own cleanup.
+---+
+--- ```bash
+----git worktree remove <worktree-path>
+---+MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
+---+cd "$MAIN_ROOT"
+---+git worktree remove "$WORKTREE_PATH"
+---+git worktree prune  # Self-healing: clean up any stale registrations
+--- ```
+--- 
+----**For Option 3:** Keep worktree.
+---+**Otherwise:** The host environment (harness) owns this workspace. Do NOT remove it. If your platform provides a workspace-exit tool, use it. Otherwise, leave the workspace in place.
+--- 
+--- ## Quick Reference
+--- 
+--- | Option | Merge | Push | Keep Worktree | Cleanup Branch |
+--- |--------|-------|------|---------------|----------------|
+----| 1. Merge locally | ✓ | - | - | ✓ |
+----| 2. Create PR | - | ✓ | ✓ | - |
+----| 3. Keep as-is | - | - | ✓ | - |
+----| 4. Discard | - | - | - | ✓ (force) |
+---+| 1. Merge locally | yes | - | - | yes |
+---+| 2. Create PR | - | yes | yes | - |
+---+| 3. Keep as-is | - | - | yes | - |
+---+| 4. Discard | - | - | - | yes (force) |
+--- 
+--- ## Common Mistakes
+--- 
+---@@ -165,13 +207,25 @@ git worktree remove <worktree-path>
+--- - **Fix:** Always verify tests before offering options
+--- 
+--- **Open-ended questions**
+----- **Problem:** "What should I do next?" → ambiguous
+----- **Fix:** Present exactly 4 structured options
+---+- **Problem:** "What should I do next?" is ambiguous
+---+- **Fix:** Present exactly 4 structured options (or 3 for detached HEAD)
+--- 
+----**Automatic worktree cleanup**
+----- **Problem:** Remove worktree when might need it (Option 2, 3)
+---+**Cleaning up worktree for Option 2**
+---+- **Problem:** Remove worktree user needs for PR iteration
+--- - **Fix:** Only cleanup for Options 1 and 4
+--- 
+---+**Deleting branch before removing worktree**
+---+- **Problem:** `git branch -d` fails because worktree still references the branch
+---+- **Fix:** Merge first, remove worktree, then delete branch
+---+
+---+**Running git worktree remove from inside the worktree**
+---+- **Problem:** Command fails silently when CWD is inside the worktree being removed
+---+- **Fix:** Always `cd` to main repo root before `git worktree remove`
+---+
+---+**Cleaning up harness-owned worktrees**
+---+- **Problem:** Removing a worktree the harness created causes phantom state
+---+- **Fix:** Only clean up worktrees under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`
+---+
+--- **No confirmation for discard**
+--- - **Problem:** Accidentally delete work
+--- - **Fix:** Require typed "discard" confirmation
+---@@ -183,18 +237,15 @@ git worktree remove <worktree-path>
+--- - Merge without verifying tests on result
+--- - Delete work without confirmation
+--- - Force-push without explicit request
+---+- Remove a worktree before confirming merge success
+---+- Clean up worktrees you didn't create (provenance check)
+---+- Run `git worktree remove` from inside the worktree
+--- 
+--- **Always:**
+--- - Verify tests before offering options
+----- Present exactly 4 options
+---+- Detect environment before presenting menu
+---+- Present exactly 4 options (or 3 for detached HEAD)
+--- - Get typed confirmation for Option 4
+--- - Clean up worktree for Options 1 & 4 only
+----
+----## Integration
+----
+----**Called by:**
+----- **subagent-driven-development** (Step 7) - After all tasks complete
+----- **executing-plans** (Step 5) - After all batches complete
+----
+----**Pairs with:**
+----- **using-git-worktrees** - Cleans up worktree created by that skill
+---+- `cd` to main repo root before worktree removal
+---+- Run `git worktree prune` after removal
+---diff --git a/skills/superpowers/requesting-code-review/SKILL.md b/skills/superpowers/requesting-code-review/SKILL.md
+---index fe7c8d9..34b8340 100644
+------ a/skills/superpowers/requesting-code-review/SKILL.md
+---+++ b/skills/superpowers/requesting-code-review/SKILL.md
+---@@ -5,7 +5,7 @@ description: Use when completing tasks, implementing major features, or before m
+--- 
+--- # Requesting Code Review
+--- 
+----Dispatch superpowers:code-reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+---+Dispatch a code reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+--- 
+--- **Core principle:** Review early, review often.
+--- 
+---@@ -29,16 +29,15 @@ BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
+--- HEAD_SHA=$(git rev-parse HEAD)
+--- ```
+--- 
+----**2. Dispatch code-reviewer subagent:**
+---+**2. Dispatch code reviewer subagent:**
+--- 
+----Use Task tool with superpowers:code-reviewer type, fill template at `code-reviewer.md`
+---+Use Task tool with `general-purpose` type, fill template at `code-reviewer.md`
+--- 
+--- **Placeholders:**
+----- `{WHAT_WAS_IMPLEMENTED}` - What you just built
+---+- `{DESCRIPTION}` - Brief summary of what you built
+--- - `{PLAN_OR_REQUIREMENTS}` - What it should do
+--- - `{BASE_SHA}` - Starting commit
+--- - `{HEAD_SHA}` - Ending commit
+----- `{DESCRIPTION}` - Brief summary
+--- 
+--- **3. Act on feedback:**
+--- - Fix Critical issues immediately
+---@@ -56,12 +55,11 @@ You: Let me request code review before proceeding.
+--- BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
+--- HEAD_SHA=$(git rev-parse HEAD)
+--- 
+----[Dispatch superpowers:code-reviewer subagent]
+----  WHAT_WAS_IMPLEMENTED: Verification and repair functions for conversation index
+---+[Dispatch code reviewer subagent]
+---+  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
+---   PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
+---   BASE_SHA: a7981ec
+---   HEAD_SHA: 3df7661
+----  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
+--- 
+--- [Subagent returns]:
+---   Strengths: Clean architecture, real tests
+---@@ -82,7 +80,7 @@ You: [Fix progress indicators]
+--- - Fix before moving to next task
+--- 
+--- **Executing Plans:**
+----- Review after each batch (3 tasks)
+---+- Review after each task or at natural checkpoints
+--- - Get feedback, apply, continue
+--- 
+--- **Ad-Hoc Development:**
+---diff --git a/skills/superpowers/requesting-code-review/code-reviewer.md b/skills/superpowers/requesting-code-review/code-reviewer.md
+---index 3c427c9..525e4b4 100644
+------ a/skills/superpowers/requesting-code-review/code-reviewer.md
+---+++ b/skills/superpowers/requesting-code-review/code-reviewer.md
+---@@ -1,111 +1,133 @@
+----# Code Review Agent
+---+# Code Reviewer Prompt Template
+--- 
+----You are reviewing code changes for production readiness.
+---+Use this template when dispatching a code reviewer subagent.
+--- 
+----**Your task:**
+----1. Review {WHAT_WAS_IMPLEMENTED}
+----2. Compare against {PLAN_OR_REQUIREMENTS}
+----3. Check code quality, architecture, testing
+----4. Categorize issues by severity
+----5. Assess production readiness
+---+**Purpose:** Review completed work against requirements and code quality standards before it cascades into more work.
+--- 
+----## What Was Implemented
+---+```
+---+Task tool (general-purpose):
+---+  description: "Review code changes"
+---+  prompt: |
+---+    You are a Senior Code Reviewer with expertise in software architecture,
+---+    design patterns, and best practices. Your job is to review completed work
+---+    against its plan or requirements and identify issues before they cascade.
+--- 
+----{DESCRIPTION}
+---+    ## What Was Implemented
+--- 
+----## Requirements/Plan
+---+    {DESCRIPTION}
+--- 
+----{PLAN_REFERENCE}
+---+    ## Requirements / Plan
+--- 
+----## Git Range to Review
+---+    {PLAN_OR_REQUIREMENTS}
+--- 
+----**Base:** {BASE_SHA}
+----**Head:** {HEAD_SHA}
+---+    ## Git Range to Review
+--- 
+----```bash
+----git diff --stat {BASE_SHA}..{HEAD_SHA}
+----git diff {BASE_SHA}..{HEAD_SHA}
+----```
+---+    **Base:** {BASE_SHA}
+---+    **Head:** {HEAD_SHA}
+--- 
+----## Review Checklist
+----
+----**Code Quality:**
+----- Clean separation of concerns?
+----- Proper error handling?
+----- Type safety (if applicable)?
+----- DRY principle followed?
+----- Edge cases handled?
+----
+----**Architecture:**
+----- Sound design decisions?
+----- Scalability considerations?
+----- Performance implications?
+----- Security concerns?
+----
+----**Testing:**
+----- Tests actually test logic (not mocks)?
+----- Edge cases covered?
+----- Integration tests where needed?
+----- All tests passing?
+----
+----**Requirements:**
+----- All plan requirements met?
+----- Implementation matches spec?
+----- No scope creep?
+----- Breaking changes documented?
+----
+----**Production Readiness:**
+----- Migration strategy (if schema changes)?
+----- Backward compatibility considered?
+----- Documentation complete?
+----- No obvious bugs?
+----
+----## Output Format
+---+    ```bash
+---+    git diff --stat {BASE_SHA}..{HEAD_SHA}
+---+    git diff {BASE_SHA}..{HEAD_SHA}
+---+    ```
+--- 
+----### Strengths
+----[What's well done? Be specific.]
+---+    ## What to Check
+--- 
+----### Issues
+---+    **Plan alignment:**
+---+    - Does the implementation match the plan / requirements?
+---+    - Are deviations justified improvements, or problematic departures?
+---+    - Is all planned functionality present?
+--- 
+----#### Critical (Must Fix)
+----[Bugs, security issues, data loss risks, broken functionality]
+---+    **Code quality:**
+---+    - Clean separation of concerns?
+---+    - Proper error handling?
+---+    - Type safety where applicable?
+---+    - DRY without premature abstraction?
+---+    - Edge cases handled?
+--- 
+----#### Important (Should Fix)
+----[Architecture problems, missing features, poor error handling, test gaps]
+---+    **Architecture:**
+---+    - Sound design decisions?
+---+    - Reasonable scalability and performance?
+---+    - Security concerns?
+---+    - Integrates cleanly with surrounding code?
+--- 
+----#### Minor (Nice to Have)
+----[Code style, optimization opportunities, documentation improvements]
+---+    **Testing:**
+---+    - Tests verify real behavior, not mocks?
+---+    - Edge cases covered?
+---+    - Integration tests where they matter?
+---+    - All tests passing?
+--- 
+----**For each issue:**
+----- File:line reference
+----- What's wrong
+----- Why it matters
+----- How to fix (if not obvious)
+---+    **Production readiness:**
+---+    - Migration strategy if schema changed?
+---+    - Backward compatibility considered?
+---+    - Documentation complete?
+---+    - No obvious bugs?
+--- 
+----### Recommendations
+----[Improvements for code quality, architecture, or process]
+---+    ## Calibration
+--- 
+----### Assessment
+---+    Categorize issues by actual severity. Not everything is Critical.
+---+    Acknowledge what was done well before listing issues — accurate praise
+---+    helps the implementer trust the rest of the feedback.
+---+
+---+    If you find significant deviations from the plan, flag them specifically
+---+    so the implementer can confirm whether the deviation was intentional.
+---+    If you find issues with the plan itself rather than the implementation,
+---+    say so.
+---+
+---+    ## Output Format
+---+
+---+    ### Strengths
+---+    [What's well done? Be specific.]
+---+
+---+    ### Issues
+--- 
+----**Ready to merge?** [Yes/No/With fixes]
+---+    #### Critical (Must Fix)
+---+    [Bugs, security issues, data loss risks, broken functionality]
+--- 
+----**Reasoning:** [Technical assessment in 1-2 sentences]
+---+    #### Important (Should Fix)
+---+    [Architecture problems, missing features, poor error handling, test gaps]
+--- 
+----## Critical Rules
+---+    #### Minor (Nice to Have)
+---+    [Code style, optimization opportunities, documentation polish]
+---+
+---+    For each issue:
+---+    - File:line reference
+---+    - What's wrong
+---+    - Why it matters
+---+    - How to fix (if not obvious)
+---+
+---+    ### Recommendations
+---+    [Improvements for code quality, architecture, or process]
+---+
+---+    ### Assessment
+---+
+---+    **Ready to merge?** [Yes | No | With fixes]
+---+
+---+    **Reasoning:** [1-2 sentence technical assessment]
+---+
+---+    ## Critical Rules
+---+
+---+    **DO:**
+---+    - Categorize by actual severity
+---+    - Be specific (file:line, not vague)
+---+    - Explain WHY each issue matters
+---+    - Acknowledge strengths
+---+    - Give a clear verdict
+---+
+---+    **DON'T:**
+---+    - Say "looks good" without checking
+---+    - Mark nitpicks as Critical
+---+    - Give feedback on code you didn't actually read
+---+    - Be vague ("improve error handling")
+---+    - Avoid giving a clear verdict
+---+```
+--- 
+----**DO:**
+----- Categorize by actual severity (not everything is Critical)
+----- Be specific (file:line, not vague)
+----- Explain WHY issues matter
+----- Acknowledge strengths
+----- Give clear verdict
+---+**Placeholders:**
+---+- `{DESCRIPTION}` — brief summary of what was built
+---+- `{PLAN_OR_REQUIREMENTS}` — what it should do (plan file path, task text, or requirements)
+---+- `{BASE_SHA}` — starting commit
+---+- `{HEAD_SHA}` — ending commit
+--- 
+----**DON'T:**
+----- Say "looks good" without checking
+----- Mark nitpicks as Critical
+----- Give feedback on code you didn't review
+----- Be vague ("improve error handling")
+----- Avoid giving a clear verdict
+---+**Reviewer returns:** Strengths, Issues (Critical / Important / Minor), Recommendations, Assessment
+--- 
+--- ## Example Output
+--- 
+---diff --git a/skills/superpowers/subagent-driven-development/SKILL.md b/skills/superpowers/subagent-driven-development/SKILL.md
+---index 5150b18..ea7ac8f 100644
+------ a/skills/superpowers/subagent-driven-development/SKILL.md
+---+++ b/skills/superpowers/subagent-driven-development/SKILL.md
+---@@ -11,6 +11,8 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
+--- 
+--- **Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration
+--- 
+---+**Continuous execution:** Do not pause to check in with your human partner between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete. "Should I continue?" prompts and progress summaries waste their time — they asked you to execute the plan, so execute it.
+---+
+--- ## When to Use
+--- 
+--- ```dot
+---@@ -265,7 +267,7 @@ Done!
+--- ## Integration
+--- 
+--- **Required workflow skills:**
+----- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+---+- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
+--- - **superpowers:writing-plans** - Creates the plan this skill executes
+--- - **superpowers:requesting-code-review** - Code review template for reviewer subagents
+--- - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+---diff --git a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
+---index a04201a..51f901a 100644
+------ a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
+---+++ b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
+---@@ -7,14 +7,13 @@ Use this template when dispatching a code quality reviewer subagent.
+--- **Only dispatch after spec compliance review passes.**
+--- 
+--- ```
+----Task tool (superpowers:code-reviewer):
+---+Task tool (general-purpose):
+---   Use template at requesting-code-review/code-reviewer.md
+--- 
+----  WHAT_WAS_IMPLEMENTED: [from implementer's report]
+---+  DESCRIPTION: [task summary, from implementer's report]
+---   PLAN_OR_REQUIREMENTS: Task N from [plan-file]
+---   BASE_SHA: [commit before task]
+---   HEAD_SHA: [current commit]
+----  DESCRIPTION: [task summary]
+--- ```
+--- 
+--- **In addition to standard code quality concerns, the reviewer should check:**
+---diff --git a/skills/superpowers/systematic-debugging/CREATION-LOG.md b/skills/superpowers/systematic-debugging/CREATION-LOG.md
+---index 024d00a..9aa0309 100644
+------ a/skills/superpowers/systematic-debugging/CREATION-LOG.md
+---+++ b/skills/superpowers/systematic-debugging/CREATION-LOG.md
+---@@ -4,7 +4,7 @@ Reference example of extracting, structuring, and bulletproofing a critical skil
+--- 
+--- ## Source Material
+--- 
+----Extracted debugging framework from `/Users/jesse/.claude/CLAUDE.md`:
+---+Extracted debugging framework from `~/.claude/CLAUDE.md`:
+--- - 4-phase systematic process (Investigation → Pattern Analysis → Hypothesis → Implementation)
+--- - Core mandate: ALWAYS find root cause, NEVER fix symptoms
+--- - Rules designed to resist time pressure and rationalization
+---diff --git a/skills/superpowers/systematic-debugging/root-cause-tracing.md b/skills/superpowers/systematic-debugging/root-cause-tracing.md
+---index 9484774..12ef522 100644
+------ a/skills/superpowers/systematic-debugging/root-cause-tracing.md
+---+++ b/skills/superpowers/systematic-debugging/root-cause-tracing.md
+---@@ -33,7 +33,7 @@ digraph when_to_use {
+--- 
+--- ### 1. Observe the Symptom
+--- ```
+----Error: git init failed in /Users/jesse/project/packages/core
+---+Error: git init failed in ~/project/packages/core
+--- ```
+--- 
+--- ### 2. Find Immediate Cause
+---diff --git a/skills/superpowers/using-git-worktrees/SKILL.md b/skills/superpowers/using-git-worktrees/SKILL.md
+---index e153843..134d371 100644
+------ a/skills/superpowers/using-git-worktrees/SKILL.md
+---+++ b/skills/superpowers/using-git-worktrees/SKILL.md
+---@@ -1,104 +1,117 @@
+--- ---
+--- name: using-git-worktrees
+----description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification
+---+description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback
+--- ---
+--- 
+--- # Using Git Worktrees
+--- 
+--- ## Overview
+--- 
+----Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
+---+Ensure work happens in an isolated workspace. Prefer your platform's native worktree tools. Fall back to manual git worktrees only when no native tool is available.
+--- 
+----**Core principle:** Systematic directory selection + safety verification = reliable isolation.
+---+**Core principle:** Detect existing isolation first. Then use native tools. Then fall back to git. Never fight the harness.
+--- 
+--- **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
+--- 
+----## Directory Selection Process
+---+## Step 0: Detect Existing Isolation
+--- 
+----Follow this priority order:
+----
+----### 1. Check Existing Directories
+---+**Before creating anything, check if you are already in an isolated workspace.**
+--- 
+--- ```bash
+----# Check in priority order
+----ls -d .worktrees 2>/dev/null     # Preferred (hidden)
+----ls -d worktrees 2>/dev/null      # Alternative
+---+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---+BRANCH=$(git branch --show-current)
+--- ```
+--- 
+----**If found:** Use that directory. If both exist, `.worktrees` wins.
+----
+----### 2. Check CLAUDE.md
+---+**Submodule guard:** `GIT_DIR != GIT_COMMON` is also true inside git submodules. Before concluding "already in a worktree," verify you are not in a submodule:
+--- 
+--- ```bash
+----grep -i "worktree.*director" CLAUDE.md 2>/dev/null
+---+# If this returns a path, you're in a submodule, not a worktree — treat as normal repo
+---+git rev-parse --show-superproject-working-tree 2>/dev/null
+--- ```
+--- 
+----**If preference specified:** Use it without asking.
+---+**If `GIT_DIR != GIT_COMMON` (and not a submodule):** You are already in a linked worktree. Skip to Step 3 (Project Setup). Do NOT create another worktree.
+--- 
+----### 3. Ask User
+---+Report with branch state:
+---+- On a branch: "Already in isolated workspace at `<path>` on branch `<name>`."
+---+- Detached HEAD: "Already in isolated workspace at `<path>` (detached HEAD, externally managed). Branch creation needed at finish time."
+--- 
+----If no directory exists and no CLAUDE.md preference:
+---+**If `GIT_DIR == GIT_COMMON` (or in a submodule):** You are in a normal repo checkout.
+--- 
+----```
+----No worktree directory found. Where should I create worktrees?
+---+Has the user already indicated their worktree preference in your instructions? If not, ask for consent before creating a worktree:
+--- 
+----1. .worktrees/ (project-local, hidden)
+----2. ~/.config/superpowers/worktrees/<project-name>/ (global location)
+---+> "Would you like me to set up an isolated worktree? It protects your current branch from changes."
+--- 
+----Which would you prefer?
+----```
+---+Honor any existing declared preference without asking. If the user declines consent, work in place and skip to Step 3.
+---+
+---+## Step 1: Create Isolated Workspace
+---+
+---+**You have two mechanisms. Try them in this order.**
+---+
+---+### 1a. Native Worktree Tools (preferred)
+---+
+---+The user has asked for an isolated workspace (Step 0 consent). Do you already have a way to create a worktree? It might be a tool with a name like `EnterWorktree`, `WorktreeCreate`, a `/worktree` command, or a `--worktree` flag. If you do, use it and skip to Step 3.
+---+
+---+Native tools handle directory placement, branch creation, and cleanup automatically. Using `git worktree add` when you have a native tool creates phantom state your harness can't see or manage.
+---+
+---+Only proceed to Step 1b if you have no native worktree tool available.
+--- 
+----## Safety Verification
+---+### 1b. Git Worktree Fallback
+--- 
+----### For Project-Local Directories (.worktrees or worktrees)
+---+**Only use this if Step 1a does not apply** — you have no native worktree tool available. Create a worktree manually using git.
+---+
+---+#### Directory Selection
+---+
+---+Follow this priority order. Explicit user preference always beats observed filesystem state.
+---+
+---+1. **Check your instructions for a declared worktree directory preference.** If the user has already specified one, use it without asking.
+---+
+---+2. **Check for an existing project-local worktree directory:**
+---+   ```bash
+---+   ls -d .worktrees 2>/dev/null     # Preferred (hidden)
+---+   ls -d worktrees 2>/dev/null      # Alternative
+---+   ```
+---+   If found, use it. If both exist, `.worktrees` wins.
+---+
+---+3. **Check for an existing global directory:**
+---+   ```bash
+---+   project=$(basename "$(git rev-parse --show-toplevel)")
+---+   ls -d ~/.config/superpowers/worktrees/$project 2>/dev/null
+---+   ```
+---+   If found, use it (backward compatibility with legacy global path).
+---+
+---+4. **If there is no other guidance available**, default to `.worktrees/` at the project root.
+---+
+---+#### Safety Verification (project-local directories only)
+--- 
+--- **MUST verify directory is ignored before creating worktree:**
+--- 
+--- ```bash
+----# Check if directory is ignored (respects local, global, and system gitignore)
+--- git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/dev/null
+--- ```
+--- 
+----**If NOT ignored:**
+----
+----Per Jesse's rule "Fix broken things immediately":
+----1. Add appropriate line to .gitignore
+----2. Commit the change
+----3. Proceed with worktree creation
+---+**If NOT ignored:** Add to .gitignore, commit the change, then proceed.
+--- 
+--- **Why critical:** Prevents accidentally committing worktree contents to repository.
+--- 
+----### For Global Directory (~/.config/superpowers/worktrees)
+----
+----No .gitignore verification needed - outside project entirely.
+---+Global directories (`~/.config/superpowers/worktrees/`) need no verification.
+--- 
+----## Creation Steps
+----
+----### 1. Detect Project Name
+---+#### Create the Worktree
+--- 
+--- ```bash
+--- project=$(basename "$(git rev-parse --show-toplevel)")
+----```
+--- 
+----### 2. Create Worktree
+---+# Determine path based on chosen location
+---+# For project-local: path="$LOCATION/$BRANCH_NAME"
+---+# For global: path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
+--- 
+----```bash
+----# Determine full path
+----case $LOCATION in
+----  .worktrees|worktrees)
+----    path="$LOCATION/$BRANCH_NAME"
+----    ;;
+----  ~/.config/superpowers/worktrees/*)
+----    path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
+----    ;;
+----esac
+----
+----# Create worktree with new branch
+--- git worktree add "$path" -b "$BRANCH_NAME"
+--- cd "$path"
+--- ```
+--- 
+----### 3. Run Project Setup
+---+**Sandbox fallback:** If `git worktree add` fails with a permission error (sandbox denial), tell the user the sandbox blocked worktree creation and you're working in the current directory instead. Then run setup and baseline tests in place.
+---+
+---+## Step 3: Project Setup
+--- 
+--- Auto-detect and run appropriate setup:
+--- 
+---@@ -117,23 +130,20 @@ if [ -f pyproject.toml ]; then poetry install; fi
+--- if [ -f go.mod ]; then go mod download; fi
+--- ```
+--- 
+----### 4. Verify Clean Baseline
+---+## Step 4: Verify Clean Baseline
+--- 
+----Run tests to ensure worktree starts clean:
+---+Run tests to ensure workspace starts clean:
+--- 
+--- ```bash
+----# Examples - use project-appropriate command
+----npm test
+----cargo test
+----pytest
+----go test ./...
+---+# Use project-appropriate command
+---+npm test / cargo test / pytest / go test ./...
+--- ```
+--- 
+--- **If tests fail:** Report failures, ask whether to proceed or investigate.
+--- 
+--- **If tests pass:** Report ready.
+--- 
+----### 5. Report Location
+---+### Report
+--- 
+--- ```
+--- Worktree ready at <full-path>
+---@@ -145,16 +155,32 @@ Ready to implement <feature-name>
+--- 
+--- | Situation | Action |
+--- |-----------|--------|
+---+| Already in linked worktree | Skip creation (Step 0) |
+---+| In a submodule | Treat as normal repo (Step 0 guard) |
+---+| Native worktree tool available | Use it (Step 1a) |
+---+| No native tool | Git worktree fallback (Step 1b) |
+--- | `.worktrees/` exists | Use it (verify ignored) |
+--- | `worktrees/` exists | Use it (verify ignored) |
+--- | Both exist | Use `.worktrees/` |
+----| Neither exists | Check CLAUDE.md → Ask user |
+---+| Neither exists | Check instruction file, then default `.worktrees/` |
+---+| Global path exists | Use it (backward compat) |
+--- | Directory not ignored | Add to .gitignore + commit |
+---+| Permission error on create | Sandbox fallback, work in place |
+--- | Tests fail during baseline | Report failures + ask |
+--- | No package.json/Cargo.toml | Skip dependency install |
+--- 
+--- ## Common Mistakes
+--- 
+---+### Fighting the harness
+---+
+---+- **Problem:** Using `git worktree add` when the platform already provides isolation
+---+- **Fix:** Step 0 detects existing isolation. Step 1a defers to native tools.
+---+
+---+### Skipping detection
+---+
+---+- **Problem:** Creating a nested worktree inside an existing one
+---+- **Fix:** Always run Step 0 before creating anything
+---+
+--- ### Skipping ignore verification
+--- 
+--- - **Problem:** Worktree contents get tracked, pollute git status
+---@@ -163,56 +189,27 @@ Ready to implement <feature-name>
+--- ### Assuming directory location
+--- 
+--- - **Problem:** Creates inconsistency, violates project conventions
+----- **Fix:** Follow priority: existing > CLAUDE.md > ask
+---+- **Fix:** Follow priority: existing > global legacy > instruction file > default
+--- 
+--- ### Proceeding with failing tests
+--- 
+--- - **Problem:** Can't distinguish new bugs from pre-existing issues
+--- - **Fix:** Report failures, get explicit permission to proceed
+--- 
+----### Hardcoding setup commands
+----
+----- **Problem:** Breaks on projects using different tools
+----- **Fix:** Auto-detect from project files (package.json, etc.)
+----
+----## Example Workflow
+----
+----```
+----You: I'm using the using-git-worktrees skill to set up an isolated workspace.
+----
+----[Check .worktrees/ - exists]
+----[Verify ignored - git check-ignore confirms .worktrees/ is ignored]
+----[Create worktree: git worktree add .worktrees/auth -b feature/auth]
+----[Run npm install]
+----[Run npm test - 47 passing]
+----
+----Worktree ready at /Users/jesse/myproject/.worktrees/auth
+----Tests passing (47 tests, 0 failures)
+----Ready to implement auth feature
+----```
+----
+--- ## Red Flags
+--- 
+--- **Never:**
+---+- Create a worktree when Step 0 detects existing isolation
+---+- Use `git worktree add` when you have a native worktree tool (e.g., `EnterWorktree`). This is the #1 mistake — if you have it, use it.
+---+- Skip Step 1a by jumping straight to Step 1b's git commands
+--- - Create worktree without verifying it's ignored (project-local)
+--- - Skip baseline test verification
+--- - Proceed with failing tests without asking
+----- Assume directory location when ambiguous
+----- Skip CLAUDE.md check
+--- 
+--- **Always:**
+----- Follow directory priority: existing > CLAUDE.md > ask
+---+- Run Step 0 detection first
+---+- Prefer native tools over git fallback
+---+- Follow directory priority: existing > global legacy > instruction file > default
+--- - Verify directory is ignored for project-local
+--- - Auto-detect and run project setup
+--- - Verify clean test baseline
+----
+----## Integration
+----
+----**Called by:**
+----- **brainstorming** (Phase 4) - REQUIRED when design is approved and implementation follows
+----- **subagent-driven-development** - REQUIRED before executing any tasks
+----- **executing-plans** - REQUIRED before executing any tasks
+----- Any skill needing isolated workspace
+----
+----**Pairs with:**
+----- **finishing-a-development-branch** - REQUIRED for cleanup after work complete
+---diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
+---index 539b2b1..f50d40d 100644
+------ a/skills/superpowers/using-superpowers/references/codex-tools.md
+---+++ b/skills/superpowers/using-superpowers/references/codex-tools.md
+---@@ -4,9 +4,9 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+--- 
+--- | Skill references | Codex equivalent |
+--- |-----------------|------------------|
+----| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
+---+| `Task` tool (dispatch subagent) | `spawn_agent` (see [Subagent dispatch requires multi-agent support](#subagent-dispatch-requires-multi-agent-support)) |
+--- | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
+----| Task returns result | `wait` |
+---+| Task returns result | `wait_agent` |
+--- | Task completes automatically | `close_agent` to free slot |
+--- | `TodoWrite` (task tracking) | `update_plan` |
+--- | `Skill` tool (invoke a skill) | Skills load natively — just follow the instructions |
+---@@ -22,53 +22,12 @@ Add to your Codex config (`~/.codex/config.toml`):
+--- multi_agent = true
+--- ```
+--- 
+----This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+---+This enables `spawn_agent`, `wait_agent`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+--- 
+----## Named agent dispatch
+----
+----Claude Code skills reference named agent types like `superpowers:code-reviewer`.
+----Codex does not have a named agent registry — `spawn_agent` creates generic agents
+----from built-in roles (`default`, `explorer`, `worker`).
+----
+----When a skill says to dispatch a named agent type:
+----
+----1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
+----   local prompt template like `code-quality-reviewer-prompt.md`)
+----2. Read the prompt content
+----3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
+----4. Spawn a `worker` agent with the filled content as the `message`
+----
+----| Skill instruction | Codex equivalent |
+----|-------------------|------------------|
+----| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
+----| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
+----
+----### Message framing
+----
+----The `message` parameter is user-level input, not a system prompt. Structure it
+----for maximum instruction adherence:
+----
+----```
+----Your task is to perform the following. Follow the instructions below exactly.
+----
+----<agent-instructions>
+----[filled prompt content from the agent's .md file]
+----</agent-instructions>
+----
+----Execute this now. Output ONLY the structured response following the format
+----specified in the instructions above.
+----```
+----
+----- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
+----- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
+----- End with an explicit execution directive to prevent summarization of the instructions
+----
+----### When this workaround can be removed
+----
+----This approach compensates for Codex's plugin system not yet supporting an `agents`
+----field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
+----plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
+----skills can dispatch named agent types directly.
+---+Legacy note: Codex builds before `rust-v0.115.0` exposed spawned-agent
+---+waiting as `wait`. Current Codex uses `wait_agent` for spawned agents. The
+---+`wait` name now belongs to code-mode `exec/wait`, which resumes a yielded exec
+---+cell by `cell_id`; it is not the spawned-agent result tool.
+--- 
+--- ## Environment Detection
+--- 
+---diff --git a/skills/superpowers/using-superpowers/references/copilot-tools.md b/skills/superpowers/using-superpowers/references/copilot-tools.md
+---index 4316cdb..ae3cf5a 100644
+------ a/skills/superpowers/using-superpowers/references/copilot-tools.md
+---+++ b/skills/superpowers/using-superpowers/references/copilot-tools.md
+---@@ -12,23 +12,13 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+--- | `Glob` (search files by name) | `glob` |
+--- | `Skill` tool (invoke a skill) | `skill` |
+--- | `WebFetch` | `web_fetch` |
+----| `Task` tool (dispatch subagent) | `task` (see [Agent types](#agent-types)) |
+---+| `Task` tool (dispatch subagent) | `task` with `agent_type: "general-purpose"` or `"explore"` |
+--- | Multiple `Task` calls (parallel) | Multiple `task` calls |
+--- | Task status/output | `read_agent`, `list_agents` |
+--- | `TodoWrite` (task tracking) | `sql` with built-in `todos` table |
+--- | `WebSearch` | No equivalent — use `web_fetch` with a search engine URL |
+--- | `EnterPlanMode` / `ExitPlanMode` | No equivalent — stay in the main session |
+--- 
+----## Agent types
+----
+----Copilot CLI's `task` tool accepts an `agent_type` parameter:
+----
+----| Claude Code agent | Copilot CLI equivalent |
+----|-------------------|----------------------|
+----| `general-purpose` | `"general-purpose"` |
+----| `Explore` | `"explore"` |
+----| Named plugin agents (e.g. `superpowers:code-reviewer`) | Discovered automatically from installed plugins |
+----
+--- ## Async shell sessions
+--- 
+--- Copilot CLI supports persistent async shell sessions, which have no direct Claude Code equivalent:
+---diff --git a/skills/superpowers/using-superpowers/references/gemini-tools.md b/skills/superpowers/using-superpowers/references/gemini-tools.md
+---index f869803..91ef404 100644
+------ a/skills/superpowers/using-superpowers/references/gemini-tools.md
+---+++ b/skills/superpowers/using-superpowers/references/gemini-tools.md
+---@@ -14,11 +14,29 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+--- | `Skill` tool (invoke a skill) | `activate_skill` |
+--- | `WebSearch` | `google_web_search` |
+--- | `WebFetch` | `web_fetch` |
+----| `Task` tool (dispatch subagent) | No equivalent — Gemini CLI does not support subagents |
+---+| `Task` tool (dispatch subagent) | `@agent-name` (see [Subagent support](#subagent-support)) |
+--- 
+----## No subagent support
+---+## Subagent support
+--- 
+----Gemini CLI has no equivalent to Claude Code's `Task` tool. Skills that rely on subagent dispatch (`subagent-driven-development`, `dispatching-parallel-agents`) will fall back to single-session execution via `executing-plans`.
+---+Gemini CLI supports subagents natively via the `@` syntax. Use the built-in `@generalist` agent to dispatch any task — it has access to all tools and follows the prompt you provide.
+---+
+---+When a skill says to dispatch a named agent type, use `@generalist` with the full prompt from the skill's prompt template:
+---+
+---+| Skill instruction | Gemini CLI equivalent |
+---+|-------------------|----------------------|
+---+| `Task tool (superpowers:implementer)` | `@generalist` with the filled `implementer-prompt.md` template |
+---+| `Task tool (superpowers:spec-reviewer)` | `@generalist` with the filled `spec-reviewer-prompt.md` template |
+---+| `Task tool (superpowers:code-reviewer)` | `@code-reviewer` (bundled agent) or `@generalist` with the filled review prompt |
+---+| `Task tool (superpowers:code-quality-reviewer)` | `@generalist` with the filled `code-quality-reviewer-prompt.md` template |
+---+| `Task tool (general-purpose)` with inline prompt | `@generalist` with your inline prompt |
+---+
+---+### Prompt filling
+---+
+---+Skills provide prompt templates with placeholders like `{WHAT_WAS_IMPLEMENTED}` or `[FULL TEXT of task]`. Fill all placeholders and pass the complete prompt as the message to `@generalist`. The prompt template itself contains the agent's role, review criteria, and expected output format — `@generalist` will follow it.
+---+
+---+### Parallel dispatch
+---+
+---+Gemini CLI supports parallel subagent dispatch. When a skill asks you to dispatch multiple independent subagent tasks in parallel, request all of those `@generalist` or named subagent tasks together in the same prompt. Keep dependent tasks sequential, but do not serialize independent subagent tasks just to preserve a simpler history.
+--- 
+--- ## Additional Gemini CLI tools
+--- 
+---diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
+---index 0d9c00b..847412e 100644
+------ a/skills/superpowers/writing-plans/SKILL.md
+---+++ b/skills/superpowers/writing-plans/SKILL.md
+---@@ -13,7 +13,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
+--- 
+--- **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+--- 
+----**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
+---+**Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
+--- 
+--- **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
+--- - (User preferences for plan location override this default)
 ---diff --git a/update_summary.md b/update_summary.md
----index 67c512f..98b6e19 100644
+---index adc2819..2ff7b8d 100644
 ------ a/update_summary.md
 ---+++ b/update_summary.md
----@@ -1,1933 +1,2 @@
+---@@ -1,1955 +1,1036 @@
 --- ## Updated Skills
 --- 
-----Submodule skills/scientific-agent-skills aaf95ee..33b69c5:
-----  > chore: update security scan report [skip ci]
-----  > chore: update security scan report [skip ci]
+----Submodule skills/AI-research-SKILLs 9aff750..28f2d29:
+----  > feat: add Agent-Native Research Artifact (ARA) category — 23rd, 3 skills
+----Submodule skills/scientific-agent-skills 33b69c5..37a148b:
+---+Submodule skills/scientific-agent-skills 37a148b..cbcae7b:
+---   > chore: update security scan report [skip ci]
+----  > Merge pull request #141 from renato-umeton/feature/autoskill
+----  > Merge pull request #145 from xiaolai/fix/nlpm-uv-uv-pip-install
+----  > Merge pull request #146 from xiaolai/fix/nlpm-latchbio-uv-install
+----  > Add support of Hugging Science
+----  > Add author
+----  > Bump version
+----  > Update Pyhealth
+----  > docs: remove community section from README
+----  > fix: disclose data transmission to api.parallel.ai and openrouter.ai in research-lookup (#149)
+----  > feat: enhance infographic generation with context image support
+----  > fix: upgrade infographic review to Gemini 3.1 Pro and harden review failure handling (#153)
 ----diff --git a/update_summary.md b/update_summary.md
-----index 23c8fb5..98b6e19 100644
+----index 67c512f..98b6e19 100644
 ------- a/update_summary.md
 ----+++ b/update_summary.md
-----@@ -1,1923 +1,2 @@
+----@@ -1,1933 +1,2 @@
 ---- ## Updated Skills
 ---- 
------Submodule skills/AI-research-SKILLs 05f1958..9aff750:
------  > fix: correct welcome screen defaults and sync package-lock.json
------  > Merge pull request #51 from RUFFY-369/feat/hermes-agent-support
------Submodule skills/scientific-agent-skills eb20fb0..aaf95ee:
------  > chore: update version of scientific-agent-skills to 2.37.1
------  > docs: enhance README with installation options for Scientific Agent Skills
+-----Submodule skills/scientific-agent-skills aaf95ee..33b69c5:
 -----  > chore: update security scan report [skip ci]
------  > enhance: integrate parallel-web skill for literature reviews and research lookups
------  > refactor: update output file formats in parallel-web references to JSON
 -----  > chore: update security scan report [skip ci]
 -----diff --git a/update_summary.md b/update_summary.md
------index 0ed368e..98b6e19 100644
+-----index 23c8fb5..98b6e19 100644
 -------- a/update_summary.md
 -----+++ b/update_summary.md
------@@ -1,1906 +1,2 @@
+-----@@ -1,1923 +1,2 @@
 ----- ## Updated Skills
 ----- 
-------Submodule skills/AI-research-SKILLs 22bca4d..05f1958:
-------  > Merge pull request #47 from Gitsamshi/main
-------  > Refactor ml-paper-writing: extract systems-paper-writing skill, bump to v1.5.2
-------  > Merge pull request #48 from tianhao909/tianhao909-add-mlsys-260408
+------Submodule skills/AI-research-SKILLs 05f1958..9aff750:
+------  > fix: correct welcome screen defaults and sync package-lock.json
+------  > Merge pull request #51 from RUFFY-369/feat/hermes-agent-support
+------Submodule skills/scientific-agent-skills eb20fb0..aaf95ee:
+------  > chore: update version of scientific-agent-skills to 2.37.1
+------  > docs: enhance README with installation options for Scientific Agent Skills
+------  > chore: update security scan report [skip ci]
+------  > enhance: integrate parallel-web skill for literature reviews and research lookups
+------  > refactor: update output file formats in parallel-web references to JSON
+------  > chore: update security scan report [skip ci]
 ------diff --git a/update_summary.md b/update_summary.md
-------index cf32912..98b6e19 100644
+------index 0ed368e..98b6e19 100644
 --------- a/update_summary.md
 ------+++ b/update_summary.md
-------@@ -1,1895 +1,2 @@
+------@@ -1,1906 +1,2 @@
 ------ ## Updated Skills
 ------ 
--------Submodule skills/AI-research-SKILLs a728954..22bca4d:
--------  > Merge pull request #31 from dailycafi/add-ml-training-recipes
--------  > docs: add citation guidance for researchers using the library
--------Submodule skills/claude-scientific-skills contains modified content
--------Submodule skills/claude-scientific-skills 71add64..899a51b:
--------  > Simplify installation
--------  > Remove skill that LLMs already know well and some old skills. Also updated Rowan skill.
--------  > Merge pull request #120 from corinwagen/main
--------  > Add optimize-for-gpu skill
--------  > Update Adaptyv Bio skill to use new API
--------  > Update README, examples and kills list
--------  > Add paper-lookup skill
--------  > Remove old literature databases
--------  > Add combined database-lookup skill
--------  > Update torch-geometric skill
--------  > Remove all individual skill databases which are now part of database-lookup
--------Submodule skills/humanizer 12881ab..8b3a178:
--------  > Add passive voice rule to humanizer (#80)
--------  > Integrate remaining prompt updates coherently (#79)
--------  > feat: add OpenCode support (#47)
--------  > Merge pull request #77 from spiritualhost/less-actually
--------  > Merge pull request #74 from marcoenricovd-lang/fix/warp-pattern-count
--------  > Merge pull request #64 from mvanhorn/feat/voice-calibration
--------diff --git a/skills/superpowers/using-superpowers/SKILL.md b/skills/superpowers/using-superpowers/SKILL.md
--------index d813535..c8a8570 100644
----------- a/skills/superpowers/using-superpowers/SKILL.md
--------+++ b/skills/superpowers/using-superpowers/SKILL.md
--------@@ -29,13 +29,15 @@ If CLAUDE.md, GEMINI.md, or AGENTS.md says "don't use TDD" and a skill says "alw
-------- 
-------- **In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly. Never use the Read tool on skill files.
-------- 
--------+**In Copilot CLI:** Use the `skill` tool. Skills are auto-discovered from installed plugins. The `skill` tool works the same as Claude Code's `Skill` tool.
--------+
-------- **In Gemini CLI:** Skills activate via the `activate_skill` tool. Gemini loads skill metadata at session start and activates the full content on demand.
-------- 
-------- **In other environments:** Check your platform's documentation for how skills are loaded.
-------- 
-------- ## Platform Adaptation
-------- 
---------Skills use Claude Code tool names. Non-CC platforms: see `references/codex-tools.md` (Codex) for tool equivalents. Gemini CLI users get the tool mapping loaded automatically via GEMINI.md.
--------+Skills use Claude Code tool names. Non-CC platforms: see `references/copilot-tools.md` (Copilot CLI), `references/codex-tools.md` (Codex) for tool equivalents. Gemini CLI users get the tool mapping loaded automatically via GEMINI.md.
-------- 
-------- # Using Skills
-------- 
+-------Submodule skills/AI-research-SKILLs 22bca4d..05f1958:
+-------  > Merge pull request #47 from Gitsamshi/main
+-------  > Refactor ml-paper-writing: extract systems-paper-writing skill, bump to v1.5.2
+-------  > Merge pull request #48 from tianhao909/tianhao909-add-mlsys-260408
 -------diff --git a/update_summary.md b/update_summary.md
--------index 4db0e51..98b6e19 100644
+-------index cf32912..98b6e19 100644
 ---------- a/update_summary.md
 -------+++ b/update_summary.md
--------@@ -1,1844 +1,2 @@
+-------@@ -1,1895 +1,2 @@
 ------- ## Updated Skills
 ------- 
---------Submodule skills/AI-research-SKILLs 085c480..a728954:
---------  > fix: update marketplace.json to include academic-plotting skill
---------  > refactor: restructure ml-paper-writing skill into nested directory
---------  > Merge pull request #41 from Orchestra-Research/add-academic-plotting-skill
---------  > docs: add concrete OpenClaw cron.add instructions to autoresearch skill
---------  > chore: Gitignore marketing drafts and image in autoresearch skill
---------  > docs: add contributors widget and clean up contributing section
---------  > Merge pull request #39 from tang-vu/contribai/fix/security/critical-prompt-injection-in-claude-code
+--------Submodule skills/AI-research-SKILLs a728954..22bca4d:
+--------  > Merge pull request #31 from dailycafi/add-ml-training-recipes
+--------  > docs: add citation guidance for researchers using the library
 --------Submodule skills/claude-scientific-skills contains modified content
---------Submodule skills/claude-scientific-skills 1346c01..71add64:
---------  > Remove planning with files skill becasue it is specific to Claude Code
---------  > Make writing skills more explicit
---------  > Add Security Disclaimer section to README
---------  > Bump version
---------  > Improve token discovery for Modal
---------  > Update Modal skill
---------  > Add planning with files skill from @OthmanAdi
---------  > Add K-Dense BYOK AI co-scientist to README with features and links
---------  > Add writing skills
---------Submodule skills/humanizer d8085c7..12881ab:
---------  > Merge pull request #56 from mvanhorn/osc/42-add-hyphenation-pattern
---------  > Merge pull request #57 from mvanhorn/osc/35-remove-separator-rules
---------  > Merge pull request #58 from mvanhorn/osc/7-add-license-file
---------Submodule skills/paper-polish-workflow-skill 7e430bd..bb72126:
---------  > fix: track assets/logo.jpg so README logo displays on GitHub
---------  > fix: correct SKILL.md path in CI validation workflow
---------  > fix: remove package.json to prevent recursive npm nesting
---------  > fix: remove duplicate files to fix ENAMETOOLONG on plugin install
---------  > fix: add explicit skills path in plugin.json
---------  > fix: update plugin.json version to 2.3.0
---------  > fix: remove .planning/ from git tracking (136 files)
---------  > fix: use HTTPS git URL instead of GitHub SSH source
---------  > fix: switch marketplace source from npm to GitHub repo
---------  > fix: add explicit npmjs.com registry to marketplace.json
---------  > feat: migrate to official Claude Code plugin marketplace, bump v2.3.0
---------  > feat: add Claude Code plugin format with auto-install postinstall script
---------  > feat: add get-paper skill, bump to v2.2.0
---------diff --git a/skills/superpowers/brainstorming/SKILL.md b/skills/superpowers/brainstorming/SKILL.md
---------index edbc2b5..06cd0a2 100644
------------ a/skills/superpowers/brainstorming/SKILL.md
---------+++ b/skills/superpowers/brainstorming/SKILL.md
---------@@ -27,7 +27,7 @@ You MUST create a task for each of these items and complete them in order:
--------- 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
--------- 5. **Present design** — in sections scaled to their complexity, get user approval after each section
--------- 6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
----------7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
---------+7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
--------- 8. **User reviews written spec** — ask user to review the spec file before proceeding
--------- 9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
+--------Submodule skills/claude-scientific-skills 71add64..899a51b:
+--------  > Simplify installation
+--------  > Remove skill that LLMs already know well and some old skills. Also updated Rowan skill.
+--------  > Merge pull request #120 from corinwagen/main
+--------  > Add optimize-for-gpu skill
+--------  > Update Adaptyv Bio skill to use new API
+--------  > Update README, examples and kills list
+--------  > Add paper-lookup skill
+--------  > Remove old literature databases
+--------  > Add combined database-lookup skill
+--------  > Update torch-geometric skill
+--------  > Remove all individual skill databases which are now part of database-lookup
+--------Submodule skills/humanizer 12881ab..8b3a178:
+--------  > Add passive voice rule to humanizer (#80)
+--------  > Integrate remaining prompt updates coherently (#79)
+--------  > feat: add OpenCode support (#47)
+--------  > Merge pull request #77 from spiritualhost/less-actually
+--------  > Merge pull request #74 from marcoenricovd-lang/fix/warp-pattern-count
+--------  > Merge pull request #64 from mvanhorn/feat/voice-calibration
+--------diff --git a/skills/superpowers/using-superpowers/SKILL.md b/skills/superpowers/using-superpowers/SKILL.md
+--------index d813535..c8a8570 100644
+----------- a/skills/superpowers/using-superpowers/SKILL.md
+--------+++ b/skills/superpowers/using-superpowers/SKILL.md
+--------@@ -29,13 +29,15 @@ If CLAUDE.md, GEMINI.md, or AGENTS.md says "don't use TDD" and a skill says "alw
 -------- 
---------@@ -43,8 +43,7 @@ digraph brainstorming {
---------     "Present design sections" [shape=box];
---------     "User approves design?" [shape=diamond];
---------     "Write design doc" [shape=box];
----------    "Spec review loop" [shape=box];
----------    "Spec review passed?" [shape=diamond];
---------+    "Spec self-review\n(fix inline)" [shape=box];
---------     "User reviews spec?" [shape=diamond];
---------     "Invoke writing-plans skill" [shape=doublecircle];
+-------- **In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly. Never use the Read tool on skill files.
 -------- 
---------@@ -57,10 +56,8 @@ digraph brainstorming {
---------     "Present design sections" -> "User approves design?";
---------     "User approves design?" -> "Present design sections" [label="no, revise"];
---------     "User approves design?" -> "Write design doc" [label="yes"];
----------    "Write design doc" -> "Spec review loop";
----------    "Spec review loop" -> "Spec review passed?";
----------    "Spec review passed?" -> "Spec review loop" [label="issues found,\nfix and re-dispatch"];
----------    "Spec review passed?" -> "User reviews spec?" [label="approved"];
---------+    "Write design doc" -> "Spec self-review\n(fix inline)";
---------+    "Spec self-review\n(fix inline)" -> "User reviews spec?";
---------     "User reviews spec?" -> "Write design doc" [label="changes requested"];
---------     "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
--------- }
---------@@ -116,12 +113,15 @@ digraph brainstorming {
--------- - Use elements-of-style:writing-clearly-and-concisely skill if available
--------- - Commit the design document to git
--------- 
----------**Spec Review Loop:**
----------After writing the spec document:
---------+**Spec Self-Review:**
---------+After writing the spec document, look at it with fresh eyes:
--------- 
----------1. Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md)
----------2. If Issues Found: fix, re-dispatch, repeat until Approved
----------3. If loop exceeds 3 iterations, surface to human for guidance
---------+1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
---------+2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
---------+3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
---------+4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
+--------+**In Copilot CLI:** Use the `skill` tool. Skills are auto-discovered from installed plugins. The `skill` tool works the same as Claude Code's `Skill` tool.
 --------+
---------+Fix any issues inline. No need to re-review — just fix and move on.
+-------- **In Gemini CLI:** Skills activate via the `activate_skill` tool. Gemini loads skill metadata at session start and activates the full content on demand.
 -------- 
--------- **User Review Gate:**
--------- After the spec review loop passes, ask the user to review the written spec before proceeding:
---------diff --git a/skills/superpowers/brainstorming/scripts/server.cjs b/skills/superpowers/brainstorming/scripts/server.cjs
---------index 86c3080..562c17f 100644
------------ a/skills/superpowers/brainstorming/scripts/server.cjs
---------+++ b/skills/superpowers/brainstorming/scripts/server.cjs
---------@@ -76,8 +76,10 @@ function decodeFrame(buffer) {
--------- const PORT = process.env.BRAINSTORM_PORT || (49152 + Math.floor(Math.random() * 16383));
--------- const HOST = process.env.BRAINSTORM_HOST || '127.0.0.1';
--------- const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'localhost' : HOST);
----------const SCREEN_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
----------const OWNER_PID = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
---------+const SESSION_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
---------+const CONTENT_DIR = path.join(SESSION_DIR, 'content');
---------+const STATE_DIR = path.join(SESSION_DIR, 'state');
---------+let ownerPid = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
+-------- **In other environments:** Check your platform's documentation for how skills are loaded.
 -------- 
--------- const MIME_TYPES = {
---------   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
---------@@ -112,10 +114,10 @@ function wrapInFrame(content) {
--------- }
+-------- ## Platform Adaptation
 -------- 
--------- function getNewestScreen() {
----------  const files = fs.readdirSync(SCREEN_DIR)
---------+  const files = fs.readdirSync(CONTENT_DIR)
---------     .filter(f => f.endsWith('.html'))
---------     .map(f => {
----------      const fp = path.join(SCREEN_DIR, f);
---------+      const fp = path.join(CONTENT_DIR, f);
---------       return { path: fp, mtime: fs.statSync(fp).mtime.getTime() };
---------     })
---------     .sort((a, b) => b.mtime - a.mtime);
---------@@ -142,7 +144,7 @@ function handleRequest(req, res) {
---------     res.end(html);
---------   } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
---------     const fileName = req.url.slice(7);
----------    const filePath = path.join(SCREEN_DIR, path.basename(fileName));
---------+    const filePath = path.join(CONTENT_DIR, path.basename(fileName));
---------     if (!fs.existsSync(filePath)) {
---------       res.writeHead(404);
---------       res.end('Not found');
---------@@ -230,7 +232,7 @@ function handleMessage(text) {
---------   touchActivity();
---------   console.log(JSON.stringify({ source: 'user-event', ...event }));
---------   if (event.choice) {
----------    const eventsFile = path.join(SCREEN_DIR, '.events');
---------+    const eventsFile = path.join(STATE_DIR, 'events');
---------     fs.appendFileSync(eventsFile, JSON.stringify(event) + '\n');
---------   }
--------- }
---------@@ -258,32 +260,33 @@ const debounceTimers = new Map();
--------- // ========== Server Startup ==========
+---------Skills use Claude Code tool names. Non-CC platforms: see `references/codex-tools.md` (Codex) for tool equivalents. Gemini CLI users get the tool mapping loaded automatically via GEMINI.md.
+--------+Skills use Claude Code tool names. Non-CC platforms: see `references/copilot-tools.md` (Copilot CLI), `references/codex-tools.md` (Codex) for tool equivalents. Gemini CLI users get the tool mapping loaded automatically via GEMINI.md.
 -------- 
--------- function startServer() {
----------  if (!fs.existsSync(SCREEN_DIR)) fs.mkdirSync(SCREEN_DIR, { recursive: true });
---------+  if (!fs.existsSync(CONTENT_DIR)) fs.mkdirSync(CONTENT_DIR, { recursive: true });
---------+  if (!fs.existsSync(STATE_DIR)) fs.mkdirSync(STATE_DIR, { recursive: true });
--------- 
---------   // Track known files to distinguish new screens from updates.
---------   // macOS fs.watch reports 'rename' for both new files and overwrites,
---------   // so we can't rely on eventType alone.
---------   const knownFiles = new Set(
----------    fs.readdirSync(SCREEN_DIR).filter(f => f.endsWith('.html'))
---------+    fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.html'))
---------   );
--------- 
---------   const server = http.createServer(handleRequest);
---------   server.on('upgrade', handleUpgrade);
--------- 
----------  const watcher = fs.watch(SCREEN_DIR, (eventType, filename) => {
---------+  const watcher = fs.watch(CONTENT_DIR, (eventType, filename) => {
---------     if (!filename || !filename.endsWith('.html')) return;
--------- 
---------     if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
---------     debounceTimers.set(filename, setTimeout(() => {
---------       debounceTimers.delete(filename);
----------      const filePath = path.join(SCREEN_DIR, filename);
---------+      const filePath = path.join(CONTENT_DIR, filename);
--------- 
---------       if (!fs.existsSync(filePath)) return; // file was deleted
---------       touchActivity();
--------- 
---------       if (!knownFiles.has(filename)) {
---------         knownFiles.add(filename);
----------        const eventsFile = path.join(SCREEN_DIR, '.events');
---------+        const eventsFile = path.join(STATE_DIR, 'events');
---------         if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
---------         console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
---------       } else {
---------@@ -297,10 +300,10 @@ function startServer() {
--------- 
---------   function shutdown(reason) {
---------     console.log(JSON.stringify({ type: 'server-stopped', reason }));
----------    const infoFile = path.join(SCREEN_DIR, '.server-info');
---------+    const infoFile = path.join(STATE_DIR, 'server-info');
---------     if (fs.existsSync(infoFile)) fs.unlinkSync(infoFile);
---------     fs.writeFileSync(
----------      path.join(SCREEN_DIR, '.server-stopped'),
---------+      path.join(STATE_DIR, 'server-stopped'),
---------       JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
---------     );
---------     watcher.close();
---------@@ -309,8 +312,8 @@ function startServer() {
---------   }
--------- 
---------   function ownerAlive() {
----------    if (!OWNER_PID) return true;
----------    try { process.kill(OWNER_PID, 0); return true; } catch (e) { return false; }
---------+    if (!ownerPid) return true;
---------+    try { process.kill(ownerPid, 0); return true; } catch (e) { return e.code === 'EPERM'; }
---------   }
--------- 
---------   // Check every 60s: exit if owner process died or idle for 30 minutes
---------@@ -320,14 +323,27 @@ function startServer() {
---------   }, 60 * 1000);
---------   lifecycleCheck.unref();
--------- 
---------+  // Validate owner PID at startup. If it's already dead, the PID resolution
---------+  // was wrong (common on WSL, Tailscale SSH, and cross-user scenarios).
---------+  // Disable monitoring and rely on the idle timeout instead.
---------+  if (ownerPid) {
---------+    try { process.kill(ownerPid, 0); }
---------+    catch (e) {
---------+      if (e.code !== 'EPERM') {
---------+        console.log(JSON.stringify({ type: 'owner-pid-invalid', pid: ownerPid, reason: 'dead at startup' }));
---------+        ownerPid = null;
---------+      }
---------+    }
---------+  }
---------+
---------   server.listen(PORT, HOST, () => {
---------     const info = JSON.stringify({
---------       type: 'server-started', port: Number(PORT), host: HOST,
---------       url_host: URL_HOST, url: 'http://' + URL_HOST + ':' + PORT,
----------      screen_dir: SCREEN_DIR
---------+      screen_dir: CONTENT_DIR, state_dir: STATE_DIR
---------     });
---------     console.log(info);
----------    fs.writeFileSync(path.join(SCREEN_DIR, '.server-info'), info + '\n');
---------+    fs.writeFileSync(path.join(STATE_DIR, 'server-info'), info + '\n');
---------   });
--------- }
--------- 
---------diff --git a/skills/superpowers/brainstorming/scripts/start-server.sh b/skills/superpowers/brainstorming/scripts/start-server.sh
---------index a0ef299..9ef6dcb 100755
------------ a/skills/superpowers/brainstorming/scripts/start-server.sh
---------+++ b/skills/superpowers/brainstorming/scripts/start-server.sh
---------@@ -78,16 +78,17 @@ fi
--------- SESSION_ID="$$-$(date +%s)"
--------- 
--------- if [[ -n "$PROJECT_DIR" ]]; then
----------  SCREEN_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
---------+  SESSION_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
--------- else
----------  SCREEN_DIR="/tmp/brainstorm-${SESSION_ID}"
---------+  SESSION_DIR="/tmp/brainstorm-${SESSION_ID}"
--------- fi
--------- 
----------PID_FILE="${SCREEN_DIR}/.server.pid"
----------LOG_FILE="${SCREEN_DIR}/.server.log"
---------+STATE_DIR="${SESSION_DIR}/state"
---------+PID_FILE="${STATE_DIR}/server.pid"
---------+LOG_FILE="${STATE_DIR}/server.log"
--------- 
----------# Create fresh session directory
----------mkdir -p "$SCREEN_DIR"
---------+# Create fresh session directory with content and state peers
---------+mkdir -p "${SESSION_DIR}/content" "$STATE_DIR"
--------- 
--------- # Kill any existing server
--------- if [[ -f "$PID_FILE" ]]; then
---------@@ -106,22 +107,16 @@ if [[ -z "$OWNER_PID" || "$OWNER_PID" == "1" ]]; then
---------   OWNER_PID="$PPID"
--------- fi
--------- 
----------# On Windows/MSYS2, the MSYS2 PID namespace is invisible to Node.js.
----------# Skip owner-PID monitoring — the 30-minute idle timeout prevents orphans.
----------case "${OSTYPE:-}" in
----------  msys*|cygwin*|mingw*) OWNER_PID="" ;;
----------esac
----------
--------- # Foreground mode for environments that reap detached/background processes.
--------- if [[ "$FOREGROUND" == "true" ]]; then
---------   echo "$$" > "$PID_FILE"
----------  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
---------+  env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
---------   exit $?
--------- fi
--------- 
--------- # Start server, capturing output to log file
--------- # Use nohup to survive shell exit; disown to remove from job table
----------nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
---------+nohup env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
--------- SERVER_PID=$!
--------- disown "$SERVER_PID" 2>/dev/null
--------- echo "$SERVER_PID" > "$PID_FILE"
---------diff --git a/skills/superpowers/brainstorming/scripts/stop-server.sh b/skills/superpowers/brainstorming/scripts/stop-server.sh
---------index 2e5973d..a6b94e6 100755
------------ a/skills/superpowers/brainstorming/scripts/stop-server.sh
---------+++ b/skills/superpowers/brainstorming/scripts/stop-server.sh
---------@@ -1,19 +1,20 @@
--------- #!/usr/bin/env bash
--------- # Stop the brainstorm server and clean up
----------# Usage: stop-server.sh <screen_dir>
---------+# Usage: stop-server.sh <session_dir>
--------- #
--------- # Kills the server process. Only deletes session directory if it's
--------- # under /tmp (ephemeral). Persistent directories (.superpowers/) are
--------- # kept so mockups can be reviewed later.
--------- 
----------SCREEN_DIR="$1"
---------+SESSION_DIR="$1"
--------- 
----------if [[ -z "$SCREEN_DIR" ]]; then
----------  echo '{"error": "Usage: stop-server.sh <screen_dir>"}'
---------+if [[ -z "$SESSION_DIR" ]]; then
---------+  echo '{"error": "Usage: stop-server.sh <session_dir>"}'
---------   exit 1
--------- fi
--------- 
----------PID_FILE="${SCREEN_DIR}/.server.pid"
---------+STATE_DIR="${SESSION_DIR}/state"
---------+PID_FILE="${STATE_DIR}/server.pid"
--------- 
--------- if [[ -f "$PID_FILE" ]]; then
---------   pid=$(cat "$PID_FILE")
---------@@ -42,11 +43,11 @@ if [[ -f "$PID_FILE" ]]; then
---------     exit 1
---------   fi
--------- 
----------  rm -f "$PID_FILE" "${SCREEN_DIR}/.server.log"
---------+  rm -f "$PID_FILE" "${STATE_DIR}/server.log"
--------- 
---------   # Only delete ephemeral /tmp directories
----------  if [[ "$SCREEN_DIR" == /tmp/* ]]; then
----------    rm -rf "$SCREEN_DIR"
---------+  if [[ "$SESSION_DIR" == /tmp/* ]]; then
---------+    rm -rf "$SESSION_DIR"
---------   fi
--------- 
---------   echo '{"status": "stopped"}'
---------diff --git a/skills/superpowers/brainstorming/visual-companion.md b/skills/superpowers/brainstorming/visual-companion.md
---------index 537ed3c..2113863 100644
------------ a/skills/superpowers/brainstorming/visual-companion.md
---------+++ b/skills/superpowers/brainstorming/visual-companion.md
---------@@ -26,7 +26,7 @@ A question *about* a UI topic is not automatically a visual question. "What kind
--------- 
--------- ## How It Works
--------- 
----------The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content, the user sees it in their browser and can click to select options. Selections are recorded to a `.events` file that you read on your next turn.
---------+The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content to `screen_dir`, the user sees it in their browser and can click to select options. Selections are recorded to `state_dir/events` that you read on your next turn.
--------- 
--------- **Content fragments vs full documents:** If your HTML file starts with `<!DOCTYPE` or `<html`, the server serves it as-is (just injects the helper script). Otherwise, the server automatically wraps your content in the frame template — adding the header, CSS theme, selection indicator, and all interactive infrastructure. **Write content fragments by default.** Only write full documents when you need complete control over the page.
--------- 
---------@@ -37,12 +37,13 @@ The server watches a directory for HTML files and serves the newest one to the b
--------- scripts/start-server.sh --project-dir /path/to/project
--------- 
--------- # Returns: {"type":"server-started","port":52341,"url":"http://localhost:52341",
----------#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000"}
---------+#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/content",
---------+#           "state_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/state"}
--------- ```
--------- 
----------Save `screen_dir` from the response. Tell user to open the URL.
---------+Save `screen_dir` and `state_dir` from the response. Tell user to open the URL.
--------- 
----------**Finding connection info:** The server writes its startup JSON to `$SCREEN_DIR/.server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
---------+**Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
--------- 
--------- **Note:** Pass the project root as `--project-dir` so mockups persist in `.superpowers/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.superpowers/` to `.gitignore` if it's not already there.
--------- 
---------@@ -61,7 +62,7 @@ scripts/start-server.sh --project-dir /path/to/project
--------- # across conversation turns.
--------- scripts/start-server.sh --project-dir /path/to/project
--------- ```
----------When calling this via the Bash tool, set `run_in_background: true`. Then read `$SCREEN_DIR/.server-info` on the next turn to get the URL and port.
---------+When calling this via the Bash tool, set `run_in_background: true`. Then read `$STATE_DIR/server-info` on the next turn to get the URL and port.
--------- 
--------- **Codex:**
--------- ```bash
---------@@ -93,7 +94,7 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
--------- ## The Loop
--------- 
--------- 1. **Check server is alive**, then **write HTML** to a new file in `screen_dir`:
----------   - Before each write, check that `$SCREEN_DIR/.server-info` exists. If it doesn't (or `.server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
---------+   - Before each write, check that `$STATE_DIR/server-info` exists. If it doesn't (or `$STATE_DIR/server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
---------    - Use semantic filenames: `platform.html`, `visual-style.html`, `layout.html`
---------    - **Never reuse filenames** — each screen gets a fresh file
---------    - Use Write tool — **never use cat/heredoc** (dumps noise into terminal)
---------@@ -105,9 +106,9 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
---------    - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
--------- 
--------- 3. **On your next turn** — after the user responds in the terminal:
----------   - Read `$SCREEN_DIR/.events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
---------+   - Read `$STATE_DIR/events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
---------    - Merge with the user's terminal text to get the full picture
----------   - The terminal message is the primary feedback; `.events` provides structured interaction data
---------+   - The terminal message is the primary feedback; `state_dir/events` provides structured interaction data
--------- 
--------- 4. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
--------- 
---------@@ -244,7 +245,7 @@ The frame template provides these CSS classes for your content:
--------- 
--------- ## Browser Events Format
--------- 
----------When the user clicks options in the browser, their interactions are recorded to `$SCREEN_DIR/.events` (one JSON object per line). The file is cleared automatically when you push a new screen.
---------+When the user clicks options in the browser, their interactions are recorded to `$STATE_DIR/events` (one JSON object per line). The file is cleared automatically when you push a new screen.
--------- 
--------- ```jsonl
--------- {"type":"click","choice":"a","text":"Option A - Simple Layout","timestamp":1706000101}
---------@@ -254,7 +255,7 @@ When the user clicks options in the browser, their interactions are recorded to
--------- 
--------- The full event stream shows the user's exploration path — they may click multiple options before settling. The last `choice` event is typically the final selection, but the pattern of clicks can reveal hesitation or preferences worth asking about.
--------- 
----------If `.events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
---------+If `$STATE_DIR/events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
--------- 
--------- ## Design Tips
--------- 
---------@@ -275,7 +276,7 @@ If `.events` doesn't exist, the user didn't interact with the browser — use on
--------- ## Cleaning Up
--------- 
--------- ```bash
----------scripts/stop-server.sh $SCREEN_DIR
---------+scripts/stop-server.sh $SESSION_DIR
--------- ```
--------- 
--------- If the session used `--project-dir`, mockup files persist in `.superpowers/brainstorm/` for later reference. Only `/tmp` sessions get deleted on stop.
---------diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
---------index 86f58fa..539b2b1 100644
------------ a/skills/superpowers/using-superpowers/references/codex-tools.md
---------+++ b/skills/superpowers/using-superpowers/references/codex-tools.md
---------@@ -4,7 +4,7 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
--------- 
--------- | Skill references | Codex equivalent |
--------- |-----------------|------------------|
----------| `Task` tool (dispatch subagent) | `spawn_agent` |
---------+| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
--------- | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
--------- | Task returns result | `wait` |
--------- | Task completes automatically | `close_agent` to free slot |
---------@@ -23,3 +23,78 @@ multi_agent = true
--------- ```
--------- 
--------- This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
---------+
---------+## Named agent dispatch
---------+
---------+Claude Code skills reference named agent types like `superpowers:code-reviewer`.
---------+Codex does not have a named agent registry — `spawn_agent` creates generic agents
---------+from built-in roles (`default`, `explorer`, `worker`).
---------+
---------+When a skill says to dispatch a named agent type:
---------+
---------+1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
---------+   local prompt template like `code-quality-reviewer-prompt.md`)
---------+2. Read the prompt content
---------+3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
---------+4. Spawn a `worker` agent with the filled content as the `message`
---------+
---------+| Skill instruction | Codex equivalent |
---------+|-------------------|------------------|
---------+| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
---------+| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
---------+
---------+### Message framing
---------+
---------+The `message` parameter is user-level input, not a system prompt. Structure it
---------+for maximum instruction adherence:
---------+
---------+```
---------+Your task is to perform the following. Follow the instructions below exactly.
---------+
---------+<agent-instructions>
---------+[filled prompt content from the agent's .md file]
---------+</agent-instructions>
---------+
---------+Execute this now. Output ONLY the structured response following the format
---------+specified in the instructions above.
---------+```
---------+
---------+- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
---------+- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
---------+- End with an explicit execution directive to prevent summarization of the instructions
---------+
---------+### When this workaround can be removed
---------+
---------+This approach compensates for Codex's plugin system not yet supporting an `agents`
---------+field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
---------+plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
---------+skills can dispatch named agent types directly.
---------+
---------+## Environment Detection
---------+
---------+Skills that create worktrees or finish branches should detect their
---------+environment with read-only git commands before proceeding:
---------+
---------+```bash
---------+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---------+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---------+BRANCH=$(git branch --show-current)
---------+```
---------+
---------+- `GIT_DIR != GIT_COMMON` → already in a linked worktree (skip creation)
---------+- `BRANCH` empty → detached HEAD (cannot branch/push/PR from sandbox)
---------+
---------+See `using-git-worktrees` Step 0 and `finishing-a-development-branch`
---------+Step 1 for how each skill uses these signals.
---------+
---------+## Codex App Finishing
---------+
---------+When the sandbox blocks branch/push operations (detached HEAD in an
---------+externally managed worktree), the agent commits all work and informs
---------+the user to use the App's native controls:
---------+
---------+- **"Create branch"** — names the branch, then commit/push/PR via App UI
---------+- **"Hand off to local"** — transfers work to the user's local checkout
---------+
---------+The agent can still run tests, stage files, and output suggested branch
---------+names, commit messages, and PR descriptions for the user to copy.
---------diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
---------index 60f9834..0d9c00b 100644
------------ a/skills/superpowers/writing-plans/SKILL.md
---------+++ b/skills/superpowers/writing-plans/SKILL.md
---------@@ -103,26 +103,33 @@ git commit -m "feat: add specific feature"
--------- ```
--------- ````
--------- 
---------+## No Placeholders
---------+
---------+Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
---------+- "TBD", "TODO", "implement later", "fill in details"
---------+- "Add appropriate error handling" / "add validation" / "handle edge cases"
---------+- "Write tests for the above" (without actual test code)
---------+- "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
---------+- Steps that describe what to do without showing how (code blocks required for code steps)
---------+- References to types, functions, or methods not defined in any task
---------+
--------- ## Remember
--------- - Exact file paths always
----------- Complete code in plan (not "add validation")
---------+- Complete code in every step — if a step changes code, show the code
--------- - Exact commands with expected output
----------- Reference relevant skills with @ syntax
--------- - DRY, YAGNI, TDD, frequent commits
--------- 
----------## Plan Review Loop
---------+## Self-Review
---------+
---------+After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
---------+
---------+**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
--------- 
----------After writing the complete plan:
---------+**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
--------- 
----------1. Dispatch a single plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
----------   - Provide: path to the plan document, path to spec document
----------2. If ❌ Issues Found: fix the issues, re-dispatch reviewer for the whole plan
----------3. If ✅ Approved: proceed to execution handoff
---------+**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
--------- 
----------**Review loop guidance:**
----------- Same agent that wrote the plan fixes it (preserves context)
----------- If loop exceeds 3 iterations, surface to human for guidance
----------- Reviewers are advisory — explain disagreements if you believe feedback is incorrect
---------+If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
--------- 
--------- ## Execution Handoff
--------- 
---------diff --git a/skills/superpowers/writing-skills/SKILL.md b/skills/superpowers/writing-skills/SKILL.md
---------index 4cd8ddf..c3b73d8 100644
------------ a/skills/superpowers/writing-skills/SKILL.md
---------+++ b/skills/superpowers/writing-skills/SKILL.md
---------@@ -93,7 +93,7 @@ skills/
--------- ## SKILL.md Structure
--------- 
--------- **Frontmatter (YAML):**
----------- Only two fields supported: `name` and `description`
---------+- Two required fields: `name` and `description` (see [agentskills.io/specification](https://agentskills.io/specification) for all supported fields)
--------- - Max 1024 characters total
--------- - `name`: Use letters, numbers, and hyphens only (no parentheses, special chars)
--------- - `description`: Third-person, describes ONLY when to use (NOT what it does)
---------@@ -604,7 +604,7 @@ Deploying untested skills = deploying untested code. It's a violation of quality
--------- 
--------- **GREEN Phase - Write Minimal Skill:**
--------- - [ ] Name uses only letters, numbers, hyphens (no parentheses/special chars)
----------- [ ] YAML frontmatter with only name and description (max 1024 chars)
---------+- [ ] YAML frontmatter with required `name` and `description` fields (max 1024 chars; see [spec](https://agentskills.io/specification))
--------- - [ ] Description starts with "Use when..." and includes specific triggers/symptoms
--------- - [ ] Description written in third person
--------- - [ ] Keywords throughout for search (errors, symptoms, tools)
---------diff --git a/skills/superpowers/writing-skills/anthropic-best-practices.md b/skills/superpowers/writing-skills/anthropic-best-practices.md
---------index a5a7d07..9f3f6ec 100644
------------ a/skills/superpowers/writing-skills/anthropic-best-practices.md
---------+++ b/skills/superpowers/writing-skills/anthropic-best-practices.md
---------@@ -144,7 +144,7 @@ What works perfectly for Opus might need more detail for Haiku. If you plan to u
--------- ## Skill structure
--------- 
--------- <Note>
----------  **YAML Frontmatter**: The SKILL.md frontmatter supports two fields:
---------+  **YAML Frontmatter**: The SKILL.md frontmatter requires two fields:
--------- 
---------   * `name` - Human-readable name of the Skill (64 characters maximum)
---------   * `description` - One-line description of what the Skill does and when to use it (1024 characters maximum)
---------@@ -1092,7 +1092,7 @@ reader = PdfReader("file.pdf")
--------- 
--------- ### YAML frontmatter requirements
--------- 
----------The SKILL.md frontmatter includes only `name` (64 characters max) and `description` (1024 characters max) fields. See the [Skills overview](/en/docs/agents-and-tools/agent-skills/overview#skill-structure) for complete structure details.
---------+The SKILL.md frontmatter requires `name` (64 characters max) and `description` (1024 characters max) fields. See the [Skills overview](/en/docs/agents-and-tools/agent-skills/overview#skill-structure) for complete structure details.
--------- 
--------- ### Token budgets
+-------- # Using Skills
 -------- 
 --------diff --git a/update_summary.md b/update_summary.md
---------index 358a7c2..b58cd81 100644
+--------index 4db0e51..98b6e19 100644
 ----------- a/update_summary.md
 --------+++ b/update_summary.md
---------@@ -1,781 +1,555 @@
+--------@@ -1,1844 +1,2 @@
 -------- ## Updated Skills
 -------- 
----------Submodule skills/AI-research-SKILLs 085c480..28d8b96:
---------+Submodule skills/AI-research-SKILLs 085c480..a728954:
---------+  > fix: update marketplace.json to include academic-plotting skill
---------+  > refactor: restructure ml-paper-writing skill into nested directory
---------+  > Merge pull request #41 from Orchestra-Research/add-academic-plotting-skill
---------+  > docs: add concrete OpenClaw cron.add instructions to autoresearch skill
---------+  > chore: Gitignore marketing drafts and image in autoresearch skill
---------   > docs: add contributors widget and clean up contributing section
---------   > Merge pull request #39 from tang-vu/contribai/fix/security/critical-prompt-injection-in-claude-code
--------- Submodule skills/claude-scientific-skills contains modified content
----------Submodule skills/claude-scientific-skills 1346c01..1531326:
---------+Submodule skills/claude-scientific-skills 1346c01..71add64:
---------+  > Remove planning with files skill becasue it is specific to Claude Code
---------+  > Make writing skills more explicit
---------+  > Add Security Disclaimer section to README
---------+  > Bump version
---------+  > Improve token discovery for Modal
---------+  > Update Modal skill
---------+  > Add planning with files skill from @OthmanAdi
---------   > Add K-Dense BYOK AI co-scientist to README with features and links
---------   > Add writing skills
--------- Submodule skills/humanizer d8085c7..12881ab:
---------   > Merge pull request #56 from mvanhorn/osc/42-add-hyphenation-pattern
---------   > Merge pull request #57 from mvanhorn/osc/35-remove-separator-rules
---------   > Merge pull request #58 from mvanhorn/osc/7-add-license-file
----------diff --git a/skills/planning-with-files/SKILL.md b/skills/planning-with-files/SKILL.md
----------index d967199..43672e5 100644
------------- a/skills/planning-with-files/SKILL.md
----------+++ b/skills/planning-with-files/SKILL.md
----------@@ -7,7 +7,7 @@ hooks:
----------   UserPromptSubmit:
----------     - hooks:
----------         - type: command
-----------          command: "if [ -f task_plan.md ]; then echo '[planning-with-files] Active plan detected. If you have not read task_plan.md, progress.md, and findings.md in this conversation, read them now before proceeding.'; fi"
----------+          command: "if [ -f task_plan.md ]; then echo '[planning-with-files] ACTIVE PLAN — current state:'; head -50 task_plan.md; echo ''; echo '=== recent progress ==='; tail -20 progress.md 2>/dev/null; echo ''; echo '[planning-with-files] Read findings.md for research context. Continue from the current phase.'; fi"
----------   PreToolUse:
----------     - matcher: "Write|Edit|Bash|Read|Glob|Grep"
----------       hooks:
----------@@ -21,7 +21,7 @@ hooks:
----------   Stop:
----------     - hooks:
----------         - type: command
-----------          command: "SD=\"${OPENCODE_SKILL_ROOT:-$HOME/.config/opencode/skills/planning-with-files}/scripts\"; powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$SD/check-complete.ps1\" 2>/dev/null || sh \"$SD/check-complete.sh\""
----------+          command: "SD=\"${SKILL_DIR:-<forge-root>/skills/planning-with-files}/scripts\"; powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$SD/check-complete.ps1\" 2>/dev/null || sh \"$SD/check-complete.sh\""
---------- metadata:
----------   version: "2.23.0"
---------- ---
----------@@ -36,12 +36,12 @@ Work like Manus: Use persistent markdown files as your "working memory on disk."
+---------Submodule skills/AI-research-SKILLs 085c480..a728954:
+---------  > fix: update marketplace.json to include academic-plotting skill
+---------  > refactor: restructure ml-paper-writing skill into nested directory
+---------  > Merge pull request #41 from Orchestra-Research/add-academic-plotting-skill
+---------  > docs: add concrete OpenClaw cron.add instructions to autoresearch skill
+---------  > chore: Gitignore marketing drafts and image in autoresearch skill
+---------  > docs: add contributors widget and clean up contributing section
+---------  > Merge pull request #39 from tang-vu/contribai/fix/security/critical-prompt-injection-in-claude-code
+---------Submodule skills/claude-scientific-skills contains modified content
+---------Submodule skills/claude-scientific-skills 1346c01..71add64:
+---------  > Remove planning with files skill becasue it is specific to Claude Code
+---------  > Make writing skills more explicit
+---------  > Add Security Disclaimer section to README
+---------  > Bump version
+---------  > Improve token discovery for Modal
+---------  > Update Modal skill
+---------  > Add planning with files skill from @OthmanAdi
+---------  > Add K-Dense BYOK AI co-scientist to README with features and links
+---------  > Add writing skills
+---------Submodule skills/humanizer d8085c7..12881ab:
+---------  > Merge pull request #56 from mvanhorn/osc/42-add-hyphenation-pattern
+---------  > Merge pull request #57 from mvanhorn/osc/35-remove-separator-rules
+---------  > Merge pull request #58 from mvanhorn/osc/7-add-license-file
+---------Submodule skills/paper-polish-workflow-skill 7e430bd..bb72126:
+---------  > fix: track assets/logo.jpg so README logo displays on GitHub
+---------  > fix: correct SKILL.md path in CI validation workflow
+---------  > fix: remove package.json to prevent recursive npm nesting
+---------  > fix: remove duplicate files to fix ENAMETOOLONG on plugin install
+---------  > fix: add explicit skills path in plugin.json
+---------  > fix: update plugin.json version to 2.3.0
+---------  > fix: remove .planning/ from git tracking (136 files)
+---------  > fix: use HTTPS git URL instead of GitHub SSH source
+---------  > fix: switch marketplace source from npm to GitHub repo
+---------  > fix: add explicit npmjs.com registry to marketplace.json
+---------  > feat: migrate to official Claude Code plugin marketplace, bump v2.3.0
+---------  > feat: add Claude Code plugin format with auto-install postinstall script
+---------  > feat: add get-paper skill, bump to v2.2.0
+---------diff --git a/skills/superpowers/brainstorming/SKILL.md b/skills/superpowers/brainstorming/SKILL.md
+---------index edbc2b5..06cd0a2 100644
+------------ a/skills/superpowers/brainstorming/SKILL.md
+---------+++ b/skills/superpowers/brainstorming/SKILL.md
+---------@@ -27,7 +27,7 @@ You MUST create a task for each of these items and complete them in order:
+--------- 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
+--------- 5. **Present design** — in sections scaled to their complexity, get user approval after each section
+--------- 6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
+----------7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
+---------+7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
+--------- 8. **User reviews written spec** — ask user to review the spec file before proceeding
+--------- 9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
 --------- 
---------- ```bash
---------- # Linux/macOS (auto-detects python3 or python)
-----------$(command -v python3 || command -v python) ~/.config/opencode/skills/planning-with-files/scripts/session-catchup.py "$(pwd)"
----------+$(command -v python3 || command -v python) skills/planning-with-files/scripts/session-catchup.py "$(pwd)"
---------- ```
+---------@@ -43,8 +43,7 @@ digraph brainstorming {
+---------     "Present design sections" [shape=box];
+---------     "User approves design?" [shape=diamond];
+---------     "Write design doc" [shape=box];
+----------    "Spec review loop" [shape=box];
+----------    "Spec review passed?" [shape=diamond];
+---------+    "Spec self-review\n(fix inline)" [shape=box];
+---------     "User reviews spec?" [shape=diamond];
+---------     "Invoke writing-plans skill" [shape=doublecircle];
 --------- 
---------- ```powershell
---------- # Windows PowerShell
-----------python "$env:USERPROFILE\.opencode\skills\planning-with-files\scripts\session-catchup.py" (Get-Location)
----------+python "skills\planning-with-files\scripts\session-catchup.py" (Get-Location)
---------- ```
+---------@@ -57,10 +56,8 @@ digraph brainstorming {
+---------     "Present design sections" -> "User approves design?";
+---------     "User approves design?" -> "Present design sections" [label="no, revise"];
+---------     "User approves design?" -> "Write design doc" [label="yes"];
+----------    "Write design doc" -> "Spec review loop";
+----------    "Spec review loop" -> "Spec review passed?";
+----------    "Spec review passed?" -> "Spec review loop" [label="issues found,\nfix and re-dispatch"];
+----------    "Spec review passed?" -> "User reviews spec?" [label="approved"];
+---------+    "Write design doc" -> "Spec self-review\n(fix inline)";
+---------+    "Spec self-review\n(fix inline)" -> "User reviews spec?";
+---------     "User reviews spec?" -> "Write design doc" [label="changes requested"];
+---------     "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
+--------- }
+---------@@ -116,12 +113,15 @@ digraph brainstorming {
+--------- - Use elements-of-style:writing-clearly-and-concisely skill if available
+--------- - Commit the design document to git
 --------- 
---------- If catchup report shows unsynced context:
----------@@ -52,12 +52,12 @@ If catchup report shows unsynced context:
+----------**Spec Review Loop:**
+----------After writing the spec document:
+---------+**Spec Self-Review:**
+---------+After writing the spec document, look at it with fresh eyes:
 --------- 
---------- ## Important: Where Files Go
---------- 
------------ **Templates** are in `~/.config/opencode/skills/planning-with-files/templates/`
----------+- **Templates** are in `<forge-root>/skills/planning-with-files/templates/`
---------- - **Your planning files** go in **your project directory**
---------- 
---------- | Location | What Goes There |
---------- |----------|-----------------|
-----------| Skill directory (`~/.config/opencode/skills/planning-with-files/`) | Templates, scripts, reference docs |
----------+| Skill directory (`<forge-root>/skills/planning-with-files/`) | Templates, scripts, reference docs |
---------- | Your project directory | `task_plan.md`, `findings.md`, `progress.md` |
---------- 
---------- ## Quick Start
----------diff --git a/skills/planning-with-files/scripts/session-catchup.py b/skills/planning-with-files/scripts/session-catchup.py
----------index 5122b91..b187e83 100644
------------- a/skills/planning-with-files/scripts/session-catchup.py
----------+++ b/skills/planning-with-files/scripts/session-catchup.py
----------@@ -254,7 +254,7 @@ def main():
----------             print(f"USER: {msg['content'][:300]}")
----------         else:
----------             if msg.get('content'):
-----------                print(f"OPENCODE: {msg['content'][:300]}")
----------+                print(f"ASSISTANT: {msg['content'][:300]}")
----------             if msg.get('tools'):
----------                 print(f"  Tools: {', '.join(msg['tools'][:4])}")
---------- 
---------+Submodule skills/paper-polish-workflow-skill 7e430bd..bb72126:
---------+  > fix: track assets/logo.jpg so README logo displays on GitHub
---------+  > fix: correct SKILL.md path in CI validation workflow
---------+  > fix: remove package.json to prevent recursive npm nesting
---------+  > fix: remove duplicate files to fix ENAMETOOLONG on plugin install
---------+  > fix: add explicit skills path in plugin.json
---------+  > fix: update plugin.json version to 2.3.0
---------+  > fix: remove .planning/ from git tracking (136 files)
---------+  > fix: use HTTPS git URL instead of GitHub SSH source
---------+  > fix: switch marketplace source from npm to GitHub repo
---------+  > fix: add explicit npmjs.com registry to marketplace.json
---------+  > feat: migrate to official Claude Code plugin marketplace, bump v2.3.0
---------+  > feat: add Claude Code plugin format with auto-install postinstall script
---------+  > feat: add get-paper skill, bump to v2.2.0
--------- diff --git a/skills/superpowers/brainstorming/SKILL.md b/skills/superpowers/brainstorming/SKILL.md
----------index 724dc79..edbc2b5 100644
---------+index edbc2b5..06cd0a2 100644
--------- --- a/skills/superpowers/brainstorming/SKILL.md
--------- +++ b/skills/superpowers/brainstorming/SKILL.md
--------- @@ -27,7 +27,7 @@ You MUST create a task for each of these items and complete them in order:
---------  4. **Propose 2-3 approaches** — with trade-offs and your recommendation
---------  5. **Present design** — in sections scaled to their complexity, get user approval after each section
---------  6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
-----------7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 5 iterations, then surface to human)
----------+7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
---------+-7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
---------++7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
---------  8. **User reviews written spec** — ask user to review the spec file before proceeding
---------  9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
---------  
----------@@ -121,7 +121,7 @@ After writing the spec document:
---------- 
---------- 1. Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md)
---------- 2. If Issues Found: fix, re-dispatch, repeat until Approved
-----------3. If loop exceeds 5 iterations, surface to human for guidance
----------+3. If loop exceeds 3 iterations, surface to human for guidance
---------+@@ -43,8 +43,7 @@ digraph brainstorming {
---------+     "Present design sections" [shape=box];
---------+     "User approves design?" [shape=diamond];
---------+     "Write design doc" [shape=box];
---------+-    "Spec review loop" [shape=box];
---------+-    "Spec review passed?" [shape=diamond];
---------++    "Spec self-review\n(fix inline)" [shape=box];
---------+     "User reviews spec?" [shape=diamond];
---------+     "Invoke writing-plans skill" [shape=doublecircle];
---------+ 
---------+@@ -57,10 +56,8 @@ digraph brainstorming {
---------+     "Present design sections" -> "User approves design?";
---------+     "User approves design?" -> "Present design sections" [label="no, revise"];
---------+     "User approves design?" -> "Write design doc" [label="yes"];
---------+-    "Write design doc" -> "Spec review loop";
---------+-    "Spec review loop" -> "Spec review passed?";
---------+-    "Spec review passed?" -> "Spec review loop" [label="issues found,\nfix and re-dispatch"];
---------+-    "Spec review passed?" -> "User reviews spec?" [label="approved"];
---------++    "Write design doc" -> "Spec self-review\n(fix inline)";
---------++    "Spec self-review\n(fix inline)" -> "User reviews spec?";
---------+     "User reviews spec?" -> "Write design doc" [label="changes requested"];
---------+     "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
---------+ }
---------+@@ -116,12 +113,15 @@ digraph brainstorming {
---------+ - Use elements-of-style:writing-clearly-and-concisely skill if available
---------+ - Commit the design document to git
---------+ 
---------+-**Spec Review Loop:**
---------+-After writing the spec document:
---------++**Spec Self-Review:**
---------++After writing the spec document, look at it with fresh eyes:
---------+ 
---------+-1. Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md)
---------+-2. If Issues Found: fix, re-dispatch, repeat until Approved
---------+-3. If loop exceeds 3 iterations, surface to human for guidance
---------++1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
---------++2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
---------++3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
---------++4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
---------++
---------++Fix any issues inline. No need to re-review — just fix and move on.
---------  
---------  **User Review Gate:**
---------  After the spec review loop passes, ask the user to review the written spec before proceeding:
----------diff --git a/skills/superpowers/brainstorming/scripts/server.js b/skills/superpowers/brainstorming/scripts/server.js
----------deleted file mode 100644
----------index dec2f7a..0000000
------------- a/skills/superpowers/brainstorming/scripts/server.js
----------+++ /dev/null
----------@@ -1,338 +0,0 @@
-----------const crypto = require('crypto');
-----------const http = require('http');
-----------const fs = require('fs');
-----------const path = require('path');
-----------
-----------// ========== WebSocket Protocol (RFC 6455) ==========
-----------
-----------const OPCODES = { TEXT: 0x01, CLOSE: 0x08, PING: 0x09, PONG: 0x0A };
-----------const WS_MAGIC = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
-----------
-----------function computeAcceptKey(clientKey) {
-----------  return crypto.createHash('sha1').update(clientKey + WS_MAGIC).digest('base64');
-----------}
-----------
-----------function encodeFrame(opcode, payload) {
-----------  const fin = 0x80;
-----------  const len = payload.length;
-----------  let header;
-----------
-----------  if (len < 126) {
-----------    header = Buffer.alloc(2);
-----------    header[0] = fin | opcode;
-----------    header[1] = len;
-----------  } else if (len < 65536) {
-----------    header = Buffer.alloc(4);
-----------    header[0] = fin | opcode;
-----------    header[1] = 126;
-----------    header.writeUInt16BE(len, 2);
-----------  } else {
-----------    header = Buffer.alloc(10);
-----------    header[0] = fin | opcode;
-----------    header[1] = 127;
-----------    header.writeBigUInt64BE(BigInt(len), 2);
-----------  }
-----------
-----------  return Buffer.concat([header, payload]);
-----------}
-----------
-----------function decodeFrame(buffer) {
-----------  if (buffer.length < 2) return null;
-----------
-----------  const secondByte = buffer[1];
-----------  const opcode = buffer[0] & 0x0F;
-----------  const masked = (secondByte & 0x80) !== 0;
-----------  let payloadLen = secondByte & 0x7F;
-----------  let offset = 2;
-----------
-----------  if (!masked) throw new Error('Client frames must be masked');
-----------
-----------  if (payloadLen === 126) {
-----------    if (buffer.length < 4) return null;
-----------    payloadLen = buffer.readUInt16BE(2);
-----------    offset = 4;
-----------  } else if (payloadLen === 127) {
-----------    if (buffer.length < 10) return null;
-----------    payloadLen = Number(buffer.readBigUInt64BE(2));
-----------    offset = 10;
-----------  }
-----------
-----------  const maskOffset = offset;
-----------  const dataOffset = offset + 4;
-----------  const totalLen = dataOffset + payloadLen;
-----------  if (buffer.length < totalLen) return null;
-----------
-----------  const mask = buffer.slice(maskOffset, dataOffset);
-----------  const data = Buffer.alloc(payloadLen);
-----------  for (let i = 0; i < payloadLen; i++) {
-----------    data[i] = buffer[dataOffset + i] ^ mask[i % 4];
-----------  }
-----------
-----------  return { opcode, payload: data, bytesConsumed: totalLen };
-----------}
-----------
-----------// ========== Configuration ==========
-----------
-----------const PORT = process.env.BRAINSTORM_PORT || (49152 + Math.floor(Math.random() * 16383));
-----------const HOST = process.env.BRAINSTORM_HOST || '127.0.0.1';
-----------const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'localhost' : HOST);
---------+diff --git a/skills/superpowers/brainstorming/scripts/server.cjs b/skills/superpowers/brainstorming/scripts/server.cjs
---------+index 86c3080..562c17f 100644
---------+--- a/skills/superpowers/brainstorming/scripts/server.cjs
---------++++ b/skills/superpowers/brainstorming/scripts/server.cjs
---------+@@ -76,8 +76,10 @@ function decodeFrame(buffer) {
---------+ const PORT = process.env.BRAINSTORM_PORT || (49152 + Math.floor(Math.random() * 16383));
---------+ const HOST = process.env.BRAINSTORM_HOST || '127.0.0.1';
---------+ const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'localhost' : HOST);
--------- -const SCREEN_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
--------- -const OWNER_PID = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
-----------
-----------const MIME_TYPES = {
-----------  '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
-----------  '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg',
-----------  '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml'
-----------};
-----------
-----------// ========== Templates and Constants ==========
-----------
-----------const WAITING_PAGE = `<!DOCTYPE html>
-----------<html>
-----------<head><meta charset="utf-8"><title>Brainstorm Companion</title>
-----------<style>body { font-family: system-ui, sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; }
-----------h1 { color: #333; } p { color: #666; }</style>
-----------</head>
-----------<body><h1>Brainstorm Companion</h1>
-----------<p>Waiting for Claude to push a screen...</p></body></html>`;
-----------
-----------const frameTemplate = fs.readFileSync(path.join(__dirname, 'frame-template.html'), 'utf-8');
-----------const helperScript = fs.readFileSync(path.join(__dirname, 'helper.js'), 'utf-8');
-----------const helperInjection = '<script>\n' + helperScript + '\n</script>';
-----------
-----------// ========== Helper Functions ==========
-----------
-----------function isFullDocument(html) {
-----------  const trimmed = html.trimStart().toLowerCase();
-----------  return trimmed.startsWith('<!doctype') || trimmed.startsWith('<html');
-----------}
-----------
-----------function wrapInFrame(content) {
-----------  return frameTemplate.replace('<!-- CONTENT -->', content);
-----------}
-----------
-----------function getNewestScreen() {
---------++const SESSION_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
---------++const CONTENT_DIR = path.join(SESSION_DIR, 'content');
---------++const STATE_DIR = path.join(SESSION_DIR, 'state');
---------++let ownerPid = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
---------+ 
---------+ const MIME_TYPES = {
---------+   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
---------+@@ -112,10 +114,10 @@ function wrapInFrame(content) {
---------+ }
---------+ 
---------+ function getNewestScreen() {
--------- -  const files = fs.readdirSync(SCREEN_DIR)
-----------    .filter(f => f.endsWith('.html'))
-----------    .map(f => {
---------++  const files = fs.readdirSync(CONTENT_DIR)
---------+     .filter(f => f.endsWith('.html'))
---------+     .map(f => {
--------- -      const fp = path.join(SCREEN_DIR, f);
-----------      return { path: fp, mtime: fs.statSync(fp).mtime.getTime() };
-----------    })
-----------    .sort((a, b) => b.mtime - a.mtime);
-----------  return files.length > 0 ? files[0].path : null;
-----------}
-----------
-----------// ========== HTTP Request Handler ==========
-----------
-----------function handleRequest(req, res) {
-----------  touchActivity();
-----------  if (req.method === 'GET' && req.url === '/') {
-----------    const screenFile = getNewestScreen();
-----------    let html = screenFile
-----------      ? (raw => isFullDocument(raw) ? raw : wrapInFrame(raw))(fs.readFileSync(screenFile, 'utf-8'))
-----------      : WAITING_PAGE;
-----------
-----------    if (html.includes('</body>')) {
-----------      html = html.replace('</body>', helperInjection + '\n</body>');
-----------    } else {
-----------      html += helperInjection;
-----------    }
-----------
-----------    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-----------    res.end(html);
-----------  } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
-----------    const fileName = req.url.slice(7);
---------++      const fp = path.join(CONTENT_DIR, f);
---------+       return { path: fp, mtime: fs.statSync(fp).mtime.getTime() };
---------+     })
---------+     .sort((a, b) => b.mtime - a.mtime);
---------+@@ -142,7 +144,7 @@ function handleRequest(req, res) {
---------+     res.end(html);
---------+   } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
---------+     const fileName = req.url.slice(7);
--------- -    const filePath = path.join(SCREEN_DIR, path.basename(fileName));
-----------    if (!fs.existsSync(filePath)) {
-----------      res.writeHead(404);
-----------      res.end('Not found');
-----------      return;
-----------    }
-----------    const ext = path.extname(filePath).toLowerCase();
-----------    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-----------    res.writeHead(200, { 'Content-Type': contentType });
-----------    res.end(fs.readFileSync(filePath));
-----------  } else {
-----------    res.writeHead(404);
-----------    res.end('Not found');
-----------  }
-----------}
-----------
-----------// ========== WebSocket Connection Handling ==========
-----------
-----------const clients = new Set();
-----------
-----------function handleUpgrade(req, socket) {
-----------  const key = req.headers['sec-websocket-key'];
-----------  if (!key) { socket.destroy(); return; }
-----------
-----------  const accept = computeAcceptKey(key);
-----------  socket.write(
-----------    'HTTP/1.1 101 Switching Protocols\r\n' +
-----------    'Upgrade: websocket\r\n' +
-----------    'Connection: Upgrade\r\n' +
-----------    'Sec-WebSocket-Accept: ' + accept + '\r\n\r\n'
-----------  );
-----------
-----------  let buffer = Buffer.alloc(0);
-----------  clients.add(socket);
-----------
-----------  socket.on('data', (chunk) => {
-----------    buffer = Buffer.concat([buffer, chunk]);
-----------    while (buffer.length > 0) {
-----------      let result;
-----------      try {
-----------        result = decodeFrame(buffer);
-----------      } catch (e) {
-----------        socket.end(encodeFrame(OPCODES.CLOSE, Buffer.alloc(0)));
-----------        clients.delete(socket);
-----------        return;
-----------      }
-----------      if (!result) break;
-----------      buffer = buffer.slice(result.bytesConsumed);
-----------
-----------      switch (result.opcode) {
-----------        case OPCODES.TEXT:
-----------          handleMessage(result.payload.toString());
-----------          break;
-----------        case OPCODES.CLOSE:
-----------          socket.end(encodeFrame(OPCODES.CLOSE, Buffer.alloc(0)));
-----------          clients.delete(socket);
-----------          return;
-----------        case OPCODES.PING:
-----------          socket.write(encodeFrame(OPCODES.PONG, result.payload));
-----------          break;
-----------        case OPCODES.PONG:
-----------          break;
-----------        default: {
-----------          const closeBuf = Buffer.alloc(2);
-----------          closeBuf.writeUInt16BE(1003);
-----------          socket.end(encodeFrame(OPCODES.CLOSE, closeBuf));
-----------          clients.delete(socket);
-----------          return;
-----------        }
-----------      }
-----------    }
-----------  });
-----------
-----------  socket.on('close', () => clients.delete(socket));
-----------  socket.on('error', () => clients.delete(socket));
-----------}
-----------
-----------function handleMessage(text) {
-----------  let event;
-----------  try {
-----------    event = JSON.parse(text);
-----------  } catch (e) {
-----------    console.error('Failed to parse WebSocket message:', e.message);
-----------    return;
-----------  }
-----------  touchActivity();
-----------  console.log(JSON.stringify({ source: 'user-event', ...event }));
-----------  if (event.choice) {
---------++    const filePath = path.join(CONTENT_DIR, path.basename(fileName));
---------+     if (!fs.existsSync(filePath)) {
---------+       res.writeHead(404);
---------+       res.end('Not found');
---------+@@ -230,7 +232,7 @@ function handleMessage(text) {
---------+   touchActivity();
---------+   console.log(JSON.stringify({ source: 'user-event', ...event }));
---------+   if (event.choice) {
--------- -    const eventsFile = path.join(SCREEN_DIR, '.events');
-----------    fs.appendFileSync(eventsFile, JSON.stringify(event) + '\n');
-----------  }
-----------}
-----------
-----------function broadcast(msg) {
-----------  const frame = encodeFrame(OPCODES.TEXT, Buffer.from(JSON.stringify(msg)));
-----------  for (const socket of clients) {
-----------    try { socket.write(frame); } catch (e) { clients.delete(socket); }
-----------  }
-----------}
-----------
-----------// ========== Activity Tracking ==========
-----------
-----------const IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
-----------let lastActivity = Date.now();
-----------
-----------function touchActivity() {
-----------  lastActivity = Date.now();
-----------}
-----------
-----------// ========== File Watching ==========
-----------
-----------const debounceTimers = new Map();
-----------
-----------// ========== Server Startup ==========
-----------
-----------function startServer() {
---------++    const eventsFile = path.join(STATE_DIR, 'events');
---------+     fs.appendFileSync(eventsFile, JSON.stringify(event) + '\n');
---------+   }
---------+ }
---------+@@ -258,32 +260,33 @@ const debounceTimers = new Map();
---------+ // ========== Server Startup ==========
---------+ 
---------+ function startServer() {
--------- -  if (!fs.existsSync(SCREEN_DIR)) fs.mkdirSync(SCREEN_DIR, { recursive: true });
-----------
-----------  // Track known files to distinguish new screens from updates.
-----------  // macOS fs.watch reports 'rename' for both new files and overwrites,
-----------  // so we can't rely on eventType alone.
-----------  const knownFiles = new Set(
---------++  if (!fs.existsSync(CONTENT_DIR)) fs.mkdirSync(CONTENT_DIR, { recursive: true });
---------++  if (!fs.existsSync(STATE_DIR)) fs.mkdirSync(STATE_DIR, { recursive: true });
---------+ 
---------+   // Track known files to distinguish new screens from updates.
---------+   // macOS fs.watch reports 'rename' for both new files and overwrites,
---------+   // so we can't rely on eventType alone.
---------+   const knownFiles = new Set(
--------- -    fs.readdirSync(SCREEN_DIR).filter(f => f.endsWith('.html'))
-----------  );
-----------
-----------  const server = http.createServer(handleRequest);
-----------  server.on('upgrade', handleUpgrade);
-----------
---------++    fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.html'))
---------+   );
---------+ 
---------+   const server = http.createServer(handleRequest);
---------+   server.on('upgrade', handleUpgrade);
---------+ 
--------- -  const watcher = fs.watch(SCREEN_DIR, (eventType, filename) => {
-----------    if (!filename || !filename.endsWith('.html')) return;
-----------
-----------    if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
-----------    debounceTimers.set(filename, setTimeout(() => {
-----------      debounceTimers.delete(filename);
---------++  const watcher = fs.watch(CONTENT_DIR, (eventType, filename) => {
---------+     if (!filename || !filename.endsWith('.html')) return;
---------+ 
---------+     if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
---------+     debounceTimers.set(filename, setTimeout(() => {
---------+       debounceTimers.delete(filename);
--------- -      const filePath = path.join(SCREEN_DIR, filename);
-----------
-----------      if (!fs.existsSync(filePath)) return; // file was deleted
-----------      touchActivity();
-----------
-----------      if (!knownFiles.has(filename)) {
-----------        knownFiles.add(filename);
---------++      const filePath = path.join(CONTENT_DIR, filename);
---------+ 
---------+       if (!fs.existsSync(filePath)) return; // file was deleted
---------+       touchActivity();
---------+ 
---------+       if (!knownFiles.has(filename)) {
---------+         knownFiles.add(filename);
--------- -        const eventsFile = path.join(SCREEN_DIR, '.events');
-----------        if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
-----------        console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
-----------      } else {
-----------        console.log(JSON.stringify({ type: 'screen-updated', file: filePath }));
-----------      }
-----------
-----------      broadcast({ type: 'reload' });
-----------    }, 100));
-----------  });
-----------  watcher.on('error', (err) => console.error('fs.watch error:', err.message));
-----------
-----------  function shutdown(reason) {
-----------    console.log(JSON.stringify({ type: 'server-stopped', reason }));
---------++        const eventsFile = path.join(STATE_DIR, 'events');
---------+         if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
---------+         console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
---------+       } else {
---------+@@ -297,10 +300,10 @@ function startServer() {
---------+ 
---------+   function shutdown(reason) {
---------+     console.log(JSON.stringify({ type: 'server-stopped', reason }));
--------- -    const infoFile = path.join(SCREEN_DIR, '.server-info');
-----------    if (fs.existsSync(infoFile)) fs.unlinkSync(infoFile);
-----------    fs.writeFileSync(
---------++    const infoFile = path.join(STATE_DIR, 'server-info');
---------+     if (fs.existsSync(infoFile)) fs.unlinkSync(infoFile);
---------+     fs.writeFileSync(
--------- -      path.join(SCREEN_DIR, '.server-stopped'),
-----------      JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
-----------    );
-----------    watcher.close();
-----------    clearInterval(lifecycleCheck);
-----------    server.close(() => process.exit(0));
-----------  }
-----------
-----------  function ownerAlive() {
---------++      path.join(STATE_DIR, 'server-stopped'),
---------+       JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
---------+     );
---------+     watcher.close();
---------+@@ -309,8 +312,8 @@ function startServer() {
---------+   }
---------+ 
---------+   function ownerAlive() {
--------- -    if (!OWNER_PID) return true;
--------- -    try { process.kill(OWNER_PID, 0); return true; } catch (e) { return false; }
-----------  }
-----------
-----------  // Check every 60s: exit if owner process died or idle for 30 minutes
-----------  const lifecycleCheck = setInterval(() => {
-----------    if (!ownerAlive()) shutdown('owner process exited');
-----------    else if (Date.now() - lastActivity > IDLE_TIMEOUT_MS) shutdown('idle timeout');
-----------  }, 60 * 1000);
-----------  lifecycleCheck.unref();
-----------
-----------  server.listen(PORT, HOST, () => {
-----------    const info = JSON.stringify({
-----------      type: 'server-started', port: Number(PORT), host: HOST,
-----------      url_host: URL_HOST, url: 'http://' + URL_HOST + ':' + PORT,
---------++    if (!ownerPid) return true;
---------++    try { process.kill(ownerPid, 0); return true; } catch (e) { return e.code === 'EPERM'; }
---------+   }
---------+ 
---------+   // Check every 60s: exit if owner process died or idle for 30 minutes
---------+@@ -320,14 +323,27 @@ function startServer() {
---------+   }, 60 * 1000);
---------+   lifecycleCheck.unref();
---------+ 
---------++  // Validate owner PID at startup. If it's already dead, the PID resolution
---------++  // was wrong (common on WSL, Tailscale SSH, and cross-user scenarios).
---------++  // Disable monitoring and rely on the idle timeout instead.
---------++  if (ownerPid) {
---------++    try { process.kill(ownerPid, 0); }
---------++    catch (e) {
---------++      if (e.code !== 'EPERM') {
---------++        console.log(JSON.stringify({ type: 'owner-pid-invalid', pid: ownerPid, reason: 'dead at startup' }));
---------++        ownerPid = null;
---------++      }
---------++    }
---------++  }
---------++
---------+   server.listen(PORT, HOST, () => {
---------+     const info = JSON.stringify({
---------+       type: 'server-started', port: Number(PORT), host: HOST,
---------+       url_host: URL_HOST, url: 'http://' + URL_HOST + ':' + PORT,
--------- -      screen_dir: SCREEN_DIR
-----------    });
-----------    console.log(info);
---------++      screen_dir: CONTENT_DIR, state_dir: STATE_DIR
---------+     });
---------+     console.log(info);
--------- -    fs.writeFileSync(path.join(SCREEN_DIR, '.server-info'), info + '\n');
-----------  });
-----------}
-----------
-----------if (require.main === module) {
-----------  startServer();
-----------}
-----------
-----------module.exports = { computeAcceptKey, encodeFrame, decodeFrame, OPCODES };
---------++    fs.writeFileSync(path.join(STATE_DIR, 'server-info'), info + '\n');
---------+   });
---------+ }
---------+ 
--------- diff --git a/skills/superpowers/brainstorming/scripts/start-server.sh b/skills/superpowers/brainstorming/scripts/start-server.sh
----------index b5f5a75..a0ef299 100755
---------+index a0ef299..9ef6dcb 100755
--------- --- a/skills/superpowers/brainstorming/scripts/start-server.sh
--------- +++ b/skills/superpowers/brainstorming/scripts/start-server.sh
----------@@ -1,4 +1,4 @@
-----------#!/bin/bash
----------+#!/usr/bin/env bash
---------- # Start the brainstorm server and output connection info
---------- # Usage: start-server.sh [--project-dir <path>] [--host <bind-host>] [--url-host <display-host>] [--foreground] [--background]
---------- #
----------@@ -64,6 +64,16 @@ if [[ -n "${CODEX_CI:-}" && "$FOREGROUND" != "true" && "$FORCE_BACKGROUND" != "t
----------   FOREGROUND="true"
---------+@@ -78,16 +78,17 @@ fi
---------+ SESSION_ID="$$-$(date +%s)"
---------+ 
---------+ if [[ -n "$PROJECT_DIR" ]]; then
---------+-  SCREEN_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
---------++  SESSION_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
---------+ else
---------+-  SCREEN_DIR="/tmp/brainstorm-${SESSION_ID}"
---------++  SESSION_DIR="/tmp/brainstorm-${SESSION_ID}"
---------  fi
---------  
----------+# Windows/Git Bash reaps nohup background processes. Auto-foreground when detected.
----------+if [[ "$FOREGROUND" != "true" && "$FORCE_BACKGROUND" != "true" ]]; then
----------+  case "${OSTYPE:-}" in
----------+    msys*|cygwin*|mingw*) FOREGROUND="true" ;;
----------+  esac
----------+  if [[ -n "${MSYSTEM:-}" ]]; then
----------+    FOREGROUND="true"
----------+  fi
----------+fi
+----------1. Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md)
+----------2. If Issues Found: fix, re-dispatch, repeat until Approved
+----------3. If loop exceeds 3 iterations, surface to human for guidance
+---------+1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
+---------+2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
+---------+3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
+---------+4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
 ---------+
---------- # Generate unique session directory
+---------+Fix any issues inline. No need to re-review — just fix and move on.
+--------- 
+--------- **User Review Gate:**
+--------- After the spec review loop passes, ask the user to review the written spec before proceeding:
+---------diff --git a/skills/superpowers/brainstorming/scripts/server.cjs b/skills/superpowers/brainstorming/scripts/server.cjs
+---------index 86c3080..562c17f 100644
+------------ a/skills/superpowers/brainstorming/scripts/server.cjs
+---------+++ b/skills/superpowers/brainstorming/scripts/server.cjs
+---------@@ -76,8 +76,10 @@ function decodeFrame(buffer) {
+--------- const PORT = process.env.BRAINSTORM_PORT || (49152 + Math.floor(Math.random() * 16383));
+--------- const HOST = process.env.BRAINSTORM_HOST || '127.0.0.1';
+--------- const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'localhost' : HOST);
+----------const SCREEN_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
+----------const OWNER_PID = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
+---------+const SESSION_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
+---------+const CONTENT_DIR = path.join(SESSION_DIR, 'content');
+---------+const STATE_DIR = path.join(SESSION_DIR, 'state');
+---------+let ownerPid = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
+--------- 
+--------- const MIME_TYPES = {
+---------   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
+---------@@ -112,10 +114,10 @@ function wrapInFrame(content) {
+--------- }
+--------- 
+--------- function getNewestScreen() {
+----------  const files = fs.readdirSync(SCREEN_DIR)
+---------+  const files = fs.readdirSync(CONTENT_DIR)
+---------     .filter(f => f.endsWith('.html'))
+---------     .map(f => {
+----------      const fp = path.join(SCREEN_DIR, f);
+---------+      const fp = path.join(CONTENT_DIR, f);
+---------       return { path: fp, mtime: fs.statSync(fp).mtime.getTime() };
+---------     })
+---------     .sort((a, b) => b.mtime - a.mtime);
+---------@@ -142,7 +144,7 @@ function handleRequest(req, res) {
+---------     res.end(html);
+---------   } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
+---------     const fileName = req.url.slice(7);
+----------    const filePath = path.join(SCREEN_DIR, path.basename(fileName));
+---------+    const filePath = path.join(CONTENT_DIR, path.basename(fileName));
+---------     if (!fs.existsSync(filePath)) {
+---------       res.writeHead(404);
+---------       res.end('Not found');
+---------@@ -230,7 +232,7 @@ function handleMessage(text) {
+---------   touchActivity();
+---------   console.log(JSON.stringify({ source: 'user-event', ...event }));
+---------   if (event.choice) {
+----------    const eventsFile = path.join(SCREEN_DIR, '.events');
+---------+    const eventsFile = path.join(STATE_DIR, 'events');
+---------     fs.appendFileSync(eventsFile, JSON.stringify(event) + '\n');
+---------   }
+--------- }
+---------@@ -258,32 +260,33 @@ const debounceTimers = new Map();
+--------- // ========== Server Startup ==========
+--------- 
+--------- function startServer() {
+----------  if (!fs.existsSync(SCREEN_DIR)) fs.mkdirSync(SCREEN_DIR, { recursive: true });
+---------+  if (!fs.existsSync(CONTENT_DIR)) fs.mkdirSync(CONTENT_DIR, { recursive: true });
+---------+  if (!fs.existsSync(STATE_DIR)) fs.mkdirSync(STATE_DIR, { recursive: true });
+--------- 
+---------   // Track known files to distinguish new screens from updates.
+---------   // macOS fs.watch reports 'rename' for both new files and overwrites,
+---------   // so we can't rely on eventType alone.
+---------   const knownFiles = new Set(
+----------    fs.readdirSync(SCREEN_DIR).filter(f => f.endsWith('.html'))
+---------+    fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.html'))
+---------   );
+--------- 
+---------   const server = http.createServer(handleRequest);
+---------   server.on('upgrade', handleUpgrade);
+--------- 
+----------  const watcher = fs.watch(SCREEN_DIR, (eventType, filename) => {
+---------+  const watcher = fs.watch(CONTENT_DIR, (eventType, filename) => {
+---------     if (!filename || !filename.endsWith('.html')) return;
+--------- 
+---------     if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
+---------     debounceTimers.set(filename, setTimeout(() => {
+---------       debounceTimers.delete(filename);
+----------      const filePath = path.join(SCREEN_DIR, filename);
+---------+      const filePath = path.join(CONTENT_DIR, filename);
+--------- 
+---------       if (!fs.existsSync(filePath)) return; // file was deleted
+---------       touchActivity();
+--------- 
+---------       if (!knownFiles.has(filename)) {
+---------         knownFiles.add(filename);
+----------        const eventsFile = path.join(SCREEN_DIR, '.events');
+---------+        const eventsFile = path.join(STATE_DIR, 'events');
+---------         if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
+---------         console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
+---------       } else {
+---------@@ -297,10 +300,10 @@ function startServer() {
+--------- 
+---------   function shutdown(reason) {
+---------     console.log(JSON.stringify({ type: 'server-stopped', reason }));
+----------    const infoFile = path.join(SCREEN_DIR, '.server-info');
+---------+    const infoFile = path.join(STATE_DIR, 'server-info');
+---------     if (fs.existsSync(infoFile)) fs.unlinkSync(infoFile);
+---------     fs.writeFileSync(
+----------      path.join(SCREEN_DIR, '.server-stopped'),
+---------+      path.join(STATE_DIR, 'server-stopped'),
+---------       JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
+---------     );
+---------     watcher.close();
+---------@@ -309,8 +312,8 @@ function startServer() {
+---------   }
+--------- 
+---------   function ownerAlive() {
+----------    if (!OWNER_PID) return true;
+----------    try { process.kill(OWNER_PID, 0); return true; } catch (e) { return false; }
+---------+    if (!ownerPid) return true;
+---------+    try { process.kill(ownerPid, 0); return true; } catch (e) { return e.code === 'EPERM'; }
+---------   }
+--------- 
+---------   // Check every 60s: exit if owner process died or idle for 30 minutes
+---------@@ -320,14 +323,27 @@ function startServer() {
+---------   }, 60 * 1000);
+---------   lifecycleCheck.unref();
+--------- 
+---------+  // Validate owner PID at startup. If it's already dead, the PID resolution
+---------+  // was wrong (common on WSL, Tailscale SSH, and cross-user scenarios).
+---------+  // Disable monitoring and rely on the idle timeout instead.
+---------+  if (ownerPid) {
+---------+    try { process.kill(ownerPid, 0); }
+---------+    catch (e) {
+---------+      if (e.code !== 'EPERM') {
+---------+        console.log(JSON.stringify({ type: 'owner-pid-invalid', pid: ownerPid, reason: 'dead at startup' }));
+---------+        ownerPid = null;
+---------+      }
+---------+    }
+---------+  }
+---------+
+---------   server.listen(PORT, HOST, () => {
+---------     const info = JSON.stringify({
+---------       type: 'server-started', port: Number(PORT), host: HOST,
+---------       url_host: URL_HOST, url: 'http://' + URL_HOST + ':' + PORT,
+----------      screen_dir: SCREEN_DIR
+---------+      screen_dir: CONTENT_DIR, state_dir: STATE_DIR
+---------     });
+---------     console.log(info);
+----------    fs.writeFileSync(path.join(SCREEN_DIR, '.server-info'), info + '\n');
+---------+    fs.writeFileSync(path.join(STATE_DIR, 'server-info'), info + '\n');
+---------   });
+--------- }
+--------- 
+---------diff --git a/skills/superpowers/brainstorming/scripts/start-server.sh b/skills/superpowers/brainstorming/scripts/start-server.sh
+---------index a0ef299..9ef6dcb 100755
+------------ a/skills/superpowers/brainstorming/scripts/start-server.sh
+---------+++ b/skills/superpowers/brainstorming/scripts/start-server.sh
+---------@@ -78,16 +78,17 @@ fi
 --------- SESSION_ID="$$-$(date +%s)"
---------+-PID_FILE="${SCREEN_DIR}/.server.pid"
---------+-LOG_FILE="${SCREEN_DIR}/.server.log"
---------++STATE_DIR="${SESSION_DIR}/state"
---------++PID_FILE="${STATE_DIR}/server.pid"
---------++LOG_FILE="${STATE_DIR}/server.log"
---------+ 
---------+-# Create fresh session directory
---------+-mkdir -p "$SCREEN_DIR"
---------++# Create fresh session directory with content and state peers
---------++mkdir -p "${SESSION_DIR}/content" "$STATE_DIR"
---------  
----------@@ -96,16 +106,22 @@ if [[ -z "$OWNER_PID" || "$OWNER_PID" == "1" ]]; then
---------+ # Kill any existing server
---------+ if [[ -f "$PID_FILE" ]]; then
---------+@@ -106,22 +107,16 @@ if [[ -z "$OWNER_PID" || "$OWNER_PID" == "1" ]]; then
---------    OWNER_PID="$PPID"
---------  fi
---------  
----------+# On Windows/MSYS2, the MSYS2 PID namespace is invisible to Node.js.
----------+# Skip owner-PID monitoring — the 30-minute idle timeout prevents orphans.
----------+case "${OSTYPE:-}" in
----------+  msys*|cygwin*|mingw*) OWNER_PID="" ;;
----------+esac
----------+
---------+-# On Windows/MSYS2, the MSYS2 PID namespace is invisible to Node.js.
---------+-# Skip owner-PID monitoring — the 30-minute idle timeout prevents orphans.
---------+-case "${OSTYPE:-}" in
---------+-  msys*|cygwin*|mingw*) OWNER_PID="" ;;
---------+-esac
---------+-
---------  # Foreground mode for environments that reap detached/background processes.
---------  if [[ "$FOREGROUND" == "true" ]]; then
---------    echo "$$" > "$PID_FILE"
-----------  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.js
----------+  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
---------+-  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
---------++  env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
---------    exit $?
---------  fi
---------  
---------  # Start server, capturing output to log file
---------  # Use nohup to survive shell exit; disown to remove from job table
-----------nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.js > "$LOG_FILE" 2>&1 &
----------+nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
---------+-nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
---------++nohup env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
---------  SERVER_PID=$!
---------  disown "$SERVER_PID" 2>/dev/null
---------  echo "$SERVER_PID" > "$PID_FILE"
--------- diff --git a/skills/superpowers/brainstorming/scripts/stop-server.sh b/skills/superpowers/brainstorming/scripts/stop-server.sh
----------index c3724de..2e5973d 100755
---------+index 2e5973d..a6b94e6 100755
--------- --- a/skills/superpowers/brainstorming/scripts/stop-server.sh
--------- +++ b/skills/superpowers/brainstorming/scripts/stop-server.sh
----------@@ -1,4 +1,4 @@
-----------#!/bin/bash
----------+#!/usr/bin/env bash
---------+@@ -1,19 +1,20 @@
---------+ #!/usr/bin/env bash
---------  # Stop the brainstorm server and clean up
---------- # Usage: stop-server.sh <screen_dir>
---------+-# Usage: stop-server.sh <screen_dir>
---------++# Usage: stop-server.sh <session_dir>
---------  #
----------@@ -17,7 +17,31 @@ PID_FILE="${SCREEN_DIR}/.server.pid"
---------+ # Kills the server process. Only deletes session directory if it's
---------+ # under /tmp (ephemeral). Persistent directories (.superpowers/) are
---------+ # kept so mockups can be reviewed later.
---------+ 
---------+-SCREEN_DIR="$1"
---------++SESSION_DIR="$1"
---------+ 
---------+-if [[ -z "$SCREEN_DIR" ]]; then
---------+-  echo '{"error": "Usage: stop-server.sh <screen_dir>"}'
---------++if [[ -z "$SESSION_DIR" ]]; then
---------++  echo '{"error": "Usage: stop-server.sh <session_dir>"}'
---------+   exit 1
---------+ fi
---------+ 
---------+-PID_FILE="${SCREEN_DIR}/.server.pid"
---------++STATE_DIR="${SESSION_DIR}/state"
---------++PID_FILE="${STATE_DIR}/server.pid"
---------  
---------  if [[ -f "$PID_FILE" ]]; then
---------    pid=$(cat "$PID_FILE")
-----------  kill "$pid" 2>/dev/null
----------+
----------+  # Try to stop gracefully, fallback to force if still alive
----------+  kill "$pid" 2>/dev/null || true
----------+
----------+  # Wait for graceful shutdown (up to ~2s)
----------+  for i in {1..20}; do
----------+    if ! kill -0 "$pid" 2>/dev/null; then
----------+      break
----------+    fi
----------+    sleep 0.1
----------+  done
----------+
----------+  # If still running, escalate to SIGKILL
----------+  if kill -0 "$pid" 2>/dev/null; then
----------+    kill -9 "$pid" 2>/dev/null || true
----------+
----------+    # Give SIGKILL a moment to take effect
----------+    sleep 0.1
----------+  fi
----------+
----------+  if kill -0 "$pid" 2>/dev/null; then
----------+    echo '{"status": "failed", "error": "process still running"}'
----------+    exit 1
----------+  fi
----------+
----------   rm -f "$PID_FILE" "${SCREEN_DIR}/.server.log"
---------+@@ -42,11 +43,11 @@ if [[ -f "$PID_FILE" ]]; then
---------+     exit 1
---------+   fi
---------  
+--------- 
+--------- if [[ -n "$PROJECT_DIR" ]]; then
+----------  SCREEN_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
+---------+  SESSION_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
+--------- else
+----------  SCREEN_DIR="/tmp/brainstorm-${SESSION_ID}"
+---------+  SESSION_DIR="/tmp/brainstorm-${SESSION_ID}"
+--------- fi
+--------- 
+----------PID_FILE="${SCREEN_DIR}/.server.pid"
+----------LOG_FILE="${SCREEN_DIR}/.server.log"
+---------+STATE_DIR="${SESSION_DIR}/state"
+---------+PID_FILE="${STATE_DIR}/server.pid"
+---------+LOG_FILE="${STATE_DIR}/server.log"
+--------- 
+----------# Create fresh session directory
+----------mkdir -p "$SCREEN_DIR"
+---------+# Create fresh session directory with content and state peers
+---------+mkdir -p "${SESSION_DIR}/content" "$STATE_DIR"
+--------- 
+--------- # Kill any existing server
+--------- if [[ -f "$PID_FILE" ]]; then
+---------@@ -106,22 +107,16 @@ if [[ -z "$OWNER_PID" || "$OWNER_PID" == "1" ]]; then
+---------   OWNER_PID="$PPID"
+--------- fi
+--------- 
+----------# On Windows/MSYS2, the MSYS2 PID namespace is invisible to Node.js.
+----------# Skip owner-PID monitoring — the 30-minute idle timeout prevents orphans.
+----------case "${OSTYPE:-}" in
+----------  msys*|cygwin*|mingw*) OWNER_PID="" ;;
+----------esac
+----------
+--------- # Foreground mode for environments that reap detached/background processes.
+--------- if [[ "$FOREGROUND" == "true" ]]; then
+---------   echo "$$" > "$PID_FILE"
+----------  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
+---------+  env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
+---------   exit $?
+--------- fi
+--------- 
+--------- # Start server, capturing output to log file
+--------- # Use nohup to survive shell exit; disown to remove from job table
+----------nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
+---------+nohup env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
+--------- SERVER_PID=$!
+--------- disown "$SERVER_PID" 2>/dev/null
+--------- echo "$SERVER_PID" > "$PID_FILE"
+---------diff --git a/skills/superpowers/brainstorming/scripts/stop-server.sh b/skills/superpowers/brainstorming/scripts/stop-server.sh
+---------index 2e5973d..a6b94e6 100755
+------------ a/skills/superpowers/brainstorming/scripts/stop-server.sh
+---------+++ b/skills/superpowers/brainstorming/scripts/stop-server.sh
+---------@@ -1,19 +1,20 @@
+--------- #!/usr/bin/env bash
+--------- # Stop the brainstorm server and clean up
+----------# Usage: stop-server.sh <screen_dir>
+---------+# Usage: stop-server.sh <session_dir>
+--------- #
+--------- # Kills the server process. Only deletes session directory if it's
+--------- # under /tmp (ephemeral). Persistent directories (.superpowers/) are
+--------- # kept so mockups can be reviewed later.
+--------- 
+----------SCREEN_DIR="$1"
+---------+SESSION_DIR="$1"
+--------- 
+----------if [[ -z "$SCREEN_DIR" ]]; then
+----------  echo '{"error": "Usage: stop-server.sh <screen_dir>"}'
+---------+if [[ -z "$SESSION_DIR" ]]; then
+---------+  echo '{"error": "Usage: stop-server.sh <session_dir>"}'
+---------   exit 1
+--------- fi
+--------- 
+----------PID_FILE="${SCREEN_DIR}/.server.pid"
+---------+STATE_DIR="${SESSION_DIR}/state"
+---------+PID_FILE="${STATE_DIR}/server.pid"
+--------- 
+--------- if [[ -f "$PID_FILE" ]]; then
+---------   pid=$(cat "$PID_FILE")
+---------@@ -42,11 +43,11 @@ if [[ -f "$PID_FILE" ]]; then
+---------     exit 1
+---------   fi
+--------- 
+----------  rm -f "$PID_FILE" "${SCREEN_DIR}/.server.log"
+---------+  rm -f "$PID_FILE" "${STATE_DIR}/server.log"
+--------- 
 ---------   # Only delete ephemeral /tmp directories
----------diff --git a/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md b/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
----------index 212b36c..35acbb6 100644
------------- a/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
----------+++ b/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
----------@@ -19,32 +19,31 @@ Task tool (general-purpose):
----------     | Category | What to Look For |
----------     |----------|------------------|
----------     | Completeness | TODOs, placeholders, "TBD", incomplete sections |
-----------    | Coverage | Missing error handling, edge cases, integration points |
----------     | Consistency | Internal contradictions, conflicting requirements |
-----------    | Clarity | Ambiguous requirements |
-----------    | YAGNI | Unrequested features, over-engineering |
----------+    | Clarity | Requirements ambiguous enough to cause someone to build the wrong thing |
----------     | Scope | Focused enough for a single plan — not covering multiple independent subsystems |
-----------    | Architecture | Units with clear boundaries, well-defined interfaces, independently understandable and testable |
----------+    | YAGNI | Unrequested features, over-engineering |
----------+
----------+    ## Calibration
---------+-  rm -f "$PID_FILE" "${SCREEN_DIR}/.server.log"
---------++  rm -f "$PID_FILE" "${STATE_DIR}/server.log"
---------  
-----------    ## CRITICAL
----------+    **Only flag issues that would cause real problems during implementation planning.**
----------+    A missing section, a contradiction, or a requirement so ambiguous it could be
----------+    interpreted two different ways — those are issues. Minor wording improvements,
----------+    stylistic preferences, and "sections less detailed than others" are not.
---------+   # Only delete ephemeral /tmp directories
---------+-  if [[ "$SCREEN_DIR" == /tmp/* ]]; then
---------+-    rm -rf "$SCREEN_DIR"
---------++  if [[ "$SESSION_DIR" == /tmp/* ]]; then
---------++    rm -rf "$SESSION_DIR"
---------+   fi
---------  
-----------    Look especially hard for:
-----------    - Any TODO markers or placeholder text
-----------    - Sections saying "to be defined later" or "will spec when X is done"
-----------    - Sections noticeably less detailed than others
-----------    - Units that lack clear boundaries or interfaces — can you understand what each unit does without reading its internals?
----------+    Approve unless there are serious gaps that would lead to a flawed plan.
---------+   echo '{"status": "stopped"}'
---------+diff --git a/skills/superpowers/brainstorming/visual-companion.md b/skills/superpowers/brainstorming/visual-companion.md
---------+index 537ed3c..2113863 100644
---------+--- a/skills/superpowers/brainstorming/visual-companion.md
---------++++ b/skills/superpowers/brainstorming/visual-companion.md
---------+@@ -26,7 +26,7 @@ A question *about* a UI topic is not automatically a visual question. "What kind
---------  
----------     ## Output Format
---------+ ## How It Works
---------  
----------     ## Spec Review
---------+-The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content, the user sees it in their browser and can click to select options. Selections are recorded to a `.events` file that you read on your next turn.
---------++The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content to `screen_dir`, the user sees it in their browser and can click to select options. Selections are recorded to `state_dir/events` that you read on your next turn.
---------  
-----------    **Status:** ✅ Approved | ❌ Issues Found
----------+    **Status:** Approved | Issues Found
---------+ **Content fragments vs full documents:** If your HTML file starts with `<!DOCTYPE` or `<html`, the server serves it as-is (just injects the helper script). Otherwise, the server automatically wraps your content in the frame template — adding the header, CSS theme, selection indicator, and all interactive infrastructure. **Write content fragments by default.** Only write full documents when you need complete control over the page.
---------  
----------     **Issues (if any):**
-----------    - [Section X]: [specific issue] - [why it matters]
----------+    - [Section X]: [specific issue] - [why it matters for planning]
---------+@@ -37,12 +37,13 @@ The server watches a directory for HTML files and serves the newest one to the b
---------+ scripts/start-server.sh --project-dir /path/to/project
---------  
-----------    **Recommendations (advisory):**
-----------    - [suggestions that don't block approval]
----------+    **Recommendations (advisory, do not block approval):**
----------+    - [suggestions for improvement]
---------+ # Returns: {"type":"server-started","port":52341,"url":"http://localhost:52341",
---------+-#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000"}
---------++#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/content",
---------++#           "state_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/state"}
---------  ```
---------  
---------- **Reviewer returns:** Status, Issues (if any), Recommendations
+----------  if [[ "$SCREEN_DIR" == /tmp/* ]]; then
+----------    rm -rf "$SCREEN_DIR"
+---------+  if [[ "$SESSION_DIR" == /tmp/* ]]; then
+---------+    rm -rf "$SESSION_DIR"
+---------   fi
+--------- 
+---------   echo '{"status": "stopped"}'
 ---------diff --git a/skills/superpowers/brainstorming/visual-companion.md b/skills/superpowers/brainstorming/visual-companion.md
----------index a25e85a..537ed3c 100644
+---------index 537ed3c..2113863 100644
 ------------ a/skills/superpowers/brainstorming/visual-companion.md
 ---------+++ b/skills/superpowers/brainstorming/visual-companion.md
----------@@ -48,12 +48,21 @@ Save `screen_dir` from the response. Tell user to open the URL.
---------+-Save `screen_dir` from the response. Tell user to open the URL.
---------++Save `screen_dir` and `state_dir` from the response. Tell user to open the URL.
---------  
---------- **Launching the server by platform:**
---------+-**Finding connection info:** The server writes its startup JSON to `$SCREEN_DIR/.server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
---------++**Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
---------  
-----------**Claude Code:**
----------+**Claude Code (macOS / Linux):**
+---------@@ -26,7 +26,7 @@ A question *about* a UI topic is not automatically a visual question. "What kind
+--------- 
+--------- ## How It Works
+--------- 
+----------The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content, the user sees it in their browser and can click to select options. Selections are recorded to a `.events` file that you read on your next turn.
+---------+The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content to `screen_dir`, the user sees it in their browser and can click to select options. Selections are recorded to `state_dir/events` that you read on your next turn.
+--------- 
+--------- **Content fragments vs full documents:** If your HTML file starts with `<!DOCTYPE` or `<html`, the server serves it as-is (just injects the helper script). Otherwise, the server automatically wraps your content in the frame template — adding the header, CSS theme, selection indicator, and all interactive infrastructure. **Write content fragments by default.** Only write full documents when you need complete control over the page.
+--------- 
+---------@@ -37,12 +37,13 @@ The server watches a directory for HTML files and serves the newest one to the b
+--------- scripts/start-server.sh --project-dir /path/to/project
+--------- 
+--------- # Returns: {"type":"server-started","port":52341,"url":"http://localhost:52341",
+----------#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000"}
+---------+#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/content",
+---------+#           "state_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/state"}
+--------- ```
+--------- 
+----------Save `screen_dir` from the response. Tell user to open the URL.
+---------+Save `screen_dir` and `state_dir` from the response. Tell user to open the URL.
+--------- 
+----------**Finding connection info:** The server writes its startup JSON to `$SCREEN_DIR/.server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
+---------+**Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
+--------- 
+--------- **Note:** Pass the project root as `--project-dir` so mockups persist in `.superpowers/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.superpowers/` to `.gitignore` if it's not already there.
+--------- 
+---------@@ -61,7 +62,7 @@ scripts/start-server.sh --project-dir /path/to/project
+--------- # across conversation turns.
+--------- scripts/start-server.sh --project-dir /path/to/project
+--------- ```
+----------When calling this via the Bash tool, set `run_in_background: true`. Then read `$SCREEN_DIR/.server-info` on the next turn to get the URL and port.
+---------+When calling this via the Bash tool, set `run_in_background: true`. Then read `$STATE_DIR/server-info` on the next turn to get the URL and port.
+--------- 
+--------- **Codex:**
 --------- ```bash
---------- # Default mode works — the script backgrounds the server itself
---------+ **Note:** Pass the project root as `--project-dir` so mockups persist in `.superpowers/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.superpowers/` to `.gitignore` if it's not already there.
---------+ 
---------+@@ -61,7 +62,7 @@ scripts/start-server.sh --project-dir /path/to/project
---------+ # across conversation turns.
---------  scripts/start-server.sh --project-dir /path/to/project
---------  ```
---------+-When calling this via the Bash tool, set `run_in_background: true`. Then read `$SCREEN_DIR/.server-info` on the next turn to get the URL and port.
---------++When calling this via the Bash tool, set `run_in_background: true`. Then read `$STATE_DIR/server-info` on the next turn to get the URL and port.
---------  
----------+**Claude Code (Windows):**
----------+```bash
----------+# Windows auto-detects and uses foreground mode, which blocks the tool call.
----------+# Use run_in_background: true on the Bash tool call so the server survives
----------+# across conversation turns.
----------+scripts/start-server.sh --project-dir /path/to/project
----------+```
----------+When calling this via the Bash tool, set `run_in_background: true`. Then read `$SCREEN_DIR/.server-info` on the next turn to get the URL and port.
----------+
---------  **Codex:**
---------  ```bash
---------- # Codex reaps background processes. The script auto-detects CODEX_CI and
+---------@@ -93,7 +94,7 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
+--------- ## The Loop
+--------- 
+--------- 1. **Check server is alive**, then **write HTML** to a new file in `screen_dir`:
+----------   - Before each write, check that `$SCREEN_DIR/.server-info` exists. If it doesn't (or `.server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
+---------+   - Before each write, check that `$STATE_DIR/server-info` exists. If it doesn't (or `$STATE_DIR/server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
+---------    - Use semantic filenames: `platform.html`, `visual-style.html`, `layout.html`
+---------    - **Never reuse filenames** — each screen gets a fresh file
+---------    - Use Write tool — **never use cat/heredoc** (dumps noise into terminal)
+---------@@ -105,9 +106,9 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
+---------    - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
+--------- 
+--------- 3. **On your next turn** — after the user responds in the terminal:
+----------   - Read `$SCREEN_DIR/.events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
+---------+   - Read `$STATE_DIR/events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
+---------    - Merge with the user's terminal text to get the full picture
+----------   - The terminal message is the primary feedback; `.events` provides structured interaction data
+---------+   - The terminal message is the primary feedback; `state_dir/events` provides structured interaction data
+--------- 
+--------- 4. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
+--------- 
+---------@@ -244,7 +245,7 @@ The frame template provides these CSS classes for your content:
+--------- 
+--------- ## Browser Events Format
+--------- 
+----------When the user clicks options in the browser, their interactions are recorded to `$SCREEN_DIR/.events` (one JSON object per line). The file is cleared automatically when you push a new screen.
+---------+When the user clicks options in the browser, their interactions are recorded to `$STATE_DIR/events` (one JSON object per line). The file is cleared automatically when you push a new screen.
+--------- 
+--------- ```jsonl
+--------- {"type":"click","choice":"a","text":"Option A - Simple Layout","timestamp":1706000101}
+---------@@ -254,7 +255,7 @@ When the user clicks options in the browser, their interactions are recorded to
+--------- 
+--------- The full event stream shows the user's exploration path — they may click multiple options before settling. The last `choice` event is typically the final selection, but the pattern of clicks can reveal hesitation or preferences worth asking about.
+--------- 
+----------If `.events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
+---------+If `$STATE_DIR/events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
+--------- 
+--------- ## Design Tips
+--------- 
+---------@@ -275,7 +276,7 @@ If `.events` doesn't exist, the user didn't interact with the browser — use on
+--------- ## Cleaning Up
+--------- 
+--------- ```bash
+----------scripts/stop-server.sh $SCREEN_DIR
+---------+scripts/stop-server.sh $SESSION_DIR
+--------- ```
+--------- 
+--------- If the session used `--project-dir`, mockup files persist in `.superpowers/brainstorm/` for later reference. Only `/tmp` sessions get deleted on stop.
 ---------diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
----------index eb23075..86f58fa 100644
+---------index 86f58fa..539b2b1 100644
 ------------ a/skills/superpowers/using-superpowers/references/codex-tools.md
 ---------+++ b/skills/superpowers/using-superpowers/references/codex-tools.md
----------@@ -13,13 +13,13 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
---------- | `Read`, `Write`, `Edit` (files) | Use your native file tools |
---------- | `Bash` (run commands) | Use your native shell tools |
---------+@@ -93,7 +94,7 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
---------+ ## The Loop
---------  
-----------## Subagent dispatch requires collab
----------+## Subagent dispatch requires multi-agent support
---------+ 1. **Check server is alive**, then **write HTML** to a new file in `screen_dir`:
---------+-   - Before each write, check that `$SCREEN_DIR/.server-info` exists. If it doesn't (or `.server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
---------++   - Before each write, check that `$STATE_DIR/server-info` exists. If it doesn't (or `$STATE_DIR/server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
---------+    - Use semantic filenames: `platform.html`, `visual-style.html`, `layout.html`
---------+    - **Never reuse filenames** — each screen gets a fresh file
---------+    - Use Write tool — **never use cat/heredoc** (dumps noise into terminal)
---------+@@ -105,9 +106,9 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
---------+    - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
---------  
---------- Add to your Codex config (`~/.codex/config.toml`):
---------+ 3. **On your next turn** — after the user responds in the terminal:
---------+-   - Read `$SCREEN_DIR/.events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
---------++   - Read `$STATE_DIR/events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
---------+    - Merge with the user's terminal text to get the full picture
---------+-   - The terminal message is the primary feedback; `.events` provides structured interaction data
---------++   - The terminal message is the primary feedback; `state_dir/events` provides structured interaction data
---------  
---------- ```toml
---------- [features]
-----------collab = true
----------+multi_agent = true
+---------@@ -4,7 +4,7 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+--------- 
+--------- | Skill references | Codex equivalent |
+--------- |-----------------|------------------|
+----------| `Task` tool (dispatch subagent) | `spawn_agent` |
+---------+| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
+--------- | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
+--------- | Task returns result | `wait` |
+--------- | Task completes automatically | `close_agent` to free slot |
+---------@@ -23,3 +23,78 @@ multi_agent = true
 --------- ```
---------+ 4. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
---------  
+--------- 
 --------- This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+---------+
+---------+## Named agent dispatch
+---------+
+---------+Claude Code skills reference named agent types like `superpowers:code-reviewer`.
+---------+Codex does not have a named agent registry — `spawn_agent` creates generic agents
+---------+from built-in roles (`default`, `explorer`, `worker`).
+---------+
+---------+When a skill says to dispatch a named agent type:
+---------+
+---------+1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
+---------+   local prompt template like `code-quality-reviewer-prompt.md`)
+---------+2. Read the prompt content
+---------+3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
+---------+4. Spawn a `worker` agent with the filled content as the `message`
+---------+
+---------+| Skill instruction | Codex equivalent |
+---------+|-------------------|------------------|
+---------+| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
+---------+| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
+---------+
+---------+### Message framing
+---------+
+---------+The `message` parameter is user-level input, not a system prompt. Structure it
+---------+for maximum instruction adherence:
+---------+
+---------+```
+---------+Your task is to perform the following. Follow the instructions below exactly.
+---------+
+---------+<agent-instructions>
+---------+[filled prompt content from the agent's .md file]
+---------+</agent-instructions>
+---------+
+---------+Execute this now. Output ONLY the structured response following the format
+---------+specified in the instructions above.
+---------+```
+---------+
+---------+- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
+---------+- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
+---------+- End with an explicit execution directive to prevent summarization of the instructions
+---------+
+---------+### When this workaround can be removed
+---------+
+---------+This approach compensates for Codex's plugin system not yet supporting an `agents`
+---------+field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
+---------+plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
+---------+skills can dispatch named agent types directly.
+---------+
+---------+## Environment Detection
+---------+
+---------+Skills that create worktrees or finish branches should detect their
+---------+environment with read-only git commands before proceeding:
+---------+
+---------+```bash
+---------+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---------+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---------+BRANCH=$(git branch --show-current)
+---------+```
+---------+
+---------+- `GIT_DIR != GIT_COMMON` → already in a linked worktree (skip creation)
+---------+- `BRANCH` empty → detached HEAD (cannot branch/push/PR from sandbox)
+---------+
+---------+See `using-git-worktrees` Step 0 and `finishing-a-development-branch`
+---------+Step 1 for how each skill uses these signals.
+---------+
+---------+## Codex App Finishing
+---------+
+---------+When the sandbox blocks branch/push operations (detached HEAD in an
+---------+externally managed worktree), the agent commits all work and informs
+---------+the user to use the App's native controls:
+---------+
+---------+- **"Create branch"** — names the branch, then commit/push/PR via App UI
+---------+- **"Hand off to local"** — transfers work to the user's local checkout
+---------+
+---------+The agent can still run tests, stage files, and output suggested branch
+---------+names, commit messages, and PR descriptions for the user to copy.
 ---------diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
----------index ed67c5e..60f9834 100644
+---------index 60f9834..0d9c00b 100644
 ------------ a/skills/superpowers/writing-plans/SKILL.md
 ---------+++ b/skills/superpowers/writing-plans/SKILL.md
----------@@ -49,7 +49,7 @@ This structure informs the task decomposition. Each task should produce self-con
---------- ```markdown
---------- # [Feature Name] Implementation Plan
---------+@@ -244,7 +245,7 @@ The frame template provides these CSS classes for your content:
---------  
-----------> **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
----------+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
---------+ ## Browser Events Format
---------  
---------- **Goal:** [One sentence describing what this builds]
---------+-When the user clicks options in the browser, their interactions are recorded to `$SCREEN_DIR/.events` (one JSON object per line). The file is cleared automatically when you push a new screen.
---------++When the user clicks options in the browser, their interactions are recorded to `$STATE_DIR/events` (one JSON object per line). The file is cleared automatically when you push a new screen.
---------  
----------@@ -112,36 +112,34 @@ git commit -m "feat: add specific feature"
---------+ ```jsonl
---------+ {"type":"click","choice":"a","text":"Option A - Simple Layout","timestamp":1706000101}
---------+@@ -254,7 +255,7 @@ When the user clicks options in the browser, their interactions are recorded to
---------  
---------- ## Plan Review Loop
---------+ The full event stream shows the user's exploration path — they may click multiple options before settling. The last `choice` event is typically the final selection, but the pattern of clicks can reveal hesitation or preferences worth asking about.
---------  
-----------After completing each chunk of the plan:
----------+After writing the complete plan:
---------+-If `.events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
---------++If `$STATE_DIR/events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
---------  
-----------1. Dispatch plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
-----------   - Provide: chunk content, path to spec document
-----------2. If ❌ Issues Found:
-----------   - Fix the issues in the chunk
-----------   - Re-dispatch reviewer for that chunk
-----------   - Repeat until ✅ Approved
-----------3. If ✅ Approved: proceed to next chunk (or execution handoff if last chunk)
-----------
-----------**Chunk boundaries:** Use `## Chunk N: <name>` headings to delimit chunks. Each chunk should be ≤1000 lines and logically self-contained.
----------+1. Dispatch a single plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
----------+   - Provide: path to the plan document, path to spec document
----------+2. If ❌ Issues Found: fix the issues, re-dispatch reviewer for the whole plan
----------+3. If ✅ Approved: proceed to execution handoff
+---------@@ -103,26 +103,33 @@ git commit -m "feat: add specific feature"
+--------- ```
+--------- ````
 --------- 
---------- **Review loop guidance:**
---------- - Same agent that wrote the plan fixes it (preserves context)
------------ If loop exceeds 5 iterations, surface to human for guidance
------------ Reviewers are advisory - explain disagreements if you believe feedback is incorrect
----------+- If loop exceeds 3 iterations, surface to human for guidance
----------+- Reviewers are advisory — explain disagreements if you believe feedback is incorrect
+---------+## No Placeholders
+---------+
+---------+Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
+---------+- "TBD", "TODO", "implement later", "fill in details"
+---------+- "Add appropriate error handling" / "add validation" / "handle edge cases"
+---------+- "Write tests for the above" (without actual test code)
+---------+- "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
+---------+- Steps that describe what to do without showing how (code blocks required for code steps)
+---------+- References to types, functions, or methods not defined in any task
+---------+
+--------- ## Remember
+--------- - Exact file paths always
+----------- Complete code in plan (not "add validation")
+---------+- Complete code in every step — if a step changes code, show the code
+--------- - Exact commands with expected output
+----------- Reference relevant skills with @ syntax
+--------- - DRY, YAGNI, TDD, frequent commits
+--------- 
+----------## Plan Review Loop
+---------+## Self-Review
+---------+
+---------+After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
+---------+
+---------+**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
+--------- 
+----------After writing the complete plan:
+---------+**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
+--------- 
+----------1. Dispatch a single plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
+----------   - Provide: path to the plan document, path to spec document
+----------2. If ❌ Issues Found: fix the issues, re-dispatch reviewer for the whole plan
+----------3. If ✅ Approved: proceed to execution handoff
+---------+**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+--------- 
+----------**Review loop guidance:**
+----------- Same agent that wrote the plan fixes it (preserves context)
+----------- If loop exceeds 3 iterations, surface to human for guidance
+----------- Reviewers are advisory — explain disagreements if you believe feedback is incorrect
+---------+If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 --------- 
 --------- ## Execution Handoff
 --------- 
-----------After saving the plan:
----------+After saving the plan, offer execution choice:
----------+
----------+**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Two execution options:**
----------+
----------+**1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
+---------diff --git a/skills/superpowers/writing-skills/SKILL.md b/skills/superpowers/writing-skills/SKILL.md
+---------index 4cd8ddf..c3b73d8 100644
+------------ a/skills/superpowers/writing-skills/SKILL.md
+---------+++ b/skills/superpowers/writing-skills/SKILL.md
+---------@@ -93,7 +93,7 @@ skills/
+--------- ## SKILL.md Structure
 --------- 
-----------**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Ready to execute?"**
----------+**2. Inline Execution** - Execute tasks in this session using executing-plans, batch execution with checkpoints
+--------- **Frontmatter (YAML):**
+----------- Only two fields supported: `name` and `description`
+---------+- Two required fields: `name` and `description` (see [agentskills.io/specification](https://agentskills.io/specification) for all supported fields)
+--------- - Max 1024 characters total
+--------- - `name`: Use letters, numbers, and hyphens only (no parentheses, special chars)
+--------- - `description`: Third-person, describes ONLY when to use (NOT what it does)
+---------@@ -604,7 +604,7 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 --------- 
-----------**Execution path depends on harness capabilities:**
----------+**Which approach?"**
---------+ ## Design Tips
---------  
-----------**If harness has subagents (Claude Code, etc.):**
------------ **REQUIRED:** Use superpowers:subagent-driven-development
------------ Do NOT offer a choice - subagent-driven is the standard approach
----------+**If Subagent-Driven chosen:**
----------+- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
---------- - Fresh subagent per task + two-stage review
---------+@@ -275,7 +276,7 @@ If `.events` doesn't exist, the user didn't interact with the browser — use on
---------+ ## Cleaning Up
---------  
-----------**If harness does NOT have subagents:**
------------ Execute plan in current session using superpowers:executing-plans
----------+**If Inline Execution chosen:**
----------+- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
---------- - Batch execution with checkpoints for review
----------diff --git a/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md b/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md
----------index ce36cba..2db2806 100644
------------- a/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md
----------+++ b/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md
----------@@ -2,17 +2,17 @@
+--------- **GREEN Phase - Write Minimal Skill:**
+--------- - [ ] Name uses only letters, numbers, hyphens (no parentheses/special chars)
+----------- [ ] YAML frontmatter with only name and description (max 1024 chars)
+---------+- [ ] YAML frontmatter with required `name` and `description` fields (max 1024 chars; see [spec](https://agentskills.io/specification))
+--------- - [ ] Description starts with "Use when..." and includes specific triggers/symptoms
+--------- - [ ] Description written in third person
+--------- - [ ] Keywords throughout for search (errors, symptoms, tools)
+---------diff --git a/skills/superpowers/writing-skills/anthropic-best-practices.md b/skills/superpowers/writing-skills/anthropic-best-practices.md
+---------index a5a7d07..9f3f6ec 100644
+------------ a/skills/superpowers/writing-skills/anthropic-best-practices.md
+---------+++ b/skills/superpowers/writing-skills/anthropic-best-practices.md
+---------@@ -144,7 +144,7 @@ What works perfectly for Opus might need more detail for Haiku. If you plan to u
+--------- ## Skill structure
 --------- 
---------- Use this template when dispatching a plan document reviewer subagent.
+--------- <Note>
+----------  **YAML Frontmatter**: The SKILL.md frontmatter supports two fields:
+---------+  **YAML Frontmatter**: The SKILL.md frontmatter requires two fields:
 --------- 
-----------**Purpose:** Verify the plan chunk is complete, matches the spec, and has proper task decomposition.
----------+**Purpose:** Verify the plan is complete, matches the spec, and has proper task decomposition.
+---------   * `name` - Human-readable name of the Skill (64 characters maximum)
+---------   * `description` - One-line description of what the Skill does and when to use it (1024 characters maximum)
+---------@@ -1092,7 +1092,7 @@ reader = PdfReader("file.pdf")
 --------- 
-----------**Dispatch after:** Each plan chunk is written
----------+**Dispatch after:** The complete plan is written.
---------+ ```bash
---------+-scripts/stop-server.sh $SCREEN_DIR
---------++scripts/stop-server.sh $SESSION_DIR
---------+ ```
---------  
---------+ If the session used `--project-dir`, mockup files persist in `.superpowers/brainstorm/` for later reference. Only `/tmp` sessions get deleted on stop.
---------+diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
---------+index 86f58fa..539b2b1 100644
---------+--- a/skills/superpowers/using-superpowers/references/codex-tools.md
---------++++ b/skills/superpowers/using-superpowers/references/codex-tools.md
---------+@@ -4,7 +4,7 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
---------+ 
---------+ | Skill references | Codex equivalent |
---------+ |-----------------|------------------|
---------+-| `Task` tool (dispatch subagent) | `spawn_agent` |
---------++| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
---------+ | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
---------+ | Task returns result | `wait` |
---------+ | Task completes automatically | `close_agent` to free slot |
---------+@@ -23,3 +23,78 @@ multi_agent = true
---------  ```
---------- Task tool (general-purpose):
-----------  description: "Review plan chunk N"
----------+  description: "Review plan document"
----------   prompt: |
-----------    You are a plan document reviewer. Verify this plan chunk is complete and ready for implementation.
----------+    You are a plan document reviewer. Verify this plan is complete and ready for implementation.
+--------- ### YAML frontmatter requirements
 --------- 
-----------    **Plan chunk to review:** [PLAN_FILE_PATH] - Chunk N only
----------+    **Plan to review:** [PLAN_FILE_PATH]
----------     **Spec for reference:** [SPEC_FILE_PATH]
+----------The SKILL.md frontmatter includes only `name` (64 characters max) and `description` (1024 characters max) fields. See the [Skills overview](/en/docs/agents-and-tools/agent-skills/overview#skill-structure) for complete structure details.
+---------+The SKILL.md frontmatter requires `name` (64 characters max) and `description` (1024 characters max) fields. See the [Skills overview](/en/docs/agents-and-tools/agent-skills/overview#skill-structure) for complete structure details.
 --------- 
----------     ## What to Check
----------@@ -20,33 +20,30 @@ Task tool (general-purpose):
----------     | Category | What to Look For |
----------     |----------|------------------|
----------     | Completeness | TODOs, placeholders, incomplete tasks, missing steps |
-----------    | Spec Alignment | Chunk covers relevant spec requirements, no scope creep |
-----------    | Task Decomposition | Tasks atomic, clear boundaries, steps actionable |
-----------    | File Structure | Files have clear single responsibilities, split by responsibility not layer |
-----------    | File Size | Would any new or modified file likely grow large enough to be hard to reason about as a whole? |
-----------    | Task Syntax | Checkbox syntax (`- [ ]`) on steps for tracking |
-----------    | Chunk Size | Each chunk under 1000 lines |
-----------
-----------    ## CRITICAL
-----------
-----------    Look especially hard for:
-----------    - Any TODO markers or placeholder text
-----------    - Steps that say "similar to X" without actual content
-----------    - Incomplete task definitions
-----------    - Missing verification steps or expected outputs
-----------    - Files planned to hold multiple responsibilities or likely to grow unwieldy
----------+    | Spec Alignment | Plan covers spec requirements, no major scope creep |
----------+    | Task Decomposition | Tasks have clear boundaries, steps are actionable |
----------+    | Buildability | Could an engineer follow this plan without getting stuck? |
---------+ 
---------+ This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
--------- +
----------+    ## Calibration
---------++## Named agent dispatch
--------- +
----------+    **Only flag issues that would cause real problems during implementation.**
----------+    An implementer building the wrong thing or getting stuck is an issue.
----------+    Minor wording, stylistic preferences, and "nice to have" suggestions are not.
---------++Claude Code skills reference named agent types like `superpowers:code-reviewer`.
---------++Codex does not have a named agent registry — `spawn_agent` creates generic agents
---------++from built-in roles (`default`, `explorer`, `worker`).
--------- +
----------+    Approve unless there are serious gaps — missing requirements from the spec,
----------+    contradictory steps, placeholder content, or tasks so vague they can't be acted on.
+--------- ### Token budgets
 --------- 
----------     ## Output Format
+---------diff --git a/update_summary.md b/update_summary.md
+---------index 358a7c2..b58cd81 100644
+------------ a/update_summary.md
+---------+++ b/update_summary.md
+---------@@ -1,781 +1,555 @@
+--------- ## Updated Skills
 --------- 
-----------    ## Plan Review - Chunk N
----------+    ## Plan Review
---------- 
----------     **Status:** Approved | Issues Found
---------++When a skill says to dispatch a named agent type:
---------++
---------++1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
---------++   local prompt template like `code-quality-reviewer-prompt.md`)
---------++2. Read the prompt content
---------++3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
---------++4. Spawn a `worker` agent with the filled content as the `message`
---------++
---------++| Skill instruction | Codex equivalent |
---------++|-------------------|------------------|
---------++| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
---------++| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
---------++
---------++### Message framing
---------++
---------++The `message` parameter is user-level input, not a system prompt. Structure it
---------++for maximum instruction adherence:
---------++
---------++```
---------++Your task is to perform the following. Follow the instructions below exactly.
---------++
---------++<agent-instructions>
---------++[filled prompt content from the agent's .md file]
---------++</agent-instructions>
---------++
---------++Execute this now. Output ONLY the structured response following the format
---------++specified in the instructions above.
---------++```
---------++
---------++- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
---------++- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
---------++- End with an explicit execution directive to prevent summarization of the instructions
---------++
---------++### When this workaround can be removed
---------++
---------++This approach compensates for Codex's plugin system not yet supporting an `agents`
---------++field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
---------++plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
---------++skills can dispatch named agent types directly.
---------++
---------++## Environment Detection
---------++
---------++Skills that create worktrees or finish branches should detect their
---------++environment with read-only git commands before proceeding:
---------++
---------++```bash
---------++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---------++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---------++BRANCH=$(git branch --show-current)
---------++```
---------++
---------++- `GIT_DIR != GIT_COMMON` → already in a linked worktree (skip creation)
---------++- `BRANCH` empty → detached HEAD (cannot branch/push/PR from sandbox)
---------++
---------++See `using-git-worktrees` Step 0 and `finishing-a-development-branch`
---------++Step 1 for how each skill uses these signals.
---------++
---------++## Codex App Finishing
---------++
---------++When the sandbox blocks branch/push operations (detached HEAD in an
---------++externally managed worktree), the agent commits all work and informs
---------++the user to use the App's native controls:
---------++
---------++- **"Create branch"** — names the branch, then commit/push/PR via App UI
---------++- **"Hand off to local"** — transfers work to the user's local checkout
---------++
---------++The agent can still run tests, stage files, and output suggested branch
---------++names, commit messages, and PR descriptions for the user to copy.
---------+diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
---------+index 60f9834..0d9c00b 100644
---------+--- a/skills/superpowers/writing-plans/SKILL.md
---------++++ b/skills/superpowers/writing-plans/SKILL.md
---------+@@ -103,26 +103,33 @@ git commit -m "feat: add specific feature"
---------+ ```
---------+ ````
---------  
----------     **Issues (if any):**
-----------    - [Task X, Step Y]: [specific issue] - [why it matters]
----------+    - [Task X, Step Y]: [specific issue] - [why it matters for implementation]
---------++## No Placeholders
---------++
---------++Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
---------++- "TBD", "TODO", "implement later", "fill in details"
---------++- "Add appropriate error handling" / "add validation" / "handle edge cases"
---------++- "Write tests for the above" (without actual test code)
---------++- "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
---------++- Steps that describe what to do without showing how (code blocks required for code steps)
---------++- References to types, functions, or methods not defined in any task
---------++
---------+ ## Remember
---------+ - Exact file paths always
---------+-- Complete code in plan (not "add validation")
---------++- Complete code in every step — if a step changes code, show the code
---------+ - Exact commands with expected output
---------+-- Reference relevant skills with @ syntax
---------+ - DRY, YAGNI, TDD, frequent commits
---------+ 
---------+-## Plan Review Loop
---------++## Self-Review
---------++
---------++After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
---------++
---------++**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
---------  
-----------    **Recommendations (advisory):**
-----------    - [suggestions that don't block approval]
----------+    **Recommendations (advisory, do not block approval):**
----------+    - [suggestions for improvement]
---------- ```
---------+-After writing the complete plan:
---------++**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
---------  
---------- **Reviewer returns:** Status, Issues (if any), Recommendations
---------+-1. Dispatch a single plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
---------+-   - Provide: path to the plan document, path to spec document
---------+-2. If ❌ Issues Found: fix the issues, re-dispatch reviewer for the whole plan
---------+-3. If ✅ Approved: proceed to execution handoff
---------++**3. Type consistency:** Do the types, m
---------\ No newline at end of file
---+  > Merge pull request #143 from tgonzalezc5/feat/exa-search-skill
---+diff --git a/skills/superpowers/executing-plans/SKILL.md b/skills/superpowers/executing-plans/SKILL.md
---+index e67f94c..a591862 100644
---+--- a/skills/superpowers/executing-plans/SKILL.md
---++++ b/skills/superpowers/executing-plans/SKILL.md
---+@@ -65,6 +65,6 @@ After all tasks complete and verified:
---+ ## Integration
---+ 
---+ **Required workflow skills:**
---+-- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
---++- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
---+ - **superpowers:writing-plans** - Creates the plan this skill executes
---+ - **superpowers:finishing-a-development-branch** - Complete development after all tasks
---+diff --git a/skills/superpowers/finishing-a-development-branch/SKILL.md b/skills/superpowers/finishing-a-development-branch/SKILL.md
---+index c308b43..43da0ae 100644
---+--- a/skills/superpowers/finishing-a-development-branch/SKILL.md
---++++ b/skills/superpowers/finishing-a-development-branch/SKILL.md
---+@@ -9,7 +9,7 @@ description: Use when implementation is complete, all tests pass, and you need t
---+ 
---+ Guide completion of development work by presenting clear options and handling chosen workflow.
---+ 
---+-**Core principle:** Verify tests → Present options → Execute choice → Clean up.
---++**Core principle:** Verify tests → Detect environment → Present options → Execute choice → Clean up.
---+ 
---+ **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
---+ 
---+@@ -37,7 +37,24 @@ Stop. Don't proceed to Step 2.
---+ 
---+ **If tests pass:** Continue to Step 2.
---+ 
---+-### Step 2: Determine Base Branch
---++### Step 2: Detect Environment
---++
---++**Determine workspace state before presenting options:**
---++
---++```bash
---++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---++```
---++
---++This determines which menu to show and how cleanup works:
---++
---++| State | Menu | Cleanup |
---++|-------|------|---------|
---++| `GIT_DIR == GIT_COMMON` (normal repo) | Standard 4 options | No worktree to clean up |
---++| `GIT_DIR != GIT_COMMON`, named branch | Standard 4 options | Provenance-based (see Step 6) |
---++| `GIT_DIR != GIT_COMMON`, detached HEAD | Reduced 3 options (no merge) | No cleanup (externally managed) |
---++
---++### Step 3: Determine Base Branch
---+ 
---+ ```bash
---+ # Try common base branches
---+@@ -46,9 +63,9 @@ git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null
---+ 
---+ Or ask: "This branch split from main - is that correct?"
---+ 
---+-### Step 3: Present Options
---++### Step 4: Present Options
---+ 
---+-Present exactly these 4 options:
---++**Normal repo and named-branch worktree — present exactly these 4 options:**
---+ 
---+ ```
---+ Implementation complete. What would you like to do?
---+@@ -61,30 +78,45 @@ Implementation complete. What would you like to do?
---+ Which option?
---+ ```
---+ 
---++**Detached HEAD — present exactly these 3 options:**
---++
---++```
---++Implementation complete. You're on a detached HEAD (externally managed workspace).
---++
---++1. Push as new branch and create a Pull Request
---++2. Keep as-is (I'll handle it later)
---++3. Discard this work
---++
---++Which option?
---++```
---++
---+ **Don't add explanation** - keep options concise.
---+ 
---+-### Step 4: Execute Choice
---++### Step 5: Execute Choice
---+ 
---+ #### Option 1: Merge Locally
---+ 
---+ ```bash
---+-# Switch to base branch
---+-git checkout <base-branch>
---++# Get main repo root for CWD safety
---++MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
---++cd "$MAIN_ROOT"
---+ 
---+-# Pull latest
---++# Merge first — verify success before removing anything
---++git checkout <base-branch>
---+ git pull
---+-
---+-# Merge feature branch
---+ git merge <feature-branch>
---+ 
---+ # Verify tests on merged result
---+ <test command>
---+ 
---+-# If tests pass
---+-git branch -d <feature-branch>
---++# Only after merge succeeds: cleanup worktree (Step 6), then delete branch
---+ ```
---+ 
---+-Then: Cleanup worktree (Step 5)
---++Then: Cleanup worktree (Step 6), then delete branch:
---++
---++```bash
---++git branch -d <feature-branch>
---++```
---+ 
---+ #### Option 2: Push and Create PR
---+ 
---+@@ -103,7 +135,7 @@ EOF
---+ )"
---+ ```
---+ 
---+-Then: Cleanup worktree (Step 5)
---++**Do NOT clean up worktree** — user needs it alive to iterate on PR feedback.
---+ 
---+ #### Option 3: Keep As-Is
---+ 
---+@@ -127,36 +159,46 @@ Wait for exact confirmation.
---+ 
---+ If confirmed:
---+ ```bash
---+-git checkout <base-branch>
---+-git branch -D <feature-branch>
---++MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
---++cd "$MAIN_ROOT"
---+ ```
---+ 
---+-Then: Cleanup worktree (Step 5)
---++Then: Cleanup worktree (Step 6), then force-delete branch:
---++```bash
---++git branch -D <feature-branch>
---++```
---+ 
---+-### Step 5: Cleanup Worktree
---++### Step 6: Cleanup Workspace
---+ 
---+-**For Options 1, 2, 4:**
---++**Only runs for Options 1 and 4.** Options 2 and 3 always preserve the worktree.
---+ 
---+-Check if in worktree:
---+ ```bash
---+-git worktree list | grep $(git branch --show-current)
---++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---++WORKTREE_PATH=$(git rev-parse --show-toplevel)
---+ ```
---+ 
---+-If yes:
---++**If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
---++
---++**If worktree path is under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`:** Superpowers created this worktree — we own cleanup.
---++
---+ ```bash
---+-git worktree remove <worktree-path>
---++MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
---++cd "$MAIN_ROOT"
---++git worktree remove "$WORKTREE_PATH"
---++git worktree prune  # Self-healing: clean up any stale registrations
---+ ```
---+ 
---+-**For Option 3:** Keep worktree.
---++**Otherwise:** The host environment (harness) owns this workspace. Do NOT remove it. If your platform provides a workspace-exit tool, use it. Otherwise, leave the workspace in place.
---+ 
---+ ## Quick Reference
---+ 
---+ | Option | Merge | Push | Keep Worktree | Cleanup Branch |
---+ |--------|-------|------|---------------|----------------|
---+-| 1. Merge locally | ✓ | - | - | ✓ |
---+-| 2. Create PR | - | ✓ | ✓ | - |
---+-| 3. Keep as-is | - | - | ✓ | - |
---+-| 4. Discard | - | - | - | ✓ (force) |
---++| 1. Merge locally | yes | - | - | yes |
---++| 2. Create PR | - | yes | yes | - |
---++| 3. Keep as-is | - | - | yes | - |
---++| 4. Discard | - | - | - | yes (force) |
---+ 
---+ ## Common Mistakes
---+ 
---+@@ -165,13 +207,25 @@ git worktree remove <worktree-path>
---+ - **Fix:** Always verify tests before offering options
---+ 
---+ **Open-ended questions**
---+-- **Problem:** "What should I do next?" → ambiguous
---+-- **Fix:** Present exactly 4 structured options
---++- **Problem:** "What should I do next?" is ambiguous
---++- **Fix:** Present exactly 4 structured options (or 3 for detached HEAD)
---+ 
---+-**Automatic worktree cleanup**
---+-- **Problem:** Remove worktree when might need it (Option 2, 3)
---++**Cleaning up worktree for Option 2**
---++- **Problem:** Remove worktree user needs for PR iteration
---+ - **Fix:** Only cleanup for Options 1 and 4
---+ 
---++**Deleting branch before removing worktree**
---++- **Problem:** `git branch -d` fails because worktree still references the branch
---++- **Fix:** Merge first, remove worktree, then delete branch
---++
---++**Running git worktree remove from inside the worktree**
---++- **Problem:** Command fails silently when CWD is inside the worktree being removed
---++- **Fix:** Always `cd` to main repo root before `git worktree remove`
---++
---++**Cleaning up harness-owned worktrees**
---++- **Problem:** Removing a worktree the harness created causes phantom state
---++- **Fix:** Only clean up worktrees under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`
---++
---+ **No confirmation for discard**
---+ - **Problem:** Accidentally delete work
---+ - **Fix:** Require typed "discard" confirmation
---+@@ -183,18 +237,15 @@ git worktree remove <worktree-path>
---+ - Merge without verifying tests on result
---+ - Delete work without confirmation
---+ - Force-push without explicit request
---++- Remove a worktree before confirming merge success
---++- Clean up worktrees you didn't create (provenance check)
---++- Run `git worktree remove` from inside the worktree
---+ 
---+ **Always:**
---+ - Verify tests before offering options
---+-- Present exactly 4 options
---++- Detect environment before presenting menu
---++- Present exactly 4 options (or 3 for detached HEAD)
---+ - Get typed confirmation for Option 4
---+ - Clean up worktree for Options 1 & 4 only
---+-
---+-## Integration
---+-
---+-**Called by:**
---+-- **subagent-driven-development** (Step 7) - After all tasks complete
---+-- **executing-plans** (Step 5) - After all batches complete
---+-
---+-**Pairs with:**
---+-- **using-git-worktrees** - Cleans up worktree created by that skill
---++- `cd` to main repo root before worktree removal
---++- Run `git worktree prune` after removal
---+diff --git a/skills/superpowers/requesting-code-review/SKILL.md b/skills/superpowers/requesting-code-review/SKILL.md
---+index fe7c8d9..34b8340 100644
---+--- a/skills/superpowers/requesting-code-review/SKILL.md
---++++ b/skills/superpowers/requesting-code-review/SKILL.md
---+@@ -5,7 +5,7 @@ description: Use when completing tasks, implementing major features, or before m
---+ 
---+ # Requesting Code Review
---+ 
---+-Dispatch superpowers:code-reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
---++Dispatch a code reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
---+ 
---+ **Core principle:** Review early, review often.
---+ 
---+@@ -29,16 +29,15 @@ BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
---+ HEAD_SHA=$(git rev-parse HEAD)
---+ ```
---+ 
---+-**2. Dispatch code-reviewer subagent:**
---++**2. Dispatch code reviewer subagent:**
---+ 
---+-Use Task tool with superpowers:code-reviewer type, fill template at `code-reviewer.md`
---++Use Task tool with `general-purpose` type, fill template at `code-reviewer.md`
---+ 
---+ **Placeholders:**
---+-- `{WHAT_WAS_IMPLEMENTED}` - What you just built
---++- `{DESCRIPTION}` - Brief summary of what you built
---+ - `{PLAN_OR_REQUIREMENTS}` - What it should do
---+ - `{BASE_SHA}` - Starting commit
---+ - `{HEAD_SHA}` - Ending commit
---+-- `{DESCRIPTION}` - Brief summary
---+ 
---+ **3. Act on feedback:**
---+ - Fix Critical issues immediately
---+@@ -56,12 +55,11 @@ You: Let me request code review before proceeding.
---+ BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
---+ HEAD_SHA=$(git rev-parse HEAD)
---+ 
---+-[Dispatch superpowers:code-reviewer subagent]
---+-  WHAT_WAS_IMPLEMENTED: Verification and repair functions for conversation index
---++[Dispatch code reviewer subagent]
---++  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
---+   PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
---+   BASE_SHA: a7981ec
---+   HEAD_SHA: 3df7661
---+-  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
---+ 
---+ [Subagent returns]:
---+   Strengths: Clean architecture, real tests
---+@@ -82,7 +80,7 @@ You: [Fix progress indicators]
---+ - Fix before moving to next task
---+ 
---+ **Executing Plans:**
---+-- Review after each batch (3 tasks)
---++- Review after each task or at natural checkpoints
---+ - Get feedback, apply, continue
---+ 
---+ **Ad-Hoc Development:**
---+diff --git a/skills/superpowers/requesting-code-review/code-reviewer.md b/skills/superpowers/requesting-code-review/code-reviewer.md
---+index 3c427c9..525e4b4 100644
---+--- a/skills/superpowers/requesting-code-review/code-reviewer.md
---++++ b/skills/superpowers/requesting-code-review/code-reviewer.md
---+@@ -1,111 +1,133 @@
---+-# Code Review Agent
---++# Code Reviewer Prompt Template
---+ 
---+-You are reviewing code changes for production readiness.
---++Use this template when dispatching a code reviewer subagent.
---+ 
---+-**Your task:**
---+-1. Review {WHAT_WAS_IMPLEMENTED}
---+-2. Compare against {PLAN_OR_REQUIREMENTS}
---+-3. Check code quality, architecture, testing
---+-4. Categorize issues by severity
---+-5. Assess production readiness
---++**Purpose:** Review completed work against requirements and code quality standards before it cascades into more work.
---+ 
---+-## What Was Implemented
---++```
---++Task tool (general-purpose):
---++  description: "Review code changes"
---++  prompt: |
---++    You are a Senior Code Reviewer with expertise in software architecture,
---++    design patterns, and best practices. Your job is to review completed work
---++    against its plan or requirements and identify issues before they cascade.
---+ 
---+-{DESCRIPTION}
---++    ## What Was Implemented
---+ 
---+-## Requirements/Plan
---++    {DESCRIPTION}
---+ 
---+-{PLAN_REFERENCE}
---++    ## Requirements / Plan
---+ 
---+-## Git Range to Review
---++    {PLAN_OR_REQUIREMENTS}
---+ 
---+-**Base:** {BASE_SHA}
---+-**Head:** {HEAD_SHA}
---++    ## Git Range to Review
---+ 
---+-```bash
---+-git diff --stat {BASE_SHA}..{HEAD_SHA}
---+-git diff {BASE_SHA}..{HEAD_SHA}
---+-```
---++    **Base:** {BASE_SHA}
---++    **Head:** {HEAD_SHA}
---+ 
---+-## Review Checklist
---+-
---+-**Code Quality:**
---+-- Clean separation of concerns?
---+-- Proper error handling?
---+-- Type safety (if applicable)?
---+-- DRY principle followed?
---+-- Edge cases handled?
---+-
---+-**Architecture:**
---+-- Sound design decisions?
---+-- Scalability considerations?
---+-- Performance implications?
---+-- Security concerns?
---+-
---+-**Testing:**
---+-- Tests actually test logic (not mocks)?
---+-- Edge cases covered?
---+-- Integration tests where needed?
---+-- All tests passing?
---+-
---+-**Requirements:**
---+-- All plan requirements met?
---+-- Implementation matches spec?
---+-- No scope creep?
---+-- Breaking changes documented?
---+-
---+-**Production Readiness:**
---+-- Migration strategy (if schema changes)?
---+-- Backward compatibility considered?
---+-- Documentation complete?
---+-- No obvious bugs?
---+-
---+-## Output Format
---++    ```bash
---++    git diff --stat {BASE_SHA}..{HEAD_SHA}
---++    git diff {BASE_SHA}..{HEAD_SHA}
---++    ```
---+ 
---+-### Strengths
---+-[What's well done? Be specific.]
---++    ## What to Check
---+ 
---+-### Issues
---++    **Plan alignment:**
---++    - Does the implementation match the plan / requirements?
---++    - Are deviations justified improvements, or problematic departures?
---++    - Is all planned functionality present?
---+ 
---+-#### Critical (Must Fix)
---+-[Bugs, security issues, data loss risks, broken functionality]
---++    **Code quality:**
---++    - Clean separation of concerns?
---++    - Proper error handling?
---++    - Type safety where applicable?
---++    - DRY without premature abstraction?
---++    - Edge cases handled?
---+ 
---+-#### Important (Should Fix)
---+-[Architecture problems, missing features, poor error handling, test gaps]
---++    **Architecture:**
---++    - Sound design decisions?
---++    - Reasonable scalability and performance?
---++    - Security concerns?
---++    - Integrates cleanly with surrounding code?
---+ 
---+-#### Minor (Nice to Have)
---+-[Code style, optimization opportunities, documentation improvements]
---++    **Testing:**
---++    - Tests verify real behavior, not mocks?
---++    - Edge cases covered?
---++    - Integration tests where they matter?
---++    - All tests passing?
---+ 
---+-**For each issue:**
---+-- File:line reference
---+-- What's wrong
---+-- Why it matters
---+-- How to fix (if not obvious)
---++    **Production readiness:**
---++    - Migration strategy if schema changed?
---++    - Backward compatibility considered?
---++    - Documentation complete?
---++    - No obvious bugs?
---+ 
---+-### Recommendations
---+-[Improvements for code quality, architecture, or process]
---++    ## Calibration
---+ 
---+-### Assessment
---++    Categorize issues by actual severity. Not everything is Critical.
---++    Acknowledge what was done well before listing issues — accurate praise
---++    helps the implementer trust the rest of the feedback.
---++
---++    If you find significant deviations from the plan, flag them specifically
---++    so the implementer can confirm whether the deviation was intentional.
---++    If you find issues with the plan itself rather than the implementation,
---++    say so.
---++
---++    ## Output Format
---++
---++    ### Strengths
---++    [What's well done? Be specific.]
---++
---++    ### Issues
---+ 
---+-**Ready to merge?** [Yes/No/With fixes]
---++    #### Critical (Must Fix)
---++    [Bugs, security issues, data loss risks, broken functionality]
---+ 
---+-**Reasoning:** [Technical assessment in 1-2 sentences]
---++    #### Important (Should Fix)
---++    [Architecture problems, missing features, poor error handling, test gaps]
---+ 
---+-## Critical Rules
---++    #### Minor (Nice to Have)
---++    [Code style, optimization opportunities, documentation polish]
---++
---++    For each issue:
---++    - File:line reference
---++    - What's wrong
---++    - Why it matters
---++    - How to fix (if not obvious)
---++
---++    ### Recommendations
---++    [Improvements for code quality, architecture, or process]
---++
---++    ### Assessment
---++
---++    **Ready to merge?** [Yes | No | With fixes]
---++
---++    **Reasoning:** [1-2 sentence technical assessment]
---++
---++    ## Critical Rules
---++
---++    **DO:**
---++    - Categorize by actual severity
---++    - Be specific (file:line, not vague)
---++    - Explain WHY each issue matters
---++    - Acknowledge strengths
---++    - Give a clear verdict
---++
---++    **DON'T:**
---++    - Say "looks good" without checking
---++    - Mark nitpicks as Critical
---++    - Give feedback on code you didn't actually read
---++    - Be vague ("improve error handling")
---++    - Avoid giving a clear verdict
---++```
---+ 
---+-**DO:**
---+-- Categorize by actual severity (not everything is Critical)
---+-- Be specific (file:line, not vague)
---+-- Explain WHY issues matter
---+-- Acknowledge strengths
---+-- Give clear verdict
---++**Placeholders:**
---++- `{DESCRIPTION}` — brief summary of what was built
---++- `{PLAN_OR_REQUIREMENTS}` — what it should do (plan file path, task text, or requirements)
---++- `{BASE_SHA}` — starting commit
---++- `{HEAD_SHA}` — ending commit
---+ 
---+-**DON'T:**
---+-- Say "looks good" without checking
---+-- Mark nitpicks as Critical
---+-- Give feedback on code you didn't review
---+-- Be vague ("improve error handling")
---+-- Avoid giving a clear verdict
---++**Reviewer returns:** Strengths, Issues (Critical / Important / Minor), Recommendations, Assessment
---+ 
---+ ## Example Output
---+ 
---+diff --git a/skills/superpowers/subagent-driven-development/SKILL.md b/skills/superpowers/subagent-driven-development/SKILL.md
---+index 5150b18..ea7ac8f 100644
---+--- a/skills/superpowers/subagent-driven-development/SKILL.md
---++++ b/skills/superpowers/subagent-driven-development/SKILL.md
---+@@ -11,6 +11,8 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
---+ 
---+ **Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration
---+ 
---++**Continuous execution:** Do not pause to check in with your human partner between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete. "Should I continue?" prompts and progress summaries waste their time — they asked you to execute the plan, so execute it.
---++
---+ ## When to Use
---+ 
---+ ```dot
---+@@ -265,7 +267,7 @@ Done!
---+ ## Integration
---+ 
---+ **Required workflow skills:**
---+-- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
---++- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
---+ - **superpowers:writing-plans** - Creates the plan this skill executes
---+ - **superpowers:requesting-code-review** - Code review template for reviewer subagents
---+ - **superpowers:finishing-a-development-branch** - Complete development after all tasks
---+diff --git a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
---+index a04201a..51f901a 100644
---+--- a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
---++++ b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
---+@@ -7,14 +7,13 @@ Use this template when dispatching a code quality reviewer subagent.
---+ **Only dispatch after spec compliance review passes.**
---+ 
---+ ```
---+-Task tool (superpowers:code-reviewer):
---++Task tool (general-purpose):
---+   Use template at requesting-code-review/code-reviewer.md
---+ 
---+-  WHAT_WAS_IMPLEMENTED: [from implementer's report]
---++  DESCRIPTION: [task summary, from implementer's report]
---+   PLAN_OR_REQUIREMENTS: Task N from [plan-file]
---+   BASE_SHA: [commit before task]
---+   HEAD_SHA: [current commit]
---+-  DESCRIPTION: [task summary]
---+ ```
---+ 
---+ **In addition to standard code quality concerns, the reviewer should check:**
---+diff --git a/skills/superpowers/systematic-debugging/CREATION-LOG.md b/skills/superpowers/systematic-debugging/CREATION-LOG.md
---+index 024d00a..9aa0309 100644
---+--- a/skills/superpowers/systematic-debugging/CREATION-LOG.md
---++++ b/skills/superpowers/systematic-debugging/CREATION-LOG.md
---+@@ -4,7 +4,7 @@ Reference example of extracting, structuring, and bulletproofing a critical skil
---+ 
---+ ## Source Material
---+ 
---+-Extracted debugging framework from `/Users/jesse/.claude/CLAUDE.md`:
---++Extracted debugging framework from `~/.claude/CLAUDE.md`:
---+ - 4-phase systematic process (Investigation → Pattern Analysis → Hypothesis → Implementation)
---+ - Core mandate: ALWAYS find root cause, NEVER fix symptoms
---+ - Rules designed to resist time pressure and rationalization
---+diff --git a/skills/superpowers/systematic-debugging/root-cause-tracing.md b/skills/superpowers/systematic-debugging/root-cause-tracing.md
---+index 9484774..12ef522 100644
---+--- a/skills/superpowers/systematic-debugging/root-cause-tracing.md
---++++ b/skills/superpowers/systematic-debugging/root-cause-tracing.md
---+@@ -33,7 +33,7 @@ digraph when_to_use {
---+ 
---+ ### 1. Observe the Symptom
---+ ```
---+-Error: git init failed in /Users/jesse/project/packages/core
---++Error: git init failed in ~/project/packages/core
---+ ```
---+ 
---+ ### 2. Find Immediate Cause
---+diff --git a/skills/superpowers/using-git-worktrees/SKILL.md b/skills/superpowers/using-git-worktrees/SKILL.md
---+index e153843..134d371 100644
---+--- a/skills/superpowers/using-git-worktrees/SKILL.md
---++++ b/skills/superpowers/using-git-worktrees/SKILL.md
---+@@ -1,104 +1,117 @@
---+ ---
---+ name: using-git-worktrees
---+-description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification
---++description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback
---+ ---
---+ 
---+ # Using Git Worktrees
---+ 
---+ ## Overview
---+ 
---+-Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
---++Ensure work happens in an isolated workspace. Prefer your platform's native worktree tools. Fall back to manual git worktrees only when no native tool is available.
---+ 
---+-**Core principle:** Systematic directory selection + safety verification = reliable isolation.
---++**Core principle:** Detect existing isolation first. Then use native tools. Then fall back to git. Never fight the harness.
---+ 
---+ **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
---+ 
---+-## Directory Selection Process
---++## Step 0: Detect Existing Isolation
---+ 
---+-Follow this priority order:
---+-
---+-### 1. Check Existing Directories
---++**Before creating anything, check if you are already in an isolated workspace.**
---+ 
---+ ```bash
---+-# Check in priority order
---+-ls -d .worktrees 2>/dev/null     # Preferred (hidden)
---+-ls -d worktrees 2>/dev/null      # Alternative
---++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
---++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
---++BRANCH=$(git branch --show-current)
---+ ```
---+ 
---+-**If found:** Use that directory. If both exist, `.worktrees` wins.
---+-
---+-### 2. Check CLAUDE.md
---++**Submodule guard:** `GIT_DIR != GIT_COMMON` is also true inside git submodules. Before concluding "already in a worktree," verify you are not in a submodule:
---+ 
---+ ```bash
---+-grep -i "worktree.*director" CLAUDE.md 2>/dev/null
---++# If this returns a path, you're in a submodule, not a worktree — treat as normal repo
---++git rev-parse --show-superproject-working-tree 2>/dev/null
---+ ```
---+ 
---+-**If preference specified:** Use it without asking.
---++**If `GIT_DIR != GIT_COMMON` (and not a submodule):** You are already in a linked worktree. Skip to Step 3 (Project Setup). Do NOT create another worktree.
---+ 
---+-### 3. Ask User
---++Report with branch state:
---++- On a branch: "Already in isolated workspace at `<path>` on branch `<name>`."
---++- Detached HEAD: "Already in isolated workspace at `<path>` (detached HEAD, externally managed). Branch creation needed at finish time."
---+ 
---+-If no directory exists and no CLAUDE.md preference:
---++**If `GIT_DIR == GIT_COMMON` (or in a submodule):** You are in a normal repo checkout.
---+ 
---+-```
---+-No worktree directory found. Where should I create worktrees?
---++Has the user already indicated their worktree preference in your instructions? If not, ask for consent before creating a worktree:
---+ 
---+-1. .worktrees/ (project-local, hidden)
---+-2. ~/.config/superpowers/worktrees/<project-name>/ (global location)
---++> "Would you like me to set up an isolated worktree? It protects your current branch from changes."
---+ 
---+-Which would you prefer?
---+-```
---++Honor any existing declared preference without asking. If the user declines consent, work in place and skip to Step 3.
---++
---++## Step 1: Create Isolated Workspace
---++
---++**You have two mechanisms. Try them in this order.**
---++
---++### 1a. Native Worktree Tools (preferred)
---++
---++The user has asked for an isolated workspace (Step 0 consent). Do you already have a way to create a worktree? It might be a tool with a name like `EnterWorktree`, `WorktreeCreate`, a `/worktree` command, or a `--worktree` flag. If you do, use it and skip to Step 3.
---++
---++Native tools handle directory placement, branch creation, and cleanup automatically. Using `git worktree add` when you have a native tool creates phantom state your harness can't see or manage.
---++
---++Only proceed to Step 1b if you have no native worktree tool available.
---+ 
---+-## Safety Verification
---++### 1b. Git Worktree Fallback
---+ 
---+-### For Project-Local Directories (.worktrees or worktrees)
---++**Only use this if Step 1a does not apply** — you have no native worktree tool available. Create a worktree manually using git.
---++
---++#### Directory Selection
---++
---++Follow this priority order. Explicit user preference always beats observed filesystem state.
---++
---++1. **Check your instructions for a declared worktree directory preference.** If the user has already specified one, use it without asking.
---++
---++2. **Check for an existing project-local worktree directory:**
---++   ```bash
---++   ls -d .worktrees 2>/dev/null     # Preferred (hidden)
---++   ls -d worktrees 2>/dev/null      # Alternative
---++   ```
---++   If found, use it. If both exist, `.worktrees` wins.
---++
---++3. **Check for an existing global directory:**
---++   ```bash
---++   project=$(basename "$(git rev-parse --show-toplevel)")
---++   ls -d ~/.config/superpowers/worktrees/$project 2>/dev/null
---++   ```
---++   If found, use it (backward compatibility with legacy global path).
---++
---++4. **If there is no other guidance available**, default to `.worktrees/` at the project root.
---++
---++#### Safety Verification (project-local directories only)
---+ 
---+ **MUST verify directory is ignored before creating worktree:**
---+ 
---+ ```bash
---+-# Check if directory is ignored (respects local, global, and system gitignore)
---+ git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/dev/null
---+ ```
---+ 
---+-**If NOT ignored:**
---+-
---+-Per Jesse's rule "Fix broken things immediately":
---+-1. Add appropriate line to .gitignore
---+-2. Commit the change
---+-3. Proceed with worktree creation
---++**If NOT ignored:** Add to .gitignore, commit the change, then proceed.
---+ 
---+ **Why critical:** Prevents accidentally committing worktree contents to repository.
---+ 
---+-### For Global Directory (~/.config/superpowers/worktrees)
---+-
---+-No .gitignore verification needed - outside project entirely.
---++Global directories (`~/.config/superpowers/worktrees/`) need no verification.
---+ 
---+-## Creation Steps
---+-
---+-### 1. Detect Project Name
---++#### Create the Worktree
---+ 
---+ ```bash
---+ project=$(basename "$(git rev-parse --show-toplevel)")
---+-```
---+ 
---+-### 2. Create Worktree
---++# Determine path based on chosen location
---++# For project-local: path="$LOCATION/$BRANCH_NAME"
---++# For global: path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
---+ 
---+-```bash
---+-# Determine full path
---+-case $LOCATION in
---+-  .worktrees|worktrees)
---+-    path="$LOCATION/$BRANCH_NAME"
---+-    ;;
---+-  ~/.config/superpowers/worktrees/*)
---+-    path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
---+-    ;;
---+-esac
---+-
---+-# Create worktree with new branch
---+ git worktree add "$path" -b "$BRANCH_NAME"
---+ cd "$path"
---+ ```
---+ 
---+-### 3. Run Project Setup
---++**Sandbox fallback:** If `git worktree add` fails with a permission error (sandbox denial), tell the user the sandbox blocked worktree creation and you're working in the current directory instead. Then run setup and baseline tests in place.
---++
---++## Step 3: Project Setup
---+ 
---+ Auto-detect and run appropriate setup:
---+ 
---+@@ -117,23 +130,20 @@ if [ -f pyproject.toml ]; then poetry install; fi
---+ if [ -f go.mod ]; then go mod download; fi
---+ ```
---+ 
---+-### 4. Verify Clean Baseline
---++## Step 4: Verify Clean Baseline
---+ 
---+-Run tests to ensure worktree starts clean:
---++Run tests to ensure workspace starts clean:
---+ 
---+ ```bash
---+-# Examples - use project-appropriate command
---+-npm test
---+-cargo test
---+-pytest
---+-go test ./...
---++# Use project-appropriate command
---++npm test / cargo test / pytest / go test ./...
---+ ```
---+ 
---+ **If tests fail:** Report failures, ask whether to proceed or investigate.
---+ 
---+ **If tests pass:** Report ready.
---+ 
---+-### 5. Report Location
---++### Report
---+ 
---+ ```
---+ Worktree ready at <full-path>
---+@@ -145,16 +155,32 @@ Ready to implement <feature-name>
---+ 
---+ | Situation | Action |
---+ |-----------|--------|
---++| Already in linked worktree | Skip creation (Step 0) |
---++| In a submodule | Treat as normal repo (Step 0 guard) |
---++| Native worktree tool available | Use it (Step 1a) |
---++| No native tool | Git worktree fallback (Step 1b) |
---+ | `.worktrees/` exists | Use it (verify ignored) |
---+ | `worktrees/` exists | Use it (verify ignored) |
---+ | Both exist | Use `.worktrees/` |
---+-| Neither exists | Check CLAUDE.md → Ask user |
---++| Neither exists | Check instruction file, then default `.worktrees/` |
---++| Global path exists | Use it (backward compat) |
---+ | Directory not ignored | Add to .gitignore + commit |
---++| Permission error on create | Sandbox fallback, work in place |
---+ | Tests fail during baseline | Report failures + ask |
---+ | No package.json/Cargo.toml | Skip dependency install |
---+ 
---+ ## Common Mistakes
---+ 
---++### Fighting the harness
---++
---++- **Problem:** Using `git worktree add` when the platform already provides isolation
---++- **Fix:** Step 0 detects existing isolation. Step 1a defers to native tools.
---++
---++### Skipping detection
---++
---++- **Problem:** Creating a nested worktree inside an existing one
---++- **Fix:** Always run Step 0 before creating anything
---++
---+ ### Skipping ignore verification
---+ 
---+ - **Problem:** Worktree contents get tracked, pollute git status
---+@@ -163,56 +189,27 @@ Ready to implement <feature-name>
---+ ### Assuming directory location
---+ 
---+ - **Problem:** Creates inconsistency, violates project conventions
---+-- **Fix:** Follow priority: existing > CLAUDE.md > ask
---++- **Fix:** Follow priority: existing > global legacy > instruction file > default
---+ 
---+ ### Proceeding with failing tests
---+ 
---+ - **Problem:** Can't distinguish new bugs from pre-existing issues
---+ - **Fix:** Report failures, get explicit permission to proceed
---+ 
---+-### Hardcoding setup commands
---+-
---+-- **Problem:** Breaks on projects using different tools
---+-- **Fix:** Auto-detect from project files (package.json, etc.)
---+-
---+-## Example Workflow
---+-
---+-```
---+-You: I'm using the using-git-worktrees skill to set up an isolated workspace.
---+-
---+-[Check .worktrees/ - exists]
---+-[Verify ignored - git check-ignore confirms .worktrees/ is ignored]
---+-[Create worktree: git worktree add .worktrees/auth -b feature/auth]
---+-[Run npm install]
---+-[Run npm test - 47 passing]
---+-
---+-Worktree ready at /Users/jesse/myproject/.worktrees/auth
---+-Tests passing (47 tests, 0 failures)
---+-Ready to implement auth feature
---+-```
---+-
---+ ## Red Flags
---+ 
---+ **Never:**
---++- Create a worktree when Step 0 detects existing isolation
---++- Use `git worktree add` when you have a native worktree tool (e.g., `EnterWorktree`). This is the #1 mistake — if you have it, use it.
---++- Skip Step 1a by jumping straight to Step 1b's git commands
---+ - Create worktree without verifying it's ignored (project-local)
---+ - Skip baseline test verification
---+ - Proceed with failing tests without asking
---+-- Assume directory location when ambiguous
---+-- Skip CLAUDE.md check
---+ 
---+ **Always:**
---+-- Follow directory priority: existing > CLAUDE.md > ask
---++- Run Step 0 detection first
---++- Prefer native tools over git fallback
---++- Follow directory priority: existing > global legacy > instruction file > default
---+ - Verify directory is ignored for project-local
---+ - Auto-detect and run project setup
---+ - Verify clean test baseline
---+-
---+-## Integration
---+-
---+-**Called by:**
---+-- **brainstorming** (Phase 4) - REQUIRED when design is approved and implementation follows
---+-- **subagent-driven-development** - REQUIRED before executing any tasks
---+-- **executing-plans** - REQUIRED before executing any tasks
---+-- Any skill needing isolated workspace
---+-
---+-**Pairs with:**
---+-- **finishing-a-development-branch** - REQUIRED for cleanup after work complete
---+diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
---+index 539b2b1..f50d40d 100644
---+--- a/skills/superpowers/using-superpowers/references/codex-tools.md
---++++ b/skills/superpowers/using-superpowers/references/codex-tools.md
---+@@ -4,9 +4,9 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
---+ 
---+ | Skill references | Codex equivalent |
---+ |-----------------|------------------|
---+-| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
---++| `Task` tool (dispatch subagent) | `spawn_agent` (see [Subagent dispatch requires multi-agent support](#subagent-dispatch-requires-multi-agent-support)) |
---+ | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
---+-| Task returns result | `wait` |
---++| Task returns result | `wait_agent` |
---+ | Task completes automatically | `close_agent` to free slot |
---+ | `TodoWrite` (task tracking) | `update_plan` |
---+ | `Skill` tool (invoke a skill) | Skills load natively — just follow the instructions |
---+@@ -22,53 +22,12 @@ Add to your Codex config (`~/.codex/config.toml`):
---+ multi_agent = true
---+ ```
---+ 
---+-This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
---++This enables `spawn_agent`, `wait_agent`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
---+ 
---+-## Named agent dispatch
---+-
---+-Claude Code skills reference named agent types like `superpowers:code-reviewer`.
---+-Codex does not have a named agent registry — `spawn_agent` creates generic agents
---+-from built-in roles (`default`, `explorer`, `worker`).
---+-
---+-When a skill says to dispatch a named agent type:
---+-
---+-1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
---+-   local prompt template like `code-quality-reviewer-prompt.md`)
---+-2. Read the prompt content
---+-3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
---+-4. Spawn a `worker` agent with the filled content as the `message`
---+-
---+-| Skill instruction | Codex equivalent |
---+-|-------------------|------------------|
---+-| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
---+-| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
---+-
---+-### Message framing
---+-
---+-The `message` parameter is user-level input, not a system prompt. Structure it
---+-for maximum instruction adherence:
---+-
---+-```
---+-Your task is to perform the following. Follow the instructions below exactly.
---+-
---+-<agent-instructions>
---+-[filled prompt content from the agent's .md file]
---+-</agent-instructions>
---+-
---+-Execute this now. Output ONLY the structured response following the format
---+-specified in the instructions above.
---+-```
---+-
---+-- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
---+-- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
---+-- End with an explicit execution directive to prevent summarization of the instructions
---+-
---+-### When this workaround can be removed
---+-
---+-This approach compensates for Codex's plugin system not yet supporting an `agents`
---+-field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
---+-plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
---+-skills can dispatch named agent types directly.
---++Legacy note: Codex builds before `rust-v0.115.0` exposed spawned-agent
---++waiting as `wait`. Current Codex uses `wait_agent` for spawned agents. The
---++`wait` name now belongs to code-mode `exec/wait`, which resumes a yielded exec
---++cell by `cell_id`; it is not the spawned-agent result tool.
---+ 
---+ ## Environment Detection
---+ 
---+diff --git a/skills/superpowers/using-superpowers/references/copilot-tools.md b/skills/superpowers/using-superpowers/references/copilot-tools.md
---+index 4316cdb..ae3cf5a 100644
---+--- a/skills/superpowers/using-superpowers/references/copilot-tools.md
---++++ b/skills/superpowers/using-superpowers/references/copilot-tools.md
---+@@ -12,23 +12,13 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
---+ | `Glob` (search files by name) | `glob` |
---+ | `Skill` tool (invoke a skill) | `skill` |
---+ | `WebFetch` | `web_fetch` |
---+-| `Task` tool (dispatch subagent) | `task` (see [Agent types](#agent-types)) |
---++| `Task` tool (dispatch subagent) | `task` with `agent_type: "general-purpose"` or `"explore"` |
---+ | Multiple `Task` calls (parallel) | Multiple `task` calls |
---+ | Task status/output | `read_agent`, `list_agents` |
---+ | `TodoWrite` (task tracking) | `sql` with built-in `todos` table |
---+ | `WebSearch` | No equivalent — use `web_fetch` with a search engine URL |
---+ | `EnterPlanMode` / `ExitPlanMode` | No equivalent — stay in the main session |
---+ 
---+-## Agent types
---+-
---+-Copilot CLI's `task` tool accepts an `agent_type` parameter:
---+-
---+-| Claude Code agent | Copilot CLI equivalent |
---+-|-------------------|----------------------|
---+-| `general-purpose` | `"general-purpose"` |
---+-| `Explore` | `"explore"` |
---+-| Named plugin agents (e.g. `superpowers:code-reviewer`) | Discovered automatically from installed plugins |
---+-
---+ ## Async shell sessions
---+ 
---+ Copilot CLI supports persistent async shell sessions, which have no direct Claude Code equivalent:
---+diff --git a/skills/superpowers/using-superpowers/references/gemini-tools.md b/skills/superpowers/using-superpowers/references/gemini-tools.md
---+index f869803..91ef404 100644
---+--- a/skills/superpowers/using-superpowers/references/gemini-tools.md
---++++ b/skills/superpowers/using-superpowers/references/gemini-tools.md
---+@@ -14,11 +14,29 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
---+ | `Skill` tool (invoke a skill) | `activate_skill` |
---+ | `WebSearch` | `google_web_search` |
---+ | `WebFetch` | `web_fetch` |
---+-| `Task` tool (dispatch subagent) | No equivalent — Gemini CLI does not support subagents |
---++| `Task` tool (dispatch subagent) | `@agent-name` (see [Subagent support](#subagent-support)) |
---+ 
---+-## No subagent support
---++## Subagent support
---+ 
---+-Gemini CLI has no equivalent to Claude Code's `Task` tool. Skills that rely on subagent dispatch (`subagent-driven-development`, `dispatching-parallel-agents`) will fall back to single-session execution via `executing-plans`.
---++Gemini CLI supports subagents natively via the `@` syntax. Use the built-in `@generalist` agent to dispatch any task — it has access to all tools and follows the prompt you provide.
---++
---++When a skill says to dispatch a named agent type, use `@generalist` with the full prompt from the skill's prompt template:
---++
---++| Skill instruction | Gemini CLI equivalent |
---++|-------------------|----------------------|
---++| `Task tool (superpowers:implementer)` | `@generalist` with the filled `implementer-prompt.md` template |
---++| `Task tool (superpowers:spec-reviewer)` | `@generalist` with the filled `spec-reviewer-prompt.md` template |
---++| `Task tool (superpowers:code-reviewer)` | `@code-reviewer` (bundled agent) or `@generalist` with the filled review prompt |
---++| `Task tool (superpowers:code-quality-reviewer)` | `@generalist` with the filled `code-quality-reviewer-prompt.md` template |
---++| `Task tool (general-purpose)` with inline prompt | `@generalist` with your inline prompt |
---++
---++### Prompt filling
---++
---++Skills provide prompt templates with placeholders like `{WHAT_WAS_IMPLEMENTED}` or `[FULL TEXT of task]`. Fill all placeholders and pass the complete prompt as the message to `@generalist`. The prompt template itself contains the agent's role, review criteria, and expected output format — `@generalist` will follow it.
---++
---++### Parallel d
---\ No newline at end of file
+----------Submodule skills/AI-research-SKILLs 085c480..28d8b96:
+---------+Submodule skills/AI-research-SKILLs 085c480..a728954:
+---------+  > fix: update marketplace.json to include academic-plotting skill
+---------+  > refactor: restructure ml-paper-writing skill into nested directory
+---------+  > Merge pull request #41 from Orchestra-Research/add-academic-plotting-skill
+---------+  > docs: add concrete OpenClaw cron.add instructions to autoresearch skill
+---------+  > chore: Gitignore marketing drafts and image in autoresearch skill
+---------   > docs: add contributors widget and clean up contributing section
+---------   > Merge pull request #39 from tang-vu/contribai/fix/security/critical-prompt-injection-in-claude-code
+--------- Submodule skills/claude-scientific-skills contains modified content
+----------Submodule skills/claude-scientific-skills 1346c01..1531326:
+---------+Submodule skills/claude-scientific-skills 1346c01..71add64:
+---------+  > Remove planning with files skill becasue it is specific to Claude Code
+---------+  > Make writing skills more explicit
+---------+  > Add Security Disclaimer section to README
+---------+  > Bump version
+---------+  > Improve token discovery for Modal
+---------+  > Update Modal skill
+---------+  > Add planning with files skill from @OthmanAdi
+---------   > Add K-Dense BYOK AI co-scientist to README with features and links
+---------   > Add writing skills
+--------- Submodule skills/humanizer d8085c7..12881ab:
+---------   > Merge pull request #56 from mvanhorn/osc/42-add-hyphenation-pattern
+---------   > Merge pull request #57 from mvanhorn/osc/35-remove-separator-rules
+---------   > Merge pull request #58 from mvanhorn/osc/7-add-license-file
+----------diff --git a/skills/planning-with-files/SKILL.md b/skills/planning-with-files/SKILL.md
+----------index d967199..43672e5 100644
+------------- a/skills/planning-with-files/SKILL.md
+----------+++ b/skills/planning-with-files/SKILL.md
+----------@@ -7,7 +7,7 @@ hooks:
+----------   UserPromptSubmit:
+----------     - hooks:
+----------         - type: command
+-----------          command: "if [ -f task_plan.md ]; then echo '[planning-with-files] Active plan detected. If you have not read task_plan.md, progress.md, and findings.md in this conversation, read them now before proceeding.'; fi"
+----------+          command: "if [ -f task_plan.md ]; then echo '[planning-with-files] ACTIVE PLAN — current state:'; head -50 task_plan.md; echo ''; echo '=== recent progress ==='; tail -20 progress.md 2>/dev/null; echo ''; echo '[planning-with-files] Read findings.md for research context. Continue from the current phase.'; fi"
+----------   PreToolUse:
+----------     - matcher: "Write|Edit|Bash|Read|Glob|Grep"
+----------       hooks:
+----------@@ -21,7 +21,7 @@ hooks:
+----------   Stop:
+----------     - hooks:
+----------         - type: command
+-----------          command: "SD=\"${OPENCODE_SKILL_ROOT:-$HOME/.config/opencode/skills/planning-with-files}/scripts\"; powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$SD/check-complete.ps1\" 2>/dev/null || sh \"$SD/check-complete.sh\""
+----------+          command: "SD=\"${SKILL_DIR:-<forge-root>/skills/planning-with-files}/scripts\"; powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$SD/check-complete.ps1\" 2>/dev/null || sh \"$SD/check-complete.sh\""
+---------- metadata:
+----------   version: "2.23.0"
+---------- ---
+----------@@ -36,12 +36,12 @@ Work like Manus: Use persistent markdown files as your "working memory on disk."
+---------- 
+---------- ```bash
+---------- # Linux/macOS (auto-detects python3 or python)
+-----------$(command -v python3 || command -v python) ~/.config/opencode/skills/planning-with-files/scripts/session-catchup.py "$(pwd)"
+----------+$(command -v python3 || command -v python) skills/planning-with-files/scripts/session-catchup.py "$(pwd)"
+---------- ```
+---------- 
+---------- ```powershell
+---------- # Windows PowerShell
+-----------python "$env:USERPROFILE\.opencode\skills\planning-with-files\scripts\session-catchup.py" (Get-Location)
+----------+python "skills\planning-with-files\scripts\session-catchup.py" (Get-Location)
+---------- ```
+---------- 
+---------- If catchup report shows unsynced context:
+----------@@ -52,12 +52,12 @@ If catchup report shows unsynced context:
+---------- 
+---------- ## Important: Where Files Go
+---------- 
+------------ **Templates** are in `~/.config/opencode/skills/planning-with-files/templates/`
+----------+- **Templates** are in `<forge-root>/skills/planning-with-files/templates/`
+---------- - **Your planning files** go in **your project directory**
+---------- 
+---------- | Location | What Goes There |
+---------- |----------|-----------------|
+-----------| Skill directory (`~/.config/opencode/skills/planning-with-files/`) | Templates, scripts, reference docs |
+----------+| Skill directory (`<forge-root>/skills/planning-with-files/`) | Templates, scripts, reference docs |
+---------- | Your project directory | `task_plan.md`, `findings.md`, `progress.md` |
+---------- 
+---------- ## Quick Start
+----------diff --git a/skills/planning-with-files/scripts/session-catchup.py b/skills/planning-with-files/scripts/session-catchup.py
+----------index 5122b91..b187e83 100644
+------------- a/skills/planning-with-files/scripts/session-catchup.py
+----------+++ b/skills/planning-with-files/scripts/session-catchup.py
+----------@@ -254,7 +254,7 @@ def main():
+----------             print(f"USER: {msg['content'][:300]}")
+----------         else:
+----------             if msg.get('content'):
+-----------                print(f"OPENCODE: {msg['content'][:300]}")
+----------+                print(f"ASSISTANT: {msg['content'][:300]}")
+----------             if msg.get('tools'):
+----------                 print(f"  Tools: {', '.join(msg['tools'][:4])}")
+---------- 
+---------+Submodule skills/paper-polish-workflow-skill 7e430bd..bb72126:
+---------+  > fix: track assets/logo.jpg so README logo displays on GitHub
+---------+  > fix: correct SKILL.md path in CI validation workflow
+---------+  > fix: remove package.json to prevent recursive npm nesting
+---------+  > fix: remove duplicate files to fix ENAMETOOLONG on plugin install
+---------+  > fix: add explicit skills path in plugin.json
+---------+  > fix: update plugin.json version to 2.3.0
+---------+  > fix: remove .planning/ from git tracking (136 files)
+---------+  > fix: use HTTPS git URL instead of GitHub SSH source
+---------+  > fix: switch marketplace source from npm to GitHub repo
+---------+  > fix: add explicit npmjs.com registry to marketplace.json
+---------+  > feat: migrate to official Claude Code plugin marketplace, bump v2.3.0
+---------+  > feat: add Claude Code plugin format with auto-install postinstall script
+---------+  > feat: add get-paper skill, bump to v2.2.0
+--------- diff --git a/skills/superpowers/brainstorming/SKILL.md b/skills/superpowers/brainstorming/SKILL.md
+----------index 724dc79..edbc2b5 100644
+---------+index edbc2b5..06cd0a2 100644
+--------- --- a/skills/superpowers/brainstorming/SKILL.md
+--------- +++ b/skills/superpowers/brainstorming/SKILL.md
+--------- @@ -27,7 +27,7 @@ You MUST create a task for each of these items and complete them in order:
+---------  4. **Propose 2-3 approaches** — with trade-offs and your recommendation
+---------  5. **Present design** — in sections scaled to their complexity, get user approval after each section
+---------  6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
+-----------7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 5 iterations, then surface to human)
+----------+7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
+---------+-7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
+---------++7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
+---------  8. **User reviews written spec** — ask user to review the spec file before proceeding
+---------  9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
+---------  
+----------@@ -121,7 +121,7 @@ After writing the spec document:
+---------- 
+---------- 1. Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md)
+---------- 2. If Issues Found: fix, re-dispatch, repeat until Approved
+-----------3. If loop exceeds 5 iterations, surface to human for guidance
+----------+3. If loop exceeds 3 iterations, surface to human for guidance
+---------+@@ -43,8 +43,7 @@ digraph brainstorming {
+---------+     "Present design sections" [shape=box];
+---------+     "User approves design?" [shape=diamond];
+---------+     "Write design doc" [shape=box];
+---------+-    "Spec review loop" [shape=box];
+---------+-    "Spec review passed?" [shape=diamond];
+---------++    "Spec self-review\n(fix inline)" [shape=box];
+---------+     "User reviews spec?" [shape=diamond];
+---------+     "Invoke writing-plans skill" [shape=doublecircle];
+---------+ 
+---------+@@ -57,10 +56,8 @@ digraph brainstorming {
+---------+     "Present design sections" -> "User approves design?";
+---------+     "User approves design?" -> "Present design sections" [label="no, revise"];
+---------+     "User approves design?" -> "Write design doc" [label="yes"];
+---------+-    "Write design doc" -> "Spec review loop";
+---------+-    "Spec review loop" -> "Spec review passed?";
+---------+-    "Spec review passed?" -> "Spec review loop" [label="issues found,\nfix and re-dispatch"];
+---------+-    "Spec review passed?" -> "User reviews spec?" [label="approved"];
+---------++    "Write design doc" -> "Spec self-review\n(fix inline)";
+---------++    "Spec self-review\n(fix inline)" -> "User reviews spec?";
+---------+     "User reviews spec?" -> "Write design doc" [label="changes requested"];
+---------+     "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
+---------+ }
+---------+@@ -116,12 +113,15 @@ digraph brainstorming {
+---------+ - Use elements-of-style:writing-clearly-and-concisely skill if available
+---------+ - Commit the design document to git
+---------+ 
+---------+-**Spec Review Loop:**
+---------+-After writing the spec document:
+---------++**Spec Self-Review:**
+---------++After writing the spec document, look at it with fresh eyes:
+---------+ 
+---------+-1. Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md)
+---------+-2. If Issues Found: fix, re-dispatch, repeat until Approved
+---------+-3. If loop exceeds 3 iterations, surface to human for guidance
+---------++1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
+---------++2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
+---------++3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
+---------++4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
+---------++
+---------++Fix any issues inline. No need to re-review — just fix and move on.
+---------  
+---------  **User Review Gate:**
+---------  After the spec review loop passes, ask the user to review the written spec before proceeding:
+----------diff --git a/skills/superpowers/brainstorming/scripts/server.js b/skills/superpowers/brainstorming/scripts/server.js
+----------deleted file mode 100644
+----------index dec2f7a..0000000
+------------- a/skills/superpowers/brainstorming/scripts/server.js
+----------+++ /dev/null
+----------@@ -1,338 +0,0 @@
+-----------const crypto = require('crypto');
+-----------const http = require('http');
+-----------const fs = require('fs');
+-----------const path = require('path');
+-----------
+-----------// ========== WebSocket Protocol (RFC 6455) ==========
+-----------
+-----------const OPCODES = { TEXT: 0x01, CLOSE: 0x08, PING: 0x09, PONG: 0x0A };
+-----------const WS_MAGIC = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
+-----------
+-----------function computeAcceptKey(clientKey) {
+-----------  return crypto.createHash('sha1').update(clientKey + WS_MAGIC).digest('base64');
+-----------}
+-----------
+-----------function encodeFrame(opcode, payload) {
+-----------  const fin = 0x80;
+-----------  const len = payload.length;
+-----------  let header;
+-----------
+-----------  if (len < 126) {
+-----------    header = Buffer.alloc(2);
+-----------    header[0] = fin | opcode;
+-----------    header[1] = len;
+-----------  } else if (len < 65536) {
+-----------    header = Buffer.alloc(4);
+-----------    header[0] = fin | opcode;
+-----------    header[1] = 126;
+-----------    header.writeUInt16BE(len, 2);
+-----------  } else {
+-----------    header = Buffer.alloc(10);
+-----------    header[0] = fin | opcode;
+-----------    header[1] = 127;
+-----------    header.writeBigUInt64BE(BigInt(len), 2);
+-----------  }
+-----------
+-----------  return Buffer.concat([header, payload]);
+-----------}
+-----------
+-----------function decodeFrame(buffer) {
+-----------  if (buffer.length < 2) return null;
+-----------
+-----------  const secondByte = buffer[1];
+-----------  const opcode = buffer[0] & 0x0F;
+-----------  const masked = (secondByte & 0x80) !== 0;
+-----------  let payloadLen = secondByte & 0x7F;
+-----------  let offset = 2;
+-----------
+-----------  if (!masked) throw new Error('Client frames must be masked');
+-----------
+-----------  if (payloadLen === 126) {
+-----------    if (buffer.length < 4) return null;
+-----------    payloadLen = buffer.readUInt16BE(2);
+-----------    offset = 4;
+-----------  } else if (payloadLen === 127) {
+-----------    if (buffer.length < 10) return null;
+-----------    payloadLen = Number(buffer.readBigUInt64BE(2));
+-----------    offset = 10;
+-----------  }
+-----------
+-----------  const maskOffset = offset;
+-----------  const dataOffset = offset + 4;
+-----------  const totalLen = dataOffset + payloadLen;
+-----------  if (buffer.length < totalLen) return null;
+-----------
+-----------  const mask = buffer.slice(maskOffset, dataOffset);
+-----------  const data = Buffer.alloc(payloadLen);
+-----------  for (let i = 0; i < payloadLen; i++) {
+-----------    data[i] = buffer[dataOffset + i] ^ mask[i % 4];
+-----------  }
+-----------
+-----------  return { opcode, payload: data, bytesConsumed: totalLen };
+-----------}
+-----------
+-----------// ========== Configuration ==========
+-----------
+-----------const PORT = process.env.BRAINSTORM_PORT || (49152 + Math.floor(Math.random() * 16383));
+-----------const HOST = process.env.BRAINSTORM_HOST || '127.0.0.1';
+-----------const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'localhost' : HOST);
+---------+diff --git a/skills/superpowers/brainstorming/scripts/server.cjs b/skills/superpowers/brainstorming/scripts/server.cjs
+---------+index 86c3080..562c17f 100644
+---------+--- a/skills/superpowers/brainstorming/scripts/server.cjs
+---------++++ b/skills/superpowers/brainstorming/scripts/server.cjs
+---------+@@ -76,8 +76,10 @@ function decodeFrame(buffer) {
+---------+ const PORT = process.env.BRAINSTORM_PORT || (49152 + Math.floor(Math.random() * 16383));
+---------+ const HOST = process.env.BRAINSTORM_HOST || '127.0.0.1';
+---------+ const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'localhost' : HOST);
+--------- -const SCREEN_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
+--------- -const OWNER_PID = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
+-----------
+-----------const MIME_TYPES = {
+-----------  '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
+-----------  '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg',
+-----------  '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml'
+-----------};
+-----------
+-----------// ========== Templates and Constants ==========
+-----------
+-----------const WAITING_PAGE = `<!DOCTYPE html>
+-----------<html>
+-----------<head><meta charset="utf-8"><title>Brainstorm Companion</title>
+-----------<style>body { font-family: system-ui, sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; }
+-----------h1 { color: #333; } p { color: #666; }</style>
+-----------</head>
+-----------<body><h1>Brainstorm Companion</h1>
+-----------<p>Waiting for Claude to push a screen...</p></body></html>`;
+-----------
+-----------const frameTemplate = fs.readFileSync(path.join(__dirname, 'frame-template.html'), 'utf-8');
+-----------const helperScript = fs.readFileSync(path.join(__dirname, 'helper.js'), 'utf-8');
+-----------const helperInjection = '<script>\n' + helperScript + '\n</script>';
+-----------
+-----------// ========== Helper Functions ==========
+-----------
+-----------function isFullDocument(html) {
+-----------  const trimmed = html.trimStart().toLowerCase();
+-----------  return trimmed.startsWith('<!doctype') || trimmed.startsWith('<html');
+-----------}
+-----------
+-----------function wrapInFrame(content) {
+-----------  return frameTemplate.replace('<!-- CONTENT -->', content);
+-----------}
+-----------
+-----------function getNewestScreen() {
+---------++const SESSION_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
+---------++const CONTENT_DIR = path.join(SESSION_DIR, 'content');
+---------++const STATE_DIR = path.join(SESSION_DIR, 'state');
+---------++let ownerPid = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
+---------+ 
+---------+ const MIME_TYPES = {
+---------+   '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
+---------+@@ -112,10 +114,10 @@ function wrapInFrame(content) {
+---------+ }
+---------+ 
+---------+ function getNewestScreen() {
+--------- -  const files = fs.readdirSync(SCREEN_DIR)
+-----------    .filter(f => f.endsWith('.html'))
+-----------    .map(f => {
+---------++  const files = fs.readdirSync(CONTENT_DIR)
+---------+     .filter(f => f.endsWith('.html'))
+---------+     .map(f => {
+--------- -      const fp = path.join(SCREEN_DIR, f);
+-----------      return { path: fp, mtime: fs.statSync(fp).mtime.getTime() };
+-----------    })
+-----------    .sort((a, b) => b.mtime - a.mtime);
+-----------  return files.length > 0 ? files[0].path : null;
+-----------}
+-----------
+-----------// ========== HTTP Request Handler ==========
+-----------
+-----------function handleRequest(req, res) {
+-----------  touchActivity();
+-----------  if (req.method === 'GET' && req.url === '/') {
+-----------    const screenFile = getNewestScreen();
+-----------    let html = screenFile
+-----------      ? (raw => isFullDocument(raw) ? raw : wrapInFrame(raw))(fs.readFileSync(screenFile, 'utf-8'))
+-----------      : WAITING_PAGE;
+-----------
+-----------    if (html.includes('</body>')) {
+-----------      html = html.replace('</body>', helperInjection + '\n</body>');
+-----------    } else {
+-----------      html += helperInjection;
+-----------    }
+-----------
+-----------    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+-----------    res.end(html);
+-----------  } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
+-----------    const fileName = req.url.slice(7);
+---------++      const fp = path.join(CONTENT_DIR, f);
+---------+       return { path: fp, mtime: fs.statSync(fp).mtime.getTime() };
+---------+     })
+---------+     .sort((a, b) => b.mtime - a.mtime);
+---------+@@ -142,7 +144,7 @@ function handleRequest(req, res) {
+---------+     res.end(html);
+---------+   } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
+---------+     const fileName = req.url.slice(7);
+--------- -    const filePath = path.join(SCREEN_DIR, path.basename(fileName));
+-----------    if (!fs.existsSync(filePath)) {
+-----------      res.writeHead(404);
+-----------      res.end('Not found');
+-----------      return;
+-----------    }
+-----------    const ext = path.extname(filePath).toLowerCase();
+-----------    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+-----------    res.writeHead(200, { 'Content-Type': contentType });
+-----------    res.end(fs.readFileSync(filePath));
+-----------  } else {
+-----------    res.writeHead(404);
+-----------    res.end('Not found');
+-----------  }
+-----------}
+-----------
+-----------// ========== WebSocket Connection Handling ==========
+-----------
+-----------const clients = new Set();
+-----------
+-----------function handleUpgrade(req, socket) {
+-----------  const key = req.headers['sec-websocket-key'];
+-----------  if (!key) { socket.destroy(); return; }
+-----------
+-----------  const accept = computeAcceptKey(key);
+-----------  socket.write(
+-----------    'HTTP/1.1 101 Switching Protocols\r\n' +
+-----------    'Upgrade: websocket\r\n' +
+-----------    'Connection: Upgrade\r\n' +
+-----------    'Sec-WebSocket-Accept: ' + accept + '\r\n\r\n'
+-----------  );
+-----------
+-----------  let buffer = Buffer.alloc(0);
+-----------  clients.add(socket);
+-----------
+-----------  socket.on('data', (chunk) => {
+-----------    buffer = Buffer.concat([buffer, chunk]);
+-----------    while (buffer.length > 0) {
+-----------      let result;
+-----------      try {
+-----------        result = decodeFrame(buffer);
+-----------      } catch (e) {
+-----------        socket.end(encodeFrame(OPCODES.CLOSE, Buffer.alloc(0)));
+-----------        clients.delete(socket);
+-----------        return;
+-----------      }
+-----------      if (!result) break;
+-----------      buffer = buffer.slice(result.bytesConsumed);
+-----------
+-----------      switch (result.opcode) {
+-----------        case OPCODES.TEXT:
+-----------          handleMessage(result.payload.toString());
+-----------          break;
+-----------        case OPCODES.CLOSE:
+-----------          socket.end(encodeFrame(OPCODES.CLOSE, Buffer.alloc(0)));
+-----------          clients.delete(socket);
+-----------          return;
+-----------        case OPCODES.PING:
+-----------          socket.write(encodeFrame(OPCODES.PONG, result.payload));
+-----------          break;
+-----------        case OPCODES.PONG:
+-----------          break;
+-----------        default: {
+-----------          const closeBuf = Buffer.alloc(2);
+-----------          closeBuf.writeUInt16BE(1003);
+-----------          socket.end(encodeFrame(OPCODES.CLOSE, closeBuf));
+-----------          clients.delete(socket);
+-----------          return;
+-----------        }
+-----------      }
+-----------    }
+-----------  });
+-----------
+-----------  socket.on('close', () => clients.delete(socket));
+-----------  socket.on('error', () => clients.delete(socket));
+-----------}
+-----------
+-----------function handleMessage(text) {
+-----------  let event;
+-----------  try {
+-----------    event = JSON.parse(text);
+-----------  } catch (e) {
+-----------    console.error('Failed to parse WebSocket message:', e.message);
+-----------    return;
+-----------  }
+-----------  touchActivity();
+-----------  console.log(JSON.stringify({ source: 'user-event', ...event }));
+-----------  if (event.choice) {
+---------++    const filePath = path.join(CONTENT_DIR, path.basename(fileName));
+---------+     if (!fs.existsSync(filePath)) {
+---------+       res.writeHead(404);
+---------+       res.end('Not found');
+---------+@@ -230,7 +232,7 @@ function handleMessage(text) {
+---------+   touchActivity();
+---------+   console.log(JSON.stringify({ source: 'user-event', ...event }));
+---------+   if (event.choice) {
+--------- -    const eventsFile = path.join(SCREEN_DIR, '.events');
+-----------    fs.appendFileSync(eventsFile, JSON.stringify(event) + '\n');
+-----------  }
+-----------}
+-----------
+-----------function broadcast(msg) {
+-----------  const frame = encodeFrame(OPCODES.TEXT, Buffer.from(JSON.stringify(msg)));
+-----------  for (const socket of clients) {
+-----------    try { socket.write(frame); } catch (e) { clients.delete(socket); }
+-----------  }
+-----------}
+-----------
+-----------// ========== Activity Tracking ==========
+-----------
+-----------const IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+-----------let lastActivity = Date.now();
+-----------
+-----------function touchActivity() {
+-----------  lastActivity = Date.now();
+-----------}
+-----------
+-----------// ========== File Watching ==========
+-----------
+-----------const debounceTimers = new Map();
+-----------
+-----------// ========== Server Startup ==========
+-----------
+-----------function startServer() {
+---------++    const eventsFile = path.join(STATE_DIR, 'events');
+---------+     fs.appendFileSync(eventsFile, JSON.stringify(event) + '\n');
+---------+   }
+---------+ }
+---------+@@ -258,32 +260,33 @@ const debounceTimers = new Map();
+---------+ // ========== Server Startup ==========
+---------+ 
+---------+ function startServer() {
+--------- -  if (!fs.existsSync(SCREEN_DIR)) fs.mkdirSync(SCREEN_DIR, { recursive: true });
+-----------
+-----------  // Track known files to distinguish new screens from updates.
+-----------  // macOS fs.watch reports 'rename' for both new files and overwrites,
+-----------  // so we can't rely on eventType alone.
+-----------  const knownFiles = new Set(
+---------++  if (!fs.existsSync(CONTENT_DIR)) fs.mkdirSync(CONTENT_DIR, { recursive: true });
+---------++  if (!fs.existsSync(STATE_DIR)) fs.mkdirSync(STATE_DIR, { recursive: true });
+---------+ 
+---------+   // Track known files to distinguish new screens from updates.
+---------+   // macOS fs.watch reports 'rename' for both new files and overwrites,
+---------+   // so we can't rely on eventType alone.
+---------+   const knownFiles = new Set(
+--------- -    fs.readdirSync(SCREEN_DIR).filter(f => f.endsWith('.html'))
+-----------  );
+-----------
+-----------  const server = http.createServer(handleRequest);
+-----------  server.on('upgrade', handleUpgrade);
+-----------
+---------++    fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.html'))
+---------+   );
+---------+ 
+---------+   const server = http.createServer(handleRequest);
+---------+   server.on('upgrade', handleUpgrade);
+---------+ 
+--------- -  const watcher = fs.watch(SCREEN_DIR, (eventType, filename) => {
+-----------    if (!filename || !filename.endsWith('.html')) return;
+-----------
+-----------    if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
+-----------    debounceTimers.set(filename, setTimeout(() => {
+-----------      debounceTimers.delete(filename);
+---------++  const watcher = fs.watch(CONTENT_DIR, (eventType, filename) => {
+---------+     if (!filename || !filename.endsWith('.html')) return;
+---------+ 
+---------+     if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
+---------+     debounceTimers.set(filename, setTimeout(() => {
+---------+       debounceTimers.delete(filename);
+--------- -      const filePath = path.join(SCREEN_DIR, filename);
+-----------
+-----------      if (!fs.existsSync(filePath)) return; // file was deleted
+-----------      touchActivity();
+-----------
+-----------      if (!knownFiles.has(filename)) {
+-----------        knownFiles.add(filename);
+---------++      const filePath = path.join(CONTENT_DIR, filename);
+---------+ 
+---------+       if (!fs.existsSync(filePath)) return; // file was deleted
+---------+       touchActivity();
+---------+ 
+---------+       if (!knownFiles.has(filename)) {
+---------+         knownFiles.add(filename);
+--------- -        const eventsFile = path.join(SCREEN_DIR, '.events');
+-----------        if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
+-----------        console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
+-----------      } else {
+-----------        console.log(JSON.stringify({ type: 'screen-updated', file: filePath }));
+-----------      }
+-----------
+-----------      broadcast({ type: 'reload' });
+-----------    }, 100));
+-----------  });
+-----------  watcher.on('error', (err) => console.error('fs.watch error:', err.message));
+-----------
+-----------  function shutdown(reason) {
+-----------    console.log(JSON.stringify({ type: 'server-stopped', reason }));
+---------++        const eventsFile = path.join(STATE_DIR, 'events');
+---------+         if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
+---------+         console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
+---------+       } else {
+---------+@@ -297,10 +300,10 @@ function startServer() {
+---------+ 
+---------+   function shutdown(reason) {
+---------+     console.log(JSON.stringify({ type: 'server-stopped', reason }));
+--------- -    const infoFile = path.join(SCREEN_DIR, '.server-info');
+-----------    if (fs.existsSync(infoFile)) fs.unlinkSync(infoFile);
+-----------    fs.writeFileSync(
+---------++    const infoFile = path.join(STATE_DIR, 'server-info');
+---------+     if (fs.existsSync(infoFile)) fs.unlinkSync(infoFile);
+---------+     fs.writeFileSync(
+--------- -      path.join(SCREEN_DIR, '.server-stopped'),
+-----------      JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
+-----------    );
+-----------    watcher.close();
+-----------    clearInterval(lifecycleCheck);
+-----------    server.close(() => process.exit(0));
+-----------  }
+-----------
+-----------  function ownerAlive() {
+---------++      path.join(STATE_DIR, 'server-stopped'),
+---------+       JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
+---------+     );
+---------+     watcher.close();
+---------+@@ -309,8 +312,8 @@ function startServer() {
+---------+   }
+---------+ 
+---------+   function ownerAlive() {
+--------- -    if (!OWNER_PID) return true;
+--------- -    try { process.kill(OWNER_PID, 0); return true; } catch (e) { return false; }
+-----------  }
+-----------
+-----------  // Check every 60s: exit if owner process died or idle for 30 minutes
+-----------  const lifecycleCheck = setInterval(() => {
+-----------    if (!ownerAlive()) shutdown('owner process exited');
+-----------    else if (Date.now() - lastActivity > IDLE_TIMEOUT_MS) shutdown('idle timeout');
+-----------  }, 60 * 1000);
+-----------  lifecycleCheck.unref();
+-----------
+-----------  server.listen(PORT, HOST, () => {
+-----------    const info = JSON.stringify({
+-----------      type: 'server-started', port: Number(PORT), host: HOST,
+-----------      url_host: URL_HOST, url: 'http://' + URL_HOST + ':' + PORT,
+---------++    if (!ownerPid) return true;
+---------++    try { process.kill(ownerPid, 0); return true; } catch (e) { return e.code === 'EPERM'; }
+---------+   }
+---------+ 
+---------+   // Check every 60s: exit if owner process died or idle for 30 minutes
+---------+@@ -320,14 +323,27 @@ function startServer() {
+---------+   }, 60 * 1000);
+---------+   lifecycleCheck.unref();
+---------+ 
+---------++  // Validate owner PID at startup. If it's already dead, the PID resolution
+---------++  // was wrong (common on WSL, Tailscale SSH, and cross-user scenarios).
+---------++  // Disable monitoring and rely on the idle timeout instead.
+---------++  if (ownerPid) {
+---------++    try { process.kill(ownerPid, 0); }
+---------++    catch (e) {
+---------++      if (e.code !== 'EPERM') {
+---------++        console.log(JSON.stringify({ type: 'owner-pid-invalid', pid: ownerPid, reason: 'dead at startup' }));
+---------++        ownerPid = null;
+---------++      }
+---------++    }
+---------++  }
+---------++
+---------+   server.listen(PORT, HOST, () => {
+---------+     const info = JSON.stringify({
+---------+       type: 'server-started', port: Number(PORT), host: HOST,
+---------+       url_host: URL_HOST, url: 'http://' + URL_HOST + ':' + PORT,
+--------- -      screen_dir: SCREEN_DIR
+-----------    });
+-----------    console.log(info);
+---------++      screen_dir: CONTENT_DIR, state_dir: STATE_DIR
+---------+     });
+---------+     console.log(info);
+--------- -    fs.writeFileSync(path.join(SCREEN_DIR, '.server-info'), info + '\n');
+-----------  });
+-----------}
+-----------
+-----------if (require.main === module) {
+-----------  startServer();
+-----------}
+-----------
+-----------module.exports = { computeAcceptKey, encodeFrame, decodeFrame, OPCODES };
+---------++    fs.writeFileSync(path.join(STATE_DIR, 'server-info'), info + '\n');
+---------+   });
+---------+ }
+---------+ 
+--------- diff --git a/skills/superpowers/brainstorming/scripts/start-server.sh b/skills/superpowers/brainstorming/scripts/start-server.sh
+----------index b5f5a75..a0ef299 100755
+---------+index a0ef299..9ef6dcb 100755
+--------- --- a/skills/superpowers/brainstorming/scripts/start-server.sh
+--------- +++ b/skills/superpowers/brainstorming/scripts/start-server.sh
+----------@@ -1,4 +1,4 @@
+-----------#!/bin/bash
+----------+#!/usr/bin/env bash
+---------- # Start the brainstorm server and output connection info
+---------- # Usage: start-server.sh [--project-dir <path>] [--host <bind-host>] [--url-host <display-host>] [--foreground] [--background]
+---------- #
+----------@@ -64,6 +64,16 @@ if [[ -n "${CODEX_CI:-}" && "$FOREGROUND" != "true" && "$FORCE_BACKGROUND" != "t
+----------   FOREGROUND="true"
+---------+@@ -78,16 +78,17 @@ fi
+---------+ SESSION_ID="$$-$(date +%s)"
+---------+ 
+---------+ if [[ -n "$PROJECT_DIR" ]]; then
+---------+-  SCREEN_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
+---------++  SESSION_DIR="${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}"
+---------+ else
+---------+-  SCREEN_DIR="/tmp/brainstorm-${SESSION_ID}"
+---------++  SESSION_DIR="/tmp/brainstorm-${SESSION_ID}"
+---------  fi
+---------  
+----------+# Windows/Git Bash reaps nohup background processes. Auto-foreground when detected.
+----------+if [[ "$FOREGROUND" != "true" && "$FORCE_BACKGROUND" != "true" ]]; then
+----------+  case "${OSTYPE:-}" in
+----------+    msys*|cygwin*|mingw*) FOREGROUND="true" ;;
+----------+  esac
+----------+  if [[ -n "${MSYSTEM:-}" ]]; then
+----------+    FOREGROUND="true"
+----------+  fi
+----------+fi
+----------+
+---------- # Generate unique session directory
+---------- SESSION_ID="$$-$(date +%s)"
+---------+-PID_FILE="${SCREEN_DIR}/.server.pid"
+---------+-LOG_FILE="${SCREEN_DIR}/.server.log"
+---------++STATE_DIR="${SESSION_DIR}/state"
+---------++PID_FILE="${STATE_DIR}/server.pid"
+---------++LOG_FILE="${STATE_DIR}/server.log"
+---------+ 
+---------+-# Create fresh session directory
+---------+-mkdir -p "$SCREEN_DIR"
+---------++# Create fresh session directory with content and state peers
+---------++mkdir -p "${SESSION_DIR}/content" "$STATE_DIR"
+---------  
+----------@@ -96,16 +106,22 @@ if [[ -z "$OWNER_PID" || "$OWNER_PID" == "1" ]]; then
+---------+ # Kill any existing server
+---------+ if [[ -f "$PID_FILE" ]]; then
+---------+@@ -106,22 +107,16 @@ if [[ -z "$OWNER_PID" || "$OWNER_PID" == "1" ]]; then
+---------    OWNER_PID="$PPID"
+---------  fi
+---------  
+----------+# On Windows/MSYS2, the MSYS2 PID namespace is invisible to Node.js.
+----------+# Skip owner-PID monitoring — the 30-minute idle timeout prevents orphans.
+----------+case "${OSTYPE:-}" in
+----------+  msys*|cygwin*|mingw*) OWNER_PID="" ;;
+----------+esac
+----------+
+---------+-# On Windows/MSYS2, the MSYS2 PID namespace is invisible to Node.js.
+---------+-# Skip owner-PID monitoring — the 30-minute idle timeout prevents orphans.
+---------+-case "${OSTYPE:-}" in
+---------+-  msys*|cygwin*|mingw*) OWNER_PID="" ;;
+---------+-esac
+---------+-
+---------  # Foreground mode for environments that reap detached/background processes.
+---------  if [[ "$FOREGROUND" == "true" ]]; then
+---------    echo "$$" > "$PID_FILE"
+-----------  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.js
+----------+  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
+---------+-  env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
+---------++  env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs
+---------    exit $?
+---------  fi
+---------  
+---------  # Start server, capturing output to log file
+---------  # Use nohup to survive shell exit; disown to remove from job table
+-----------nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.js > "$LOG_FILE" 2>&1 &
+----------+nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
+---------+-nohup env BRAINSTORM_DIR="$SCREEN_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
+---------++nohup env BRAINSTORM_DIR="$SESSION_DIR" BRAINSTORM_HOST="$BIND_HOST" BRAINSTORM_URL_HOST="$URL_HOST" BRAINSTORM_OWNER_PID="$OWNER_PID" node server.cjs > "$LOG_FILE" 2>&1 &
+---------  SERVER_PID=$!
+---------  disown "$SERVER_PID" 2>/dev/null
+---------  echo "$SERVER_PID" > "$PID_FILE"
+--------- diff --git a/skills/superpowers/brainstorming/scripts/stop-server.sh b/skills/superpowers/brainstorming/scripts/stop-server.sh
+----------index c3724de..2e5973d 100755
+---------+index 2e5973d..a6b94e6 100755
+--------- --- a/skills/superpowers/brainstorming/scripts/stop-server.sh
+--------- +++ b/skills/superpowers/brainstorming/scripts/stop-server.sh
+----------@@ -1,4 +1,4 @@
+-----------#!/bin/bash
+----------+#!/usr/bin/env bash
+---------+@@ -1,19 +1,20 @@
+---------+ #!/usr/bin/env bash
+---------  # Stop the brainstorm server and clean up
+---------- # Usage: stop-server.sh <screen_dir>
+---------+-# Usage: stop-server.sh <screen_dir>
+---------++# Usage: stop-server.sh <session_dir>
+---------  #
+----------@@ -17,7 +17,31 @@ PID_FILE="${SCREEN_DIR}/.server.pid"
+---------+ # Kills the server process. Only deletes session directory if it's
+---------+ # under /tmp (ephemeral). Persistent directories (.superpowers/) are
+---------+ # kept so mockups can be reviewed later.
+---------+ 
+---------+-SCREEN_DIR="$1"
+---------++SESSION_DIR="$1"
+---------+ 
+---------+-if [[ -z "$SCREEN_DIR" ]]; then
+---------+-  echo '{"error": "Usage: stop-server.sh <screen_dir>"}'
+---------++if [[ -z "$SESSION_DIR" ]]; then
+---------++  echo '{"error": "Usage: stop-server.sh <session_dir>"}'
+---------+   exit 1
+---------+ fi
+---------+ 
+---------+-PID_FILE="${SCREEN_DIR}/.server.pid"
+---------++STATE_DIR="${SESSION_DIR}/state"
+---------++PID_FILE="${STATE_DIR}/server.pid"
+---------  
+---------  if [[ -f "$PID_FILE" ]]; then
+---------    pid=$(cat "$PID_FILE")
+-----------  kill "$pid" 2>/dev/null
+----------+
+----------+  # Try to stop gracefully, fallback to force if still alive
+----------+  kill "$pid" 2>/dev/null || true
+----------+
+----------+  # Wait for graceful shutdown (up to ~2s)
+----------+  for i in {1..20}; do
+----------+    if ! kill -0 "$pid" 2>/dev/null; then
+----------+      break
+----------+    fi
+----------+    sleep 0.1
+----------+  done
+----------+
+----------+  # If still running, escalate to SIGKILL
+----------+  if kill -0 "$pid" 2>/dev/null; then
+----------+    kill -9 "$pid" 2>/dev/null || true
+----------+
+----------+    # Give SIGKILL a moment to take effect
+----------+    sleep 0.1
+----------+  fi
+----------+
+----------+  if kill -0 "$pid" 2>/dev/null; then
+----------+    echo '{"status": "failed", "error": "process still running"}'
+----------+    exit 1
+----------+  fi
+----------+
+----------   rm -f "$PID_FILE" "${SCREEN_DIR}/.server.log"
+---------+@@ -42,11 +43,11 @@ if [[ -f "$PID_FILE" ]]; then
+---------+     exit 1
+---------+   fi
+---------  
+----------   # Only delete ephemeral /tmp directories
+----------diff --git a/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md b/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
+----------index 212b36c..35acbb6 100644
+------------- a/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
+----------+++ b/skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
+----------@@ -19,32 +19,31 @@ Task tool (general-purpose):
+----------     | Category | What to Look For |
+----------     |----------|------------------|
+----------     | Completeness | TODOs, placeholders, "TBD", incomplete sections |
+-----------    | Coverage | Missing error handling, edge cases, integration points |
+----------     | Consistency | Internal contradictions, conflicting requirements |
+-----------    | Clarity | Ambiguous requirements |
+-----------    | YAGNI | Unrequested features, over-engineering |
+----------+    | Clarity | Requirements ambiguous enough to cause someone to build the wrong thing |
+----------     | Scope | Focused enough for a single plan — not covering multiple independent subsystems |
+-----------    | Architecture | Units with clear boundaries, well-defined interfaces, independently understandable and testable |
+----------+    | YAGNI | Unrequested features, over-engineering |
+----------+
+----------+    ## Calibration
+---------+-  rm -f "$PID_FILE" "${SCREEN_DIR}/.server.log"
+---------++  rm -f "$PID_FILE" "${STATE_DIR}/server.log"
+---------  
+-----------    ## CRITICAL
+----------+    **Only flag issues that would cause real problems during implementation planning.**
+----------+    A missing section, a contradiction, or a requirement so ambiguous it could be
+----------+    interpreted two different ways — those are issues. Minor wording improvements,
+----------+    stylistic preferences, and "sections less detailed than others" are not.
+---------+   # Only delete ephemeral /tmp directories
+---------+-  if [[ "$SCREEN_DIR" == /tmp/* ]]; then
+---------+-    rm -rf "$SCREEN_DIR"
+---------++  if [[ "$SESSION_DIR" == /tmp/* ]]; then
+---------++    rm -rf "$SESSION_DIR"
+---------+   fi
+---------  
+-----------    Look especially hard for:
+-----------    - Any TODO markers or placeholder text
+-----------    - Sections saying "to be defined later" or "will spec when X is done"
+-----------    - Sections noticeably less detailed than others
+-----------    - Units that lack clear boundaries or interfaces — can you understand what each unit does without reading its internals?
+----------+    Approve unless there are serious gaps that would lead to a flawed plan.
+---------+   echo '{"status": "stopped"}'
+---------+diff --git a/skills/superpowers/brainstorming/visual-companion.md b/skills/superpowers/brainstorming/visual-companion.md
+---------+index 537ed3c..2113863 100644
+---------+--- a/skills/superpowers/brainstorming/visual-companion.md
+---------++++ b/skills/superpowers/brainstorming/visual-companion.md
+---------+@@ -26,7 +26,7 @@ A question *about* a UI topic is not automatically a visual question. "What kind
+---------  
+----------     ## Output Format
+---------+ ## How It Works
+---------  
+----------     ## Spec Review
+---------+-The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content, the user sees it in their browser and can click to select options. Selections are recorded to a `.events` file that you read on your next turn.
+---------++The server watches a directory for HTML files and serves the newest one to the browser. You write HTML content to `screen_dir`, the user sees it in their browser and can click to select options. Selections are recorded to `state_dir/events` that you read on your next turn.
+---------  
+-----------    **Status:** ✅ Approved | ❌ Issues Found
+----------+    **Status:** Approved | Issues Found
+---------+ **Content fragments vs full documents:** If your HTML file starts with `<!DOCTYPE` or `<html`, the server serves it as-is (just injects the helper script). Otherwise, the server automatically wraps your content in the frame template — adding the header, CSS theme, selection indicator, and all interactive infrastructure. **Write content fragments by default.** Only write full documents when you need complete control over the page.
+---------  
+----------     **Issues (if any):**
+-----------    - [Section X]: [specific issue] - [why it matters]
+----------+    - [Section X]: [specific issue] - [why it matters for planning]
+---------+@@ -37,12 +37,13 @@ The server watches a directory for HTML files and serves the newest one to the b
+---------+ scripts/start-server.sh --project-dir /path/to/project
+---------  
+-----------    **Recommendations (advisory):**
+-----------    - [suggestions that don't block approval]
+----------+    **Recommendations (advisory, do not block approval):**
+----------+    - [suggestions for improvement]
+---------+ # Returns: {"type":"server-started","port":52341,"url":"http://localhost:52341",
+---------+-#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000"}
+---------++#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/content",
+---------++#           "state_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/state"}
+---------  ```
+---------  
+---------- **Reviewer returns:** Status, Issues (if any), Recommendations
+----------diff --git a/skills/superpowers/brainstorming/visual-companion.md b/skills/superpowers/brainstorming/visual-companion.md
+----------index a25e85a..537ed3c 100644
+------------- a/skills/superpowers/brainstorming/visual-companion.md
+----------+++ b/skills/superpowers/brainstorming/visual-companion.md
+----------@@ -48,12 +48,21 @@ Save `screen_dir` from the response. Tell user to open the URL.
+---------+-Save `screen_dir` from the response. Tell user to open the URL.
+---------++Save `screen_dir` and `state_dir` from the response. Tell user to open the URL.
+---------  
+---------- **Launching the server by platform:**
+---------+-**Finding connection info:** The server writes its startup JSON to `$SCREEN_DIR/.server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
+---------++**Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
+---------  
+-----------**Claude Code:**
+----------+**Claude Code (macOS / Linux):**
+---------- ```bash
+---------- # Default mode works — the script backgrounds the server itself
+---------+ **Note:** Pass the project root as `--project-dir` so mockups persist in `.superpowers/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.superpowers/` to `.gitignore` if it's not already there.
+---------+ 
+---------+@@ -61,7 +62,7 @@ scripts/start-server.sh --project-dir /path/to/project
+---------+ # across conversation turns.
+---------  scripts/start-server.sh --project-dir /path/to/project
+---------  ```
+---------+-When calling this via the Bash tool, set `run_in_background: true`. Then read `$SCREEN_DIR/.server-info` on the next turn to get the URL and port.
+---------++When calling this via the Bash tool, set `run_in_background: true`. Then read `$STATE_DIR/server-info` on the next turn to get the URL and port.
+---------  
+----------+**Claude Code (Windows):**
+----------+```bash
+----------+# Windows auto-detects and uses foreground mode, which blocks the tool call.
+----------+# Use run_in_background: true on the Bash tool call so the server survives
+----------+# across conversation turns.
+----------+scripts/start-server.sh --project-dir /path/to/project
+----------+```
+----------+When calling this via the Bash tool, set `run_in_background: true`. Then read `$SCREEN_DIR/.server-info` on the next turn to get the URL and port.
+----------+
+---------  **Codex:**
+---------  ```bash
+---------- # Codex reaps background processes. The script auto-detects CODEX_CI and
+----------diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
+----------index eb23075..86f58fa 100644
+------------- a/skills/superpowers/using-superpowers/references/codex-tools.md
+----------+++ b/skills/superpowers/using-superpowers/references/codex-tools.md
+----------@@ -13,13 +13,13 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+---------- | `Read`, `Write`, `Edit` (files) | Use your native file tools |
+---------- | `Bash` (run commands) | Use your native shell tools |
+---------+@@ -93,7 +94,7 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
+---------+ ## The Loop
+---------  
+-----------## Subagent dispatch requires collab
+----------+## Subagent dispatch requires multi-agent support
+---------+ 1. **Check server is alive**, then **write HTML** to a new file in `screen_dir`:
+---------+-   - Before each write, check that `$SCREEN_DIR/.server-info` exists. If it doesn't (or `.server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
+---------++   - Before each write, check that `$STATE_DIR/server-info` exists. If it doesn't (or `$STATE_DIR/server-stopped` exists), the server has shut down — restart it with `start-server.sh` before continuing. The server auto-exits after 30 minutes of inactivity.
+---------+    - Use semantic filenames: `platform.html`, `visual-style.html`, `layout.html`
+---------+    - **Never reuse filenames** — each screen gets a fresh file
+---------+    - Use Write tool — **never use cat/heredoc** (dumps noise into terminal)
+---------+@@ -105,9 +106,9 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
+---------+    - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
+---------  
+---------- Add to your Codex config (`~/.codex/config.toml`):
+---------+ 3. **On your next turn** — after the user responds in the terminal:
+---------+-   - Read `$SCREEN_DIR/.events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
+---------++   - Read `$STATE_DIR/events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
+---------+    - Merge with the user's terminal text to get the full picture
+---------+-   - The terminal message is the primary feedback; `.events` provides structured interaction data
+---------++   - The terminal message is the primary feedback; `state_dir/events` provides structured interaction data
+---------  
+---------- ```toml
+---------- [features]
+-----------collab = true
+----------+multi_agent = true
+---------- ```
+---------+ 4. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
+---------  
+---------- This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+----------diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
+----------index ed67c5e..60f9834 100644
+------------- a/skills/superpowers/writing-plans/SKILL.md
+----------+++ b/skills/superpowers/writing-plans/SKILL.md
+----------@@ -49,7 +49,7 @@ This structure informs the task decomposition. Each task should produce self-con
+---------- ```markdown
+---------- # [Feature Name] Implementation Plan
+---------+@@ -244,7 +245,7 @@ The frame template provides these CSS classes for your content:
+---------  
+-----------> **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
+----------+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+---------+ ## Browser Events Format
+---------  
+---------- **Goal:** [One sentence describing what this builds]
+---------+-When the user clicks options in the browser, their interactions are recorded to `$SCREEN_DIR/.events` (one JSON object per line). The file is cleared automatically when you push a new screen.
+---------++When the user clicks options in the browser, their interactions are recorded to `$STATE_DIR/events` (one JSON object per line). The file is cleared automatically when you push a new screen.
+---------  
+----------@@ -112,36 +112,34 @@ git commit -m "feat: add specific feature"
+---------+ ```jsonl
+---------+ {"type":"click","choice":"a","text":"Option A - Simple Layout","timestamp":1706000101}
+---------+@@ -254,7 +255,7 @@ When the user clicks options in the browser, their interactions are recorded to
+---------  
+---------- ## Plan Review Loop
+---------+ The full event stream shows the user's exploration path — they may click multiple options before settling. The last `choice` event is typically the final selection, but the pattern of clicks can reveal hesitation or preferences worth asking about.
+---------  
+-----------After completing each chunk of the plan:
+----------+After writing the complete plan:
+---------+-If `.events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
+---------++If `$STATE_DIR/events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
+---------  
+-----------1. Dispatch plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
+-----------   - Provide: chunk content, path to spec document
+-----------2. If ❌ Issues Found:
+-----------   - Fix the issues in the chunk
+-----------   - Re-dispatch reviewer for that chunk
+-----------   - Repeat until ✅ Approved
+-----------3. If ✅ Approved: proceed to next chunk (or execution handoff if last chunk)
+-----------
+-----------**Chunk boundaries:** Use `## Chunk N: <name>` headings to delimit chunks. Each chunk should be ≤1000 lines and logically self-contained.
+----------+1. Dispatch a single plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
+----------+   - Provide: path to the plan document, path to spec document
+----------+2. If ❌ Issues Found: fix the issues, re-dispatch reviewer for the whole plan
+----------+3. If ✅ Approved: proceed to execution handoff
+---------- 
+---------- **Review loop guidance:**
+---------- - Same agent that wrote the plan fixes it (preserves context)
+------------ If loop exceeds 5 iterations, surface to human for guidance
+------------ Reviewers are advisory - explain disagreements if you believe feedback is incorrect
+----------+- If loop exceeds 3 iterations, surface to human for guidance
+----------+- Reviewers are advisory — explain disagreements if you believe feedback is incorrect
+---------- 
+---------- ## Execution Handoff
+---------- 
+-----------After saving the plan:
+----------+After saving the plan, offer execution choice:
+----------+
+----------+**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Two execution options:**
+----------+
+----------+**1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
+---------- 
+-----------**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Ready to execute?"**
+----------+**2. Inline Execution** - Execute tasks in this session using executing-plans, batch execution with checkpoints
+---------- 
+-----------**Execution path depends on harness capabilities:**
+----------+**Which approach?"**
+---------+ ## Design Tips
+---------  
+-----------**If harness has subagents (Claude Code, etc.):**
+------------ **REQUIRED:** Use superpowers:subagent-driven-development
+------------ Do NOT offer a choice - subagent-driven is the standard approach
+----------+**If Subagent-Driven chosen:**
+----------+- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
+---------- - Fresh subagent per task + two-stage review
+---------+@@ -275,7 +276,7 @@ If `.events` doesn't exist, the user didn't interact with the browser — use on
+---------+ ## Cleaning Up
+---------  
+-----------**If harness does NOT have subagents:**
+------------ Execute plan in current session using superpowers:executing-plans
+----------+**If Inline Execution chosen:**
+----------+- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
+---------- - Batch execution with checkpoints for review
+----------diff --git a/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md b/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md
+----------index ce36cba..2db2806 100644
+------------- a/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md
+----------+++ b/skills/superpowers/writing-plans/plan-document-reviewer-prompt.md
+----------@@ -2,17 +2,17 @@
+---------- 
+---------- Use this template when dispatching a plan document reviewer subagent.
+---------- 
+-----------**Purpose:** Verify the plan chunk is complete, matches the spec, and has proper task decomposition.
+----------+**Purpose:** Verify the plan is complete, matches the spec, and has proper task decomposition.
+---------- 
+-----------**Dispatch after:** Each plan chunk is written
+----------+**Dispatch after:** The complete plan is written.
+---------+ ```bash
+---------+-scripts/stop-server.sh $SCREEN_DIR
+---------++scripts/stop-server.sh $SESSION_DIR
+---------+ ```
+---------  
+---------+ If the session used `--project-dir`, mockup files persist in `.superpowers/brainstorm/` for later reference. Only `/tmp` sessions get deleted on stop.
+---------+diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
+---------+index 86f58fa..539b2b1 100644
+---------+--- a/skills/superpowers/using-superpowers/references/codex-tools.md
+---------++++ b/skills/superpowers/using-superpowers/references/codex-tools.md
+---------+@@ -4,7 +4,7 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+---------+ 
+---------+ | Skill references | Codex equivalent |
+---------+ |-----------------|------------------|
+---------+-| `Task` tool (dispatch subagent) | `spawn_agent` |
+---------++| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
+---------+ | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
+---------+ | Task returns result | `wait` |
+---------+ | Task completes automatically | `close_agent` to free slot |
+---------+@@ -23,3 +23,78 @@ multi_agent = true
+---------  ```
+---------- Task tool (general-purpose):
+-----------  description: "Review plan chunk N"
+----------+  description: "Review plan document"
+----------   prompt: |
+-----------    You are a plan document reviewer. Verify this plan chunk is complete and ready for implementation.
+----------+    You are a plan document reviewer. Verify this plan is complete and ready for implementation.
+---------- 
+-----------    **Plan chunk to review:** [PLAN_FILE_PATH] - Chunk N only
+----------+    **Plan to review:** [PLAN_FILE_PATH]
+----------     **Spec for reference:** [SPEC_FILE_PATH]
+---------- 
+----------     ## What to Check
+----------@@ -20,33 +20,30 @@ Task tool (general-purpose):
+----------     | Category | What to Look For |
+----------     |----------|------------------|
+----------     | Completeness | TODOs, placeholders, incomplete tasks, missing steps |
+-----------    | Spec Alignment | Chunk covers relevant spec requirements, no scope creep |
+-----------    | Task Decomposition | Tasks atomic, clear boundaries, steps actionable |
+-----------    | File Structure | Files have clear single responsibilities, split by responsibility not layer |
+-----------    | File Size | Would any new or modified file likely grow large enough to be hard to reason about as a whole? |
+-----------    | Task Syntax | Checkbox syntax (`- [ ]`) on steps for tracking |
+-----------    | Chunk Size | Each chunk under 1000 lines |
+-----------
+-----------    ## CRITICAL
+-----------
+-----------    Look especially hard for:
+-----------    - Any TODO markers or placeholder text
+-----------    - Steps that say "similar to X" without actual content
+-----------    - Incomplete task definitions
+-----------    - Missing verification steps or expected outputs
+-----------    - Files planned to hold multiple responsibilities or likely to grow unwieldy
+----------+    | Spec Alignment | Plan covers spec requirements, no major scope creep |
+----------+    | Task Decomposition | Tasks have clear boundaries, steps are actionable |
+----------+    | Buildability | Could an engineer follow this plan without getting stuck? |
+---------+ 
+---------+ This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+--------- +
+----------+    ## Calibration
+---------++## Named agent dispatch
+--------- +
+----------+    **Only flag issues that would cause real problems during implementation.**
+----------+    An implementer building the wrong thing or getting stuck is an issue.
+----------+    Minor wording, stylistic preferences, and "nice to have" suggestions are not.
+---------++Claude Code skills reference named agent types like `superpowers:code-reviewer`.
+---------++Codex does not have a named agent registry — `spawn_agent` creates generic agents
+---------++from built-in roles (`default`, `explorer`, `worker`).
+--------- +
+----------+    Approve unless there are serious gaps — missing requirements from the spec,
+----------+    contradictory steps, placeholder content, or tasks so vague they can't be acted on.
+---------- 
+----------     ## Output Format
+---------- 
+-----------    ## Plan Review - Chunk N
+----------+    ## Plan Review
+---------- 
+----------     **Status:** Approved | Issues Found
+---------++When a skill says to dispatch a named agent type:
+---------++
+---------++1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
+---------++   local prompt template like `code-quality-reviewer-prompt.md`)
+---------++2. Read the prompt content
+---------++3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
+---------++4. Spawn a `worker` agent with the filled content as the `message`
+---------++
+---------++| Skill instruction | Codex equivalent |
+---------++|-------------------|------------------|
+---------++| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
+---------++| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
+---------++
+---------++### Message framing
+---------++
+---------++The `message` parameter is user-level input, not a system prompt. Structure it
+---------++for maximum instruction adherence:
+---------++
+---------++```
+---------++Your task is to perform the following. Follow the instructions below exactly.
+---------++
+---------++<agent-instructions>
+---------++[filled prompt content from the agent's .md file]
+---------++</agent-instructions>
+---------++
+---------++Execute this now. Output ONLY the structured response following the format
+---------++specified in the instructions above.
+---------++```
+---------++
+---------++- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
+---------++- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
+---------++- End with an explicit execution directive to prevent summarization of the instructions
+---------++
+---------++### When this workaround can be removed
+---------++
+---------++This approach compensates for Codex's plugin system not yet supporting an `agents`
+---------++field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
+---------++plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
+---------++skills can dispatch named agent types directly.
+---------++
+---------++## Environment Detection
+---------++
+---------++Skills that create worktrees or finish branches should detect their
+---------++environment with read-only git commands before proceeding:
+---------++
+---------++```bash
+---------++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---------++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---------++BRANCH=$(git branch --show-current)
+---------++```
+---------++
+---------++- `GIT_DIR != GIT_COMMON` → already in a linked worktree (skip creation)
+---------++- `BRANCH` empty → detached HEAD (cannot branch/push/PR from sandbox)
+---------++
+---------++See `using-git-worktrees` Step 0 and `finishing-a-development-branch`
+---------++Step 1 for how each skill uses these signals.
+---------++
+---------++## Codex App Finishing
+---------++
+---------++When the sandbox blocks branch/push operations (detached HEAD in an
+---------++externally managed worktree), the agent commits all work and informs
+---------++the user to use the App's native controls:
+---------++
+---------++- **"Create branch"** — names the branch, then commit/push/PR via App UI
+---------++- **"Hand off to local"** — transfers work to the user's local checkout
+---------++
+---------++The agent can still run tests, stage files, and output suggested branch
+---------++names, commit messages, and PR descriptions for the user to copy.
+---------+diff --git a/skills/superpowers/writing-plans/SKILL.md b/skills/superpowers/writing-plans/SKILL.md
+---------+index 60f9834..0d9c00b 100644
+---------+--- a/skills/superpowers/writing-plans/SKILL.md
+---------++++ b/skills/superpowers/writing-plans/SKILL.md
+---------+@@ -103,26 +103,33 @@ git commit -m "feat: add specific feature"
+---------+ ```
+---------+ ````
+---------  
+----------     **Issues (if any):**
+-----------    - [Task X, Step Y]: [specific issue] - [why it matters]
+----------+    - [Task X, Step Y]: [specific issue] - [why it matters for implementation]
+---------++## No Placeholders
+---------++
+---------++Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
+---------++- "TBD", "TODO", "implement later", "fill in details"
+---------++- "Add appropriate error handling" / "add validation" / "handle edge cases"
+---------++- "Write tests for the above" (without actual test code)
+---------++- "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
+---------++- Steps that describe what to do without showing how (code blocks required for code steps)
+---------++- References to types, functions, or methods not defined in any task
+---------++
+---------+ ## Remember
+---------+ - Exact file paths always
+---------+-- Complete code in plan (not "add validation")
+---------++- Complete code in every step — if a step changes code, show the code
+---------+ - Exact commands with expected output
+---------+-- Reference relevant skills with @ syntax
+---------+ - DRY, YAGNI, TDD, frequent commits
+---------+ 
+---------+-## Plan Review Loop
+---------++## Self-Review
+---------++
+---------++After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
+---------++
+---------++**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
+---------  
+-----------    **Recommendations (advisory):**
+-----------    - [suggestions that don't block approval]
+----------+    **Recommendations (advisory, do not block approval):**
+----------+    - [suggestions for improvement]
+---------- ```
+---------+-After writing the complete plan:
+---------++**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
+---------  
+---------- **Reviewer returns:** Status, Issues (if any), Recommendations
+---------+-1. Dispatch a single plan-document-reviewer subagent (see plan-document-reviewer-prompt.md) with precisely crafted review context — never your session history. This keeps the reviewer focused on the plan, not your thought process.
+---------+-   - Provide: path to the plan document, path to spec document
+---------+-2. If ❌ Issues Found: fix the issues, re-dispatch reviewer for the whole plan
+---------+-3. If ✅ Approved: proceed to execution handoff
+---------++**3. Type consistency:** Do the types, m
+---------\ No newline at end of file
+---+  > Merge pull request #143 from tgonzalezc5/feat/exa-search-skill
+---+diff --git a/skills/superpowers/executing-plans/SKILL.md b/skills/superpowers/executing-plans/SKILL.md
+---+index e67f94c..a591862 100644
+---+--- a/skills/superpowers/executing-plans/SKILL.md
+---++++ b/skills/superpowers/executing-plans/SKILL.md
+---+@@ -65,6 +65,6 @@ After all tasks complete and verified:
+---+ ## Integration
+---+ 
+---+ **Required workflow skills:**
+---+-- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+---++- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
+---+ - **superpowers:writing-plans** - Creates the plan this skill executes
+---+ - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+---+diff --git a/skills/superpowers/finishing-a-development-branch/SKILL.md b/skills/superpowers/finishing-a-development-branch/SKILL.md
+---+index c308b43..43da0ae 100644
+---+--- a/skills/superpowers/finishing-a-development-branch/SKILL.md
+---++++ b/skills/superpowers/finishing-a-development-branch/SKILL.md
+---+@@ -9,7 +9,7 @@ description: Use when implementation is complete, all tests pass, and you need t
+---+ 
+---+ Guide completion of development work by presenting clear options and handling chosen workflow.
+---+ 
+---+-**Core principle:** Verify tests → Present options → Execute choice → Clean up.
+---++**Core principle:** Verify tests → Detect environment → Present options → Execute choice → Clean up.
+---+ 
+---+ **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
+---+ 
+---+@@ -37,7 +37,24 @@ Stop. Don't proceed to Step 2.
+---+ 
+---+ **If tests pass:** Continue to Step 2.
+---+ 
+---+-### Step 2: Determine Base Branch
+---++### Step 2: Detect Environment
+---++
+---++**Determine workspace state before presenting options:**
+---++
+---++```bash
+---++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---++```
+---++
+---++This determines which menu to show and how cleanup works:
+---++
+---++| State | Menu | Cleanup |
+---++|-------|------|---------|
+---++| `GIT_DIR == GIT_COMMON` (normal repo) | Standard 4 options | No worktree to clean up |
+---++| `GIT_DIR != GIT_COMMON`, named branch | Standard 4 options | Provenance-based (see Step 6) |
+---++| `GIT_DIR != GIT_COMMON`, detached HEAD | Reduced 3 options (no merge) | No cleanup (externally managed) |
+---++
+---++### Step 3: Determine Base Branch
+---+ 
+---+ ```bash
+---+ # Try common base branches
+---+@@ -46,9 +63,9 @@ git merge-base HEAD main 2>/dev/null || git merge-base HEAD master 2>/dev/null
+---+ 
+---+ Or ask: "This branch split from main - is that correct?"
+---+ 
+---+-### Step 3: Present Options
+---++### Step 4: Present Options
+---+ 
+---+-Present exactly these 4 options:
+---++**Normal repo and named-branch worktree — present exactly these 4 options:**
+---+ 
+---+ ```
+---+ Implementation complete. What would you like to do?
+---+@@ -61,30 +78,45 @@ Implementation complete. What would you like to do?
+---+ Which option?
+---+ ```
+---+ 
+---++**Detached HEAD — present exactly these 3 options:**
+---++
+---++```
+---++Implementation complete. You're on a detached HEAD (externally managed workspace).
+---++
+---++1. Push as new branch and create a Pull Request
+---++2. Keep as-is (I'll handle it later)
+---++3. Discard this work
+---++
+---++Which option?
+---++```
+---++
+---+ **Don't add explanation** - keep options concise.
+---+ 
+---+-### Step 4: Execute Choice
+---++### Step 5: Execute Choice
+---+ 
+---+ #### Option 1: Merge Locally
+---+ 
+---+ ```bash
+---+-# Switch to base branch
+---+-git checkout <base-branch>
+---++# Get main repo root for CWD safety
+---++MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
+---++cd "$MAIN_ROOT"
+---+ 
+---+-# Pull latest
+---++# Merge first — verify success before removing anything
+---++git checkout <base-branch>
+---+ git pull
+---+-
+---+-# Merge feature branch
+---+ git merge <feature-branch>
+---+ 
+---+ # Verify tests on merged result
+---+ <test command>
+---+ 
+---+-# If tests pass
+---+-git branch -d <feature-branch>
+---++# Only after merge succeeds: cleanup worktree (Step 6), then delete branch
+---+ ```
+---+ 
+---+-Then: Cleanup worktree (Step 5)
+---++Then: Cleanup worktree (Step 6), then delete branch:
+---++
+---++```bash
+---++git branch -d <feature-branch>
+---++```
+---+ 
+---+ #### Option 2: Push and Create PR
+---+ 
+---+@@ -103,7 +135,7 @@ EOF
+---+ )"
+---+ ```
+---+ 
+---+-Then: Cleanup worktree (Step 5)
+---++**Do NOT clean up worktree** — user needs it alive to iterate on PR feedback.
+---+ 
+---+ #### Option 3: Keep As-Is
+---+ 
+---+@@ -127,36 +159,46 @@ Wait for exact confirmation.
+---+ 
+---+ If confirmed:
+---+ ```bash
+---+-git checkout <base-branch>
+---+-git branch -D <feature-branch>
+---++MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
+---++cd "$MAIN_ROOT"
+---+ ```
+---+ 
+---+-Then: Cleanup worktree (Step 5)
+---++Then: Cleanup worktree (Step 6), then force-delete branch:
+---++```bash
+---++git branch -D <feature-branch>
+---++```
+---+ 
+---+-### Step 5: Cleanup Worktree
+---++### Step 6: Cleanup Workspace
+---+ 
+---+-**For Options 1, 2, 4:**
+---++**Only runs for Options 1 and 4.** Options 2 and 3 always preserve the worktree.
+---+ 
+---+-Check if in worktree:
+---+ ```bash
+---+-git worktree list | grep $(git branch --show-current)
+---++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---++WORKTREE_PATH=$(git rev-parse --show-toplevel)
+---+ ```
+---+ 
+---+-If yes:
+---++**If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
+---++
+---++**If worktree path is under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`:** Superpowers created this worktree — we own cleanup.
+---++
+---+ ```bash
+---+-git worktree remove <worktree-path>
+---++MAIN_ROOT=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel)
+---++cd "$MAIN_ROOT"
+---++git worktree remove "$WORKTREE_PATH"
+---++git worktree prune  # Self-healing: clean up any stale registrations
+---+ ```
+---+ 
+---+-**For Option 3:** Keep worktree.
+---++**Otherwise:** The host environment (harness) owns this workspace. Do NOT remove it. If your platform provides a workspace-exit tool, use it. Otherwise, leave the workspace in place.
+---+ 
+---+ ## Quick Reference
+---+ 
+---+ | Option | Merge | Push | Keep Worktree | Cleanup Branch |
+---+ |--------|-------|------|---------------|----------------|
+---+-| 1. Merge locally | ✓ | - | - | ✓ |
+---+-| 2. Create PR | - | ✓ | ✓ | - |
+---+-| 3. Keep as-is | - | - | ✓ | - |
+---+-| 4. Discard | - | - | - | ✓ (force) |
+---++| 1. Merge locally | yes | - | - | yes |
+---++| 2. Create PR | - | yes | yes | - |
+---++| 3. Keep as-is | - | - | yes | - |
+---++| 4. Discard | - | - | - | yes (force) |
+---+ 
+---+ ## Common Mistakes
+---+ 
+---+@@ -165,13 +207,25 @@ git worktree remove <worktree-path>
+---+ - **Fix:** Always verify tests before offering options
+---+ 
+---+ **Open-ended questions**
+---+-- **Problem:** "What should I do next?" → ambiguous
+---+-- **Fix:** Present exactly 4 structured options
+---++- **Problem:** "What should I do next?" is ambiguous
+---++- **Fix:** Present exactly 4 structured options (or 3 for detached HEAD)
+---+ 
+---+-**Automatic worktree cleanup**
+---+-- **Problem:** Remove worktree when might need it (Option 2, 3)
+---++**Cleaning up worktree for Option 2**
+---++- **Problem:** Remove worktree user needs for PR iteration
+---+ - **Fix:** Only cleanup for Options 1 and 4
+---+ 
+---++**Deleting branch before removing worktree**
+---++- **Problem:** `git branch -d` fails because worktree still references the branch
+---++- **Fix:** Merge first, remove worktree, then delete branch
+---++
+---++**Running git worktree remove from inside the worktree**
+---++- **Problem:** Command fails silently when CWD is inside the worktree being removed
+---++- **Fix:** Always `cd` to main repo root before `git worktree remove`
+---++
+---++**Cleaning up harness-owned worktrees**
+---++- **Problem:** Removing a worktree the harness created causes phantom state
+---++- **Fix:** Only clean up worktrees under `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`
+---++
+---+ **No confirmation for discard**
+---+ - **Problem:** Accidentally delete work
+---+ - **Fix:** Require typed "discard" confirmation
+---+@@ -183,18 +237,15 @@ git worktree remove <worktree-path>
+---+ - Merge without verifying tests on result
+---+ - Delete work without confirmation
+---+ - Force-push without explicit request
+---++- Remove a worktree before confirming merge success
+---++- Clean up worktrees you didn't create (provenance check)
+---++- Run `git worktree remove` from inside the worktree
+---+ 
+---+ **Always:**
+---+ - Verify tests before offering options
+---+-- Present exactly 4 options
+---++- Detect environment before presenting menu
+---++- Present exactly 4 options (or 3 for detached HEAD)
+---+ - Get typed confirmation for Option 4
+---+ - Clean up worktree for Options 1 & 4 only
+---+-
+---+-## Integration
+---+-
+---+-**Called by:**
+---+-- **subagent-driven-development** (Step 7) - After all tasks complete
+---+-- **executing-plans** (Step 5) - After all batches complete
+---+-
+---+-**Pairs with:**
+---+-- **using-git-worktrees** - Cleans up worktree created by that skill
+---++- `cd` to main repo root before worktree removal
+---++- Run `git worktree prune` after removal
+---+diff --git a/skills/superpowers/requesting-code-review/SKILL.md b/skills/superpowers/requesting-code-review/SKILL.md
+---+index fe7c8d9..34b8340 100644
+---+--- a/skills/superpowers/requesting-code-review/SKILL.md
+---++++ b/skills/superpowers/requesting-code-review/SKILL.md
+---+@@ -5,7 +5,7 @@ description: Use when completing tasks, implementing major features, or before m
+---+ 
+---+ # Requesting Code Review
+---+ 
+---+-Dispatch superpowers:code-reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+---++Dispatch a code reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+---+ 
+---+ **Core principle:** Review early, review often.
+---+ 
+---+@@ -29,16 +29,15 @@ BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
+---+ HEAD_SHA=$(git rev-parse HEAD)
+---+ ```
+---+ 
+---+-**2. Dispatch code-reviewer subagent:**
+---++**2. Dispatch code reviewer subagent:**
+---+ 
+---+-Use Task tool with superpowers:code-reviewer type, fill template at `code-reviewer.md`
+---++Use Task tool with `general-purpose` type, fill template at `code-reviewer.md`
+---+ 
+---+ **Placeholders:**
+---+-- `{WHAT_WAS_IMPLEMENTED}` - What you just built
+---++- `{DESCRIPTION}` - Brief summary of what you built
+---+ - `{PLAN_OR_REQUIREMENTS}` - What it should do
+---+ - `{BASE_SHA}` - Starting commit
+---+ - `{HEAD_SHA}` - Ending commit
+---+-- `{DESCRIPTION}` - Brief summary
+---+ 
+---+ **3. Act on feedback:**
+---+ - Fix Critical issues immediately
+---+@@ -56,12 +55,11 @@ You: Let me request code review before proceeding.
+---+ BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
+---+ HEAD_SHA=$(git rev-parse HEAD)
+---+ 
+---+-[Dispatch superpowers:code-reviewer subagent]
+---+-  WHAT_WAS_IMPLEMENTED: Verification and repair functions for conversation index
+---++[Dispatch code reviewer subagent]
+---++  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
+---+   PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
+---+   BASE_SHA: a7981ec
+---+   HEAD_SHA: 3df7661
+---+-  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
+---+ 
+---+ [Subagent returns]:
+---+   Strengths: Clean architecture, real tests
+---+@@ -82,7 +80,7 @@ You: [Fix progress indicators]
+---+ - Fix before moving to next task
+---+ 
+---+ **Executing Plans:**
+---+-- Review after each batch (3 tasks)
+---++- Review after each task or at natural checkpoints
+---+ - Get feedback, apply, continue
+---+ 
+---+ **Ad-Hoc Development:**
+---+diff --git a/skills/superpowers/requesting-code-review/code-reviewer.md b/skills/superpowers/requesting-code-review/code-reviewer.md
+---+index 3c427c9..525e4b4 100644
+---+--- a/skills/superpowers/requesting-code-review/code-reviewer.md
+---++++ b/skills/superpowers/requesting-code-review/code-reviewer.md
+---+@@ -1,111 +1,133 @@
+---+-# Code Review Agent
+---++# Code Reviewer Prompt Template
+---+ 
+---+-You are reviewing code changes for production readiness.
+---++Use this template when dispatching a code reviewer subagent.
+---+ 
+---+-**Your task:**
+---+-1. Review {WHAT_WAS_IMPLEMENTED}
+---+-2. Compare against {PLAN_OR_REQUIREMENTS}
+---+-3. Check code quality, architecture, testing
+---+-4. Categorize issues by severity
+---+-5. Assess production readiness
+---++**Purpose:** Review completed work against requirements and code quality standards before it cascades into more work.
+---+ 
+---+-## What Was Implemented
+---++```
+---++Task tool (general-purpose):
+---++  description: "Review code changes"
+---++  prompt: |
+---++    You are a Senior Code Reviewer with expertise in software architecture,
+---++    design patterns, and best practices. Your job is to review completed work
+---++    against its plan or requirements and identify issues before they cascade.
+---+ 
+---+-{DESCRIPTION}
+---++    ## What Was Implemented
+---+ 
+---+-## Requirements/Plan
+---++    {DESCRIPTION}
+---+ 
+---+-{PLAN_REFERENCE}
+---++    ## Requirements / Plan
+---+ 
+---+-## Git Range to Review
+---++    {PLAN_OR_REQUIREMENTS}
+---+ 
+---+-**Base:** {BASE_SHA}
+---+-**Head:** {HEAD_SHA}
+---++    ## Git Range to Review
+---+ 
+---+-```bash
+---+-git diff --stat {BASE_SHA}..{HEAD_SHA}
+---+-git diff {BASE_SHA}..{HEAD_SHA}
+---+-```
+---++    **Base:** {BASE_SHA}
+---++    **Head:** {HEAD_SHA}
+---+ 
+---+-## Review Checklist
+---+-
+---+-**Code Quality:**
+---+-- Clean separation of concerns?
+---+-- Proper error handling?
+---+-- Type safety (if applicable)?
+---+-- DRY principle followed?
+---+-- Edge cases handled?
+---+-
+---+-**Architecture:**
+---+-- Sound design decisions?
+---+-- Scalability considerations?
+---+-- Performance implications?
+---+-- Security concerns?
+---+-
+---+-**Testing:**
+---+-- Tests actually test logic (not mocks)?
+---+-- Edge cases covered?
+---+-- Integration tests where needed?
+---+-- All tests passing?
+---+-
+---+-**Requirements:**
+---+-- All plan requirements met?
+---+-- Implementation matches spec?
+---+-- No scope creep?
+---+-- Breaking changes documented?
+---+-
+---+-**Production Readiness:**
+---+-- Migration strategy (if schema changes)?
+---+-- Backward compatibility considered?
+---+-- Documentation complete?
+---+-- No obvious bugs?
+---+-
+---+-## Output Format
+---++    ```bash
+---++    git diff --stat {BASE_SHA}..{HEAD_SHA}
+---++    git diff {BASE_SHA}..{HEAD_SHA}
+---++    ```
+---+ 
+---+-### Strengths
+---+-[What's well done? Be specific.]
+---++    ## What to Check
+---+ 
+---+-### Issues
+---++    **Plan alignment:**
+---++    - Does the implementation match the plan / requirements?
+---++    - Are deviations justified improvements, or problematic departures?
+---++    - Is all planned functionality present?
+---+ 
+---+-#### Critical (Must Fix)
+---+-[Bugs, security issues, data loss risks, broken functionality]
+---++    **Code quality:**
+---++    - Clean separation of concerns?
+---++    - Proper error handling?
+---++    - Type safety where applicable?
+---++    - DRY without premature abstraction?
+---++    - Edge cases handled?
+---+ 
+---+-#### Important (Should Fix)
+---+-[Architecture problems, missing features, poor error handling, test gaps]
+---++    **Architecture:**
+---++    - Sound design decisions?
+---++    - Reasonable scalability and performance?
+---++    - Security concerns?
+---++    - Integrates cleanly with surrounding code?
+---+ 
+---+-#### Minor (Nice to Have)
+---+-[Code style, optimization opportunities, documentation improvements]
+---++    **Testing:**
+---++    - Tests verify real behavior, not mocks?
+---++    - Edge cases covered?
+---++    - Integration tests where they matter?
+---++    - All tests passing?
+---+ 
+---+-**For each issue:**
+---+-- File:line reference
+---+-- What's wrong
+---+-- Why it matters
+---+-- How to fix (if not obvious)
+---++    **Production readiness:**
+---++    - Migration strategy if schema changed?
+---++    - Backward compatibility considered?
+---++    - Documentation complete?
+---++    - No obvious bugs?
+---+ 
+---+-### Recommendations
+---+-[Improvements for code quality, architecture, or process]
+---++    ## Calibration
+---+ 
+---+-### Assessment
+---++    Categorize issues by actual severity. Not everything is Critical.
+---++    Acknowledge what was done well before listing issues — accurate praise
+---++    helps the implementer trust the rest of the feedback.
+---++
+---++    If you find significant deviations from the plan, flag them specifically
+---++    so the implementer can confirm whether the deviation was intentional.
+---++    If you find issues with the plan itself rather than the implementation,
+---++    say so.
+---++
+---++    ## Output Format
+---++
+---++    ### Strengths
+---++    [What's well done? Be specific.]
+---++
+---++    ### Issues
+---+ 
+---+-**Ready to merge?** [Yes/No/With fixes]
+---++    #### Critical (Must Fix)
+---++    [Bugs, security issues, data loss risks, broken functionality]
+---+ 
+---+-**Reasoning:** [Technical assessment in 1-2 sentences]
+---++    #### Important (Should Fix)
+---++    [Architecture problems, missing features, poor error handling, test gaps]
+---+ 
+---+-## Critical Rules
+---++    #### Minor (Nice to Have)
+---++    [Code style, optimization opportunities, documentation polish]
+---++
+---++    For each issue:
+---++    - File:line reference
+---++    - What's wrong
+---++    - Why it matters
+---++    - How to fix (if not obvious)
+---++
+---++    ### Recommendations
+---++    [Improvements for code quality, architecture, or process]
+---++
+---++    ### Assessment
+---++
+---++    **Ready to merge?** [Yes | No | With fixes]
+---++
+---++    **Reasoning:** [1-2 sentence technical assessment]
+---++
+---++    ## Critical Rules
+---++
+---++    **DO:**
+---++    - Categorize by actual severity
+---++    - Be specific (file:line, not vague)
+---++    - Explain WHY each issue matters
+---++    - Acknowledge strengths
+---++    - Give a clear verdict
+---++
+---++    **DON'T:**
+---++    - Say "looks good" without checking
+---++    - Mark nitpicks as Critical
+---++    - Give feedback on code you didn't actually read
+---++    - Be vague ("improve error handling")
+---++    - Avoid giving a clear verdict
+---++```
+---+ 
+---+-**DO:**
+---+-- Categorize by actual severity (not everything is Critical)
+---+-- Be specific (file:line, not vague)
+---+-- Explain WHY issues matter
+---+-- Acknowledge strengths
+---+-- Give clear verdict
+---++**Placeholders:**
+---++- `{DESCRIPTION}` — brief summary of what was built
+---++- `{PLAN_OR_REQUIREMENTS}` — what it should do (plan file path, task text, or requirements)
+---++- `{BASE_SHA}` — starting commit
+---++- `{HEAD_SHA}` — ending commit
+---+ 
+---+-**DON'T:**
+---+-- Say "looks good" without checking
+---+-- Mark nitpicks as Critical
+---+-- Give feedback on code you didn't review
+---+-- Be vague ("improve error handling")
+---+-- Avoid giving a clear verdict
+---++**Reviewer returns:** Strengths, Issues (Critical / Important / Minor), Recommendations, Assessment
+---+ 
+---+ ## Example Output
+---+ 
+---+diff --git a/skills/superpowers/subagent-driven-development/SKILL.md b/skills/superpowers/subagent-driven-development/SKILL.md
+---+index 5150b18..ea7ac8f 100644
+---+--- a/skills/superpowers/subagent-driven-development/SKILL.md
+---++++ b/skills/superpowers/subagent-driven-development/SKILL.md
+---+@@ -11,6 +11,8 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
+---+ 
+---+ **Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration
+---+ 
+---++**Continuous execution:** Do not pause to check in with your human partner between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete. "Should I continue?" prompts and progress summaries waste their time — they asked you to execute the plan, so execute it.
+---++
+---+ ## When to Use
+---+ 
+---+ ```dot
+---+@@ -265,7 +267,7 @@ Done!
+---+ ## Integration
+---+ 
+---+ **Required workflow skills:**
+---+-- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+---++- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
+---+ - **superpowers:writing-plans** - Creates the plan this skill executes
+---+ - **superpowers:requesting-code-review** - Code review template for reviewer subagents
+---+ - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+---+diff --git a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
+---+index a04201a..51f901a 100644
+---+--- a/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
+---++++ b/skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt.md
+---+@@ -7,14 +7,13 @@ Use this template when dispatching a code quality reviewer subagent.
+---+ **Only dispatch after spec compliance review passes.**
+---+ 
+---+ ```
+---+-Task tool (superpowers:code-reviewer):
+---++Task tool (general-purpose):
+---+   Use template at requesting-code-review/code-reviewer.md
+---+ 
+---+-  WHAT_WAS_IMPLEMENTED: [from implementer's report]
+---++  DESCRIPTION: [task summary, from implementer's report]
+---+   PLAN_OR_REQUIREMENTS: Task N from [plan-file]
+---+   BASE_SHA: [commit before task]
+---+   HEAD_SHA: [current commit]
+---+-  DESCRIPTION: [task summary]
+---+ ```
+---+ 
+---+ **In addition to standard code quality concerns, the reviewer should check:**
+---+diff --git a/skills/superpowers/systematic-debugging/CREATION-LOG.md b/skills/superpowers/systematic-debugging/CREATION-LOG.md
+---+index 024d00a..9aa0309 100644
+---+--- a/skills/superpowers/systematic-debugging/CREATION-LOG.md
+---++++ b/skills/superpowers/systematic-debugging/CREATION-LOG.md
+---+@@ -4,7 +4,7 @@ Reference example of extracting, structuring, and bulletproofing a critical skil
+---+ 
+---+ ## Source Material
+---+ 
+---+-Extracted debugging framework from `/Users/jesse/.claude/CLAUDE.md`:
+---++Extracted debugging framework from `~/.claude/CLAUDE.md`:
+---+ - 4-phase systematic process (Investigation → Pattern Analysis → Hypothesis → Implementation)
+---+ - Core mandate: ALWAYS find root cause, NEVER fix symptoms
+---+ - Rules designed to resist time pressure and rationalization
+---+diff --git a/skills/superpowers/systematic-debugging/root-cause-tracing.md b/skills/superpowers/systematic-debugging/root-cause-tracing.md
+---+index 9484774..12ef522 100644
+---+--- a/skills/superpowers/systematic-debugging/root-cause-tracing.md
+---++++ b/skills/superpowers/systematic-debugging/root-cause-tracing.md
+---+@@ -33,7 +33,7 @@ digraph when_to_use {
+---+ 
+---+ ### 1. Observe the Symptom
+---+ ```
+---+-Error: git init failed in /Users/jesse/project/packages/core
+---++Error: git init failed in ~/project/packages/core
+---+ ```
+---+ 
+---+ ### 2. Find Immediate Cause
+---+diff --git a/skills/superpowers/using-git-worktrees/SKILL.md b/skills/superpowers/using-git-worktrees/SKILL.md
+---+index e153843..134d371 100644
+---+--- a/skills/superpowers/using-git-worktrees/SKILL.md
+---++++ b/skills/superpowers/using-git-worktrees/SKILL.md
+---+@@ -1,104 +1,117 @@
+---+ ---
+---+ name: using-git-worktrees
+---+-description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification
+---++description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback
+---+ ---
+---+ 
+---+ # Using Git Worktrees
+---+ 
+---+ ## Overview
+---+ 
+---+-Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
+---++Ensure work happens in an isolated workspace. Prefer your platform's native worktree tools. Fall back to manual git worktrees only when no native tool is available.
+---+ 
+---+-**Core principle:** Systematic directory selection + safety verification = reliable isolation.
+---++**Core principle:** Detect existing isolation first. Then use native tools. Then fall back to git. Never fight the harness.
+---+ 
+---+ **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
+---+ 
+---+-## Directory Selection Process
+---++## Step 0: Detect Existing Isolation
+---+ 
+---+-Follow this priority order:
+---+-
+---+-### 1. Check Existing Directories
+---++**Before creating anything, check if you are already in an isolated workspace.**
+---+ 
+---+ ```bash
+---+-# Check in priority order
+---+-ls -d .worktrees 2>/dev/null     # Preferred (hidden)
+---+-ls -d worktrees 2>/dev/null      # Alternative
+---++GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+---++GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+---++BRANCH=$(git branch --show-current)
+---+ ```
+---+ 
+---+-**If found:** Use that directory. If both exist, `.worktrees` wins.
+---+-
+---+-### 2. Check CLAUDE.md
+---++**Submodule guard:** `GIT_DIR != GIT_COMMON` is also true inside git submodules. Before concluding "already in a worktree," verify you are not in a submodule:
+---+ 
+---+ ```bash
+---+-grep -i "worktree.*director" CLAUDE.md 2>/dev/null
+---++# If this returns a path, you're in a submodule, not a worktree — treat as normal repo
+---++git rev-parse --show-superproject-working-tree 2>/dev/null
+---+ ```
+---+ 
+---+-**If preference specified:** Use it without asking.
+---++**If `GIT_DIR != GIT_COMMON` (and not a submodule):** You are already in a linked worktree. Skip to Step 3 (Project Setup). Do NOT create another worktree.
+---+ 
+---+-### 3. Ask User
+---++Report with branch state:
+---++- On a branch: "Already in isolated workspace at `<path>` on branch `<name>`."
+---++- Detached HEAD: "Already in isolated workspace at `<path>` (detached HEAD, externally managed). Branch creation needed at finish time."
+---+ 
+---+-If no directory exists and no CLAUDE.md preference:
+---++**If `GIT_DIR == GIT_COMMON` (or in a submodule):** You are in a normal repo checkout.
+---+ 
+---+-```
+---+-No worktree directory found. Where should I create worktrees?
+---++Has the user already indicated their worktree preference in your instructions? If not, ask for consent before creating a worktree:
+---+ 
+---+-1. .worktrees/ (project-local, hidden)
+---+-2. ~/.config/superpowers/worktrees/<project-name>/ (global location)
+---++> "Would you like me to set up an isolated worktree? It protects your current branch from changes."
+---+ 
+---+-Which would you prefer?
+---+-```
+---++Honor any existing declared preference without asking. If the user declines consent, work in place and skip to Step 3.
+---++
+---++## Step 1: Create Isolated Workspace
+---++
+---++**You have two mechanisms. Try them in this order.**
+---++
+---++### 1a. Native Worktree Tools (preferred)
+---++
+---++The user has asked for an isolated workspace (Step 0 consent). Do you already have a way to create a worktree? It might be a tool with a name like `EnterWorktree`, `WorktreeCreate`, a `/worktree` command, or a `--worktree` flag. If you do, use it and skip to Step 3.
+---++
+---++Native tools handle directory placement, branch creation, and cleanup automatically. Using `git worktree add` when you have a native tool creates phantom state your harness can't see or manage.
+---++
+---++Only proceed to Step 1b if you have no native worktree tool available.
+---+ 
+---+-## Safety Verification
+---++### 1b. Git Worktree Fallback
+---+ 
+---+-### For Project-Local Directories (.worktrees or worktrees)
+---++**Only use this if Step 1a does not apply** — you have no native worktree tool available. Create a worktree manually using git.
+---++
+---++#### Directory Selection
+---++
+---++Follow this priority order. Explicit user preference always beats observed filesystem state.
+---++
+---++1. **Check your instructions for a declared worktree directory preference.** If the user has already specified one, use it without asking.
+---++
+---++2. **Check for an existing project-local worktree directory:**
+---++   ```bash
+---++   ls -d .worktrees 2>/dev/null     # Preferred (hidden)
+---++   ls -d worktrees 2>/dev/null      # Alternative
+---++   ```
+---++   If found, use it. If both exist, `.worktrees` wins.
+---++
+---++3. **Check for an existing global directory:**
+---++   ```bash
+---++   project=$(basename "$(git rev-parse --show-toplevel)")
+---++   ls -d ~/.config/superpowers/worktrees/$project 2>/dev/null
+---++   ```
+---++   If found, use it (backward compatibility with legacy global path).
+---++
+---++4. **If there is no other guidance available**, default to `.worktrees/` at the project root.
+---++
+---++#### Safety Verification (project-local directories only)
+---+ 
+---+ **MUST verify directory is ignored before creating worktree:**
+---+ 
+---+ ```bash
+---+-# Check if directory is ignored (respects local, global, and system gitignore)
+---+ git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/dev/null
+---+ ```
+---+ 
+---+-**If NOT ignored:**
+---+-
+---+-Per Jesse's rule "Fix broken things immediately":
+---+-1. Add appropriate line to .gitignore
+---+-2. Commit the change
+---+-3. Proceed with worktree creation
+---++**If NOT ignored:** Add to .gitignore, commit the change, then proceed.
+---+ 
+---+ **Why critical:** Prevents accidentally committing worktree contents to repository.
+---+ 
+---+-### For Global Directory (~/.config/superpowers/worktrees)
+---+-
+---+-No .gitignore verification needed - outside project entirely.
+---++Global directories (`~/.config/superpowers/worktrees/`) need no verification.
+---+ 
+---+-## Creation Steps
+---+-
+---+-### 1. Detect Project Name
+---++#### Create the Worktree
+---+ 
+---+ ```bash
+---+ project=$(basename "$(git rev-parse --show-toplevel)")
+---+-```
+---+ 
+---+-### 2. Create Worktree
+---++# Determine path based on chosen location
+---++# For project-local: path="$LOCATION/$BRANCH_NAME"
+---++# For global: path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
+---+ 
+---+-```bash
+---+-# Determine full path
+---+-case $LOCATION in
+---+-  .worktrees|worktrees)
+---+-    path="$LOCATION/$BRANCH_NAME"
+---+-    ;;
+---+-  ~/.config/superpowers/worktrees/*)
+---+-    path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
+---+-    ;;
+---+-esac
+---+-
+---+-# Create worktree with new branch
+---+ git worktree add "$path" -b "$BRANCH_NAME"
+---+ cd "$path"
+---+ ```
+---+ 
+---+-### 3. Run Project Setup
+---++**Sandbox fallback:** If `git worktree add` fails with a permission error (sandbox denial), tell the user the sandbox blocked worktree creation and you're working in the current directory instead. Then run setup and baseline tests in place.
+---++
+---++## Step 3: Project Setup
+---+ 
+---+ Auto-detect and run appropriate setup:
+---+ 
+---+@@ -117,23 +130,20 @@ if [ -f pyproject.toml ]; then poetry install; fi
+---+ if [ -f go.mod ]; then go mod download; fi
+---+ ```
+---+ 
+---+-### 4. Verify Clean Baseline
+---++## Step 4: Verify Clean Baseline
+---+ 
+---+-Run tests to ensure worktree starts clean:
+---++Run tests to ensure workspace starts clean:
+---+ 
+---+ ```bash
+---+-# Examples - use project-appropriate command
+---+-npm test
+---+-cargo test
+---+-pytest
+---+-go test ./...
+---++# Use project-appropriate command
+---++npm test / cargo test / pytest / go test ./...
+---+ ```
+---+ 
+---+ **If tests fail:** Report failures, ask whether to proceed or investigate.
+---+ 
+---+ **If tests pass:** Report ready.
+---+ 
+---+-### 5. Report Location
+---++### Report
+---+ 
+---+ ```
+---+ Worktree ready at <full-path>
+---+@@ -145,16 +155,32 @@ Ready to implement <feature-name>
+---+ 
+---+ | Situation | Action |
+---+ |-----------|--------|
+---++| Already in linked worktree | Skip creation (Step 0) |
+---++| In a submodule | Treat as normal repo (Step 0 guard) |
+---++| Native worktree tool available | Use it (Step 1a) |
+---++| No native tool | Git worktree fallback (Step 1b) |
+---+ | `.worktrees/` exists | Use it (verify ignored) |
+---+ | `worktrees/` exists | Use it (verify ignored) |
+---+ | Both exist | Use `.worktrees/` |
+---+-| Neither exists | Check CLAUDE.md → Ask user |
+---++| Neither exists | Check instruction file, then default `.worktrees/` |
+---++| Global path exists | Use it (backward compat) |
+---+ | Directory not ignored | Add to .gitignore + commit |
+---++| Permission error on create | Sandbox fallback, work in place |
+---+ | Tests fail during baseline | Report failures + ask |
+---+ | No package.json/Cargo.toml | Skip dependency install |
+---+ 
+---+ ## Common Mistakes
+---+ 
+---++### Fighting the harness
+---++
+---++- **Problem:** Using `git worktree add` when the platform already provides isolation
+---++- **Fix:** Step 0 detects existing isolation. Step 1a defers to native tools.
+---++
+---++### Skipping detection
+---++
+---++- **Problem:** Creating a nested worktree inside an existing one
+---++- **Fix:** Always run Step 0 before creating anything
+---++
+---+ ### Skipping ignore verification
+---+ 
+---+ - **Problem:** Worktree contents get tracked, pollute git status
+---+@@ -163,56 +189,27 @@ Ready to implement <feature-name>
+---+ ### Assuming directory location
+---+ 
+---+ - **Problem:** Creates inconsistency, violates project conventions
+---+-- **Fix:** Follow priority: existing > CLAUDE.md > ask
+---++- **Fix:** Follow priority: existing > global legacy > instruction file > default
+---+ 
+---+ ### Proceeding with failing tests
+---+ 
+---+ - **Problem:** Can't distinguish new bugs from pre-existing issues
+---+ - **Fix:** Report failures, get explicit permission to proceed
+---+ 
+---+-### Hardcoding setup commands
+---+-
+---+-- **Problem:** Breaks on projects using different tools
+---+-- **Fix:** Auto-detect from project files (package.json, etc.)
+---+-
+---+-## Example Workflow
+---+-
+---+-```
+---+-You: I'm using the using-git-worktrees skill to set up an isolated workspace.
+---+-
+---+-[Check .worktrees/ - exists]
+---+-[Verify ignored - git check-ignore confirms .worktrees/ is ignored]
+---+-[Create worktree: git worktree add .worktrees/auth -b feature/auth]
+---+-[Run npm install]
+---+-[Run npm test - 47 passing]
+---+-
+---+-Worktree ready at /Users/jesse/myproject/.worktrees/auth
+---+-Tests passing (47 tests, 0 failures)
+---+-Ready to implement auth feature
+---+-```
+---+-
+---+ ## Red Flags
+---+ 
+---+ **Never:**
+---++- Create a worktree when Step 0 detects existing isolation
+---++- Use `git worktree add` when you have a native worktree tool (e.g., `EnterWorktree`). This is the #1 mistake — if you have it, use it.
+---++- Skip Step 1a by jumping straight to Step 1b's git commands
+---+ - Create worktree without verifying it's ignored (project-local)
+---+ - Skip baseline test verification
+---+ - Proceed with failing tests without asking
+---+-- Assume directory location when ambiguous
+---+-- Skip CLAUDE.md check
+---+ 
+---+ **Always:**
+---+-- Follow directory priority: existing > CLAUDE.md > ask
+---++- Run Step 0 detection first
+---++- Prefer native tools over git fallback
+---++- Follow directory priority: existing > global legacy > instruction file > default
+---+ - Verify directory is ignored for project-local
+---+ - Auto-detect and run project setup
+---+ - Verify clean test baseline
+---+-
+---+-## Integration
+---+-
+---+-**Called by:**
+---+-- **brainstorming** (Phase 4) - REQUIRED when design is approved and implementation follows
+---+-- **subagent-driven-development** - REQUIRED before executing any tasks
+---+-- **executing-plans** - REQUIRED before executing any tasks
+---+-- Any skill needing isolated workspace
+---+-
+---+-**Pairs with:**
+---+-- **finishing-a-development-branch** - REQUIRED for cleanup after work complete
+---+diff --git a/skills/superpowers/using-superpowers/references/codex-tools.md b/skills/superpowers/using-superpowers/references/codex-tools.md
+---+index 539b2b1..f50d40d 100644
+---+--- a/skills/superpowers/using-superpowers/references/codex-tools.md
+---++++ b/skills/superpowers/using-superpowers/references/codex-tools.md
+---+@@ -4,9 +4,9 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+---+ 
+---+ | Skill references | Codex equivalent |
+---+ |-----------------|------------------|
+---+-| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
+---++| `Task` tool (dispatch subagent) | `spawn_agent` (see [Subagent dispatch requires multi-agent support](#subagent-dispatch-requires-multi-agent-support)) |
+---+ | Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
+---+-| Task returns result | `wait` |
+---++| Task returns result | `wait_agent` |
+---+ | Task completes automatically | `close_agent` to free slot |
+---+ | `TodoWrite` (task tracking) | `update_plan` |
+---+ | `Skill` tool (invoke a skill) | Skills load natively — just follow the instructions |
+---+@@ -22,53 +22,12 @@ Add to your Codex config (`~/.codex/config.toml`):
+---+ multi_agent = true
+---+ ```
+---+ 
+---+-This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+---++This enables `spawn_agent`, `wait_agent`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+---+ 
+---+-## Named agent dispatch
+---+-
+---+-Claude Code skills reference named agent types like `superpowers:code-reviewer`.
+---+-Codex does not have a named agent registry — `spawn_agent` creates generic agents
+---+-from built-in roles (`default`, `explorer`, `worker`).
+---+-
+---+-When a skill says to dispatch a named agent type:
+---+-
+---+-1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
+---+-   local prompt template like `code-quality-reviewer-prompt.md`)
+---+-2. Read the prompt content
+---+-3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
+---+-4. Spawn a `worker` agent with the filled content as the `message`
+---+-
+---+-| Skill instruction | Codex equivalent |
+---+-|-------------------|------------------|
+---+-| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
+---+-| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
+---+-
+---+-### Message framing
+---+-
+---+-The `message` parameter is user-level input, not a system prompt. Structure it
+---+-for maximum instruction adherence:
+---+-
+---+-```
+---+-Your task is to perform the following. Follow the instructions below exactly.
+---+-
+---+-<agent-instructions>
+---+-[filled prompt content from the agent's .md file]
+---+-</agent-instructions>
+---+-
+---+-Execute this now. Output ONLY the structured response following the format
+---+-specified in the instructions above.
+---+-```
+---+-
+---+-- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
+---+-- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
+---+-- End with an explicit execution directive to prevent summarization of the instructions
+---+-
+---+-### When this workaround can be removed
+---+-
+---+-This approach compensates for Codex's plugin system not yet supporting an `agents`
+---+-field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
+---+-plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
+---+-skills can dispatch named agent types directly.
+---++Legacy note: Codex builds before `rust-v0.115.0` exposed spawned-agent
+---++waiting as `wait`. Current Codex uses `wait_agent` for spawned agents. The
+---++`wait` name now belongs to code-mode `exec/wait`, which resumes a yielded exec
+---++cell by `cell_id`; it is not the spawned-agent result tool.
+---+ 
+---+ ## Environment Detection
+---+ 
+---+diff --git a/skills/superpowers/using-superpowers/references/copilot-tools.md b/skills/superpowers/using-superpowers/references/copilot-tools.md
+---+index 4316cdb..ae3cf5a 100644
+---+--- a/skills/superpowers/using-superpowers/references/copilot-tools.md
+---++++ b/skills/superpowers/using-superpowers/references/copilot-tools.md
+---+@@ -12,23 +12,13 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+---+ | `Glob` (search files by name) | `glob` |
+---+ | `Skill` tool (invoke a skill) | `skill` |
+---+ | `WebFetch` | `web_fetch` |
+---+-| `Task` tool (dispatch subagent) | `task` (see [Agent types](#agent-types)) |
+---++| `Task` tool (dispatch subagent) | `task` with `agent_type: "general-purpose"` or `"explore"` |
+---+ | Multiple `Task` calls (parallel) | Multiple `task` calls |
+---+ | Task status/output | `read_agent`, `list_agents` |
+---+ | `TodoWrite` (task tracking) | `sql` with built-in `todos` table |
+---+ | `WebSearch` | No equivalent — use `web_fetch` with a search engine URL |
+---+ | `EnterPlanMode` / `ExitPlanMode` | No equivalent — stay in the main session |
+---+ 
+---+-## Agent types
+---+-
+---+-Copilot CLI's `task` tool accepts an `agent_type` parameter:
+---+-
+---+-| Claude Code agent | Copilot CLI equivalent |
+---+-|-------------------|----------------------|
+---+-| `general-purpose` | `"general-purpose"` |
+---+-| `Explore` | `"explore"` |
+---+-| Named plugin agents (e.g. `superpowers:code-reviewer`) | Discovered automatically from installed plugins |
+---+-
+---+ ## Async shell sessions
+---+ 
+---+ Copilot CLI supports persistent async shell sessions, which have no direct Claude Code equivalent:
+---+diff --git a/skills/superpowers/using-superpowers/references/gemini-tools.md b/skills/superpowers/using-superpowers/references/gemini-tools.md
+---+index f869803..91ef404 100644
+---+--- a/skills/superpowers/using-superpowers/references/gemini-tools.md
+---++++ b/skills/superpowers/using-superpowers/references/gemini-tools.md
+---+@@ -14,11 +14,29 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
+---+ | `Skill` tool (invoke a skill) | `activate_skill` |
+---+ | `WebSearch` | `google_web_search` |
+---+ | `WebFetch` | `web_fetch` |
+---+-| `Task` tool (dispatch subagent) | No equivalent — Gemini CLI does not support subagents |
+---++| `Task` tool (dispatch subagent) | `@agent-name` (see [Subagent support](#subagent-support)) |
+---+ 
+---+-## No subagent support
+---++## Subagent support
+---+ 
+---+-Gemini CLI has no equivalent to Claude Code's `Task` tool. Skills that rely on subagent dispatch (`subagent-driven-development`, `dispatching-parallel-agents`) will fall back to single-session execution via `executing-plans`.
+---++Gemini CLI supports subagents natively via the `@` syntax. Use the built-in `@generalist` agent to dispatch any task — it has access to all tools and follows the prompt you provide.
+---++
+---++When a skill says to dispatch a named agent type, use `@generalist` with the full prompt from the skill's prompt template:
+---++
+---++| Skill instruction | Gemini CLI equivalent |
+---++|-------------------|----------------------|
+---++| `Task tool (superpowers:implementer)` | `@generalist` with the filled `implementer-prompt.md` template |
+---++| `Task tool (superpowers:spec-reviewer)` | `@generalist` with the filled `spec-reviewer-prompt.md` template |
+---++| `Task tool (superpowers:code-reviewer)` | `@code-reviewer` (bundled agent) or `@generalist` with the filled review prompt |
+---++| `Task tool (superpowers:code-quality-reviewer)` | `@generalist` with the filled `code-quality-reviewer-prompt.md` template |
+---++| `Task tool (general-purpose)` with inline prompt | `@generalist` with your inline prompt |
+---++
+---++### Prompt filling
+---++
+---++Skills provide prompt templates with placeholders like `{WHAT_WAS_IMPLEMENTED}` or `[FULL TEXT of task]`. Fill all placeholders and pass the complete prompt as the message to `@generalist`. The prompt template itself contains the agent's role, review criteria, and expected output format — `@generalist` will follow it.
+---++
+---++### Parallel d
+---\ No newline at end of file
