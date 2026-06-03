@@ -33,7 +33,7 @@ This means:
 - **Modifications**: None (used as-is via git submodule)
 - **Original License Text**: See `skills/scientific-agent-skills/LICENSE.md`
 
-**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 137 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
+**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 143 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
 
 ---
 

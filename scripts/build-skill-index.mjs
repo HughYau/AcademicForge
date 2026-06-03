@@ -1,36 +1,13 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+import { collections } from './lib/skill-collections.mjs';
 import { collectSubSkills, withTemporaryClone } from './lib/skill-index.mjs';
 
 const repoRoot = resolve(import.meta.dirname, '..');
 const registryPath = resolve(repoRoot, 'registry/skills.json');
 const classificationPath = resolve(repoRoot, 'scripts/skill-classification.json');
 const translationsPath = resolve(repoRoot, 'scripts/skill-translations.zh.json');
-
-const collections = [
-  {
-    rootSkillId: 'scientific-agent-skills',
-    prefix: 'sa',
-    relativeRoot: 'scientific-skills',
-    clonePath: 'scientific-skills',
-    includeRootSkill: false,
-  },
-  {
-    rootSkillId: 'AI-research-SKILLs',
-    prefix: 'air',
-    relativeRoot: '',
-    clonePath: '',
-    includeRootSkill: true,
-  },
-  {
-    rootSkillId: 'nature-skills',
-    prefix: 'ns',
-    relativeRoot: 'skills',
-    clonePath: 'skills',
-    includeRootSkill: false,
-  },
-];
 
 const args = new Set(process.argv.slice(2));
 const checkOnly = args.has('--check');

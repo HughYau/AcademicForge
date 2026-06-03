@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 
 import { collectSubSkills, parseFrontmatter } from '../lib/skill-index.mjs';
+import { collections } from '../lib/skill-collections.mjs';
 
 test('parseFrontmatter supports folded YAML descriptions', () => {
   const frontmatter = parseFrontmatter(
@@ -30,16 +31,16 @@ test('collectSubSkills skips disabled entries without pinning install.ref', () =
   const rootDir = mkdtempSync(join(tmpdir(), 'skill-index-'));
 
   try {
-    mkdirSync(join(rootDir, 'scientific-skills', 'demo-one'), { recursive: true });
+    mkdirSync(join(rootDir, 'skills', 'demo-one'), { recursive: true });
     writeFileSync(
-      join(rootDir, 'scientific-skills', 'demo-one', 'SKILL.md'),
+      join(rootDir, 'skills', 'demo-one', 'SKILL.md'),
       ['---', 'name: demo-one', 'description: Demo one', 'license: MIT', 'tags: [demo]', '---'].join('\n'),
       'utf8',
     );
 
-    mkdirSync(join(rootDir, 'scientific-skills', 'skip-me'), { recursive: true });
+    mkdirSync(join(rootDir, 'skills', 'skip-me'), { recursive: true });
     writeFileSync(
-      join(rootDir, 'scientific-skills', 'skip-me', 'SKILL.md'),
+      join(rootDir, 'skills', 'skip-me', 'SKILL.md'),
       ['---', 'name: skip-me', 'description: Skip me', 'license: MIT', '---'].join('\n'),
       'utf8',
     );
@@ -48,7 +49,7 @@ test('collectSubSkills skips disabled entries without pinning install.ref', () =
       rootDir,
       includeRootSkill: false,
       prefix: 'sa',
-      relativeRoot: 'scientific-skills',
+      relativeRoot: 'skills',
       parentSkill: {
         install: {
           method: 'sparse-checkout',
@@ -70,8 +71,15 @@ test('collectSubSkills skips disabled entries without pinning install.ref', () =
     assert.equal(subSkills[0].id, 'sa.demo-one');
     assert.equal(subSkills[0].summary.zh, 'Demo one 的中文摘要');
     assert.equal(subSkills[0].install.ref, undefined);
-    assert.equal(subSkills[0].sparse_path, 'scientific-skills/demo-one');
+    assert.equal(subSkills[0].sparse_path, 'skills/demo-one');
   } finally {
     rmSync(rootDir, { recursive: true, force: true });
   }
+});
+
+test('scientific-agent-skills collection tracks the upstream skills directory', () => {
+  const scientificAgentSkills = collections.find((collection) => collection.rootSkillId === 'scientific-agent-skills');
+
+  assert.equal(scientificAgentSkills?.relativeRoot, 'skills');
+  assert.equal(scientificAgentSkills?.clonePath, 'skills');
 });
