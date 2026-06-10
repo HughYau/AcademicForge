@@ -670,13 +670,6 @@ details[open] > .details-summary .chevron-icon,
   background: rgba(201, 100, 66, 0.14);
 }
 
-.ai-pick {
-  border: 1px solid rgba(201, 100, 66, 0.32);
-  background:
-    radial-gradient(circle at 92% 0%, rgba(255, 179, 0, 0.12), transparent 42%),
-    #fdf7f4;
-}
-
 .ai-pick__button {
   display: inline-flex;
   align-items: center;
@@ -701,6 +694,29 @@ details[open] > .details-summary .chevron-icon,
   color: var(--af-brand);
 }
 
+.ai-pick__button--header {
+  max-width: min(38vw, 21rem);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  animation: forge-breathe 3.2s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .ai-pick__button--header {
+    max-width: min(46vw, 21rem);
+  }
+}
+
+@keyframes forge-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 100, 66, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(201, 100, 66, 0.14), 0 0 14px rgba(232, 131, 58, 0.28);
+  }
+}
+
 .ai-pick__link {
   display: inline-flex;
   align-items: center;
@@ -717,9 +733,27 @@ details[open] > .details-summary .chevron-icon,
   color: var(--af-ink);
 }
 
+.ai-pick__link--icon {
+  height: 1.9rem;
+  width: 1.9rem;
+  justify-content: center;
+  padding: 0;
+}
+
+@media (max-width: 639px) {
+  .ai-pick__link--icon {
+    display: none;
+  }
+}
+
+.locale-toggle {
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .forge-spark,
-  .forge-glow {
+  .forge-glow,
+  .ai-pick__button--header {
     animation: none;
   }
 

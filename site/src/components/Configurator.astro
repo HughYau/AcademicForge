@@ -1,8 +1,5 @@
 ---
 import CodeBlock from './CodeBlock.astro';
-
-const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const agentsHref = `${baseUrl}agents.md`;
 ---
 
 <section id="install-builder" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5 lg:h-full">
@@ -181,39 +178,6 @@ const agentsHref = `${baseUrl}agents.md`;
       </div>
     </div>
   </details>
-
-  <div class="ai-pick mt-4 rounded-[20px] p-4 shadow-[0_0_0_1px_rgba(201,100,66,0.1)]">
-    <p class="flex items-center gap-2 font-slab text-sm font-medium text-[#141413]">
-      <svg viewBox="0 0 20 20" fill="none" class="h-4.5 w-4.5 text-[#c96442]" aria-hidden="true">
-        <path d="M10 2c.6 3.2 1.9 4.5 5 5-3.1.5-4.4 1.8-5 5-.6-3.2-1.9-4.5-5-5 3.1-.5 4.4-1.8 5-5Z" fill="currentColor"></path>
-        <path d="M15.5 11.5c.35 1.9 1.1 2.65 3 3-1.9.35-2.65 1.1-3 3-.35-1.9-1.1-2.65-3-3 1.9-.35 2.65-1.1 3-3Z" fill="currentColor" opacity="0.7"></path>
-        <path d="M4.5 12.5c.3 1.6.9 2.2 2.5 2.5-1.6.3-2.2.9-2.5 2.5-.3-1.6-.9-2.2-2.5-2.5 1.6-.3 2.2-.9 2.5-2.5Z" fill="currentColor" opacity="0.5"></path>
-      </svg>
-      <span class="lang-en">Not sure what to pick?</span>
-      <span class="lang-zh">不知道选什么？</span>
-    </p>
-    <p class="mt-1 text-sm leading-6 text-[#5e5d59]">
-      <span class="lang-en">Copy this prompt to your AI agent — it reads our catalog, picks skills for your research, and builds the install command.</span>
-      <span class="lang-zh">把这段提示词交给你的 AI 智能体——它会阅读本站目录，按你的研究需求挑选 skills 并生成安装命令。</span>
-    </p>
-    <div class="mt-2.5 flex flex-wrap gap-2">
-      <button
-        type="button"
-        id="ai-prompt-copy"
-        class="ai-pick__button"
-        data-label-en="Copy for my AI"
-        data-label-zh="复制给我的 AI"
-        data-copied-en="✓ Forged"
-        data-copied-zh="✓ 已锻好"
-      >
-        Copy for my AI
-      </button>
-      <a href={agentsHref} target="_blank" rel="noreferrer" class="ai-pick__link">
-        <span class="lang-en">What will it read?</span>
-        <span class="lang-zh">它会读到什么？</span>
-      </a>
-    </div>
-  </div>
 </section>
 
 <script>
@@ -237,6 +201,7 @@ const agentsHref = `${baseUrl}agents.md`;
   const pathNote = document.getElementById('install-path-note');
   const toolNote = document.getElementById('install-tool-note');
   const aiPromptCopy = document.getElementById('ai-prompt-copy') as HTMLButtonElement | null;
+  const aiPromptCopyLabel = document.getElementById('ai-prompt-copy-label');
   const disclosureRoots = Array.from(document.querySelectorAll<HTMLElement>('[data-disclosure]'));
 
   const toolLabels: Record<string, string> = {
@@ -464,14 +429,18 @@ const agentsHref = `${baseUrl}agents.md`;
     return `Fetch and read ${AGENTS_URL}, then follow its instructions: ask about my research needs, pick matching academic skills from the AcademicForge catalog, and build the install command for me. My tool: ${toolLabel}; platform: ${platformLabel}.${selectedNote}`;
   };
 
+  const setAiButtonText = (text: string) => {
+    (aiPromptCopyLabel ?? aiPromptCopy)!.textContent = text;
+  };
+
   const updateAiButtonLabel = () => {
     if (!aiPromptCopy || aiPromptCopy.dataset.copied === 'true') {
       return;
     }
 
-    aiPromptCopy.textContent = getLocale() === 'zh'
-      ? aiPromptCopy.dataset.labelZh ?? '复制给我的 AI'
-      : aiPromptCopy.dataset.labelEn ?? 'Copy for my AI';
+    setAiButtonText(getLocale() === 'zh'
+      ? aiPromptCopy.dataset.labelZh ?? '让 AI 帮我选'
+      : aiPromptCopy.dataset.labelEn ?? 'Ask your AI');
   };
 
   aiPromptCopy?.addEventListener('click', async () => {
@@ -486,9 +455,9 @@ const agentsHref = `${baseUrl}agents.md`;
     await navigator.clipboard.writeText(buildAgentPrompt(selectedIds));
     spawnSparks(aiPromptCopy, 7);
     aiPromptCopy.dataset.copied = 'true';
-    aiPromptCopy.textContent = getLocale() === 'zh'
+    setAiButtonText(getLocale() === 'zh'
       ? aiPromptCopy.dataset.copiedZh ?? '✓ 已锻好'
-      : aiPromptCopy.dataset.copiedEn ?? '✓ Forged';
+      : aiPromptCopy.dataset.copiedEn ?? '✓ Forged');
     aiPromptCopy.classList.add('is-copied');
 
     window.setTimeout(() => {
