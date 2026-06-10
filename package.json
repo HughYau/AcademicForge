@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npm --prefix site run dev --",
-    "build": "npm --prefix site run build --",
+    "build": "node scripts/build-slim-index.mjs && npm --prefix site run build --",
+    "build:agent-index": "node scripts/build-slim-index.mjs",
+    "refresh:stars": "node scripts/refresh-stars.mjs",
     "preview": "npm --prefix site run preview --",
     "site:install": "npm --prefix site install",
     "validate:registry": "node scripts/validate-registry.mjs",

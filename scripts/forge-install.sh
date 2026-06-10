@@ -12,18 +12,20 @@ NC='\033[0m'
 TOOL=""
 SKILLS=""
 INSTALL_PATH=""
+FORCE=false
 REGISTRY_SOURCE="${FORGE_REGISTRY_URL:-https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/registry/skills.json}"
 REGISTRY_FILE=""
 
 usage() {
   cat <<'EOF'
-Usage: forge-install.sh --tool <claude|opencode|codex> --skills <id1,id2,...> [--path <dir>] [--registry <path-or-url>]
+Usage: forge-install.sh --tool <claude|opencode|codex> --skills <id1,id2,...> [--path <dir>] [--registry <path-or-url>] [--force]
 
 Options:
   --tool     Target tool: claude, opencode, or codex
   --skills   Comma-separated skill IDs from the registry
   --path     Custom install path (overrides --tool default)
   --registry Registry JSON file path or URL
+  --force    Overwrite skills that are already installed
   --help     Show this help
 EOF
 }
@@ -69,6 +71,10 @@ while [[ $# -gt 0 ]]; do
       }
       REGISTRY_SOURCE="$2"
       shift 2
+      ;;
+    --force)
+      FORCE=true
+      shift
       ;;
     --help|-h)
       usage
@@ -252,6 +258,7 @@ checkout_ref() {
 
 SUCCESS=()
 FAILED=()
+SKIPPED=()
 
 IFS=',' read -r -a SKILL_IDS <<< "$SKILLS"
 
@@ -275,6 +282,14 @@ for raw_id in "${SKILL_IDS[@]}"; do
   fi
 
   TARGET="${INSTALL_PATH}/${sid}"
+  if [[ -e "$TARGET" ]]; then
+    if [[ "$FORCE" != true ]]; then
+      echo -e "${YELLOW}  Already exists at $TARGET. Skipping (use --force to overwrite).${NC}"
+      SKIPPED+=("$sid")
+      continue
+    fi
+    echo -e "${YELLOW}  Overwriting existing $TARGET (--force).${NC}"
+  fi
   rm -rf "$TARGET"
 
   case "$METHOD" in
@@ -370,6 +385,12 @@ echo -e "${BLUE}===============================================${NC}"
 if [[ ${#SUCCESS[@]} -gt 0 ]]; then
   for skill in "${SUCCESS[@]}"; do
     echo -e "${GREEN}  OK  $skill${NC}"
+  done
+fi
+
+if [[ ${#SKIPPED[@]} -gt 0 ]]; then
+  for skill in "${SKIPPED[@]}"; do
+    echo -e "${YELLOW}  SKIP $skill (already installed; re-run with --force to overwrite)${NC}"
   done
 fi
 

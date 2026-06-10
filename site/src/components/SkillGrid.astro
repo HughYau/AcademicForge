@@ -67,6 +67,56 @@ const categoryItemCounts = Object.fromEntries(
 const visibleCategories = CATEGORY_ORDER.filter((category) => categoryItemCounts[category] > 0);
 const initialCategory = visibleCategories[0] ?? 'workflow';
 const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline) => researchSubSkillsBySubdiscipline[subdiscipline].length > 0);
+
+const TAGS_PER_CATEGORY = 6;
+const tagCountsByCategory = Object.fromEntries(
+  CATEGORY_ORDER.map((category) => [category, new Map<string, number>()]),
+) as Record<Category, Map<string, number>>;
+
+const countTags = (category: Category, tags?: string[]) => {
+  tags?.forEach((tag) => {
+    const counts = tagCountsByCategory[category];
+    counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  });
+};
+
+skills.forEach((skill) => {
+  countTags(getItemCategory(skill), skill.tags);
+  skill.sub_skills?.forEach((subSkill) => {
+    countTags(getItemCategory(subSkill), subSkill.tags);
+  });
+});
+
+const topTagsByCategory = Object.fromEntries(
+  CATEGORY_ORDER.map((category) => [
+    category,
+    [...tagCountsByCategory[category].entries()]
+      .sort((left, right) => right[1] - left[1])
+      .slice(0, TAGS_PER_CATEGORY)
+      .map(([tag]) => tag),
+  ]),
+) as Record<Category, string[]>;
+
+const PRESETS = [
+  {
+    id: 'writing-starter',
+    skillIds: ['humanizer', 'paper-polish-workflow-skill', 'nature-skills'],
+    en: 'Paper writing starter',
+    zh: '论文写作入门包',
+  },
+  {
+    id: 'workflow-discipline',
+    skillIds: ['superpowers', 'andrej-karpathy-skills'],
+    en: 'Workflow discipline',
+    zh: '流程纪律包',
+  },
+  {
+    id: 'figures-poster',
+    skillIds: ['scientific-visualization', 'posterskill'],
+    en: 'Figures & posters',
+    zh: '图表海报包',
+  },
+];
 ---
 
 <section id="library" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
@@ -120,6 +170,37 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
         <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
         <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
       </button>
+    ))}
+  </div>
+
+  <div class="mt-2 flex flex-wrap items-center gap-1.5">
+    <svg viewBox="0 0 16 16" fill="none" class="h-3.5 w-3.5 shrink-0 text-[#c96442]" aria-hidden="true">
+      <path d="M8 1.5c.4 2.6 1.8 4 3 5 1.3 1.1 2 2.4 2 4a5 5 0 0 1-10 0c0-1.3.5-2.4 1.3-3.3-.05.9.3 1.6 1 2 .1-2.8 1-5.4 2.7-7.7Z" fill="currentColor"></path>
+    </svg>
+    {PRESETS.map((preset) => (
+      <button
+        type="button"
+        class="preset-chip"
+        data-preset-skills={preset.skillIds.join(',')}
+        aria-pressed="false"
+      >
+        <span class="lang-en">{preset.en}</span>
+        <span class="lang-zh">{preset.zh}</span>
+      </button>
+    ))}
+    <span class="mx-1 h-4 w-px shrink-0 bg-[#e8e6dc]" aria-hidden="true"></span>
+    {visibleCategories.map((category) => (
+      topTagsByCategory[category].map((tag) => (
+        <button
+          type="button"
+          class:list={['filter-chip', category === initialCategory ? '' : 'hidden']}
+          data-tag-chip={tag.toLowerCase()}
+          data-tag-category={category}
+          aria-pressed="false"
+        >
+          #{tag}
+        </button>
+      ))
     ))}
   </div>
 
@@ -241,26 +322,40 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
     ))}
   </div>
 
-  <div id="skill-grid-empty" class="hidden rounded-[22px] bg-white px-6 py-10 text-center text-[#87867f] shadow-[0_0_0_1px_#f0eee6]"></div>
+  <div id="skill-grid-empty" class="hidden rounded-[22px] bg-white px-6 py-10 text-center text-[#87867f] shadow-[0_0_0_1px_#f0eee6]">
+    <svg viewBox="0 0 48 48" fill="none" class="mx-auto h-14 w-14 text-[#d1cfc5]" aria-hidden="true">
+      <circle cx="33" cy="9" r="1.6" fill="#e8833a"></circle>
+      <circle cx="38" cy="14" r="1.2" fill="#ffb300"></circle>
+      <circle cx="29" cy="13" r="1" fill="#e8833a"></circle>
+      <path d="M9 18h30c-1.6 5.4-7 8.4-13 8.4h-1.2c.2 3.8 2.4 6.4 5.7 7.3a1 1 0 0 1 .8 1v3.3a1 1 0 0 1-1 1H17.7a1 1 0 0 1-1-1v-3.3a1 1 0 0 1 .8-1c3.3-.9 5.5-3.5 5.7-7.3h-2.4c-5.5 0-10.3-3-11.8-8.4Z" fill="currentColor"></path>
+      <rect x="13" y="41" width="22" height="3" rx="1.5" fill="currentColor"></rect>
+    </svg>
+    <p id="skill-grid-empty-text" class="mt-3"></p>
+  </div>
 </section>
 
 <script>
+  import { spawnSparks } from '../lib/forge-effects.mjs';
+
   const skillCards = Array.from(document.querySelectorAll<HTMLElement>('.skill-card'));
   const skillGroups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.skill-group--sub'));
   const categoryTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category-tab]'));
   const categoryPanels = Array.from(document.querySelectorAll<HTMLElement>('[data-category-panel]'));
   const searchInput = document.getElementById('skill-search') as HTMLInputElement | null;
   const emptyState = document.getElementById('skill-grid-empty');
+  const emptyStateText = document.getElementById('skill-grid-empty-text');
   const grid = document.getElementById('skill-grid');
+  const tagChips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-tag-chip]'));
+  const presetChips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-preset-skills]'));
 
   const translations = {
     en: {
       placeholder: 'Search repositories / authors / tags',
-      empty: 'No matching repositories.',
+      empty: 'Nothing on the anvil — try another search.',
     },
     zh: {
       placeholder: '搜索仓库 / 作者 / 标签',
-      empty: '无匹配结果。',
+      empty: '铁砧上空空如也——换个搜索词试试。',
     },
   };
 
@@ -268,6 +363,7 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
   let activeCategory = categoryTabs.find((button) => button.getAttribute('aria-pressed') === 'true')?.dataset.categoryTab
     ?? categoryTabs[0]?.dataset.categoryTab
     ?? '';
+  let activeTag = '';
 
   const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
 
@@ -284,6 +380,25 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
 
     categoryPanels.forEach((panel) => {
       panel.classList.toggle('hidden', panel.dataset.categoryPanel !== activeCategory);
+    });
+
+    tagChips.forEach((chip) => {
+      chip.classList.toggle('hidden', chip.dataset.tagCategory !== activeCategory);
+      chip.setAttribute('aria-pressed', String(chip.dataset.tagChip === activeTag));
+    });
+  };
+
+  const getPresetCheckboxes = (chip: HTMLButtonElement) => {
+    const ids = new Set((chip.dataset.presetSkills ?? '').split(',').filter(Boolean));
+    return Array.from(document.querySelectorAll<HTMLInputElement>('.skill-checkbox'))
+      .filter((checkbox) => ids.has(checkbox.dataset.skillId ?? ''));
+  };
+
+  const syncPresetStates = () => {
+    presetChips.forEach((chip) => {
+      const checkboxes = getPresetCheckboxes(chip);
+      const allChecked = checkboxes.length > 0 && checkboxes.every((checkbox) => checkbox.checked);
+      chip.setAttribute('aria-pressed', String(allChecked));
     });
   };
 
@@ -321,8 +436,8 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
       searchInput.placeholder = translations[locale].placeholder;
     }
 
-    if (emptyState && visibleCount === 0) {
-      emptyState.textContent = translations[locale].empty;
+    if (emptyStateText && visibleCount === 0) {
+      emptyStateText.textContent = translations[locale].empty;
     }
   };
 
@@ -333,7 +448,9 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
 
     skillCards.forEach((card) => {
       const search = card.dataset.search ?? '';
-      const isVisible = !query || search.includes(query);
+      const matchesQuery = !query || search.includes(query);
+      const matchesTag = !activeTag || search.includes(activeTag);
+      const isVisible = matchesQuery && matchesTag;
 
       card.classList.toggle('hidden', !isVisible);
       if (isVisible) {
@@ -346,7 +463,7 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
       const hasVisible = visibleCards.length > 0;
 
       group.hidden = !hasVisible;
-      group.open = hasQuery ? hasVisible : group.dataset.userOpen === 'true';
+      group.open = (hasQuery || activeTag !== '') ? hasVisible : group.dataset.userOpen === 'true';
     });
 
     applyTabState();
@@ -359,8 +476,8 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
     emptyState?.classList.toggle('hidden', hasVisible);
     grid?.classList.toggle('hidden', !hasVisible);
 
-    if (emptyState && !hasVisible) {
-      emptyState.textContent = translations[getLocale()].empty;
+    if (emptyStateText && !hasVisible) {
+      emptyStateText.textContent = translations[getLocale()].empty;
     }
   };
 
@@ -368,8 +485,39 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
 
   categoryTabs.forEach((button) => {
     button.addEventListener('click', () => {
+      if (activeCategory !== button.dataset.categoryTab) {
+        activeTag = '';
+      }
       activeCategory = button.dataset.categoryTab ?? activeCategory;
       applyFilters();
+    });
+  });
+
+  tagChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tagChip ?? '';
+      activeTag = activeTag === tag ? '' : tag;
+      applyFilters();
+    });
+  });
+
+  presetChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const checkboxes = getPresetCheckboxes(chip);
+      if (checkboxes.length === 0) {
+        return;
+      }
+
+      const allChecked = checkboxes.every((checkbox) => checkbox.checked);
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = !allChecked;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+
+      if (!allChecked) {
+        spawnSparks(chip, 6);
+      }
+      syncPresetStates();
     });
   });
 
@@ -416,6 +564,11 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
     const target = event.target;
     if (target instanceof HTMLInputElement && target.classList.contains('skill-checkbox')) {
       updateCardSelectionState(target);
+
+      if (event.isTrusted && target.checked) {
+        spawnSparks(target.closest('.skill-card__selection') ?? target, 4);
+      }
+      syncPresetStates();
     }
   });
 
@@ -425,4 +578,5 @@ const visibleResearchSubdisciplines = SUBDISCIPLINE_ORDER.filter((subdiscipline)
   skillCards.forEach((card) => setCardDetailState(card, card.classList.contains('is-expanded')));
   applyFilters();
   applyLocale();
+  syncPresetStates();
 </script>

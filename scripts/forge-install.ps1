@@ -4,6 +4,7 @@ param(
     [string]$Path = "",
     [Alias('Registry')]
     [string]$RegistrySourcePath = "",
+    [switch]$Force,
     [switch]$Help
 )
 
@@ -19,13 +20,14 @@ $RegistrySource = if ($RegistrySourcePath) {
 }
 
 function Show-Usage {
-    Write-Host "Usage: .\forge-install.ps1 -Tool <claude|opencode|codex> -Skills <id1,id2,...> [-Path <dir>] [-Registry <path-or-url>]"
+    Write-Host "Usage: .\forge-install.ps1 -Tool <claude|opencode|codex> -Skills <id1,id2,...> [-Path <dir>] [-Registry <path-or-url>] [-Force]"
     Write-Host ""
     Write-Host "Options:"
     Write-Host "  -Tool     Target tool: claude, opencode, or codex"
     Write-Host "  -Skills   Comma-separated skill IDs from the registry"
     Write-Host "  -Path     Custom install path (overrides -Tool default)"
     Write-Host "  -Registry Registry JSON file path or URL"
+    Write-Host "  -Force    Overwrite skills that are already installed"
     Write-Host "  -Help     Show this help"
 }
 
@@ -189,6 +191,7 @@ try {
 
     $success = New-Object System.Collections.Generic.List[string]
     $failed = New-Object System.Collections.Generic.List[string]
+    $skipped = New-Object System.Collections.Generic.List[string]
 
     foreach ($rawId in ($Skills -split ',')) {
         $skillId = $rawId.Trim()
@@ -207,6 +210,12 @@ try {
 
         $target = Join-Path $InstallPath $skillId
         if (Test-Path -LiteralPath $target) {
+            if (-not $Force) {
+                Write-Host "  Already exists at $target. Skipping (use -Force to overwrite)." -ForegroundColor Yellow
+                $skipped.Add($skillId)
+                continue
+            }
+            Write-Host "  Overwriting existing $target (-Force)." -ForegroundColor Yellow
             Remove-Item -LiteralPath $target -Recurse -Force
         }
 
@@ -305,6 +314,10 @@ try {
 
     foreach ($skillId in $success) {
         Write-Host "  OK  $skillId" -ForegroundColor Green
+    }
+
+    foreach ($skillId in $skipped) {
+        Write-Host "  SKIP $skillId (already installed; re-run with -Force to overwrite)" -ForegroundColor Yellow
     }
 
     foreach ($skillId in $failed) {

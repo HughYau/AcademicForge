@@ -57,6 +57,20 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/
 Remove-Item $script
 ```
 
+已安装的同名 skill 会被跳过并提示；追加 `--force`（PowerShell 为 `-Force`）可覆盖更新。
+
+### 方式三：让你的 AI 替你挑选
+
+不知道选什么？把下面这段提示词交给你的 AI 智能体（Claude Code / OpenCode / Codex 均可）：
+
+> 请获取并阅读 https://hughyau.github.io/AcademicForge/agents.md，按其中的说明了解我的研究需求，然后从 AcademicForge 目录中为我挑选合适的学术 skills 并生成安装命令。
+
+站点右下角的「不知道选什么？」卡片可以一键复制（会自动带上你已选择的工具与平台）。智能体可读的目录索引：
+
+- 指南：`https://hughyau.github.io/AcademicForge/agents.md`
+- 瘦索引：`https://hughyau.github.io/AcademicForge/index.slim.json`
+- 完整 registry 镜像：`https://hughyau.github.io/AcademicForge/skills.json`
+
 验证安装：
 
 ```bash

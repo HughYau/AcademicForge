@@ -55,6 +55,20 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/HughYau/AcademicForge/
 Remove-Item $script
 ```
 
+Already-installed skills with the same name are skipped with a warning; add `--force` (`-Force` in PowerShell) to overwrite.
+
+### Option 3: Let your AI pick for you
+
+Not sure what to pick? Hand this prompt to your AI agent (Claude Code / OpenCode / Codex):
+
+> Fetch and read https://hughyau.github.io/AcademicForge/agents.md, then follow its instructions: ask about my research needs, pick matching academic skills from the AcademicForge catalog, and build the install command for me.
+
+The "Not sure what to pick?" card on the site copies this prompt in one click (with your selected tool and platform baked in). Agent-readable catalog endpoints:
+
+- Guide: `https://hughyau.github.io/AcademicForge/agents.md`
+- Slim index: `https://hughyau.github.io/AcademicForge/index.slim.json`
+- Full registry mirror: `https://hughyau.github.io/AcademicForge/skills.json`
+
 Verify installation:
 
 ```bash

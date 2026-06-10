@@ -1,5 +1,8 @@
 ---
 import CodeBlock from './CodeBlock.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const agentsHref = `${baseUrl}agents.md`;
 ---
 
 <section id="install-builder" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5 lg:h-full">
@@ -178,6 +181,39 @@ import CodeBlock from './CodeBlock.astro';
       </div>
     </div>
   </details>
+
+  <div class="ai-pick mt-4 rounded-[20px] p-4 shadow-[0_0_0_1px_rgba(201,100,66,0.1)]">
+    <p class="flex items-center gap-2 font-slab text-sm font-medium text-[#141413]">
+      <svg viewBox="0 0 20 20" fill="none" class="h-4.5 w-4.5 text-[#c96442]" aria-hidden="true">
+        <path d="M10 2c.6 3.2 1.9 4.5 5 5-3.1.5-4.4 1.8-5 5-.6-3.2-1.9-4.5-5-5 3.1-.5 4.4-1.8 5-5Z" fill="currentColor"></path>
+        <path d="M15.5 11.5c.35 1.9 1.1 2.65 3 3-1.9.35-2.65 1.1-3 3-.35-1.9-1.1-2.65-3-3 1.9-.35 2.65-1.1 3-3Z" fill="currentColor" opacity="0.7"></path>
+        <path d="M4.5 12.5c.3 1.6.9 2.2 2.5 2.5-1.6.3-2.2.9-2.5 2.5-.3-1.6-.9-2.2-2.5-2.5 1.6-.3 2.2-.9 2.5-2.5Z" fill="currentColor" opacity="0.5"></path>
+      </svg>
+      <span class="lang-en">Not sure what to pick?</span>
+      <span class="lang-zh">不知道选什么？</span>
+    </p>
+    <p class="mt-1 text-sm leading-6 text-[#5e5d59]">
+      <span class="lang-en">Copy this prompt to your AI agent — it reads our catalog, picks skills for your research, and builds the install command.</span>
+      <span class="lang-zh">把这段提示词交给你的 AI 智能体——它会阅读本站目录，按你的研究需求挑选 skills 并生成安装命令。</span>
+    </p>
+    <div class="mt-2.5 flex flex-wrap gap-2">
+      <button
+        type="button"
+        id="ai-prompt-copy"
+        class="ai-pick__button"
+        data-label-en="Copy for my AI"
+        data-label-zh="复制给我的 AI"
+        data-copied-en="✓ Forged"
+        data-copied-zh="✓ 已锻好"
+      >
+        Copy for my AI
+      </button>
+      <a href={agentsHref} target="_blank" rel="noreferrer" class="ai-pick__link">
+        <span class="lang-en">What will it read?</span>
+        <span class="lang-zh">它会读到什么？</span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <script>
@@ -187,6 +223,10 @@ import CodeBlock from './CodeBlock.astro';
     buildVerifyCommand,
     getToolPath,
   } from '../lib/install-command.mjs';
+  import { pulseEmber, spawnSparks } from '../lib/forge-effects.mjs';
+
+  const AGENTS_URL = 'https://hughyau.github.io/AcademicForge/agents.md';
+  const STORAGE_KEY = 'academicforge:selection';
 
   const installCommandCopy = document.getElementById('install-command-copy');
   const selectedCount = document.getElementById('selected-count');
@@ -196,6 +236,7 @@ import CodeBlock from './CodeBlock.astro';
   const toolSelect = document.getElementById('tool-select') as HTMLSelectElement | null;
   const pathNote = document.getElementById('install-path-note');
   const toolNote = document.getElementById('install-tool-note');
+  const aiPromptCopy = document.getElementById('ai-prompt-copy') as HTMLButtonElement | null;
   const disclosureRoots = Array.from(document.querySelectorAll<HTMLElement>('[data-disclosure]'));
 
   const toolLabels: Record<string, string> = {
@@ -399,6 +440,121 @@ import CodeBlock from './CodeBlock.astro';
     });
   };
 
+  const platformLabels: Record<string, string> = {
+    linux: 'Linux / macOS',
+    windows: 'Windows',
+  };
+
+  const buildAgentPrompt = (selectedIds: string[]) => {
+    const tool = toolSelect?.value ?? 'claude';
+    const platform = platformSelect?.value ?? 'linux';
+    const toolLabel = toolLabels[tool] ?? tool;
+    const platformLabel = platformLabels[platform] ?? platform;
+
+    if (getLocale() === 'zh') {
+      const selectedNote = selectedIds.length > 0
+        ? `我已经选了 ${selectedIds.join(', ')}，请在此基础上查漏补缺。`
+        : '';
+      return `请获取并阅读 ${AGENTS_URL}，按其中的说明了解我的研究需求，然后从 AcademicForge 目录中为我挑选合适的学术 skills 并生成安装命令。我的工具：${toolLabel}；平台：${platformLabel}。${selectedNote}`;
+    }
+
+    const selectedNote = selectedIds.length > 0
+      ? ` I already picked ${selectedIds.join(', ')}; suggest what complements them.`
+      : '';
+    return `Fetch and read ${AGENTS_URL}, then follow its instructions: ask about my research needs, pick matching academic skills from the AcademicForge catalog, and build the install command for me. My tool: ${toolLabel}; platform: ${platformLabel}.${selectedNote}`;
+  };
+
+  const updateAiButtonLabel = () => {
+    if (!aiPromptCopy || aiPromptCopy.dataset.copied === 'true') {
+      return;
+    }
+
+    aiPromptCopy.textContent = getLocale() === 'zh'
+      ? aiPromptCopy.dataset.labelZh ?? '复制给我的 AI'
+      : aiPromptCopy.dataset.labelEn ?? 'Copy for my AI';
+  };
+
+  aiPromptCopy?.addEventListener('click', async () => {
+    if (!navigator.clipboard) {
+      return;
+    }
+
+    const selectedIds = getSelectedCheckboxes()
+      .map((checkbox) => checkbox.dataset.skillId ?? '')
+      .filter(Boolean);
+
+    await navigator.clipboard.writeText(buildAgentPrompt(selectedIds));
+    spawnSparks(aiPromptCopy, 7);
+    aiPromptCopy.dataset.copied = 'true';
+    aiPromptCopy.textContent = getLocale() === 'zh'
+      ? aiPromptCopy.dataset.copiedZh ?? '✓ 已锻好'
+      : aiPromptCopy.dataset.copiedEn ?? '✓ Forged';
+    aiPromptCopy.classList.add('is-copied');
+
+    window.setTimeout(() => {
+      aiPromptCopy.dataset.copied = 'false';
+      aiPromptCopy.classList.remove('is-copied');
+      updateAiButtonLabel();
+    }, 2000);
+  });
+
+  const persistSelection = (skillIds: string[]) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        skills: skillIds,
+        tool: toolSelect?.value ?? 'claude',
+        platform: platformSelect?.value ?? 'linux',
+      }));
+    } catch {
+      /* storage unavailable */
+    }
+
+    const url = new URL(window.location.href);
+    if (skillIds.length > 0) {
+      url.searchParams.set('skills', skillIds.join(','));
+    } else {
+      url.searchParams.delete('skills');
+    }
+    window.history.replaceState(null, '', url);
+  };
+
+  const restoreSelection = () => {
+    let stored: { skills?: string[]; tool?: string; platform?: string } | null = null;
+    try {
+      stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
+    } catch {
+      stored = null;
+    }
+
+    const urlSkills = (new URLSearchParams(window.location.search).get('skills') ?? '')
+      .split(',')
+      .map((id) => id.trim())
+      .filter(Boolean);
+    const skillIds = urlSkills.length > 0 ? urlSkills : stored?.skills ?? [];
+
+    if (toolSelect && stored?.tool && Array.from(toolSelect.options).some((option) => option.value === stored?.tool)) {
+      toolSelect.value = stored.tool;
+    }
+
+    if (platformSelect && stored?.platform && Array.from(platformSelect.options).some((option) => option.value === stored?.platform)) {
+      platformSelect.value = stored.platform;
+    }
+
+    if (skillIds.length === 0) {
+      return;
+    }
+
+    const wanted = new Set(skillIds);
+    getCheckboxes().forEach((checkbox) => {
+      if (wanted.has(checkbox.dataset.skillId ?? '')) {
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  };
+
+  let lastInstallCommand = '';
+
   const renderCommands = (selected: HTMLInputElement[]) => {
     const locale = getLocale();
     const tool = toolSelect?.value ?? 'claude';
@@ -422,6 +578,13 @@ import CodeBlock from './CodeBlock.astro';
     setCodeBlock('builder-step2-code', installCommand, codeLang);
     setCodeBlock('builder-step3-code', verifyCommand, codeLang);
 
+    if (installCommand !== lastInstallCommand) {
+      if (lastInstallCommand !== '') {
+        pulseEmber(document.getElementById('builder-step2-code')?.closest('.codeblock-root') ?? null);
+      }
+      lastInstallCommand = installCommand;
+    }
+
     if (installCommandCopy) {
       installCommandCopy.textContent = translations[locale].commandHint;
     }
@@ -441,6 +604,8 @@ import CodeBlock from './CodeBlock.astro';
       return sum + Number(checkbox.dataset.skillCount ?? 0);
     }, 0);
 
+    persistSelection(selected.map((checkbox) => checkbox.dataset.skillId ?? '').filter(Boolean));
+
     if (selectedCount) {
       selectedCount.textContent = formatNumber(selected.length);
     }
@@ -456,6 +621,7 @@ import CodeBlock from './CodeBlock.astro';
   const applyLocale = () => {
     syncAllDisclosures();
     updateSelection();
+    updateAiButtonLabel();
   };
 
   disclosureRoots.forEach((root) => {
@@ -594,6 +760,7 @@ import CodeBlock from './CodeBlock.astro';
   toolSelect?.addEventListener('change', handleSelectChange);
   window.addEventListener('academicforge:locale-change', applyLocale);
 
+  restoreSelection();
   syncAllDisclosures();
   updateSelection();
   applyLocale();

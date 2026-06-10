@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 ---
 
-<div class:list={['overflow-hidden rounded-[20px] border border-[#30302e] bg-[#141413] shadow-[0_0_0_1px_#30302e]', rootClass]}>
+<div class:list={['codeblock-root overflow-hidden rounded-[20px] border border-[#30302e] bg-[#141413] shadow-[0_0_0_1px_#30302e]', rootClass]}>
   <div class="flex items-center justify-between border-b border-[#30302e] px-4 py-3">
     <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#b0aea5]" data-code-lang={id}>
       {lang}
@@ -26,8 +26,8 @@ const {
       data-copy-target={id}
       data-label-en="Copy"
       data-label-zh="复制"
-      data-copied-en="Copied"
-      data-copied-zh="已复制"
+      data-copied-en="✓ Forged"
+      data-copied-zh="✓ 已锻好"
       class="copy-btn rounded-full border border-[#30302e] bg-[#30302e] px-3 py-1 text-xs font-medium text-[#faf9f5] transition hover:bg-[#3d3d3a]"
     >
       Copy
@@ -37,6 +37,8 @@ const {
 </div>
 
 <script>
+  import { spawnSparks } from '../lib/forge-effects.mjs';
+
   const copyWindow = window as { __academicForgeCopyBound?: boolean };
   const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
 
@@ -82,8 +84,9 @@ const {
       }
 
       await navigator.clipboard.writeText(text);
+      spawnSparks(button);
       button.dataset.copied = 'true';
-      button.textContent = getLocale() === 'zh' ? button.dataset.copiedZh ?? '已复制' : button.dataset.copiedEn ?? 'Copied';
+      button.textContent = getLocale() === 'zh' ? button.dataset.copiedZh ?? '✓ 已锻好' : button.dataset.copiedEn ?? '✓ Forged';
       button.classList.add('is-copied');
 
       window.setTimeout(() => {

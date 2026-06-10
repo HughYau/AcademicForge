@@ -347,7 +347,17 @@ details[open] > .details-summary .chevron-icon,
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 20, 19, 0.07), 0 0 0 1px var(--af-border);
+}
+
+.skill-card.is-selected:hover {
+  box-shadow: 0 8px 20px rgba(201, 100, 66, 0.12), 0 0 0 1px rgba(201, 100, 66, 0.22);
 }
 
 .skill-card.is-selected {
@@ -423,7 +433,7 @@ details[open] > .details-summary .chevron-icon,
 .skill-card__detail-shell {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 180ms ease;
+  transition: grid-template-rows 260ms cubic-bezier(0.32, 1.25, 0.5, 1);
 }
 
 .skill-card.is-expanded .skill-card__detail-shell {
@@ -559,6 +569,172 @@ details[open] > .details-summary .chevron-icon,
   border-color: rgba(201, 100, 66, 0.4);
   background: rgba(201, 100, 66, 0.14);
   color: var(--af-brand);
+}
+
+.forge-sparks {
+  position: fixed;
+  z-index: 60;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.forge-spark {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #e8833a;
+  opacity: 0;
+  animation: forge-spark-fly 560ms ease-out forwards;
+}
+
+.forge-spark:nth-child(odd) {
+  background: var(--af-forgegold);
+  width: 5px;
+  height: 5px;
+}
+
+@keyframes forge-spark-fly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx, 0), var(--dy, -18px)) scale(0.35);
+  }
+}
+
+.forge-glow {
+  animation: forge-ember 720ms ease-out;
+}
+
+@keyframes forge-ember {
+  0% {
+    box-shadow: 0 0 0 1px #30302e;
+  }
+  35% {
+    box-shadow: 0 0 0 1px rgba(232, 131, 58, 0.85), 0 0 22px rgba(232, 131, 58, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 1px #30302e;
+  }
+}
+
+.filter-chip {
+  flex: 0 0 auto;
+  border: 1px solid var(--af-border-strong);
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0.32rem 0.7rem;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--af-muted);
+  cursor: pointer;
+}
+
+.filter-chip:hover {
+  border-color: var(--af-ring);
+}
+
+.filter-chip[aria-pressed='true'] {
+  border-color: rgba(201, 100, 66, 0.35);
+  background: rgba(201, 100, 66, 0.1);
+  color: #993c1d;
+}
+
+.preset-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px dashed rgba(201, 100, 66, 0.45);
+  border-radius: 999px;
+  background: rgba(201, 100, 66, 0.05);
+  padding: 0.32rem 0.75rem;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: #993c1d;
+  cursor: pointer;
+}
+
+.preset-chip:hover {
+  background: rgba(201, 100, 66, 0.12);
+}
+
+.preset-chip[aria-pressed='true'] {
+  border-style: solid;
+  background: rgba(201, 100, 66, 0.14);
+}
+
+.ai-pick {
+  border: 1px solid rgba(201, 100, 66, 0.32);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(255, 179, 0, 0.12), transparent 42%),
+    #fdf7f4;
+}
+
+.ai-pick__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--af-brand);
+  border-radius: 999px;
+  background: var(--af-brand);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #faf9f5;
+  cursor: pointer;
+}
+
+.ai-pick__button:hover {
+  background: #b65538;
+}
+
+.ai-pick__button.is-copied {
+  border-color: rgba(201, 100, 66, 0.4);
+  background: rgba(201, 100, 66, 0.14);
+  color: var(--af-brand);
+}
+
+.ai-pick__link {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--af-border-strong);
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: var(--af-muted);
+}
+
+.ai-pick__link:hover {
+  border-color: var(--af-ring);
+  color: var(--af-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-spark,
+  .forge-glow {
+    animation: none;
+  }
+
+  .skill-card:hover {
+    transform: none;
+  }
+
+  .skill-card__detail-shell,
+  .details-body {
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @media (min-width: 1024px) {

@@ -19,9 +19,81 @@ const totalSkillCount = skills.reduce((sum, skill) => sum + skill.skill_count, 0
   description="Browse academic AI skill repositories and generate install commands for Claude Code, OpenCode, or Codex."
 >
   <main id="home" class="mx-auto flex w-[80%] min-h-0 flex-col gap-4 py-4 sm:py-5 lg:h-[calc(100svh-92px)] lg:overflow-hidden lg:py-6">
-    <section class="grid min-h-0 flex-1 gap-4 lg:h-[90%] lg:w-full lg:self-center lg:flex-none lg:grid-cols-[minmax(0,1.42fr)_390px] xl:grid-cols-[minmax(0,1.55fr)_405px]">
+    <section class="hero-band flex flex-none flex-col gap-3 rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] px-4 py-3 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:flex-row sm:items-center sm:justify-between sm:px-5">
+      <div class="min-w-0">
+        <p class="font-slab text-[1.05rem] leading-[1.3] text-[#141413]">
+          <span class="lang-en">The forge for academic AI skills — pick, copy, run.</span>
+          <span class="lang-zh">学术 AI skill 的锻造台——挑选、复制、运行。</span>
+        </p>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[#5e5d59]">
+          <span><span class="font-medium text-[#c96442]">①</span> <span class="lang-en">Pick skills</span><span class="lang-zh">挑选 skills</span></span>
+          <span aria-hidden="true" class="text-[#d1cfc5]">→</span>
+          <span><span class="font-medium text-[#c96442]">②</span> <span class="lang-en">Copy the command</span><span class="lang-zh">复制安装命令</span></span>
+          <span aria-hidden="true" class="text-[#d1cfc5]">→</span>
+          <span><span class="font-medium text-[#c96442]">③</span> <span class="lang-en">Run in your project</span><span class="lang-zh">在项目里运行</span></span>
+        </p>
+      </div>
+      <div class="flex shrink-0 gap-2.5">
+        <div class="rounded-[16px] bg-white px-4 py-2 text-center shadow-[0_0_0_1px_#f0eee6]">
+          <p class="font-slab text-[1.3rem] leading-[1.2] text-[#141413]" data-count-to={repositoryCount}>{repositoryCount}</p>
+          <p class="text-xs text-[#87867f]">
+            <span class="lang-en">repositories</span>
+            <span class="lang-zh">仓库</span>
+          </p>
+        </div>
+        <div class="rounded-[16px] bg-white px-4 py-2 text-center shadow-[0_0_0_1px_#f0eee6]">
+          <p class="font-slab text-[1.3rem] leading-[1.2] text-[#c96442]" data-count-to={totalSkillCount}>{totalSkillCount}</p>
+          <p class="text-xs text-[#87867f]">
+            <span class="lang-en">skills</span>
+            <span class="lang-zh">skills</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid min-h-0 flex-1 gap-4 lg:w-full lg:grid-cols-[minmax(0,1.42fr)_390px] xl:grid-cols-[minmax(0,1.55fr)_405px]">
       <SkillGrid skills={skills} repositoryCount={repositoryCount} totalSkillCount={totalSkillCount} />
       <Configurator />
     </section>
   </main>
+
+  <script>
+    import { prefersReducedMotion } from '../lib/forge-effects.mjs';
+
+    const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count-to]'));
+    const formatNumber = (value: number) => new Intl.NumberFormat('en-US').format(value);
+
+    const animateCounter = (element: HTMLElement) => {
+      const target = Number(element.dataset.countTo ?? 0);
+      if (!Number.isFinite(target) || target <= 0 || prefersReducedMotion()) {
+        element.textContent = formatNumber(target);
+        return;
+      }
+
+      const duration = 900;
+      const start = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        element.textContent = formatNumber(Math.round(target * eased));
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          animateCounter(entry.target as HTMLElement);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    counters.forEach((counter) => observer.observe(counter));
+  </script>
 </Layout>
