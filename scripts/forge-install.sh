@@ -402,3 +402,7 @@ fi
 
 echo ""
 echo -e "${CYAN}Installed skill packs live under:${NC} $INSTALL_PATH"
+
+if [[ ${#FAILED[@]} -gt 0 ]]; then
+  exit 1
+fi

@@ -11,7 +11,7 @@
       "repository": "https://github.com/obra/superpowers",
       "license": "MIT",
       "skill_count": 15,
-      "stars": 222778,
+      "stars": 234123,
       "tags": [
         "workflow",
         "planning",
@@ -37,7 +37,7 @@
       "repository": "https://github.com/multica-ai/andrej-karpathy-skills",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 172342,
+      "stars": 179181,
       "tags": [
         "workflow",
         "process",
@@ -56,14 +56,14 @@
       "id": "scientific-agent-skills",
       "name": "Scientific Agent Skills",
       "summary": {
-        "en": "143 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
-        "zh": "143 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
+        "en": "147 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
+        "zh": "147 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
       },
       "author": "K-Dense-AI",
       "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "license": "MIT",
-      "skill_count": 143,
-      "stars": 27805,
+      "skill_count": 147,
+      "stars": 28854,
       "tags": [
         "science",
         "research",
@@ -135,6 +135,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/anndata"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.arbor",
+          "name": "arbor",
+          "summary": {
+            "en": "Autonomously improve a real artifact (code, training recipe, agent harness, data pipeline, prompt) against an objective and an evaluator, using Hypothesis Tree Refinement (HTR) from the Arbor paper. Use this whenever someone wants to iteratively optimize something over many experiments without overfitting — e.g. \"get my model's eval score up\", \"improve this agent/harness\", \"tune this pipeline\", \"beat the baseline on this benchmark\", \"run a search over approaches and keep the best\", \"do an MLE-bench / Kaggle-style optimization\", or any long-horizon \"make this artifact better and don't just memorize the dev set\" task. Trigger it even when the user doesn't say \"Arbor\" or \"hypothesis tree\" but describes repeated experiment-and-evaluate loops, branching exploration of competing ideas, or worries about a dev/test gap. Runs Claude itself as the coordinator with subagent executors in isolated git worktrees; for the standalone `arbor` CLI tool see references/arbor-upstream.md.",
+            "zh": "使用 Arbor 论文的假设树细化（HTR），在明确目标与评估器下迭代优化代码、训练配方、Agent harness、数据管线或提示词。适用于需要经过多轮实验提升模型、代理或基准表现，并以独立测试评估避免对开发集过拟合的任务。"
+          },
+          "sparse_path": "skills/arbor",
+          "category": "research",
+          "subdiscipline": null,
+          "license": "MIT license",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/arbor"
           },
           "post_install": [
             "clean_ads"
@@ -269,7 +289,7 @@
           "sparse_path": "skills/biopython",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "Unknown",
+          "license": "Biopython License Agreement",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -323,13 +343,13 @@
           "id": "sa.cellxgene-census",
           "name": "cellxgene-census",
           "summary": {
-            "en": "Query the CELLxGENE Census (61M+ cells) programmatically. Use when you need expression data across tissues, diseases, or cell types from the largest curated single-cell atlas. Best for population-scale queries, reference atlas comparisons. For analyzing your own data use scanpy or scvi-tools.",
+            "en": "Query the CZ CELLxGENE Census programmatically for versioned public single-cell and spatial transcriptomics data. Use when you need population-scale cell metadata, gene expression slices, Census summary counts, source H5AD URIs/downloads, embeddings, spatial Census data, or reference atlas comparisons across organisms, tissues, diseases, assays, and cell types. For analyzing your own local single-cell data use scanpy, anndata, or scvi-tools.",
             "zh": "以编程方式查询 CELLxGENE 普查（61M+ 单元）。当您需要来自最大的精选单细胞图谱的跨组织、疾病或细胞类型的表达数据时使用。最适合人口规模查询、参考图集比较。要分析您自己的数据，请使用 scanpy 或 scvi-tools。"
           },
           "sparse_path": "skills/cellxgene-census",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -482,12 +502,13 @@
           "id": "sa.database-lookup",
           "name": "database-lookup",
           "summary": {
-            "en": "Search 78 public scientific, biomedical, materials science, and economic databases via REST APIs. Covers physics/astronomy (NASA, NIST, SDSS, SIMBAD), earth/environment (USGS, NOAA, EPA), chemistry/drugs (PubChem, ChEMBL, DrugBank, FDA, KEGG, ZINC, BindingDB), materials (Materials Project, COD), biology/genomics (Reactome, UniProt, STRING, Ensembl, NCBI Gene, GEO, GTEx, PDB, AlphaFold, InterPro, BioGRID, Gene Ontology, dbSNP, gnomAD, ENCODE, Human Protein Atlas, Human Cell Atlas), disease/clinical (COSMIC, Open Targets, ClinicalTrials.gov, OMIM, ClinVar, GDC/TCGA, cBioPortal, DisGeNET, GWAS Catalog), regulatory (FDA, USPTO, SEC EDGAR), economics/finance (FRED, World Bank, US Treasury), demographics (US Census, Eurostat, WHO). Use when looking up compounds, genes, proteins, pathways, variants, clinical trials, patents, economic indicators, or any public database API query.",
+            "en": "Deterministically query 78 public scientific, biomedical, materials science, regulatory, finance, and demographics databases through documented REST APIs. Use for reproducible lookups of compounds, genes, proteins, pathways, variants, clinical trials, patents, economic indicators, structures, astronomy objects, environmental records, or database-backed scientific facts when endpoints, filters, pagination, and provenance need to be explicit.",
             "zh": "通过 REST API 搜索 78 个公共科学、生物医学、材料科学和经济数据库。涵盖物理/天文学（NASA、NIST、SDSS、SIMBAD）、地球/环境（USGS、NOAA、EPA）、化学/药物（PubChem、ChEMBL、DrugBank、FDA、KEGG、ZINC、BindingDB）、材料（Materials Project、COD）、生物学/基因组学（Reactome、UniProt、STRING、Ensembl、NCBI Gene、GEO、GTEx、PDB、 AlphaFold、InterPro、BioGRID、基因本体论、dbSNP、gnomAD、ENCODE、人类蛋白质图谱、人类细胞图谱）、疾病/临床（COSMIC、Open Targets、ClinicalTrials.gov、OMIM、ClinVar、GDC/TCGA、cBioPortal、DisGeNET、GWAS Catalog）、监管（FDA、USPTO、SEC EDGAR）、经济/金融（FRED、世界银行、美国财政部）、人口统计（美国人口普查、欧盟统计局、世界卫生组织）。在查找化合物、基因、蛋白质、途径、变体、临床试验、专利、经济指标或任何公共数据库 API 查询时使用。"
           },
           "sparse_path": "skills/database-lookup",
           "category": "research",
           "subdiscipline": "other",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -601,7 +622,7 @@
           "id": "sa.diffdock",
           "name": "diffdock",
           "summary": {
-            "en": "Diffusion-based molecular docking. Predict protein-ligand binding poses from PDB/SMILES, confidence scores, virtual screening, for structure-based drug design. Not for affinity prediction.",
+            "en": "DiffDock and DiffDock-L molecular docking. Use for protein-small-molecule pose prediction from PDB or sequence plus SMILES/SDF/MOL2, batch docking, virtual screening, and pose-confidence interpretation. Not for binding affinity prediction.",
             "zh": "基于扩散的分子对接。通过 PDB/SMILES、置信度评分、虚拟筛选预测蛋白质-配体结合姿势，以进行基于结构的药物设计。不适用于亲和力预测。"
           },
           "sparse_path": "skills/diffdock",
@@ -661,7 +682,7 @@
           "id": "sa.esm",
           "name": "esm",
           "summary": {
-            "en": "Comprehensive toolkit for EvolutionaryScale protein language models including ESM3 (generative multimodal design across sequence, structure, and function) and ESM C (efficient embeddings). Use for protein sequence/structure/function tasks, inverse folding, embeddings, variant design, and ESMFold2 structure prediction via Biohub. Supports local open weights (Python 3.12, esm on PyPI) and cloud Forge/Biohub APIs with ESM_API_KEY authentication.",
+            "en": "Use when working directly with the `esm` Python SDK, ESM3 or ESMC model IDs, Forge/Biohub inference clients, or ESMFold2 folding workflows.",
             "zh": "用于蛋白质语言模型的综合工具包，包括 ESM3（跨序列、结构和功能的生成多模式蛋白质设计）和 ESM C（高效蛋白质嵌入和表示）。在处理蛋白质序列、结构或功能预测时使用此技能；设计新型蛋白质；生成蛋白质嵌入；进行反向折叠；或进行蛋白质工程任务。支持本地模型使用和基于云的 Forge API 以进行可扩展推理。"
           },
           "sparse_path": "skills/esm",
@@ -712,6 +733,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/exa-search"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.experimental-design",
+          "name": "experimental-design",
+          "summary": {
+            "en": "Design experiments and studies BEFORE data is collected — choosing a design, randomizing, blocking, and laying out treatment combinations so the results will actually be interpretable. Use whenever someone is planning a study, asks how to assign subjects/samples to groups, mentions randomization, blocking, stratification, controls, factorial or fractional-factorial designs, design of experiments (DOE), screening many factors, response-surface optimization, crossover or repeated-measures or split-plot designs, cluster/group randomization, Latin squares, plate layouts, batch/run-order effects, replication vs. pseudoreplication, or sequential/adaptive/group-sequential designs. Trigger this even for informal phrasings like \"how should I set up this experiment\", \"how do I avoid confounding\", \"what's the best way to test these 6 factors\", or \"assign these mice to conditions\". For computing the sample size or power once the design is chosen, use statistical-power; for analyzing data already collected, use statistical-analysis.",
+            "zh": "在采集数据前设计可解释的实验或研究：选择设计、随机化、区组和处理组合。适用于对照、混杂、因子或部分因子设计、重复测量、交叉设计、样本分组及序贯设计；确定设计后，可用 statistical-power 进行样本量和功效计算。"
+          },
+          "sparse_path": "skills/experimental-design",
+          "category": "research",
+          "subdiscipline": null,
+          "license": "MIT license",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/experimental-design"
           },
           "post_install": [
             "clean_ads"
@@ -880,7 +921,7 @@
           "id": "sa.gget",
           "name": "gget",
           "summary": {
-            "en": "Fast CLI/Python queries to 20+ bioinformatics databases. Use for quick lookups: gene info, BLAST searches, AlphaFold structures, enrichment analysis. Best for interactive exploration, simple queries. For batch processing or advanced BLAST use biopython; for multi-database Python workflows use bioservices.",
+            "en": "Fast CLI/Python queries to 20+ bioinformatics databases. Use for quick lookups: gene info, BLAST/BLAT, viral sequence downloads, AlphaFold structures, enrichment analysis, OpenTargets, COSMIC, CELLxGENE, and 8cube mouse specificity/expression data. Best for interactive exploration and simple queries. For batch processing or advanced BLAST use biopython; for multi-database Python workflows use bioservices.",
             "zh": "对 20 多个生物信息学数据库进行快速 CLI/Python 查询。用于快速查找：基因信息、BLAST 搜索、AlphaFold 结构、富集分析。最适合交互式探索、简单查询。对于批处理或高级 BLAST，请使用 biopython；对于多数据库Python工作流程，使用bioservices。"
           },
           "sparse_path": "skills/gget",
@@ -1116,7 +1157,7 @@
           "id": "sa.lamindb",
           "name": "lamindb",
           "summary": {
-            "en": "This skill should be used when working with LaminDB, an open-source data framework for biology that makes data queryable, traceable, reproducible, and FAIR. Use when managing biological datasets (scRNA-seq, spatial, flow cytometry, etc.), tracking computational workflows, curating and validating data with biological ontologies, building data lakehouses, or ensuring data lineage and reproducibility in biological research. Covers data management, annotation, ontologies (genes, cell types, diseases, tissues), schema validation, integrations with workflow managers (Nextflow, Snakemake) and MLOps platforms (W&B, MLflow), and deployment strategies.",
+            "en": "Use when working with LaminDB, the open-source lineage-native lakehouse for biological datasets and models. Covers setup, artifact registration, query/search, lineage tracking, validation, ontology-backed annotation with Bionty, collections, branches, storage, and workflow integrations.",
             "zh": "在使用 LaminDB 时应该使用此技能，LaminDB 是一种生物学开源数据框架，使数据可查询、可追踪、可再现且公平。在管理生物数据集（scRNA-seq、空间、流式细胞术等）、跟踪计算工作流程、使用生物本体整理和验证数据、构建数据湖房或确保生物研究中的数据沿袭和可重复性时使用。涵盖数据管理、注释、本体（基因、细胞类型、疾病、组织）、模式验证、与工作流程管理器（Nextflow、Snakemake）和 MLOps 平台（W&B、MLflow）的集成以及部署策略。"
           },
           "sparse_path": "skills/lamindb",
@@ -1410,7 +1451,7 @@
           "id": "sa.networkx",
           "name": "networkx",
           "summary": {
-            "en": "Comprehensive toolkit for creating, analyzing, and visualizing complex networks and graphs in Python. Use when working with network/graph data structures, analyzing relationships between entities, computing graph algorithms (shortest paths, centrality, clustering), detecting communities, generating synthetic networks, or visualizing network topologies. Applicable to social networks, biological networks, transportation systems, citation networks, and any domain involving pairwise relationships.",
+            "en": "Create, analyze, and visualize complex networks and graphs in Python with NetworkX. Use when working with network/graph data structures, computing graph algorithms (shortest paths, centrality, clustering), detecting communities, generating synthetic networks (random, scale-free, small-world), reading/writing graph file formats, or drawing network topologies. Common applications include social, biological, transportation, and citation networks.",
             "zh": "用于在 Python 中创建、分析和可视化复杂网络和图形的综合工具包。在处理网络/图形数据结构、分析实体之间的关系、计算图形算法（最短路径、中心性、聚类）、检测社区、生成合成网络或可视化网络拓扑时使用。适用于社交网络、生物网络、交通系统、引文网络以及任何涉及成对关系的领域。"
           },
           "sparse_path": "skills/networkx",
@@ -1449,7 +1490,7 @@
           "id": "sa.neuropixels-analysis",
           "name": "neuropixels-analysis",
           "summary": {
-            "en": "Neuropixels neural recording analysis. Load SpikeGLX/OpenEphys data, preprocess, motion correction, Kilosort4 spike sorting, quality metrics, Allen/IBL curation, AI-assisted visual analysis, for Neuropixels 1.0/2.0 extracellular electrophysiology. Use when working with neural recordings, spike sorting, extracellular electrophysiology, or when the user mentions Neuropixels, SpikeGLX, Open Ephys, Kilosort, quality metrics, or unit curation.",
+            "en": "Analyze Neuropixels extracellular recordings end-to-end with SpikeInterface. Covers loading SpikeGLX/Open Ephys/NWB data, preprocessing, drift/motion correction, Kilosort4 (and CPU) spike sorting, quality metrics, and unit curation (threshold-based, model-based UnitRefine, and AI-assisted visual review). Use when working with Neuropixels 1.0/2.0 recordings, spike sorting, or extracellular electrophysiology analysis.",
             "zh": "Neuropixels 神经记录分析。加载 SpikeGLX/OpenEphys 数据、预处理、运动校正、Kilosort4 尖峰排序、质量指标、Allen/IBL 管理、AI 辅助视觉分析，适用于 Neuropixels 1.0/2.0 细胞外电生理学。当处理神经记录、尖峰排序、细胞外电生理学时，或者当用户提到 Neuropixels、SpikeGLX、Open Ephys、Kilosort、质量指标或单位管理时使用。"
           },
           "sparse_path": "skills/neuropixels-analysis",
@@ -1723,7 +1764,7 @@
           "id": "sa.pennylane",
           "name": "pennylane",
           "summary": {
-            "en": "Hardware-agnostic quantum ML framework with automatic differentiation. Use when training quantum circuits via gradients, building hybrid quantum-classical models, or needing device portability across IBM/Google/Rigetti/IonQ. Best for variational algorithms (VQE, QAOA), quantum neural networks, and integration with PyTorch/JAX/TensorFlow. For hardware-specific optimizations use qiskit (IBM) or cirq (Google); for open quantum systems use qutip.",
+            "en": "Hardware-agnostic quantum ML framework with automatic differentiation. Use when training quantum circuits via gradients, building hybrid quantum-classical models, or needing device portability across IBM/Google/Rigetti/IonQ. Best for variational algorithms (VQE, QAOA), quantum neural networks, and integration with PyTorch or JAX. For hardware-specific optimizations use qiskit (IBM) or cirq (Google); for open quantum systems use qutip.",
             "zh": "具有自动微分功能的与硬件无关的量子机器学习框架。当通过梯度训练量子电路、构建混合量子经典模型或需要跨 IBM/Google/Rigetti/IonQ 的设备可移植性时使用。最适合变分算法（VQE、QAOA）、量子神经网络以及与 PyTorch/JAX/TensorFlow 的集成。对于特定于硬件的优化，请使用 qiskit (IBM) 或 cirq (Google)；对于开放量子系统，请使用 qutip。"
           },
           "sparse_path": "skills/pennylane",
@@ -1760,6 +1801,25 @@
           ]
         },
         {
+          "id": "sa.pi-agent",
+          "name": "pi-agent",
+          "summary": {
+            "en": "Build with and use Pi, the minimal terminal coding harness. Use for installing Pi, configuring providers/models/settings, creating Pi skills/extensions/packages/themes/prompt templates, embedding Pi through the SDK, integrating over RPC or JSON event streams, parsing sessions, developing custom Pi providers and TUI components, or using ecosystem packages such as pi-subagents (delegation/orchestration), pi-mcp-adapter (MCP servers), pi-interview (interactive forms), and pi-web-access (web search, fetching, video understanding).",
+            "zh": "构建和使用 Pi 极简终端编码 Agent。适用于安装 Pi、配置模型和提供商、创建 Pi skills、扩展、包、主题与提示模板，通过 SDK、RPC 或 JSON 事件流集成 Pi，以及使用 pi-subagents、pi-mcp-adapter、pi-interview 和 pi-web-access 等生态包。"
+          },
+          "sparse_path": "skills/pi-agent",
+          "category": "workflow",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/pi-agent"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.polars-bio",
           "name": "polars-bio",
           "summary": {
@@ -1783,7 +1843,7 @@
           "id": "sa.polars",
           "name": "polars",
           "summary": {
-            "en": "Fast in-memory DataFrame library for datasets that fit in RAM. Use when pandas is too slow but data still fits in memory. Lazy evaluation, parallel execution, Apache Arrow backend. Best for 1-100GB datasets, ETL pipelines, faster pandas replacement. For larger-than-RAM data use dask or vaex.",
+            "en": "High-performance DataFrame library for Python ETL, analytics, and pandas migration. Use for expression-based data manipulation with lazy query optimization, parallel execution, streaming out-of-core processing, Arrow interoperability, and optional GPU execution.",
             "zh": "用于适合 RAM 的数据集的快速内存中 DataFrame 库。当 pandas 太慢但数据仍然适合内存时使用。惰性求值、并行执行、Apache Arrow 后端。最适合 1-100GB 数据集、ETL 管道、更快的 pandas 替换。对于大于 RAM 的数据，请使用 dask 或 vaex。"
           },
           "sparse_path": "skills/polars",
@@ -1901,7 +1961,7 @@
           "id": "sa.pydeseq2",
           "name": "pydeseq2",
           "summary": {
-            "en": "Differential gene expression analysis (Python DESeq2). Identify DE genes from bulk RNA-seq counts, Wald tests, FDR correction, volcano/MA plots, for RNA-seq analysis.",
+            "en": "Differential gene expression analysis for bulk RNA-seq with PyDESeq2, including formulaic designs, Wald tests, FDR correction, LFC shrinkage, and result visualization.",
             "zh": "差异基因表达分析（Python DESeq2）。从批量 RNA-seq 计数、Wald 检验、FDR 校正、火山/MA 图中识别 DE 基因，以进行 RNA-seq 分析。"
           },
           "sparse_path": "skills/pydeseq2",
@@ -2040,7 +2100,7 @@
           "id": "sa.pyopenms",
           "name": "pyopenms",
           "summary": {
-            "en": "Complete mass spectrometry analysis platform. Use for proteomics workflows feature detection, peptide identification, protein quantification, and complex LC-MS/MS pipelines. Supports extensive file formats and algorithms. Best for proteomics, comprehensive MS data processing. For simple spectral comparison and metabolite ID use matchms.",
+            "en": "Complete mass spectrometry analysis platform. Use for proteomics and metabolomics workflows—feature detection, peptide/protein identification, label-free and isobaric quantification, adduct/accurate-mass annotation, and complex LC-MS/MS pipelines. Supports extensive file formats and algorithms. For simple spectral comparison and small-molecule library matching use matchms.",
             "zh": "完整的质谱分析平台。用于蛋白质组学工作流程，包括检测、肽鉴定、蛋白质定量和复杂的 LC-MS/MS 流程。支持广泛的文件格式和算法。最适合蛋白质组学、全面的 MS 数据处理。对于简单的光谱比较和代谢物 ID，请使用 matchms。"
           },
           "sparse_path": "skills/pyopenms",
@@ -2258,7 +2318,7 @@
           "id": "sa.scanpy",
           "name": "scanpy",
           "summary": {
-            "en": "Standard single-cell RNA-seq analysis pipeline. Use for QC, normalization, dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression, and visualization. Best for exploratory scRNA-seq analysis with established workflows. For deep learning models use scvi-tools; for data format questions use anndata.",
+            "en": "Standard single-cell RNA-seq analysis pipeline. Use for QC, normalization, dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression, visualization, and converting R-friendly single-cell formats such as Seurat or SingleCellExperiment RDS files into h5ad for Scanpy. Best for exploratory scRNA-seq analysis with established workflows. For deep learning models use scvi-tools; for data format questions use anndata.",
             "zh": "标准单细胞 RNA-seq 分析流程。用于 QC、归一化、降维 (PCA/UMAP/t-SNE)、聚类、差异表达和可视化。最适合使用已建立的工作流程进行探索性 scRNA-seq 分析。对于深度学习模型，请使用 scvi-tools；对于数据格式问题，请使用 anndata。"
           },
           "sparse_path": "skills/scanpy",
@@ -2608,6 +2668,26 @@
           ]
         },
         {
+          "id": "sa.statistical-power",
+          "name": "statistical-power",
+          "summary": {
+            "en": "Sample-size and statistical power calculations for planning studies. Use whenever someone asks \"how many subjects/samples/replicates do I need\", wants an a priori power analysis, a minimum detectable effect (MDE), a power curve, or needs to justify a sample size for a grant, IRB protocol, or pre-registration. Covers closed-form power for t-tests, ANOVA, proportions, correlations, chi-square, and regression, plus simulation-based (Monte Carlo) power for designs with no formula — logistic/Poisson regression, mixed models, cluster-randomized trials, survival, and interactions. Use this skill even when the request only mentions an effect size, alpha, or \"80% power\" without saying \"power analysis\" explicitly. For laying out the study (randomization, blocking, factorial/DOE, crossover, sequential designs) use experimental-design; for analyzing data already collected and reporting it use statistical-analysis.",
+            "zh": "用于研究规划的样本量与统计功效计算。适用于事前功效分析、最小可检测效应、功效曲线、基金或 IRB 方案中的样本量论证；覆盖 t 检验、方差分析、比例、相关、卡方和回归，以及混合模型、聚类随机试验、生存分析和交互项的模拟功效分析。"
+          },
+          "sparse_path": "skills/statistical-power",
+          "category": "research",
+          "subdiscipline": null,
+          "license": "MIT license",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/statistical-power"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.statsmodels",
           "name": "statsmodels",
           "summary": {
@@ -2771,7 +2851,7 @@
           "id": "sa.umap-learn",
           "name": "umap-learn",
           "summary": {
-            "en": "UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D visualization, clustering preprocessing (HDBSCAN), supervised/parametric UMAP, for high-dimensional data.",
+            "en": "Use UMAP-learn for nonlinear dimensionality reduction, 2D/3D embeddings, clustering preprocessing, supervised or semi-supervised UMAP, DensMAP, AlignedUMAP, and Parametric UMAP workflows.",
             "zh": "UMAP 降维。针对高维数据的 2D/3D 可视化、聚类预处理 (HDBSCAN)、监督/参数 UMAP 的快速非线性流形学习。"
           },
           "sparse_path": "skills/umap-learn",
@@ -2919,7 +2999,7 @@
       "repository": "https://github.com/blader/humanizer",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 23255,
+      "stars": 25189,
       "tags": [
         "writing",
         "tone",
@@ -2943,7 +3023,7 @@
       "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
       "license": "MIT",
       "skill_count": 98,
-      "stars": 9491,
+      "stars": 9891,
       "tags": [
         "AI",
         "deep-learning",
@@ -5811,7 +5891,7 @@
       "repository": "https://github.com/op7418/Humanizer-zh",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 9827,
+      "stars": 10901,
       "tags": [
         "chinese",
         "writing",
@@ -5828,14 +5908,14 @@
       "id": "nature-skills",
       "name": "Nature Skills",
       "summary": {
-        "en": "10 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
-        "zh": "10 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
+        "en": "12 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
+        "zh": "12 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
       },
       "author": "Yuan1z0825",
       "repository": "https://github.com/Yuan1z0825/nature-skills",
       "license": "MIT",
-      "skill_count": 10,
-      "stars": 18502,
+      "skill_count": 12,
+      "stars": 21528,
       "tags": [
         "nature",
         "writing",
@@ -5912,6 +5992,22 @@
             "method": "sparse-checkout",
             "url": "https://github.com/Yuan1z0825/nature-skills.git",
             "sparse_path": "skills/nature-figure"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ns.nature-paper-to-patent",
+          "name": "nature-paper-to-patent",
+          "summary": {
+            "en": "Convert scientific papers, theses, technical reports, source code, figures, or research manuscripts into evidence-grounded Chinese invention patent drafts. Use when an AI agent must extract patentable technical contributions, map every claimed feature to source evidence, preserve core formulas as editable Office Math, generate claim-aligned flowcharts and methodology figures, compare a paper with an existing patent, audit support and consistency, or deliver separate Chinese DOCX files for claims, specification, abstract, and abstract figure.",
+            "zh": "将科研论文、学位论文、技术报告、源代码、图表或研究稿件转换为证据可追溯的中文发明专利草稿。适用于提取可专利技术贡献、将每项权利要求映射至原始证据、保留可编辑公式、生成与权利要求对应的流程图和方法图，以及分别交付权利要求书、说明书、摘要与摘要附图 DOCX。"
+          },
+          "sparse_path": "skills/nature-paper-to-patent",
+          "category": "writing",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-paper-to-patent"
           },
           "post_install": []
         },
@@ -6010,6 +6106,23 @@
             "sparse_path": "skills/nature-writing"
           },
           "post_install": []
+        },
+        {
+          "id": "ns.openclaw-medical-skills",
+          "name": "openclaw-medical-skills",
+          "summary": {
+            "en": "Codex adaptation of the OpenClaw Medical Skills library. Use for biomedical, clinical, healthcare AI, genomics, bioinformatics, drug discovery, pharmacovigilance, clinical trials, medical imaging, public health, medical device, regulatory, scientific data analysis, lab automation, and medical research workflows; also use when the user mentions OpenClaw Medical Skills, medical skill library, or any named capability preserved in the OpenClaw capability index.",
+            "zh": "面向 OpenClaw Medical Skills 库的 Codex 适配。适用于生物医学、临床、医疗 AI、基因组学、生物信息学、药物发现、药物警戒、临床试验、医学影像、公共卫生、医疗器械、监管、科研数据分析、实验室自动化和医学研究工作流。"
+          },
+          "sparse_path": "skills/openclaw-medical-skills",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/openclaw-medical-skills"
+          },
+          "post_install": []
         }
       ]
     },
@@ -6024,7 +6137,7 @@
       "repository": "https://github.com/HughYau/qiushi-skill",
       "license": "MIT",
       "skill_count": 11,
-      "stars": 3227,
+      "stars": 3273,
       "tags": [
         "workflow",
         "methodology",
@@ -6049,7 +6162,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 1603,
+      "stars": 1730,
       "tags": [
         "visualization",
         "matplotlib",
@@ -6074,7 +6187,7 @@
       "repository": "https://github.com/ethanweber/posterskill",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 534,
+      "stars": 547,
       "tags": [
         "poster",
         "visualization",
@@ -6099,7 +6212,7 @@
       "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",
       "license": "MIT",
       "skill_count": 15,
-      "stars": 360,
+      "stars": 368,
       "tags": [
         "writing",
         "translation",

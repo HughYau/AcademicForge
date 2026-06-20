@@ -249,5 +249,11 @@
   "ns.nature-reader": { "category": "writing" },
   "ns.nature-response": { "category": "writing" },
   "ns.nature-reviewer": { "category": "writing" },
-  "ns.nature-writing": { "category": "writing" }
+  "ns.nature-writing": { "category": "writing" },
+  "sa.arbor": { "category": "research", "subdiscipline": null },
+  "sa.experimental-design": { "category": "research", "subdiscipline": null },
+  "sa.pi-agent": { "category": "workflow" },
+  "sa.statistical-power": { "category": "research", "subdiscipline": null },
+  "ns.nature-paper-to-patent": { "category": "writing" },
+  "ns.openclaw-medical-skills": { "category": "research", "subdiscipline": "life-sci" }
 }

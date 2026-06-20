@@ -326,6 +326,10 @@ try {
 
     Write-Host ""
     Write-Host "Installed skill packs live under: $InstallPath" -ForegroundColor Cyan
+
+    if ($failed.Count -gt 0) {
+        exit 1
+    }
 } finally {
     if (Test-Path -LiteralPath $registryFile) {
         Remove-Item -LiteralPath $registryFile -Force
