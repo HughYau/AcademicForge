@@ -59,8 +59,10 @@ test('typography raised for readability', () => {
 test('library header slimmed with sticky toolbar and trailing legend', () => {
   const grid = read('site/src/components/SkillGrid.astro');
   assert.match(grid, /library-toolbar/);
+  // "Scientific Agent Skills" now also labels a package-filter chip above the grid,
+  // so assert the trailing attribution legend via its last occurrence.
   assert.ok(
-    grid.indexOf('Scientific Agent Skills') > grid.indexOf('id="skill-grid-empty"'),
+    grid.lastIndexOf('Scientific Agent Skills') > grid.indexOf('id="skill-grid-empty"'),
     'attribution legend must render after the grid',
   );
   assert.doesNotMatch(grid, /sorted by stars/);

@@ -19,5 +19,8 @@ test('SkillCard keeps the checkbox in-place instead of using sr-only', () => {
 test('SkillCard labels Nature Skills collection sub-skills in compact cards', () => {
   const skillCard = read('site/src/components/SkillCard.astro');
 
-  assert.match(skillCard, /id\.startsWith\('ns\.'\) \? 'NS'/);
+  // ns.* sub-skills resolve to the NS source badge, shown only on compact cards.
+  assert.match(skillCard, /id\.startsWith\('ns\.'\)/);
+  assert.match(skillCard, /ns: 'NS'/);
+  assert.match(skillCard, /compact && sourceLabel/);
 });

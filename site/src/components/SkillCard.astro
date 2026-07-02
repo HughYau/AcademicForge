@@ -37,7 +37,27 @@ const searchText = [id, name, summary.en, summary.zh, author ?? '', repository ?
 const detailSlug = id.replace(/[^a-zA-Z0-9_-]/g, '-');
 const detailId = `skill-detail-${detailSlug}`;
 const titleId = `skill-title-${detailSlug}`;
-const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' : id.startsWith('ns.') ? 'NS' : id.startsWith('cs.') ? 'CS' : '';
+
+// Each source repository is identified by SA / NS / AIR / CS. Sub-skills carry the
+// prefix in their id; the four parent skills are mapped explicitly so a package
+// filter can reveal a repo's main skill together with all of its sub-skills.
+const ORIGIN_BY_MAIN_ID: Record<string, string> = {
+  'scientific-agent-skills': 'sa',
+  'AI-research-SKILLs': 'air',
+  'nature-skills': 'ns',
+  'claude-science': 'cs',
+};
+const origin = id.startsWith('sa.')
+  ? 'sa'
+  : id.startsWith('air.')
+    ? 'air'
+    : id.startsWith('ns.')
+      ? 'ns'
+      : id.startsWith('cs.')
+        ? 'cs'
+        : ORIGIN_BY_MAIN_ID[id] ?? '';
+const ORIGIN_LABELS: Record<string, string> = { sa: 'SA', ns: 'NS', air: 'AIR', cs: 'CS' };
+const sourceLabel = origin ? ORIGIN_LABELS[origin] : '';
 ---
 
 <article
@@ -47,6 +67,7 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
   ]}
   data-skill-id={id}
   data-search={searchText}
+  data-origin={origin || undefined}
 >
   <div class="flex items-start gap-2.5">
     <label class="skill-card__selection relative inline-flex shrink-0 cursor-pointer items-center pt-0.5">

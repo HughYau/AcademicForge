@@ -95,25 +95,14 @@ const topTagsByCategory = Object.fromEntries(
   ]),
 ) as Record<Category, string[]>;
 
-const PRESETS = [
-  {
-    id: 'writing-starter',
-    skillIds: ['humanizer', 'paper-polish-workflow-skill', 'nature-skills'],
-    en: 'Paper writing starter',
-    zh: '论文写作入门包',
-  },
-  {
-    id: 'workflow-discipline',
-    skillIds: ['superpowers', 'andrej-karpathy-skills'],
-    en: 'Workflow discipline',
-    zh: '流程纪律包',
-  },
-  {
-    id: 'figures-poster',
-    skillIds: ['scientific-visualization', 'posterskill'],
-    en: 'Figures & posters',
-    zh: '图表海报包',
-  },
+// Source packages: one per upstream repository. Clicking a chip filters the whole
+// catalog down to that source's main skill plus every sub-skill it ships, using the
+// `data-origin` tag each SkillCard emits (sa / ns / air / cs).
+const ORIGIN_PACKAGES = [
+  { origin: 'sa', code: 'SA', name: 'Scientific Agent Skills' },
+  { origin: 'ns', code: 'NS', name: 'Nature Skills' },
+  { origin: 'air', code: 'AIR', name: 'AI Research Skills' },
+  { origin: 'cs', code: 'CS', name: 'Claude Science' },
 ];
 ---
 
@@ -161,15 +150,15 @@ const PRESETS = [
     <svg viewBox="0 0 16 16" fill="none" class="h-3.5 w-3.5 shrink-0 text-[#c96442]" aria-hidden="true">
       <path d="M8 1.5c.4 2.6 1.8 4 3 5 1.3 1.1 2 2.4 2 4a5 5 0 0 1-10 0c0-1.3.5-2.4 1.3-3.3-.05.9.3 1.6 1 2 .1-2.8 1-5.4 2.7-7.7Z" fill="currentColor"></path>
     </svg>
-    {PRESETS.map((preset) => (
+    {ORIGIN_PACKAGES.map((pkg) => (
       <button
         type="button"
         class="preset-chip"
-        data-preset-skills={preset.skillIds.join(',')}
+        data-origin-filter={pkg.origin}
         aria-pressed="false"
       >
-        <span class="lang-en">{preset.en}</span>
-        <span class="lang-zh">{preset.zh}</span>
+        <span class="skill-card__origin">{pkg.code}</span>
+        <span>{pkg.name}</span>
       </button>
     ))}
     <span class="mx-1 h-4 w-px shrink-0 bg-[#e8e6dc]" aria-hidden="true"></span>
@@ -354,7 +343,7 @@ const PRESETS = [
   const emptyStateText = document.getElementById('skill-grid-empty-text');
   const grid = document.getElementById('skill-grid');
   const tagChips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-tag-chip]'));
-  const presetChips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-preset-skills]'));
+  const originChips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-origin-filter]'));
 
   const translations = {
     en: {
@@ -372,6 +361,7 @@ const PRESETS = [
     ?? categoryTabs[0]?.dataset.categoryTab
     ?? '';
   let activeTag = '';
+  let activeOrigin = '';
 
   const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
 
@@ -410,17 +400,10 @@ const PRESETS = [
     });
   };
 
-  const getPresetCheckboxes = (chip: HTMLButtonElement) => {
-    const ids = new Set((chip.dataset.presetSkills ?? '').split(',').filter(Boolean));
-    return Array.from(document.querySelectorAll<HTMLInputElement>('.skill-checkbox'))
-      .filter((checkbox) => ids.has(checkbox.dataset.skillId ?? ''));
-  };
-
-  const syncPresetStates = () => {
-    presetChips.forEach((chip) => {
-      const checkboxes = getPresetCheckboxes(chip);
-      const allChecked = checkboxes.length > 0 && checkboxes.every((checkbox) => checkbox.checked);
-      chip.setAttribute('aria-pressed', String(allChecked));
+  const syncOriginChips = () => {
+    originChips.forEach((chip) => {
+      const isActive = activeOrigin !== '' && chip.dataset.originFilter === activeOrigin;
+      chip.setAttribute('aria-pressed', String(isActive));
     });
   };
 
@@ -472,7 +455,8 @@ const PRESETS = [
       const search = card.dataset.search ?? '';
       const matchesQuery = !query || search.includes(query);
       const matchesTag = !activeTag || search.includes(activeTag);
-      const isVisible = matchesQuery && matchesTag;
+      const matchesOrigin = !activeOrigin || card.dataset.origin === activeOrigin;
+      const isVisible = matchesQuery && matchesTag && matchesOrigin;
 
       card.classList.toggle('hidden', !isVisible);
       if (isVisible) {
@@ -485,11 +469,13 @@ const PRESETS = [
       const hasVisible = visibleCards.length > 0;
 
       group.hidden = !hasVisible;
-      group.open = (hasQuery || activeTag !== '') ? hasVisible : group.dataset.userOpen === 'true';
+      group.open = (hasQuery || activeTag !== '' || activeOrigin !== '') ? hasVisible : group.dataset.userOpen === 'true';
     });
 
-    // Text search is global; tab/tag navigation stays category-scoped.
-    const globalSearch = hasQuery;
+    // A text search or a source-package filter both span the whole catalog, so
+    // either one switches the grid into the cross-category "global" layout. Tab
+    // and tag navigation stay category-scoped.
+    const globalSearch = hasQuery || activeOrigin !== '';
     applyTabState(globalSearch);
 
     const activePanel = getActivePanel();
@@ -505,6 +491,8 @@ const PRESETS = [
     if (emptyStateText && !hasVisible) {
       emptyStateText.textContent = translations[getLocale()].empty;
     }
+
+    syncOriginChips();
   };
 
   searchInput?.addEventListener('input', applyFilters);
@@ -515,6 +503,8 @@ const PRESETS = [
         activeTag = '';
       }
       activeCategory = button.dataset.categoryTab ?? activeCategory;
+      // Choosing a category tab leaves the cross-category package view.
+      activeOrigin = '';
       applyFilters();
     });
   });
@@ -527,23 +517,18 @@ const PRESETS = [
     });
   });
 
-  presetChips.forEach((chip) => {
+  originChips.forEach((chip) => {
     chip.addEventListener('click', () => {
-      const checkboxes = getPresetCheckboxes(chip);
-      if (checkboxes.length === 0) {
-        return;
-      }
+      const origin = chip.dataset.originFilter ?? '';
+      // Toggle: clicking the active package again clears the filter.
+      activeOrigin = activeOrigin === origin ? '' : origin;
+      // A package view is a fresh browse, so drop any category-scoped tag.
+      activeTag = '';
+      applyFilters();
 
-      const allChecked = checkboxes.every((checkbox) => checkbox.checked);
-      checkboxes.forEach((checkbox) => {
-        checkbox.checked = !allChecked;
-        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-      });
-
-      if (!allChecked) {
+      if (activeOrigin) {
         spawnSparks(chip, 6);
       }
-      syncPresetStates();
     });
   });
 
@@ -610,7 +595,6 @@ const PRESETS = [
       if (event.isTrusted && target.checked) {
         spawnSparks(target.closest('.skill-card__selection') ?? target, 4);
       }
-      syncPresetStates();
     }
   });
 
@@ -620,5 +604,4 @@ const PRESETS = [
   skillCards.forEach((card) => setCardDetailState(card, card.classList.contains('is-expanded')));
   applyFilters();
   applyLocale();
-  syncPresetStates();
 </script>
