@@ -116,6 +116,83 @@ The local skill content that remains checked in on `site-first` is:
 
 All other packs are installed from the sources described in `registry/skills.json`.
 
+## 🔬 Claude Science Skill List (32)
+
+The full set of 32 skills in [`skills/claude-science`](./skills/claude-science), organized by theme. To install just this collection:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- --tool claude --skills claude-science
+```
+
+**Six themes:** 🧬 Structure prediction & docking · ✏️ Protein design & embeddings · 🧫 Genomics & single-cell · 📊 Figures & visualization · ✍️ Literature & writing · ⚙️ Compute & workflow
+
+<details>
+<summary><b>Expand all 32 Claude Science skills</b></summary>
+
+### 🧬 Structure prediction & docking (6)
+
+| Skill | What it does |
+|-------|--------------|
+| [alphafold2](./skills/claude-science/alphafold2) | Fold monomers & complexes with AlphaFold2 / AF2-Multimer (ColabFold runner) |
+| [openfold3](./skills/claude-science/openfold3) | Open-weights PyTorch reproduction of AlphaFold3 (AlQuraishi Lab) |
+| [boltz](./skills/claude-science/boltz) | Boltz-2 protein / nucleic-acid / small-molecule complexes, optional binding affinity |
+| [chai1](./skills/claude-science/chai1) | Chai-1 foundation model for antibody-antigen & protein-ligand complexes |
+| [esmfold2](./skills/claude-science/esmfold2) | Biohub ESMFold2 / ESMFold2-Fast all-atom co-folding |
+| [diffdock](./skills/claude-science/diffdock) | Predict small-molecule binding poses with DiffDock-L |
+
+### ✏️ Protein design & embeddings (4)
+
+| Skill | What it does |
+|-------|--------------|
+| [proteinmpnn](./skills/claude-science/proteinmpnn) | Inverse-fold a backbone into an amino-acid sequence |
+| [ligandmpnn](./skills/claude-science/ligandmpnn) | Inverse-folding with ligand / nucleic-acid / metal context |
+| [solublempnn](./skills/claude-science/solublempnn) | ProteinMPNN retrained on a soluble-PDB subset |
+| [fair-esm2](./skills/claude-science/fair-esm2) | Protein embeddings with Meta AI's ESM-2 |
+
+### 🧫 Genomics & single-cell (4)
+
+| Skill | What it does |
+|-------|--------------|
+| [borzoi](./skills/claude-science/borzoi) | Predict genome-wide functional tracks (RNA-seq/CAGE/DNase/ChIP) from DNA |
+| [evo2](./skills/claude-science/evo2) | Long-context genomic foundation model: score / embed / generate DNA |
+| [scgpt](./skills/claude-science/scgpt) | Single-cell foundation model scGPT: embed & annotate |
+| [scvi-tools](./skills/claude-science/scvi-tools) | Probabilistic scRNA-seq (scVI / scANVI + Bayesian differential expression) |
+
+### 📊 Figures & visualization (4)
+
+| Skill | What it does |
+|-------|--------------|
+| [figure-composer](./skills/claude-science/figure-composer) | Compose a publication-grade multi-panel figure |
+| [figure-style](./skills/claude-science/figure-style) | Publication-grade figure correctness & legibility rules |
+| [algorithmic-art](./skills/claude-science/algorithmic-art) | Create algorithmic / generative art with p5.js |
+| [web-artifacts-builder](./skills/claude-science/web-artifacts-builder) | Build elaborate claude.ai HTML artifacts (React/Tailwind/shadcn) |
+
+### ✍️ Literature & writing (4)
+
+| Skill | What it does |
+|-------|--------------|
+| [literature-review](./skills/claude-science/literature-review) | Find, verify & synthesize scientific literature |
+| [paper-narrative](./skills/claude-science/paper-narrative) | Judge & reshape the story a paper's figures tell |
+| [indication-dossier](./skills/claude-science/indication-dossier) | Generate a therapeutic indication dossier |
+| [pdf-explore](./skills/claude-science/pdf-explore) | Locate, compare & extract content across a whole PDF / paper |
+
+### ⚙️ Compute & workflow (10)
+
+| Skill | What it does |
+|-------|--------------|
+| [compute-env-setup](./skills/claude-science/compute-env-setup) | Set up a run environment on remote compute |
+| [remote-compute-modal](./skills/claude-science/remote-compute-modal) | Run GPU jobs on your own Modal account |
+| [remote-compute-ssh](./skills/claude-science/remote-compute-ssh) | Submit → wait → harvest workflow for SSH / SLURM hosts |
+| [managed-model-endpoints](./skills/claude-science/managed-model-endpoints) | Register local / remote model service endpoints |
+| [using-model-endpoint](./skills/claude-science/using-model-endpoint) | Call a registered endpoint over its native HTTP API |
+| [self-awareness](./skills/claude-science/self-awareness) | Introspect Claude Science's session DB / SDK |
+| [skill-creator](./skills/claude-science/skill-creator) | Create, improve & evaluate skills |
+| [customize](./skills/claude-science/customize) | Customize agent profiles & author new skills |
+| [learn](./skills/claude-science/learn) | Learning / explanation skill for understanding "why" |
+| [product-self-knowledge](./skills/claude-science/product-self-knowledge) | Fact-check claims about Anthropic products |
+
+</details>
+
 ## 🛠️ Maintaining `site-first`
 
 Common local commands:

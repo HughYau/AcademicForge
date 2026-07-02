@@ -113,6 +113,83 @@ ls .codex/skills/
 
 其他 pack 都通过 `registry/skills.json` 描述，并在安装时从各自来源仓库获取。
 
+## 🔬 Claude Science 技能清单（32 个）
+
+下面按主题整理了 [`skills/claude-science`](./skills/claude-science) 收录的全部 32 个技能。只想安装这一套：
+
+```bash
+curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/site-first/scripts/forge-install.sh | bash -s -- --tool claude --skills claude-science
+```
+
+**六大主题**：🧬 结构预测与对接 · ✏️ 蛋白质设计与嵌入 · 🧫 基因组与单细胞 · 📊 图表与可视化 · ✍️ 文献与写作 · ⚙️ 算力与工作流
+
+<details>
+<summary><b>展开查看全部 32 个 Claude Science 技能</b></summary>
+
+### 🧬 结构预测与对接（6）
+
+| Skill | 用途 |
+|-------|------|
+| [alphafold2](./skills/claude-science/alphafold2) | AlphaFold2 / AF2-Multimer 折叠单体与复合物（ColabFold 运行器） |
+| [openfold3](./skills/claude-science/openfold3) | AlphaFold3 的开源权重 PyTorch 复现（AlQuraishi Lab） |
+| [boltz](./skills/claude-science/boltz) | Boltz-2 预测蛋白 / 核酸 / 小分子复合物，可选结合亲和力 |
+| [chai1](./skills/claude-science/chai1) | Chai-1 基础模型预测抗体-抗原、蛋白-配体复合物 |
+| [esmfold2](./skills/claude-science/esmfold2) | Biohub ESMFold2 / ESMFold2-Fast 全原子共折叠 |
+| [diffdock](./skills/claude-science/diffdock) | DiffDock-L 预测小分子结合构象（分子对接） |
+
+### ✏️ 蛋白质设计与嵌入（4）
+
+| Skill | 用途 |
+|-------|------|
+| [proteinmpnn](./skills/claude-science/proteinmpnn) | 对蛋白骨架逆折叠生成氨基酸序列 |
+| [ligandmpnn](./skills/claude-science/ligandmpnn) | 带配体 / 核酸 / 金属上下文的逆折叠 |
+| [solublempnn](./skills/claude-science/solublempnn) | 面向可溶性重训的 ProteinMPNN 变体 |
+| [fair-esm2](./skills/claude-science/fair-esm2) | 用 Meta ESM-2 生成蛋白质嵌入表征 |
+
+### 🧫 基因组与单细胞（4）
+
+| Skill | 用途 |
+|-------|------|
+| [borzoi](./skills/claude-science/borzoi) | 从 DNA 序列预测全基因组功能轨迹（RNA-seq/CAGE/DNase/ChIP） |
+| [evo2](./skills/claude-science/evo2) | 长上下文基因组基础模型：打分 / 嵌入 / 生成 DNA |
+| [scgpt](./skills/claude-science/scgpt) | 单细胞基础模型 scGPT：嵌入与细胞注释 |
+| [scvi-tools](./skills/claude-science/scvi-tools) | 概率式单细胞 RNA-seq（scVI / scANVI + 贝叶斯差异表达） |
+
+### 📊 图表与可视化（4）
+
+| Skill | 用途 |
+|-------|------|
+| [figure-composer](./skills/claude-science/figure-composer) | 组合出版级多面板图 |
+| [figure-style](./skills/claude-science/figure-style) | 出版级图表正确性与可读性规范 |
+| [algorithmic-art](./skills/claude-science/algorithmic-art) | 用 p5.js 创作算法 / 生成艺术 |
+| [web-artifacts-builder](./skills/claude-science/web-artifacts-builder) | 构建复杂的 claude.ai HTML 交互产物（React/Tailwind/shadcn） |
+
+### ✍️ 文献与写作（4）
+
+| Skill | 用途 |
+|-------|------|
+| [literature-review](./skills/claude-science/literature-review) | 检索、核验并综合科学文献 |
+| [paper-narrative](./skills/claude-science/paper-narrative) | 审视并重塑论文图表讲述的“故事线” |
+| [indication-dossier](./skills/claude-science/indication-dossier) | 生成治疗适应症档案（indication dossier） |
+| [pdf-explore](./skills/claude-science/pdf-explore) | 跨整篇 PDF / 论文定位、比较与抽取内容 |
+
+### ⚙️ 算力与工作流（10）
+
+| Skill | 用途 |
+|-------|------|
+| [compute-env-setup](./skills/claude-science/compute-env-setup) | 在远程算力上搭建运行环境 |
+| [remote-compute-modal](./skills/claude-science/remote-compute-modal) | 在你自己的 Modal 账户上运行 GPU 任务 |
+| [remote-compute-ssh](./skills/claude-science/remote-compute-ssh) | SSH / SLURM 主机的提交 → 等待 → 回收工作流 |
+| [managed-model-endpoints](./skills/claude-science/managed-model-endpoints) | 注册本地 / 远程模型服务端点 |
+| [using-model-endpoint](./skills/claude-science/using-model-endpoint) | 通过原生 HTTP API 调用已注册的模型端点 |
+| [self-awareness](./skills/claude-science/self-awareness) | 对 Claude Science 会话数据库 / SDK 做自省 |
+| [skill-creator](./skills/claude-science/skill-creator) | 创建、改进并评测 skill |
+| [customize](./skills/claude-science/customize) | 自定义 agent 画像并创作新 skill |
+| [learn](./skills/claude-science/learn) | 面向“理解原理”的学习 / 讲解型 skill |
+| [product-self-knowledge](./skills/claude-science/product-self-knowledge) | 涉及 Anthropic 产品事实时先自查核对 |
+
+</details>
+
 ## 🛠️ 维护 `site-first`
 
 常用本地命令：
