@@ -103,6 +103,7 @@
   "sa.neurokit2": "用于分析生理数据的综合生物信号处理工具包，包括 ECG、EEG、EDA、RSP、PPG、EMG 和 EOG 信号。在处理心血管信号、大脑活动、皮肤电反应、呼吸模式、肌肉活动或眼球运动时使用此技能。适用于心率变异性分析、事件相关电位、复杂性测量、自主神经系统评估、心理生理学研究和多模态生理信号集成。",
   "sa.neuropixels-analysis": "Neuropixels 神经记录分析。加载 SpikeGLX/OpenEphys 数据、预处理、运动校正、Kilosort4 尖峰排序、质量指标、Allen/IBL 管理、AI 辅助视觉分析，适用于 Neuropixels 1.0/2.0 细胞外电生理学。当处理神经记录、尖峰排序、细胞外电生理学时，或者当用户提到 Neuropixels、SpikeGLX、Open Ephys、Kilosort、质量指标或单位管理时使用。",
   "sa.omero-integration": "显微镜数据管理平台。通过 Python 访问图像、检索数据集、分析像素、管理 ROI/注释、批处理，以实现高内容筛选和显微镜工作流程。",
+  "sa.onekgpd": "千人基因组计划（1000 Genomes，GRCh38，3202 例全基因组测序个体）个体级查询。用于查找携带特定基因/区域变异的个体、位点纯合参考个体、数据集或指定个体的变异，以及个体间亲缘关系；变异附带千人基因组与 gnomAD v4.1 等位基因频率、AlphaMissense 评分及 HGVSp 注释。",
   "sa.open-notebook": "Google NotebookLM 的自托管开源替代方案，用于人工智能驱动的研究和文档分析。在将研究材料组织到笔记本中、摄取不同的内容源（PDF、视频、音频、网页、Office 文档）、生成 AI 驱动的笔记和摘要、根据研究创建多扬声器播客、使用上下文感知 AI 与文档聊天、使用全文和矢量搜索跨材料搜索或运行自定义内容转换时使用。支持超过 16 个人工智能提供商，包括 OpenAI、Anthropic、Google、Ollama、Groq 和 Mistral，通过自托管提供完整的数据隐私。",
   "sa.opentrons-integration": "适用于 OT-2 和 Flex 机器人的官方 Opentrons 协议 API。在专门为 Opentrons 硬件编写协议时使用，可以完全访问协议 API v2 功能。最适合生产 Opentrons 协议，官方 API 兼容性。对于多供应商自动化或更广泛的设备控制，请使用 pylabrobot。",
   "sa.optimize-for-gpu": "使用 CuPy、Numba CUDA、Warp、cuDF、cuML、cuGraph、KvikIO、cuCIM、cuxfilter、cuVS、cuSpatial 和 RAFT 对 Python 代码进行 GPU 加速。每当用户提到 GPU/CUDA/NVIDIA 加速，或想要加速 NumPy、pandas、scikit-learn、scikit-image、NetworkX、GeoPandas 或 Faiss 工作负载时使用。涵盖物理模拟、可微渲染、网格光线投射、粒子系统（DEM/SPH/流体）、矢量/相似性搜索、GPUDirect Storage 文件 IO、交互式仪表板、地理空间分析、医学成像和稀疏特征求解器。当您看到 CPU 密集型 Python 代码（循环、大型数组、机器学习管道、图形分析、图像处理）时，即使没有明确请求，也可以使用这些代码，这些代码将受益于 GPU 加速。",
@@ -287,5 +288,9 @@
   "sa.pi-agent": "构建和使用 Pi 极简终端编码 Agent。适用于安装 Pi、配置模型和提供商、创建 Pi skills、扩展、包、主题与提示模板，通过 SDK、RPC 或 JSON 事件流集成 Pi，以及使用 pi-subagents、pi-mcp-adapter、pi-interview 和 pi-web-access 等生态包。",
   "sa.statistical-power": "用于研究规划的样本量与统计功效计算。适用于事前功效分析、最小可检测效应、功效曲线、基金或 IRB 方案中的样本量论证；覆盖 t 检验、方差分析、比例、相关、卡方和回归，以及混合模型、聚类随机试验、生存分析和交互项的模拟功效分析。",
   "ns.nature-paper-to-patent": "将科研论文、学位论文、技术报告、源代码、图表或研究稿件转换为证据可追溯的中文发明专利草稿。适用于提取可专利技术贡献、将每项权利要求映射至原始证据、保留可编辑公式、生成与权利要求对应的流程图和方法图，以及分别交付权利要求书、说明书、摘要与摘要附图 DOCX。",
-  "ns.openclaw-medical-skills": "面向 OpenClaw Medical Skills 库的 Codex 适配。适用于生物医学、临床、医疗 AI、基因组学、生物信息学、药物发现、药物警戒、临床试验、医学影像、公共卫生、医疗器械、监管、科研数据分析、实验室自动化和医学研究工作流。"
+  "sa.tamarind": "Tamarind Bio 平台上的开源分子设计与结构生物学工具集，通过 REST API 或 MCP 服务器调用，无需本地 GPU。集成 AlphaFold、Boltz、Chai、ESMFold 等结构预测，以及 RFdiffusion 等蛋白、结合体与从头设计模型。",
+  "ns.nature-downloader": "文献获取工具。配置校园/图书馆访问、复用已登录的 Chrome 机构会话、检索图书馆数据库、下载合规的开放获取或机构授权全文 PDF，并整理与阅读文献及补充材料。",
+  "ns.nature-experiment-log": "标准化实验日志技能：接收图像、语音或文字等原始素材，自动生成带 YAML frontmatter 的规范日志并归档至 Obsidian 知识库；可搭配飞书 CLI 或手动录入使用。",
+  "ns.nature-literature-pipeline": "自动化文献发现流水线：多源检索 → 六维打分 → 精读 → 格式化交付 → 归档。将可配置引擎与每日定时应用层结合，支持飞书、Telegram 等消息平台。",
+  "ns.nature-proposal-writer": "以提案为先的科学写作流水线，提供 compose/revise/hybrid 三种模式与四层质量校验；强制先证据后成文、先论证后章节、先契约后段落。"
 }

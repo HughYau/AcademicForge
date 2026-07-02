@@ -11,7 +11,7 @@
       "repository": "https://github.com/obra/superpowers",
       "license": "MIT",
       "skill_count": 15,
-      "stars": 234123,
+      "stars": 244137,
       "tags": [
         "workflow",
         "planning",
@@ -37,7 +37,7 @@
       "repository": "https://github.com/multica-ai/andrej-karpathy-skills",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 179181,
+      "stars": 186547,
       "tags": [
         "workflow",
         "process",
@@ -56,14 +56,14 @@
       "id": "scientific-agent-skills",
       "name": "Scientific Agent Skills",
       "summary": {
-        "en": "147 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
-        "zh": "147 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
+        "en": "149 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
+        "zh": "149 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
       },
       "author": "K-Dense-AI",
       "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "license": "MIT",
-      "skill_count": 147,
-      "stars": 28854,
+      "skill_count": 149,
+      "stars": 29933,
       "tags": [
         "science",
         "research",
@@ -502,7 +502,7 @@
           "id": "sa.database-lookup",
           "name": "database-lookup",
           "summary": {
-            "en": "Deterministically query 78 public scientific, biomedical, materials science, regulatory, finance, and demographics databases through documented REST APIs. Use for reproducible lookups of compounds, genes, proteins, pathways, variants, clinical trials, patents, economic indicators, structures, astronomy objects, environmental records, or database-backed scientific facts when endpoints, filters, pagination, and provenance need to be explicit.",
+            "en": "Query documented public database APIs with explicit endpoints, filters, pagination, and provenance. Use when a scientific, regulatory, financial, or other database-backed fact must be retrieved reproducibly from a named source rather than inferred from general knowledge.",
             "zh": "通过 REST API 搜索 78 个公共科学、生物医学、材料科学和经济数据库。涵盖物理/天文学（NASA、NIST、SDSS、SIMBAD）、地球/环境（USGS、NOAA、EPA）、化学/药物（PubChem、ChEMBL、DrugBank、FDA、KEGG、ZINC、BindingDB）、材料（Materials Project、COD）、生物学/基因组学（Reactome、UniProt、STRING、Ensembl、NCBI Gene、GEO、GTEx、PDB、 AlphaFold、InterPro、BioGRID、基因本体论、dbSNP、gnomAD、ENCODE、人类蛋白质图谱、人类细胞图谱）、疾病/临床（COSMIC、Open Targets、ClinicalTrials.gov、OMIM、ClinVar、GDC/TCGA、cBioPortal、DisGeNET、GWAS Catalog）、监管（FDA、USPTO、SEC EDGAR）、经济/金融（FRED、世界银行、美国财政部）、人口统计（美国人口普查、欧盟统计局、世界卫生组织）。在查找化合物、基因、蛋白质、途径、变体、临床试验、专利、经济指标或任何公共数据库 API 查询时使用。"
           },
           "sparse_path": "skills/database-lookup",
@@ -941,12 +941,13 @@
           "id": "sa.ginkgo-cloud-lab",
           "name": "ginkgo-cloud-lab",
           "summary": {
-            "en": "Submit and manage protocols on Ginkgo Bioworks Cloud Lab (cloud.ginkgo.bio), a web-based interface for autonomous lab execution on Reconfigurable Automation Carts (RACs). Use when the user wants to run cell-free protein expression (validation or optimization), generate fluorescent pixel art, or interact with Ginkgo Cloud Lab services. Covers protocol selection, input preparation, pricing, and ordering workflows.",
+            "en": "Submit and manage protocols on Ginkgo Bioworks Cloud Lab (cloud.ginkgo.bio), a web-based interface for autonomous lab execution on Reconfigurable Automation Carts (RACs). Use when the user wants to run protein expression and purification (cell-free, E. coli, or Pichia), HiBiT or A280 or LabChip quantification, IVT mRNA/circRNA synthesis, thermal shift / developability assays, Echo-MS enzyme or analyte methods, SPR target onboarding, fluorescent pixel art, or otherwise interact with Ginkgo Cloud Lab services. Covers protocol selection, input preparation, pricing, and ordering workflows.",
             "zh": "在 Ginkgo Bioworks 云实验室 (cloud.ginkgo.bio) 上提交和管理协议，这是一个基于 Web 的界面，用于在可重新配置自动化推车 (RAC) 上自主执行实验室。当用户想要运行无细胞蛋白质表达（验证或优化）、生成荧光像素艺术或与 Ginkgo Cloud Lab 服务交互时使用。涵盖协议选择、输入准备、定价和订购工作流程。"
           },
           "sparse_path": "skills/ginkgo-cloud-lab",
           "category": "research",
           "subdiscipline": "lab-automation",
+          "license": "MIT license",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1541,6 +1542,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/omero-integration"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.onekgpd",
+          "name": "onekgpd",
+          "summary": {
+            "en": "Query the 1000 Genomes Project dataset (3,202 whole-genome-sequenced individuals, GRCh38) at the level of individual participants. Use when a question is about individuals or variants in the 1000 Genomes Project cohort: which individuals carry variants matching specific criteria in a gene or region, which individuals are homozygous-reference at a position, which variants exist in the dataset or carried by specified individuals in a gene or region, the relatedness between two specified individuals. Variants are returned with 1000 Genomes allele frequencies (AF), gnomAD v4.1 exome and genome AF, AlphaMissense score, and HGVSp annotations.",
+            "zh": "千人基因组计划（1000 Genomes，GRCh38，3202 例全基因组测序个体）个体级查询。用于查找携带特定基因/区域变异的个体、位点纯合参考个体、数据集或指定个体的变异，以及个体间亲缘关系；变异附带千人基因组与 gnomAD v4.1 等位基因频率、AlphaMissense 评分及 HGVSp 注释。"
+          },
+          "sparse_path": "skills/onekgpd",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/onekgpd"
           },
           "post_install": [
             "clean_ads"
@@ -2728,6 +2749,26 @@
           ]
         },
         {
+          "id": "sa.tamarind",
+          "name": "tamarind",
+          "summary": {
+            "en": "Access a collection of open-source molecular design and structural biology tools on the Tamarind Bio platform, via its REST API or MCP server — no local GPUs required. Tamarind bundles popular open-source models for structure prediction (AlphaFold, Boltz, Chai, ESMFold), protein, binder, and de novo design (RFdiffusion, ProteinMPNN, BoltzGen), antibody and nanobody design and developability, protein-ligand docking (DiffDock, Autodock Vina), binding-affinity prediction, MSA generation, and molecular dynamics. Use when the user mentions Tamarind or tamarind.bio, wants to run any of these open-source tools in the cloud, references app.tamarind.bio/api or the x-api-key header, or needs to submit batches of sequences for structural or biophysical characterization.",
+            "zh": "Tamarind Bio 平台上的开源分子设计与结构生物学工具集，通过 REST API 或 MCP 服务器调用，无需本地 GPU。集成 AlphaFold、Boltz、Chai、ESMFold 等结构预测，以及 RFdiffusion 等蛋白、结合体与从头设计模型。"
+          },
+          "sparse_path": "skills/tamarind",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/tamarind"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.tiledbvcf",
           "name": "tiledbvcf",
           "summary": {
@@ -2999,7 +3040,7 @@
       "repository": "https://github.com/blader/humanizer",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 25189,
+      "stars": 27213,
       "tags": [
         "writing",
         "tone",
@@ -3023,7 +3064,7 @@
       "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
       "license": "MIT",
       "skill_count": 98,
-      "stars": 9891,
+      "stars": 10316,
       "tags": [
         "AI",
         "deep-learning",
@@ -5891,7 +5932,7 @@
       "repository": "https://github.com/op7418/Humanizer-zh",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 10901,
+      "stars": 12200,
       "tags": [
         "chinese",
         "writing",
@@ -5908,14 +5949,14 @@
       "id": "nature-skills",
       "name": "Nature Skills",
       "summary": {
-        "en": "12 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
-        "zh": "12 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
+        "en": "15 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
+        "zh": "15 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
       },
       "author": "Yuan1z0825",
       "repository": "https://github.com/Yuan1z0825/nature-skills",
       "license": "MIT",
-      "skill_count": 12,
-      "stars": 21528,
+      "skill_count": 15,
+      "stars": 25293,
       "tags": [
         "nature",
         "writing",
@@ -5980,6 +6021,40 @@
           "post_install": []
         },
         {
+          "id": "ns.nature-downloader",
+          "name": "nature-downloader",
+          "summary": {
+            "en": "Use this skill whenever the user wants to configure school/library access, reuse a logged-in Chrome institutional session, search library databases, download legitimate open-access or institution-authorized academic full text/PDFs, handle missing library permission, organize papers, or read PDFs and supporting information.",
+            "zh": "文献获取工具。配置校园/图书馆访问、复用已登录的 Chrome 机构会话、检索图书馆数据库、下载合规的开放获取或机构授权全文 PDF，并整理与阅读文献及补充材料。"
+          },
+          "sparse_path": "skills/nature-downloader",
+          "category": "research",
+          "subdiscipline": "other",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-downloader"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ns.nature-experiment-log",
+          "name": "nature-experiment-log",
+          "summary": {
+            "en": "标准化实验日志记录——接收原始材料（图/语音/文字），产出带 YAML frontmatter 的标准日志到 Obsidian vault。需配合飞书 CLI 或手动输入使用。",
+            "zh": "标准化实验日志技能：接收图像、语音或文字等原始素材，自动生成带 YAML frontmatter 的规范日志并归档至 Obsidian 知识库；可搭配飞书 CLI 或手动录入使用。"
+          },
+          "sparse_path": "skills/nature-experiment-log",
+          "category": "workflow",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-experiment-log"
+          },
+          "post_install": []
+        },
+        {
           "id": "ns.nature-figure",
           "name": "nature-figure",
           "summary": {
@@ -5992,6 +6067,24 @@
             "method": "sparse-checkout",
             "url": "https://github.com/Yuan1z0825/nature-skills.git",
             "sparse_path": "skills/nature-figure"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ns.nature-literature-pipeline",
+          "name": "nature-literature-pipeline",
+          "summary": {
+            "en": "Complete automated literature discovery pipeline: multi-source search → six-dimension scoring → fine reading → formatted delivery → archival.\nCombines a configurable engine with daily cron-driven application layer. Works with Feishu, Telegram, or any messaging platform.",
+            "zh": "自动化文献发现流水线：多源检索 → 六维打分 → 精读 → 格式化交付 → 归档。将可配置引擎与每日定时应用层结合，支持飞书、Telegram 等消息平台。"
+          },
+          "sparse_path": "skills/nature-literature-pipeline",
+          "category": "research",
+          "subdiscipline": "other",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-literature-pipeline"
           },
           "post_install": []
         },
@@ -6040,6 +6133,23 @@
             "method": "sparse-checkout",
             "url": "https://github.com/Yuan1z0825/nature-skills.git",
             "sparse_path": "skills/nature-polishing"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ns.nature-proposal-writer",
+          "name": "nature-proposal-writer",
+          "summary": {
+            "en": "Proposal-first scientific writing pipeline. Three modes (compose/revise/hybrid) with four-layer QA pipeline. Enforces evidence-before-prose, argument-before-sections, and contracts-before-paragraphs.",
+            "zh": "以提案为先的科学写作流水线，提供 compose/revise/hybrid 三种模式与四层质量校验；强制先证据后成文、先论证后章节、先契约后段落。"
+          },
+          "sparse_path": "skills/nature-proposal-writer",
+          "category": "writing",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-proposal-writer"
           },
           "post_install": []
         },
@@ -6106,23 +6216,6 @@
             "sparse_path": "skills/nature-writing"
           },
           "post_install": []
-        },
-        {
-          "id": "ns.openclaw-medical-skills",
-          "name": "openclaw-medical-skills",
-          "summary": {
-            "en": "Codex adaptation of the OpenClaw Medical Skills library. Use for biomedical, clinical, healthcare AI, genomics, bioinformatics, drug discovery, pharmacovigilance, clinical trials, medical imaging, public health, medical device, regulatory, scientific data analysis, lab automation, and medical research workflows; also use when the user mentions OpenClaw Medical Skills, medical skill library, or any named capability preserved in the OpenClaw capability index.",
-            "zh": "面向 OpenClaw Medical Skills 库的 Codex 适配。适用于生物医学、临床、医疗 AI、基因组学、生物信息学、药物发现、药物警戒、临床试验、医学影像、公共卫生、医疗器械、监管、科研数据分析、实验室自动化和医学研究工作流。"
-          },
-          "sparse_path": "skills/openclaw-medical-skills",
-          "category": "research",
-          "subdiscipline": "life-sci",
-          "install": {
-            "method": "sparse-checkout",
-            "url": "https://github.com/Yuan1z0825/nature-skills.git",
-            "sparse_path": "skills/openclaw-medical-skills"
-          },
-          "post_install": []
         }
       ]
     },
@@ -6137,7 +6230,7 @@
       "repository": "https://github.com/HughYau/qiushi-skill",
       "license": "MIT",
       "skill_count": 11,
-      "stars": 3273,
+      "stars": 3312,
       "tags": [
         "workflow",
         "methodology",
@@ -6162,7 +6255,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "Apache-2.0",
       "skill_count": 32,
-      "stars": 1730,
+      "stars": 1903,
       "tags": [
         "anthropic",
         "claude-science",
@@ -6750,7 +6843,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 1730,
+      "stars": 1903,
       "tags": [
         "visualization",
         "matplotlib",
@@ -6775,7 +6868,7 @@
       "repository": "https://github.com/ethanweber/posterskill",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 547,
+      "stars": 566,
       "tags": [
         "poster",
         "visualization",
@@ -6800,7 +6893,7 @@
       "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",
       "license": "MIT",
       "skill_count": 15,
-      "stars": 368,
+      "stars": 373,
       "tags": [
         "writing",
         "translation",

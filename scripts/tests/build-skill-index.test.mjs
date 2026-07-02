@@ -98,8 +98,13 @@ test('classifies and translates the current upstream additions', () => {
     'sa.experimental-design': { category: 'research', subdiscipline: null },
     'sa.pi-agent': { category: 'workflow' },
     'sa.statistical-power': { category: 'research', subdiscipline: null },
+    'sa.onekgpd': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.tamarind': { category: 'research', subdiscipline: 'life-sci' },
+    'ns.nature-downloader': { category: 'research', subdiscipline: 'other' },
+    'ns.nature-experiment-log': { category: 'workflow' },
+    'ns.nature-literature-pipeline': { category: 'research', subdiscipline: 'other' },
+    'ns.nature-proposal-writer': { category: 'writing' },
     'ns.nature-paper-to-patent': { category: 'writing' },
-    'ns.openclaw-medical-skills': { category: 'research', subdiscipline: 'life-sci' },
   };
 
   for (const [id, expected] of Object.entries(expectedClassification)) {

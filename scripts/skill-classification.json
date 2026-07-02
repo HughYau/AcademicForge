@@ -103,6 +103,7 @@
   "sa.neurokit2": { "category": "research", "subdiscipline": "life-sci" },
   "sa.neuropixels-analysis": { "category": "research", "subdiscipline": "life-sci" },
   "sa.omero-integration": { "category": "research", "subdiscipline": "life-sci" },
+  "sa.onekgpd": { "category": "research", "subdiscipline": "life-sci" },
   "sa.open-notebook": { "category": "research" },
   "sa.opentrons-integration": { "category": "research", "subdiscipline": "lab-automation" },
   "sa.optimize-for-gpu": { "category": "research" },
@@ -287,5 +288,9 @@
   "sa.pi-agent": { "category": "workflow" },
   "sa.statistical-power": { "category": "research", "subdiscipline": null },
   "ns.nature-paper-to-patent": { "category": "writing" },
-  "ns.openclaw-medical-skills": { "category": "research", "subdiscipline": "life-sci" }
+  "sa.tamarind": { "category": "research", "subdiscipline": "life-sci" },
+  "ns.nature-downloader": { "category": "research", "subdiscipline": "other" },
+  "ns.nature-experiment-log": { "category": "workflow" },
+  "ns.nature-literature-pipeline": { "category": "research", "subdiscipline": "other" },
+  "ns.nature-proposal-writer": { "category": "writing" }
 }
