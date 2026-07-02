@@ -809,6 +809,12 @@ details[open] > .details-summary .chevron-icon,
   .mobile-command-jump {
     display: none;
   }
+
+  /* The two-column desktop view reads most comfortably rendered at 90%.
+     Scoped to >=1024px so mobile keeps full-size type and tap targets. */
+  :root {
+    zoom: 0.9;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

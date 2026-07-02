@@ -98,6 +98,14 @@ test('github star badge, page footer, and dead code removed', () => {
   assert.doesNotMatch(configurator, /removeButton\.textContent = 'x';/);
 });
 
+test('desktop view is scaled to 90% for comfort, mobile left at full size', () => {
+  const css = read('site/src/styles/global.css');
+  // The zoom rule must live inside the >=1024px block so phones keep full size.
+  const desktopBlock = css.match(/@media \(min-width: 1024px\) \{[\s\S]*?\n\}/g)?.find((block) => /zoom:\s*0\.9/.test(block));
+  assert.ok(desktopBlock, 'expected a min-width:1024px block containing zoom: 0.9');
+  assert.match(desktopBlock, /:root\s*\{\s*zoom:\s*0\.9;?\s*\}/);
+});
+
 test('mobile pill jumps to the configurator; header AI label hides on phones', () => {
   const configurator = read('site/src/components/Configurator.astro');
   assert.match(configurator, /id="mobile-command-jump"/);
