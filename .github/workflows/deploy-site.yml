@@ -13,9 +13,13 @@ permissions:
   pages: write
   id-token: write
 
+# Serialize Pages deployments. Do NOT cancel an in-progress run: cancelling the
+# workflow run does not stop the server-side Pages deployment it already created,
+# and the next run then fails with "in progress deployment". Queuing instead lets
+# each deployment finish before the next begins.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
