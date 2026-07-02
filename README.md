@@ -37,12 +37,6 @@
 2. 📋 一键生成安装命令
 3. ⚡ 在自己的项目根目录里执行
 
-核心原则：
-
-- 🧩 站点、安装脚本、命令生成都基于同一份 `registry/skills.json`
-- 🌿 `site-first` 是唯一公开入口
-- 📦 本仓库本地维护两组内容：`skills/scientific-visualization` 与 `skills/claude-science`（Anthropic 的 Claude Science 内置技能集合）
-
 ## 🚀 快速开始
 
 ### 🖱️ 方式一：使用选配站
@@ -210,18 +204,11 @@ node scripts/build-skill-index.mjs --check
 pwsh -File scripts/tests/forge-install-local-registry.ps1
 ```
 
-## 🌐 GitHub Pages
-
-- GitHub Pages 只从 `site-first` 分支部署
-- 仓库设置中应把 `Settings -> Pages -> Source` 设为 `GitHub Actions`
-- 分支开发阶段用 `npm run preview` 本地预览，不依赖分支级在线预览
-
 ## 📚 文档
 
 - [快速入门](./QUICKSTART.md)
 - [Skill 归属](./ATTRIBUTIONS.md)
-- [site-first 设计 spec](./docs/superpowers/specs/2026-04-16-site-first-light-catalog-repo-design.md)
-- [site-first 实施计划](./docs/superpowers/plans/2026-04-16-site-first-branch-implementation.md)
+
 
 ## ⭐ Star History
 
