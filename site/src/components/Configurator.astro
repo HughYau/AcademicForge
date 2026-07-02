@@ -194,7 +194,7 @@ import CodeBlock from './CodeBlock.astro';
     buildVerifyCommand,
     getToolPath,
   } from '../lib/install-command.mjs';
-  import { pulseEmber, spawnSparks } from '../lib/forge-effects.mjs';
+  import { pulseEmber } from '../lib/forge-effects.mjs';
 
   const AGENTS_URL = 'https://hughyau.github.io/AcademicForge/agents.md';
   const STORAGE_KEY = 'academicforge:selection';
@@ -491,7 +491,6 @@ import CodeBlock from './CodeBlock.astro';
       .filter(Boolean);
 
     await navigator.clipboard.writeText(buildAgentPrompt(selectedIds));
-    spawnSparks(aiPromptCopy, 7);
     aiPromptCopy.dataset.copied = 'true';
     setAiButtonText(getLocale() === 'zh'
       ? aiPromptCopy.dataset.copiedZh ?? '✓ 已锻好'

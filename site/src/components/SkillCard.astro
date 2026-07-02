@@ -58,6 +58,9 @@ const origin = id.startsWith('sa.')
         : ORIGIN_BY_MAIN_ID[id] ?? '';
 const ORIGIN_LABELS: Record<string, string> = { sa: 'SA', ns: 'NS', air: 'AIR', cs: 'CS' };
 const sourceLabel = origin ? ORIGIN_LABELS[origin] : '';
+
+// Only a few keyword tags ride along on the compact face; the summary gets the room.
+const compactTags = tags.slice(0, 3);
 ---
 
 <article
@@ -107,6 +110,14 @@ const sourceLabel = origin ? ORIGIN_LABELS[origin] : '';
           <span class="lang-en">{summary.en}</span>
           <span class="lang-zh">{summary.zh}</span>
         </p>
+
+        {compact && compactTags.length > 0 && (
+          <div class="skill-card__facts mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.78rem] leading-5 text-[#87867f]">
+            {compactTags.map((tag) => (
+              <span>#{tag}</span>
+            ))}
+          </div>
+        )}
 
         {!compact && (
           <div class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[0.8rem] leading-5 text-[#87867f]">

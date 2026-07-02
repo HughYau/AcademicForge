@@ -37,8 +37,6 @@ const {
 </div>
 
 <script>
-  import { spawnSparks } from '../lib/forge-effects.mjs';
-
   const copyWindow = window as { __academicForgeCopyBound?: boolean };
   const getLocale = () => document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
 
@@ -84,7 +82,6 @@ const {
       }
 
       await navigator.clipboard.writeText(text);
-      spawnSparks(button);
       button.dataset.copied = 'true';
       button.textContent = getLocale() === 'zh' ? button.dataset.copiedZh ?? '✓ 已锻好' : button.dataset.copiedEn ?? '✓ Forged';
       button.classList.add('is-copied');

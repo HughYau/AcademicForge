@@ -445,7 +445,7 @@ details[open] > .details-summary .chevron-icon,
 }
 
 .skill-card__summary--compact {
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 3;
 }
 
 /* Expanded cards show the full text in place instead of repeating it below. */
@@ -585,43 +585,6 @@ details[open] > .details-summary .chevron-icon,
   border-color: rgba(201, 100, 66, 0.4);
   background: rgba(201, 100, 66, 0.14);
   color: var(--af-brand);
-}
-
-.forge-sparks {
-  position: fixed;
-  z-index: 60;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-}
-
-.forge-spark {
-  position: absolute;
-  left: -3px;
-  top: -3px;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: #e8833a;
-  opacity: 0;
-  animation: forge-spark-fly 560ms ease-out forwards;
-}
-
-.forge-spark:nth-child(odd) {
-  background: var(--af-forgegold);
-  width: 5px;
-  height: 5px;
-}
-
-@keyframes forge-spark-fly {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--dx, 0), var(--dy, -18px)) scale(0.35);
-  }
 }
 
 .forge-glow {
@@ -818,7 +781,6 @@ details[open] > .details-summary .chevron-icon,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .forge-spark,
   .forge-glow,
   .ai-pick__button--header {
     animation: none;

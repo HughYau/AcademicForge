@@ -332,8 +332,6 @@ const ORIGIN_PACKAGES = [
 </section>
 
 <script>
-  import { spawnSparks } from '../lib/forge-effects.mjs';
-
   const skillCards = Array.from(document.querySelectorAll<HTMLElement>('.skill-card'));
   const skillGroups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.skill-group--sub'));
   const categoryTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category-tab]'));
@@ -525,10 +523,6 @@ const ORIGIN_PACKAGES = [
       // A package view is a fresh browse, so drop any category-scoped tag.
       activeTag = '';
       applyFilters();
-
-      if (activeOrigin) {
-        spawnSparks(chip, 6);
-      }
     });
   });
 
@@ -579,22 +573,12 @@ const ORIGIN_PACKAGES = [
 
     checkbox.checked = !checkbox.checked;
     checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-
-    // Programmatic change events are untrusted, so the spark-on-change path
-    // below won't fire for card-body selections.
-    if (checkbox.checked) {
-      spawnSparks(card.querySelector('.skill-card__selection') ?? card, 4);
-    }
   });
 
   document.addEventListener('change', (event) => {
     const target = event.target;
     if (target instanceof HTMLInputElement && target.classList.contains('skill-checkbox')) {
       updateCardSelectionState(target);
-
-      if (event.isTrusted && target.checked) {
-        spawnSparks(target.closest('.skill-card__selection') ?? target, 4);
-      }
     }
   });
 
