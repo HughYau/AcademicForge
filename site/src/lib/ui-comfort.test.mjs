@@ -82,9 +82,9 @@ test('flattened card container and single-border chrome', () => {
   assert.match(css, /\.skill-card\.is-expanded[^{]*\{[^}]*-webkit-line-clamp:\s*unset/s);
 });
 
-test('resilient github link, page footer, and dead code removed', () => {
+test('github star badge, page footer, and dead code removed', () => {
   const layout = read('site/src/layouts/Layout.astro');
-  assert.doesNotMatch(layout, /img\.shields\.io/);
+  assert.match(layout, /img\.shields\.io\/github\/stars/);
   assert.match(layout, /<footer/);
 
   const css = read('site/src/styles/global.css');
