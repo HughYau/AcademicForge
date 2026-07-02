@@ -2,10 +2,9 @@
 
 ## 1. 分支说明
 
-- `site-first`：公开配置站分支，也是安装器和 `registry/skills.json` 的来源
-- `master`：legacy 兼容分支
+- `site-first`：本项目的主分支（默认分支），也是配置站、安装器和 `registry/skills.json` 的来源
 
-如果你要维护公开网站，请在 `site-first` 分支工作。
+维护公开网站请在 `site-first` 分支工作。
 
 ## 2. 安装到项目里
 

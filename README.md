@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./assets/academicforge-banner.svg" alt="Academic Forge 头图" />
+</p>
+
+
 # 🎓 Academic Forge
 
 <div align="center">
@@ -6,13 +11,19 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<p align="center">
+  <a href="https://hughyau.github.io/AcademicForge/">
+    <img src="https://img.shields.io/badge/%E4%B8%80%E9%94%AE%E4%BD%93%E9%AA%8C-Academic%20Forge-blue?style=for-the-badge" alt="一键体验 Academic Forge">
+  </a>
+</p>
+
 [English](./README_en.md) | 简体中文
 
 </div>
 
 > 分支模型
-> - `site-first`：公开站点分支，也是 GitHub Pages、`registry/skills.json` 和安装脚本的来源。
-> - `master`：保留旧架构的 legacy 兼容分支。
+> - `site-first`：本项目的主分支（默认分支），也是 GitHub Pages、`registry/skills.json` 和安装脚本的唯一来源。
+> - 旧的 submodule 架构（`master`）已下线，不再维护或每周更新。
 
 ## 什么是 Academic Forge
 
@@ -34,7 +45,12 @@ Academic Forge 是一个 **site-first catalog + installer**。
 
 ### 方式一：使用选配站
 
-打开 `https://hughyau.github.io/AcademicForge/`。
+打开 `https://hughyau.github.io/AcademicForge/`，勾选需要的 skill pack、选择你的平台（Claude Code / OpenCode / Codex），一键生成安装命令。
+
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/3b539896-6380-4ac4-9ae9-9b79ed7adaf3" controls width="960">
+  </video>
+</p>
 
 ### 方式二：直接运行安装脚本
 

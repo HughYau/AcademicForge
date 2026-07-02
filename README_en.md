@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./assets/academicforge-banner.svg" alt="Academic Forge Header Image" />
+</p>
+
+
 # 🎓 Academic Forge
 
 <div align="center">
@@ -6,11 +11,19 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<p align="center">
+  <a href="https://hughyau.github.io/AcademicForge/">
+    <img src="https://img.shields.io/badge/Experience-Academic%20Forge-blue?style=for-the-badge" alt="Experience Academic Forge">
+  </a>
+</p>
+
+[简体中文](./README.md) | English
+
 </div>
 
 > Branch model
-> - `site-first`: the public website branch and the source for GitHub Pages, `registry/skills.json`, and installer scripts.
-> - `master`: the legacy compatibility branch.
+> - `site-first`: the project's main (default) branch, and the single source for GitHub Pages, `registry/skills.json`, and installer scripts.
+> - the old submodule-based architecture (`master`) has been retired and is no longer maintained or updated weekly.
 
 ## What Academic Forge Is
 
@@ -32,7 +45,12 @@ Core rules:
 
 ### Option 1: Use the configurator site
 
-Open `https://hughyau.github.io/AcademicForge/`.
+Open `https://hughyau.github.io/AcademicForge/`, check the skill packs you need, pick your platform (Claude Code / OpenCode / Codex), and generate the install command in one click.
+
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/3b539896-6380-4ac4-9ae9-9b79ed7adaf3" controls width="960">
+  </video>
+</p>
 
 ### Option 2: Run the installer directly
 

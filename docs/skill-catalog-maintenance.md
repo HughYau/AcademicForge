@@ -5,7 +5,7 @@
 ## Scope and source of truth
 
 - The authoritative catalog is [`registry/skills.json`](../registry/skills.json). Never edit `site/public/skills.json` or `site/public/index.slim.json` by hand: they are generated copies.
-- The public branch is `site-first`. Do not use the legacy `master` branch as a catalog source.
+- The catalog lives on `site-first`, the project's main (default) branch. There is no separate legacy branch.
 - `skill_count` means the number of upstream `SKILL.md` files that this pack intentionally exposes. Count actual files; never infer it from a README.
 - The catalog currently contains 11 top-level packs. Three are expanded into individually selectable sub-skills; the remainder are installed as a complete pack.
 - Star counts are a timestamped snapshot, not a permanent fact. Always refresh them in the same run that changes the catalog.

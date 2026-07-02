@@ -7,8 +7,7 @@ forge:
   license: "MIT"
 
 branch_model:
-  public: "site-first"
-  legacy: "master"
+  main: "site-first"
 
 runtime:
   source_of_truth: "registry/skills.json"
@@ -28,9 +27,9 @@ update:
     - "node scripts/validate-registry.mjs"
 
 notes: |
-  The `site-first` branch is the public branch used by the GitHub Pages site,
-  `registry/skills.json`, and the installer scripts.
+  The `site-first` branch is the main (default) branch used by the GitHub Pages
+  site, `registry/skills.json`, and the installer scripts.
 
-  The `master` branch remains available as a legacy compatibility line.
+  The legacy submodule-based `master` branch has been retired.
 
   Only `skills/scientific-visualization` is maintained locally on `site-first`.

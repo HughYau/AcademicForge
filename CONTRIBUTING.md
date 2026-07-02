@@ -4,10 +4,9 @@ Thanks for helping improve AcademicForge.
 
 ## Branch Model
 
-- `site-first`: public branch for site, registry, and installer flow
-- `master`: legacy compatibility branch
+- `site-first`: the main (default) branch for the site, registry, and installer flow
 
-Unless explicitly discussed, open contributions against `site-first`.
+Open contributions against `site-first`.
 
 ## Local Setup
 
