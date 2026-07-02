@@ -20,7 +20,10 @@ const ogImageHref = `${baseUrl}og-image.svg`;
 const googleAnalyticsId = 'G-R67NC4FQJ1';
 const githubRepo = 'HughYau/AcademicForge';
 const githubUrl = `https://github.com/${githubRepo}`;
-const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style=social`;
+// shields.io's `style=social` star badge intermittently renders "invalid" (it needs an
+// extra GitHub API call that frequently fails); every other style resolves the count
+// fine, so use a flat badge tinted to the brand colour.
+const githubStarBadge = `https://img.shields.io/github/stars/${githubRepo}?style=flat&color=c96442`;
 ---
 
 <!doctype html>
