@@ -37,7 +37,7 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: 15px;
   scroll-behavior: smooth;
 }
 
@@ -101,7 +101,17 @@ h1 {
   line-height: 1.1;
 }
 
+/* Chinese body copy reads better in sans at small sizes; serif stays on headings. */
 .lang-zh {
+  font-family: var(--af-font-sans);
+}
+
+h1 .lang-zh,
+h2 .lang-zh,
+h3 .lang-zh,
+.font-slab .lang-zh,
+.font-cjk .lang-zh,
+.lang-zh.font-cjk {
   font-family: var(--af-font-cjk);
 }
 
@@ -203,11 +213,33 @@ details[open] > .details-body {
   overflow: hidden;
 }
 
+.library-toolbar {
+  position: sticky;
+  top: 88px;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  padding-block: 0.15rem 0.6rem;
+  background: var(--af-surface);
+}
+
+@media (max-width: 1023px) {
+  .library-toolbar {
+    top: 72px;
+  }
+}
+
 .category-tabs {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding-bottom: 0.1rem;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .category-tab {
@@ -215,27 +247,27 @@ details[open] > .details-body {
   border: 1px solid var(--af-border-strong);
   border-radius: 999px;
   background: #ffffff;
-  padding: 0.55rem 0.9rem;
-  font-size: 0.82rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
   line-height: 1.4;
   color: var(--af-muted);
-  box-shadow: 0 0 0 1px var(--af-border);
 }
 
 .category-tab[aria-pressed='true'] {
-  border-color: rgba(201, 100, 66, 0.28);
-  background: rgba(201, 100, 66, 0.1);
-  color: var(--af-ink);
+  border-color: var(--af-brand);
+  background: var(--af-brand);
+  color: #faf9f5;
 }
 
 .skill-card-grid {
   display: grid;
   gap: 0.9rem;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .skill-card-grid--dense {
   gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 }
 
 .skill-group--sub {
@@ -270,7 +302,6 @@ details[open] > .details-summary .chevron-icon,
   padding: 0.95rem 1rem;
   text-align: left;
   color: #4d4c48;
-  box-shadow: 0 0 0 1px var(--af-border);
 }
 
 .disclosure__copy {
@@ -305,7 +336,7 @@ details[open] > .details-summary .chevron-icon,
   border-radius: 18px;
   background: #ffffff;
   padding: 0.5rem;
-  box-shadow: 0 18px 40px rgba(20, 20, 19, 0.12), 0 0 0 1px var(--af-border);
+  box-shadow: 0 18px 40px rgba(20, 20, 19, 0.12);
 }
 
 .disclosure__option {
@@ -344,34 +375,28 @@ details[open] > .details-summary .chevron-icon,
 }
 
 .skill-card {
+  cursor: pointer;
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
+    box-shadow 160ms ease;
 }
 
 .skill-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(20, 20, 19, 0.07), 0 0 0 1px var(--af-border);
+  box-shadow: 0 8px 20px rgba(20, 20, 19, 0.07);
 }
 
 .skill-card.is-selected:hover {
-  box-shadow: 0 8px 20px rgba(201, 100, 66, 0.12), 0 0 0 1px rgba(201, 100, 66, 0.22);
+  box-shadow: 0 8px 20px rgba(201, 100, 66, 0.12);
 }
 
 .skill-card.is-selected {
   background: #fdf7f4;
   border-color: var(--af-brand);
-  box-shadow: 0 0 0 1px rgba(201, 100, 66, 0.22);
 }
 
 .skill-card.is-expanded {
   background: #fcfaf5;
-}
-
-.skill-card__surface {
-  cursor: pointer;
 }
 
 .skill-card__origin {
@@ -423,11 +448,30 @@ details[open] > .details-summary .chevron-icon,
   -webkit-line-clamp: 1;
 }
 
+/* Expanded cards show the full text in place instead of repeating it below. */
+.skill-card.is-expanded .skill-card__title,
+.skill-card.is-expanded .skill-card__summary--default,
+.skill-card.is-expanded .skill-card__summary--compact {
+  -webkit-line-clamp: unset;
+}
+
 .skill-card__toggle:hover,
 .skill-card__surface:hover .skill-card__toggle,
 .skill-card__toggle:focus-visible {
   border-color: var(--af-ring);
   background: #ffffff;
+}
+
+.skill-card__toggle {
+  position: relative;
+}
+
+/* Invisible hit-area extension: ~30px visual circle, 44px effective target. */
+.skill-card__toggle::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 999px;
 }
 
 .skill-card__detail-shell {
@@ -443,6 +487,7 @@ details[open] > .details-summary .chevron-icon,
 .skill-card__detail-panel {
   min-height: 0;
   overflow: hidden;
+  cursor: auto;
 }
 
 .skill-card__detail-panel[inert] {
@@ -472,30 +517,35 @@ details[open] > .details-summary .chevron-icon,
   scrollbar-gutter: stable both-edges;
 }
 
+#install-builder,
 .selected-items--bounded,
 .codeblock-pre--bounded {
   scrollbar-width: thin;
   scrollbar-color: rgba(135, 134, 127, 0.56) rgba(240, 238, 230, 0.72);
 }
 
+#install-builder::-webkit-scrollbar,
 .selected-items--bounded::-webkit-scrollbar,
 .codeblock-pre--bounded::-webkit-scrollbar {
   width: 0.56rem;
   height: 0.56rem;
 }
 
+#install-builder::-webkit-scrollbar-track,
 .selected-items--bounded::-webkit-scrollbar-track,
 .codeblock-pre--bounded::-webkit-scrollbar-track {
   background: rgba(240, 238, 230, 0.72);
   border-radius: 999px;
 }
 
+#install-builder::-webkit-scrollbar-thumb,
 .selected-items--bounded::-webkit-scrollbar-thumb,
 .codeblock-pre--bounded::-webkit-scrollbar-thumb {
   background: rgba(135, 134, 127, 0.56);
   border-radius: 999px;
 }
 
+#install-builder::-webkit-scrollbar-thumb:hover,
 .selected-items--bounded::-webkit-scrollbar-thumb:hover,
 .codeblock-pre--bounded::-webkit-scrollbar-thumb:hover {
   background: rgba(94, 93, 89, 0.72);
@@ -529,40 +579,6 @@ details[open] > .details-summary .chevron-icon,
 
 .selected-item__remove:hover {
   background: rgba(201, 100, 66, 0.24);
-}
-
-.compact-clamp {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-
-.selection-placeholder {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  border: 1px dashed var(--af-ring);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  padding: 0.65rem 1rem;
-  color: var(--af-subtle);
-}
-
-.selection-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  border: 1px solid rgba(201, 100, 66, 0.25);
-  border-radius: 999px;
-  background: rgba(201, 100, 66, 0.1);
-  padding: 0.55rem 0.95rem;
-  color: var(--af-ink);
-}
-
-.selection-chip:hover {
-  background: rgba(201, 100, 66, 0.16);
 }
 
 .copy-btn.is-copied {
@@ -634,6 +650,19 @@ details[open] > .details-summary .chevron-icon,
   line-height: 1.4;
   color: var(--af-muted);
   cursor: pointer;
+}
+
+.filter-chip,
+.preset-chip {
+  position: relative;
+}
+
+/* Invisible hit-area extension so small chips still meet touch-target sizes. */
+.filter-chip::after,
+.preset-chip::after {
+  content: '';
+  position: absolute;
+  inset: -6px 0;
 }
 
 .filter-chip:hover {
@@ -750,15 +779,43 @@ details[open] > .details-summary .chevron-icon,
   white-space: nowrap;
 }
 
+.mobile-command-jump {
+  position: fixed;
+  bottom: 1.1rem;
+  left: 50%;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateX(-50%);
+  border: 1px solid rgba(201, 100, 66, 0.35);
+  border-radius: 999px;
+  background: var(--af-brand);
+  padding: 0.7rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #faf9f5;
+  box-shadow: 0 10px 30px rgba(20, 20, 19, 0.25);
+  cursor: pointer;
+}
+
+.mobile-command-jump[hidden] {
+  display: none;
+}
+
+/* Desktop keeps the sticky configurator in view; the jump pill is mobile-only.
+   (Unlayered rule would out-rank Tailwind's layered lg:hidden utility.) */
+@media (min-width: 1024px) {
+  .mobile-command-jump {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .forge-spark,
   .forge-glow,
   .ai-pick__button--header {
     animation: none;
-  }
-
-  .skill-card:hover {
-    transform: none;
   }
 
   .skill-card__detail-shell,
@@ -771,30 +828,8 @@ details[open] > .details-summary .chevron-icon,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    overflow: hidden;
-  }
-}
-
 @media (max-width: 640px) {
   body {
     background: var(--af-bg);
-  }
-
-  .compact-clamp {
-    -webkit-line-clamp: 2;
-  }
-}
-
-@media (min-width: 768px) {
-  .skill-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1280px) {
-  .skill-card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

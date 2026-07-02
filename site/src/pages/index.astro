@@ -18,7 +18,7 @@ const totalSkillCount = skills.reduce((sum, skill) => sum + skill.skill_count, 0
   title="AcademicForge | One Forge, All Skills"
   description="Browse academic AI skill repositories and generate install commands for Claude Code, OpenCode, or Codex."
 >
-  <main id="home" class="mx-auto flex w-[80%] min-h-0 flex-col gap-4 py-4 sm:py-5 lg:h-[calc(100svh-92px)] lg:overflow-hidden lg:py-6">
+  <main id="home" class="mx-auto flex w-[92%] max-w-[1440px] flex-col gap-4 py-4 sm:py-5 lg:py-6">
     <section class="hero-band flex flex-none flex-col gap-3 rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] px-4 py-3 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:flex-row sm:items-center sm:justify-between sm:px-5">
       <div class="min-w-0">
         <p class="font-slab text-[1.05rem] leading-[1.3] text-[#141413]">
@@ -51,8 +51,8 @@ const totalSkillCount = skills.reduce((sum, skill) => sum + skill.skill_count, 0
       </div>
     </section>
 
-    <section class="grid min-h-0 flex-1 gap-4 lg:w-full lg:grid-cols-[minmax(0,1.42fr)_390px] xl:grid-cols-[minmax(0,1.55fr)_405px]">
-      <SkillGrid skills={skills} repositoryCount={repositoryCount} totalSkillCount={totalSkillCount} />
+    <section class="grid gap-4 lg:w-full lg:items-start lg:grid-cols-[minmax(0,1.42fr)_390px] xl:grid-cols-[minmax(0,1.55fr)_405px]">
+      <SkillGrid skills={skills} />
       <Configurator />
     </section>
   </main>

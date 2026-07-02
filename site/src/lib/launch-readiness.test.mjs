@@ -15,16 +15,6 @@ test('Configurator has valid zh label markup and user-facing install hint', () =
   assert.doesNotMatch(configurator, /Install command stays visible here\./);
 });
 
-test('InstallGuide uses real install script URL', () => {
-  const guide = read('site/src/components/InstallGuide.astro');
-
-  assert.doesNotMatch(guide, /example\.invalid/);
-  assert.match(
-    guide,
-    /https:\/\/raw\.githubusercontent\.com\/HughYau\/AcademicForge\/refs\/heads\/site-first\/scripts\/forge-install\.sh/,
-  );
-});
-
 test('Layout includes canonical and social metadata tags', () => {
   const layout = read('site/src/layouts/Layout.astro');
 

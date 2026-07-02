@@ -42,7 +42,7 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
 
 <article
   class:list={[
-    'skill-card rounded-[18px] border border-[#e8e6dc] bg-white shadow-[0_0_0_1px_#f0eee6]',
+    'skill-card rounded-[18px] border border-[#e8e6dc] bg-white',
     compact ? 'skill-card--compact px-3.5 py-3' : 'px-4 py-3.5',
   ]}
   data-skill-id={id}
@@ -65,7 +65,7 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
       </span>
     </label>
 
-    <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-2" data-detail-toggle>
+    <div class="skill-card__surface min-w-0 flex flex-1 items-start gap-2">
       <div class="min-w-0 flex-1">
         <div class="flex min-w-0 items-center gap-1.5">
           <h3 id={titleId} class:list={[
@@ -79,7 +79,7 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
 
         <p
           class:list={[
-            compact ? 'skill-card__summary--compact mt-0.5 text-xs leading-5' : 'skill-card__summary--default mt-1 text-[0.82rem] leading-5',
+            compact ? 'skill-card__summary--compact mt-0.5 text-[0.85rem] leading-6' : 'skill-card__summary--default mt-1 text-[0.9rem] leading-6',
             'text-[#5e5d59]',
           ]}
         >
@@ -88,7 +88,7 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
         </p>
 
         {!compact && (
-          <div class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[0.72rem] leading-5 text-[#87867f]">
+          <div class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[0.8rem] leading-5 text-[#87867f]">
             {typeof stars === 'number' && (
               <span>
                 {formatCount(stars)}
@@ -121,15 +121,10 @@ const sourceLabel = id.startsWith('sa.') ? 'SA' : id.startsWith('air.') ? 'AIR' 
   <div class="skill-card__detail-shell">
     <div id={detailId} class="skill-card__detail-panel" role="region" aria-labelledby={titleId} aria-hidden="true" inert>
       <div class="skill-card__detail-inner mt-2 border-t border-[#f0eee6] pt-2.5">
-        <p class="text-sm leading-6 text-[#5e5d59]">
-          <span class="lang-en">{summary.en}</span>
-          <span class="lang-zh">{summary.zh}</span>
-        </p>
-
         {tags.length > 0 && (
-          <ul class="mt-2.5 flex flex-wrap gap-1.5">
+          <ul class="flex flex-wrap gap-1.5">
             {tags.map((tag) => (
-              <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2 py-0.5 text-[0.68rem] leading-5 text-[#5e5d59]">
+              <li class="rounded-full border border-[#e8e6dc] bg-[#faf9f5] px-2 py-0.5 text-[0.75rem] leading-5 text-[#5e5d59]">
                 #{tag}
               </li>
             ))}

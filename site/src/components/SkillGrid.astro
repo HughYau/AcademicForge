@@ -7,11 +7,9 @@ import SkillCard from './SkillCard.astro';
 
 interface Props {
   skills: SkillRecord[];
-  repositoryCount: number;
-  totalSkillCount: number;
 }
 
-const { skills, repositoryCount, totalSkillCount } = Astro.props;
+const { skills } = Astro.props;
 
 const sortSubSkills = (items: SubSkillRecord[]) => {
   return [...items].sort((left, right) => left.name.localeCompare(right.name));
@@ -119,58 +117,44 @@ const PRESETS = [
 ];
 ---
 
-<section id="library" class="flex min-h-0 flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
-  <div class="flex flex-col gap-3 border-b border-[#e8e6dc] pb-4 lg:flex-row lg:items-end lg:justify-between">
-    <div class="space-y-2">
-      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c96442]">
-        <span class="lang-en">Repositories</span>
-        <span class="lang-zh">仓库目录</span>
-      </p>
-      <h1 class="font-slab text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.4rem] lg:text-[2.8rem]">
-        <span class="lang-en">Pick what you need.</span>
-        <span class="lang-zh">只选你用得上的。</span>
-      </h1>
-      <div class="flex flex-wrap gap-2 text-xs text-[#5e5d59] sm:text-sm">
-        <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
-          <span class="lang-en">{formatCount(repositoryCount)} repositories</span>
-          <span class="lang-zh">共 {formatCount(repositoryCount)} 个仓库</span>
-        </span>
-        <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
-          <span class="lang-en">{formatCount(totalSkillCount)} skills</span>
-          <span class="lang-zh">共 {formatCount(totalSkillCount)} 个 skill</span>
-        </span>
-        <span class="rounded-full bg-white px-3 py-1.5 shadow-[0_0_0_1px_#f0eee6]">
-          <span class="lang-en">sorted by stars</span>
-          <span class="lang-zh">按 star 排序</span>
-        </span>
-      </div>
-    </div>
+<section id="library" class="flex flex-col rounded-[28px] border border-[#e8e6dc] bg-[#faf9f5] p-4 shadow-[0_10px_30px_rgba(20,20,19,0.05)] sm:p-5">
+  <div class="border-b border-[#e8e6dc] pb-3">
+    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c96442]">
+      <span class="lang-en">Repositories</span>
+      <span class="lang-zh">仓库目录</span>
+    </p>
+    <h1 class="mt-2 font-slab text-[2rem] leading-[1.05] text-[#141413] sm:text-[2.2rem]">
+      <span class="lang-en">Pick what you need.</span>
+      <span class="lang-zh">只选你用得上的。</span>
+    </h1>
+  </div>
 
-    <label class="block w-full lg:max-w-sm">
+  <div class="library-toolbar">
+    <label class="block w-full">
       <span class="sr-only">Search repositories</span>
       <input
         id="skill-search"
         type="search"
         placeholder="Search repositories / authors / tags"
-        class="w-full rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-3 text-sm text-[#141413] outline-none placeholder:text-[#87867f] focus:border-[#3898ec] focus:shadow-[0_0_0_1px_#3898ec]"
+        class="w-full rounded-[16px] border border-[#e8e6dc] bg-white px-4 py-2.5 text-sm text-[#141413] outline-none placeholder:text-[#87867f] focus:border-[#3898ec] focus:shadow-[0_0_0_1px_#3898ec]"
       />
     </label>
-  </div>
 
-  <div class="category-tabs mt-3" role="tablist" aria-label="Top-level skill categories">
-    {visibleCategories.map((category) => (
-      <button
-        type="button"
-        class="category-tab"
-        role="tab"
-        data-category-tab={category}
-        aria-selected={category === initialCategory}
-        aria-pressed={category === initialCategory}
-      >
-        <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
-        <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
-      </button>
-    ))}
+    <div class="category-tabs" role="tablist" aria-label="Top-level skill categories">
+      {visibleCategories.map((category) => (
+        <button
+          type="button"
+          class="category-tab"
+          role="tab"
+          data-category-tab={category}
+          aria-selected={category === initialCategory}
+          aria-pressed={category === initialCategory}
+        >
+          <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
+          <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
+        </button>
+      ))}
+    </div>
   </div>
 
   <div class="mt-2 flex flex-wrap items-center gap-1.5">
@@ -204,77 +188,7 @@ const PRESETS = [
     ))}
   </div>
 
-  <div class="mt-2 flex flex-wrap items-center gap-1.5 text-[0.72rem] leading-5 text-[#87867f]">
-    <span class="skill-card__origin">SA</span>
-    <span>= Scientific Agent Skills by</span>
-    <a
-      href="https://github.com/K-Dense-AI"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      @K-Dense-AI
-    </a>
-    <a
-      href="https://github.com/K-Dense-AI/scientific-agent-skills"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      (repo)
-    </a>
-    <span aria-hidden="true">·</span>
-    <span class="skill-card__origin">NS</span>
-    <span>= Nature Skills by</span>
-    <a
-      href="https://github.com/Yuan1z0825"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      @Yuan1z0825
-    </a>
-    <a
-      href="https://github.com/Yuan1z0825/nature-skills"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      (repo)
-    </a>
-    <span aria-hidden="true">·</span>
-    <span class="skill-card__origin">AIR</span>
-    <span>= AI Research Skills by</span>
-    <a
-      href="https://github.com/Orchestra-Research"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      @Orchestra-Research
-    </a>
-    <a
-      href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      (repo)
-    </a>
-    <span aria-hidden="true">·</span>
-    <span class="skill-card__origin">CS</span>
-    <span>= Claude Science by</span>
-    <a
-      href="https://github.com/anthropics"
-      target="_blank"
-      rel="noreferrer"
-      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
-    >
-      @anthropics
-    </a>
-  </div>
-
-  <div id="skill-grid" class="mt-3 min-h-0 flex-1 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6] sm:p-4">
+  <div id="skill-grid" class="mt-1">
     {visibleCategories.map((category) => (
       <section class:list={['skill-panel space-y-3', category === initialCategory ? '' : 'hidden']} data-category-panel={category}>
         <h2
@@ -351,6 +265,80 @@ const PRESETS = [
       <rect x="13" y="41" width="22" height="3" rx="1.5" fill="currentColor"></rect>
     </svg>
     <p id="skill-grid-empty-text" class="mt-3"></p>
+  </div>
+
+  <div class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-[#f0eee6] pt-3 text-[0.78rem] leading-5 text-[#87867f]">
+    <span class="skill-card__origin">SA</span>
+    <span>=</span>
+    <a
+      href="https://github.com/K-Dense-AI/scientific-agent-skills"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      Scientific Agent Skills
+    </a>
+    <span>by</span>
+    <a
+      href="https://github.com/K-Dense-AI"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @K-Dense-AI
+    </a>
+    <span aria-hidden="true">·</span>
+    <span class="skill-card__origin">NS</span>
+    <span>=</span>
+    <a
+      href="https://github.com/Yuan1z0825/nature-skills"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      Nature Skills
+    </a>
+    <span>by</span>
+    <a
+      href="https://github.com/Yuan1z0825"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @Yuan1z0825
+    </a>
+    <span aria-hidden="true">·</span>
+    <span class="skill-card__origin">AIR</span>
+    <span>=</span>
+    <a
+      href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      AI Research Skills
+    </a>
+    <span>by</span>
+    <a
+      href="https://github.com/Orchestra-Research"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @Orchestra-Research
+    </a>
+    <span aria-hidden="true">·</span>
+    <span class="skill-card__origin">CS</span>
+    <span>=</span>
+    <span>Claude Science by</span>
+    <a
+      href="https://github.com/anthropics"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @anthropics
+    </a>
   </div>
 </section>
 
@@ -583,18 +571,34 @@ const PRESETS = [
       return;
     }
 
-    if (target.closest('a, button, input, label, summary')) {
+    // Links, buttons, the checkbox label, sub-group summaries, and the expanded
+    // detail body keep their own behavior; any other click on a card selects it.
+    if (target.closest('a, button, input, label, summary, .skill-card__detail-panel')) {
       return;
     }
 
-    const surface = target.closest<HTMLElement>('[data-detail-toggle]');
-    if (!(surface instanceof HTMLElement)) {
+    const card = target.closest('.skill-card');
+    if (!(card instanceof HTMLElement)) {
       return;
     }
 
-    const card = surface.closest('.skill-card');
-    if (card instanceof HTMLElement) {
-      toggleCardDetail(card);
+    // A drag that selected text is not a selection gesture.
+    if ((window.getSelection()?.toString() ?? '') !== '') {
+      return;
+    }
+
+    const checkbox = card.querySelector<HTMLInputElement>('.skill-checkbox');
+    if (!checkbox) {
+      return;
+    }
+
+    checkbox.checked = !checkbox.checked;
+    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+
+    // Programmatic change events are untrusted, so the spark-on-change path
+    // below won't fire for card-body selections.
+    if (checkbox.checked) {
+      spawnSparks(card.querySelector('.skill-card__selection') ?? card, 4);
     }
   });
 
