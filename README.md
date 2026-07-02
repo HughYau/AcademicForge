@@ -21,29 +21,31 @@
 
 </div>
 
-> 分支模型
-> - `site-first`：本项目的主分支（默认分支），也是 GitHub Pages、`registry/skills.json` 和安装脚本的唯一来源。
-> - 旧的 submodule 架构（`master`）已下线，不再维护或每周更新。
 
-## 什么是 Academic Forge
+> ✨ **新增：内置 Claude Science（Anthropic 出品）的 32 个技能**
+> - 覆盖蛋白质结构与设计、基因组、单细胞、发表级图表、文献综述、远程算力等
+> - **无需订阅 Claude Science** 即可安装，**跨 agent 通用**（Claude Code / OpenCode / Codex），**支持 Windows**（PowerShell 安装脚本）
+> - 作为本地维护集合收录在 `skills/claude-science`，在目录中归类为「流程与方法 · Claude Science」，其下每个技能再按科研 / 写作 / 图表等分类展示
 
-Academic Forge 是一个 **site-first catalog + installer**。
+## 🔨 什么是 Academic Forge
 
-你不需要整仓复制全部 skill，只需要：
+"Forge（锻造台）" 灵感来自 **Minecraft 的模组加载器系统**——就像 Minecraft Forge 整合包为特定游戏体验集成各种模组一样，**Academic Forge** 把散落各处的学术 AI 技能，锻造成一套趁手的工具箱。🎓
 
-1. 在站点里浏览和勾选需要的 pack
-2. 生成安装命令
-3. 在自己的项目根目录执行
+不用整仓复制全部 skill，三步搞定：
+
+1. 🖱️ 在站点里浏览、勾选需要的 pack
+2. 📋 一键生成安装命令
+3. ⚡ 在自己的项目根目录里执行
 
 核心原则：
 
-- 站点、安装脚本、命令生成都基于同一份 `registry/skills.json`
-- `site-first` 是公开入口
-- 本仓库只保留一个本地维护 skill：`skills/scientific-visualization`
+- 🧩 站点、安装脚本、命令生成都基于同一份 `registry/skills.json`
+- 🌿 `site-first` 是唯一公开入口
+- 📦 本仓库本地维护两组内容：`skills/scientific-visualization` 与 `skills/claude-science`（Anthropic 的 Claude Science 内置技能集合）
 
-## 快速开始
+## 🚀 快速开始
 
-### 方式一：使用选配站
+### 🖱️ 方式一：使用选配站
 
 打开 `https://hughyau.github.io/AcademicForge/`，勾选需要的 skill pack、选择你的平台（Claude Code / OpenCode / Codex），一键生成安装命令。
 
@@ -52,7 +54,7 @@ Academic Forge 是一个 **site-first catalog + installer**。
   </video>
 </p>
 
-### 方式二：直接运行安装脚本
+### ⌨️ 方式二：直接运行安装脚本
 
 macOS / Linux:
 
@@ -75,7 +77,7 @@ Remove-Item $script
 
 已安装的同名 skill 会被跳过并提示；追加 `--force`（PowerShell 为 `-Force`）可覆盖更新。
 
-### 方式三：让你的 AI 替你挑选
+### 🤖 方式三：让你的 AI 替你挑选
 
 不知道选什么？把下面这段提示词交给你的 AI 智能体（Claude Code / OpenCode / Codex 均可）：
 
@@ -95,15 +97,23 @@ ls .opencode/skills/
 ls .codex/skills/
 ```
 
-## 本地维护内容
+## 📦 本地维护内容
 
-`site-first` 分支中，唯一保留在仓库内的本地 skill 是：
+`site-first` 分支中，保留在仓库内本地维护的内容有：
 
-- `skills/scientific-visualization`
+- `skills/scientific-visualization` — 单个本地 skill
+- `skills/claude-science` — **Claude Science**（Anthropic）内置技能集合，共 32 个技能。作为集合根归类在「流程与方法（Workflow & Process）」下、名为 *Claude Science*、作者 *Anthropic*；其下每个子技能再按科研 / 写作 / 图表等分类。因为直接托管在本仓库，所以**无需订阅 Claude Science** 即可通过 sparse-checkout 安装，**跨 agent 通用并支持 Windows**。
+
+  编辑该目录后，用以下命令仅重建此集合的索引（无需联网克隆其他集合）：
+
+  ```bash
+  node scripts/build-skill-index.mjs --only claude-science
+  node scripts/build-slim-index.mjs
+  ```
 
 其他 pack 都通过 `registry/skills.json` 描述，并在安装时从各自来源仓库获取。
 
-## 维护 `site-first`
+## 🛠️ 维护 `site-first`
 
 常用本地命令：
 
@@ -123,20 +133,32 @@ node scripts/build-skill-index.mjs --check
 pwsh -File scripts/tests/forge-install-local-registry.ps1
 ```
 
-## GitHub Pages
+## 🌐 GitHub Pages
 
 - GitHub Pages 只从 `site-first` 分支部署
 - 仓库设置中应把 `Settings -> Pages -> Source` 设为 `GitHub Actions`
 - 分支开发阶段用 `npm run preview` 本地预览，不依赖分支级在线预览
 
-## 文档
+## 📚 文档
 
 - [快速入门](./QUICKSTART.md)
 - [Skill 归属](./ATTRIBUTIONS.md)
 - [site-first 设计 spec](./docs/superpowers/specs/2026-04-16-site-first-light-catalog-repo-design.md)
 - [site-first 实施计划](./docs/superpowers/plans/2026-04-16-site-first-branch-implementation.md)
 
-## 许可证
+## ⭐ Star History
+
+<a href="https://www.star-history.com/?repos=HughYau%2FAcademicForge&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&legend=top-left" />
+ </picture>
+</a>
+
+---
+
+## 📄 许可证
 
 - 仓库结构、站点、脚本和本地内容采用 [MIT](./LICENSE)
 - 第三方 skill 保留其各自许可证与作者信息

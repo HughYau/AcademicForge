@@ -34,6 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added `claude-science` as a locally maintained collection of Anthropic's 32 Claude Science skills — filed under "Workflow & Process" as *Claude Science* (author Anthropic), with each sub-skill re-classified into research / writing / figures / workflow. Installs by sparse-checkout of this repo with **no Claude Science subscription**, works across agents, and supports Windows.
+- Added local-collection support to `scripts/build-skill-index.mjs` (a `local` collection flag plus an `--only <id>` filter to rebuild a single collection without cloning the remote ones), a `CS` source label in compact skill cards, and a generalized registry check that every locally hosted pack exists on disk
 - Added `nature-skills` as a registry-backed collection with 9 categorized sub-skills for Nature-style writing, polishing, citation, figures, data availability, reading, reviewer response, slides, and literature search
 - Added NS source labels in compact skill cards and expanded site tests to cover all `site/src/lib/*.test.mjs`
 - Added Chinese summary translations for generated collection sub-skills and validation that blocks untranslated `summary.zh` fields
@@ -50,6 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed the previously added alternate academic registry collection and its generated sub-skill entries
 
 ### Fixed
+- Fixed catalog search so a query now spans the whole catalog (global search) instead of only matching within the active category tab; cross-category matches reveal their category panels with headings
 - Fixed the PowerShell installer so registry entries without optional `install.ref` still install under `Set-StrictMode`
 - **脚本路径修复**: 所有脚本（install/update/download）现在支持从任意目录运行，自动定位仓库根目录
 - **CI 工作流补全**: 自动更新 PR 现在也会应用技能黑名单、清理 K-Dense 广告，并执行统一的同步后清理流程

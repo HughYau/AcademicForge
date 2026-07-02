@@ -261,11 +261,31 @@ const PRESETS = [
     >
       (repo)
     </a>
+    <span aria-hidden="true">·</span>
+    <span class="skill-card__origin">CS</span>
+    <span>= Claude Science by</span>
+    <a
+      href="https://github.com/anthropics"
+      target="_blank"
+      rel="noreferrer"
+      class="underline decoration-[#d1cfc5] underline-offset-2 hover:text-[#141413]"
+    >
+      @anthropics
+    </a>
   </div>
 
   <div id="skill-grid" class="mt-3 min-h-0 flex-1 overflow-y-auto rounded-[22px] bg-white p-3 shadow-[0_0_0_1px_#f0eee6] sm:p-4">
     {visibleCategories.map((category) => (
       <section class:list={['skill-panel space-y-3', category === initialCategory ? '' : 'hidden']} data-category-panel={category}>
+        <h2
+          data-panel-heading
+          hidden
+          class="skill-panel__heading font-slab text-[0.78rem] font-semibold uppercase tracking-[0.2em] text-[#c96442]"
+        >
+          <span class="lang-en">{CATEGORY_LABELS[category].en}</span>
+          <span class="lang-zh">{CATEGORY_LABELS[category].zh}</span>
+        </h2>
+
         {rootSkillsByCategory[category].length > 0 && (
           <div class="skill-card-grid">
             {rootSkillsByCategory[category].map((skill, index) => (
@@ -371,7 +391,10 @@ const PRESETS = [
     return categoryPanels.find((panel) => panel.dataset.categoryPanel === activeCategory) ?? null;
   };
 
-  const applyTabState = () => {
+  const panelHasVisibleCard = (panel: HTMLElement) =>
+    Array.from(panel.querySelectorAll<HTMLElement>('.skill-card')).some((card) => !card.classList.contains('hidden'));
+
+  const applyTabState = (globalSearch = false) => {
     categoryTabs.forEach((button) => {
       const isActive = button.dataset.categoryTab === activeCategory;
       button.setAttribute('aria-selected', String(isActive));
@@ -379,7 +402,18 @@ const PRESETS = [
     });
 
     categoryPanels.forEach((panel) => {
-      panel.classList.toggle('hidden', panel.dataset.categoryPanel !== activeCategory);
+      // A search query spans the whole catalog: reveal every category panel that
+      // still holds a match, not just the active tab. Without a query we keep the
+      // single-panel tab behaviour.
+      const isVisible = globalSearch
+        ? panelHasVisibleCard(panel)
+        : panel.dataset.categoryPanel === activeCategory;
+      panel.classList.toggle('hidden', !isVisible);
+
+      const heading = panel.querySelector<HTMLElement>('[data-panel-heading]');
+      if (heading) {
+        heading.hidden = !(globalSearch && isVisible);
+      }
     });
 
     tagChips.forEach((chip) => {
@@ -466,12 +500,16 @@ const PRESETS = [
       group.open = (hasQuery || activeTag !== '') ? hasVisible : group.dataset.userOpen === 'true';
     });
 
-    applyTabState();
+    // Text search is global; tab/tag navigation stays category-scoped.
+    const globalSearch = hasQuery;
+    applyTabState(globalSearch);
 
     const activePanel = getActivePanel();
-    const hasVisible = activePanel
-      ? Array.from(activePanel.querySelectorAll<HTMLElement>('.skill-card')).some((card) => !card.classList.contains('hidden'))
-      : false;
+    const hasVisible = globalSearch
+      ? visibleCount > 0
+      : activePanel
+        ? panelHasVisibleCard(activePanel)
+        : false;
 
     emptyState?.classList.toggle('hidden', hasVisible);
     grid?.classList.toggle('hidden', !hasVisible);

@@ -21,10 +21,18 @@ export function validateRegistry(registry, { repoRoot }) {
       errors.push(`Skill '${record.id}' uses sparse-checkout without install.sparse_path`);
     }
 
-    if (record.id === 'scientific-visualization') {
-      const localPath = resolve(repoRoot, 'skills/scientific-visualization');
+    // Locally maintained packs (scientific-visualization, claude-science and its
+    // sub-skills) install by sparse-checkout of this repo, so their content must
+    // actually exist on disk at the advertised sparse_path.
+    const sparsePath = record.install?.sparse_path;
+    if (
+      method === 'sparse-checkout'
+      && sparsePath
+      && (record.install?.url ?? '').includes('HughYau/AcademicForge')
+    ) {
+      const localPath = resolve(repoRoot, sparsePath);
       if (!existsSync(localPath)) {
-        errors.push("Local pack 'scientific-visualization' is missing from skills/scientific-visualization");
+        errors.push(`Local pack '${record.id}' is missing from ${sparsePath}`);
       }
     }
 

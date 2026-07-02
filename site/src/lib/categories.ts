@@ -37,6 +37,7 @@ export const SKILL_CATEGORY: Partial<Record<string, Category>> = {
   superpowers: 'workflow',
   'andrej-karpathy-skills': 'workflow',
   'qiushi-skill': 'workflow',
+  'claude-science': 'workflow',
   humanizer: 'writing',
   'humanizer-zh': 'writing',
   'nature-skills': 'writing',

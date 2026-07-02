@@ -1,0 +1,12 @@
+{
+  "id": "infer",
+  "helperEnv": {
+    "name": "compute-provider-infer",
+    "packages": ["python=3.11", "pip"],
+    "pip": ["httpx==0.28.1"]
+  },
+  "egress": {
+    "control": { "host": "endpoint.invalid", "port": 443 },
+    "blob": []
+  }
+}

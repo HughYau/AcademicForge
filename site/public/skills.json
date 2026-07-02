@@ -6152,6 +6152,594 @@
       "post_install": []
     },
     {
+      "id": "claude-science",
+      "name": "Claude Science",
+      "summary": {
+        "en": "32 Claude Science skills from Anthropic — protein structure & design, genomics, single-cell, publication figures, literature, and remote compute — installable across agents with no subscription.",
+        "zh": "32 个 Anthropic 出品的 Claude Science skill——蛋白质结构与设计、基因组、单细胞、发表级图表、文献综述与远程算力——无需订阅即可跨 agent 安装使用。"
+      },
+      "author": "anthropics",
+      "repository": "https://github.com/HughYau/AcademicForge",
+      "license": "Apache-2.0",
+      "skill_count": 32,
+      "stars": 1730,
+      "tags": [
+        "anthropic",
+        "claude-science",
+        "research",
+        "protein",
+        "genomics"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparse_path": "skills/claude-science"
+      },
+      "post_install": [],
+      "is_collection": true,
+      "sub_skills": [
+        {
+          "id": "cs.algorithmic-art",
+          "name": "algorithmic-art",
+          "summary": {
+            "en": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+            "zh": "使用 p5.js 创作算法艺术，支持带种子的随机性与交互式参数探索。当用户想用代码创作生成艺术、算法艺术、流场或粒子系统时使用；应原创而非模仿现有艺术家作品以避免版权问题。"
+          },
+          "sparse_path": "skills/claude-science/algorithmic-art",
+          "category": "visualization",
+          "license": "Complete terms in LICENSE.txt",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/algorithmic-art"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.alphafold2",
+          "name": "alphafold2",
+          "summary": {
+            "en": "Predict protein structure for monomers and multimers with AlphaFold2 via the ColabFold runner (Mirdita et al. 2022, github.com/sokrypton/ColabFold; AlphaFold2 Jumper et al. 2021). Reach for this skill to fold a sequence or complex with the AF2/AF2-Multimer evoformer, to validate designed sequences by self-consistency pLDDT, ipTM, and RMSD, or to run a quick MSA-backed prediction using the public MMseqs2 server.",
+            "zh": "通过 ColabFold 运行器用 AlphaFold2/AF2-Multimer 预测单体与复合物的蛋白质结构（Mirdita 等 2022；Jumper 等 2021）。用于折叠序列或复合物、用 pLDDT/ipTM/RMSD 自洽性验证设计序列，或基于公共 MSA 服务器做快速预测。"
+          },
+          "sparse_path": "skills/claude-science/alphafold2",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/alphafold2"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.boltz",
+          "name": "boltz",
+          "summary": {
+            "en": "Structure prediction for protein, nucleic-acid, and small-molecule complexes with Boltz-2 (Passaro & Wohlwend et al. 2025, github.com/jwohlwend/boltz). Reach for this skill to validate designed binders against a target, to co-fold a protein with a SMILES or CCD ligand, or to get an open-source AlphaFold3 alternative with optional binding-affinity prediction.",
+            "zh": "用 Boltz-2 预测蛋白质、核酸与小分子复合物结构（Passaro & Wohlwend 等 2025），可选结合亲和力预测。用于验证设计的结合体、与 SMILES/CCD 配体共折叠，或作为开源的 AlphaFold3 替代方案。"
+          },
+          "sparse_path": "skills/claude-science/boltz",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/boltz"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.borzoi",
+          "name": "borzoi",
+          "summary": {
+            "en": "Predict genome-wide functional tracks (RNA-seq, CAGE, DNase, ChIP) from DNA sequence with Borzoi. Use this skill when: (1) Scoring the regulatory effect of a variant on expression/accessibility, (2) Generating predicted coverage tracks for a locus, (3) Prioritising non-coding variants by predicted track delta.",
+            "zh": "用 Borzoi 从 DNA 序列预测全基因组功能轨迹（RNA-seq、CAGE、DNase、ChIP）。用于评估变异对表达/可及性的调控效应、生成某位点的预测覆盖轨迹，或按预测轨迹差异为非编码变异排序。"
+          },
+          "sparse_path": "skills/claude-science/borzoi",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/borzoi"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.chai1",
+          "name": "chai1",
+          "summary": {
+            "en": "Structure prediction for protein, nucleic-acid, and small-molecule complexes with the Chai-1 foundation model (Chai Discovery 2024, github.com/chaidiscovery/chai-lab). Reach for this skill to predict an antibody-antigen or protein-ligand complex from a single FASTA, to re-fold designed binders as an AlphaFold-multimer alternative, or to drive co-folding from Python for batched campaigns on a GPU.",
+            "zh": "用 Chai-1 基础模型预测蛋白质、核酸与小分子复合物结构（Chai Discovery 2024）。用于从单个 FASTA 预测抗体-抗原或蛋白-配体复合物、作为 AlphaFold-multimer 替代重折叠设计的结合体，或用 Python 驱动批量共折叠。"
+          },
+          "sparse_path": "skills/claude-science/chai1",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/chai1"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.compute-env-setup",
+          "name": "compute-env-setup",
+          "summary": {
+            "en": "Set up a compute environment on a remote provider so Claude Science jobs can run there. Covers direct SSH/conda hosts, Slurm clusters, container-via-bridge runners, and managed-API providers (Modal, GCP, RunPod). Use when standing up a new provider, porting an env to a different backend, adding a tool that needs its own software stack, or wiring weight caches. Triggers on \"new compute provider\", \"set up env on\", \"port env to\", \"build GPU image\", \"weight cache\", \"compute_details\", \"conda env on the box\", \"apptainer on slurm\".",
+            "zh": "在远程算力提供方上搭建计算环境，供 Claude Science 任务运行。涵盖直连 SSH/conda 主机、Slurm 集群、容器桥接运行器与托管 API 提供方（Modal、GCP、RunPod）。用于新建提供方、迁移环境、添加需独立软件栈的工具或配置权重缓存。"
+          },
+          "sparse_path": "skills/claude-science/compute-env-setup",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/compute-env-setup"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.customize",
+          "name": "customize",
+          "summary": {
+            "en": "Create, configure, and maintain custom agent profiles and author new skills via the `repl` tool. Use when the user wants to create an agent profile, build a custom agent, modify agent capabilities, attach or detach skills/connectors on a profile, author a skill, or inspect which connectors and tools are available. Also use whenever you need the `host.agents.*` or `host.skills.*` Python SDK.",
+            "zh": "通过 repl 工具创建、配置与维护自定义 agent 配置文件并编写新 skill。当用户想创建 agent 配置、构建自定义 agent、增删 skill/连接器，或需要 host.agents.* / host.skills.* Python SDK 时使用。"
+          },
+          "sparse_path": "skills/claude-science/customize",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/customize"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.diffdock",
+          "name": "diffdock",
+          "summary": {
+            "en": "Predict small-molecule binding poses with DiffDock-L (Corso et al. 2023/2024, github.com/gcorso/DiffDock) — blind diffusion docking that places a ligand into a protein pocket without a predefined search box and ranks the samples with a learned confidence model. Reach for this skill to dock a SMILES or SDF against a PDB, to generate ranked 3D poses for a small fragment library, or to get a starting pose for downstream rescoring. DiffDock predicts geometry, not affinity.",
+            "zh": "用 DiffDock-L 预测小分子结合位姿（Corso 等 2023/2024）——无需预定义搜索框的盲扩散对接，并用学习到的置信度模型对样本排序。用于将 SMILES/SDF 对接到 PDB、为小型片段库生成排序的 3D 位姿，或作为对接起点。"
+          },
+          "sparse_path": "skills/claude-science/diffdock",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/diffdock"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.esmfold2",
+          "name": "esmfold2",
+          "summary": {
+            "en": "Biohub ESMFold2 / ESMFold2-Fast all-atom co-folding (Candido et al. 2026, github.com/Biohub/esm). Single-sequence and MSA modes; protein, DNA, RNA, ligand (CCD/SMILES), modified residues. FoldBench Ab-Ag 50-55%, PPI 70-77% DockQ-pass. Also covers the ESMC-{300M,600M,6B} protein language models from the same release: masked-LM logits, hidden states, mutation scoring, contact prediction, and the SAE interpretability head. MIT-licensed weights on HuggingFace org `biohub`. Use this skill when: (1) Predicting complex structures with single-sequence input, (2) Validating designed binders with ESMFold2-Fast, (3) Running ESMFold2 with MSA input, (4) Getting ESMC embeddings or per-residue mutation scores, (5) Choosing kernel backend and sampling-step settings for paper-faithful throughput.",
+            "zh": "Biohub ESMFold2/ESMFold2-Fast 全原子共折叠（Candido 等 2026）。支持单序列与 MSA 模式，覆盖蛋白质/DNA/RNA/配体（CCD/SMILES）与修饰残基；同时包含 ESMC-{300M,600M,6B} 蛋白质语言模型：掩码 LM logits、隐状态、突变打分与接触预测。"
+          },
+          "sparse_path": "skills/claude-science/esmfold2",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/esmfold2"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.evo2",
+          "name": "evo2",
+          "summary": {
+            "en": "Score, embed, and generate DNA sequences with Evo 2, a long-context genomic foundation model. Use this skill when: (1) Computing per-nucleotide or per-sequence likelihoods for variant effect scoring, (2) Embedding genomic windows for downstream classification, (3) Generating DNA conditioned on a prefix, (4) Scoring regulatory or coding regions across species.",
+            "zh": "用长上下文基因组基础模型 Evo 2 对 DNA 序列打分、嵌入与生成。用于计算逐核苷酸/整序列似然做变异效应打分、嵌入基因组窗口做下游分类、基于前缀生成 DNA，或跨物种为调控/编码区打分。"
+          },
+          "sparse_path": "skills/claude-science/evo2",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/evo2"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.fair-esm2",
+          "name": "fair-esm2",
+          "summary": {
+            "en": "Embed proteins with Meta AI's ESM-2 (`fair-esm` package). Use this skill when: (1) Extracting per-residue or per-sequence embeddings for downstream ML, (2) Masked-LM likelihood / mutation effect scoring, (3) Contact prediction from a sequence.",
+            "zh": "用 Meta AI 的 ESM-2（fair-esm 包）嵌入蛋白质。用于为下游 ML 提取逐残基/整序列嵌入、做掩码 LM 似然/突变效应打分，或从序列预测接触图。"
+          },
+          "sparse_path": "skills/claude-science/fair-esm2",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/fair-esm2"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.figure-composer",
+          "name": "figure-composer",
+          "summary": {
+            "en": "Compose one publication-grade multi-panel figure. Entry from a one-line claim + data refs, OR from an existing figure via `derive_outline(png)`. Runs a per-figure loop: outline (12-col grid, per-panel ask + label_budget) → fan-out one sub-agent per panel (each loads `figure-style`) → tile + stamp letters → adversarial composite review with two-tier feedback (Tier-1 outline_revisions / Tier-2 per-panel violations) → regen affected panels, ≤3 rounds. Loads panel_task / compose_figure / compose_crops / composite_review_task / derive_outline into the kernel. For one standalone plot use `figure-style`; for whole-paper figure ordering use `paper-narrative`.",
+            "zh": "编排一张发表级多面板图。可从一句话论点＋数据引用出发，或从已有图 derive_outline(png) 反推。按图运行循环：大纲（12 列栅格、逐面板需求与标签预算）→ 每面板派发一个子 agent（各自加载 figure-style）→ 拼接与标注字母 → 对抗式合成评审。"
+          },
+          "sparse_path": "skills/claude-science/figure-composer",
+          "category": "visualization",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/figure-composer"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.figure-style",
+          "name": "figure-style",
+          "summary": {
+            "en": "Publication-grade figure correctness and legibility rules. Load before drawing any plot and call `apply_figure_style()` — sets a role-mapped font-size ladder, outward ticks, frameless legends, and 300-dpi output. The skill is a checklist, not a house look: data fidelity (claim-titles tested against every row, excluded data never enters summaries), label economy (floor and ceiling), colour threading, chart-choice-by-data-shape, layout, and a render-then-verify QA loop (bbox collision + per-panel perceptual check). Ships helpers: focal_palette, bar_with_points, strip_with_median, end_of_line_labels, panel_letter, set_frame, panel_crops. For multi-panel figures load `figure-composer`; for whole-paper figure arc load `paper-narrative`.",
+            "zh": "发表级图表的正确性与可读性规则。绘图前加载并调用 apply_figure_style()——设定按角色映射的字号阶梯、外向刻度、无框图例与 300 dpi 输出。它是一份清单而非固定风格：涵盖数据保真、标签经济、配色串联、按数据形状选图与「渲染后校验」QA 循环。"
+          },
+          "sparse_path": "skills/claude-science/figure-style",
+          "category": "visualization",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/figure-style"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.indication-dossier",
+          "name": "indication-dossier",
+          "summary": {
+            "en": "Generate a therapeutic indication dossier. Covers the patient population, epidemiology, disease biology, standard of care, regulatory precedent, and landmark clinical trials.",
+            "zh": "生成治疗适应症档案，涵盖患者人群、流行病学、疾病生物学、标准治疗、监管先例与里程碑临床试验。"
+          },
+          "sparse_path": "skills/claude-science/indication-dossier",
+          "category": "writing",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/indication-dossier"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.learn",
+          "name": "learn",
+          "summary": {
+            "en": "Use this skill when the user wants intellectual understanding — learning how or why something works, not getting a task done or soliciting Claude's judgment.\n\nTrigger for:\n- Explicit learning requests: teach, explain, ELI5, walk me through, quiz me, flashcards, \"I'm rusty on\"; definitions (\"what is X\")\n- Terse concept names implying \"help me understand this\": \"Galois theory,\" \"transformers, from scratch\"\n- Confusion signals: \"won't stick,\" \"keep mixing these up,\" \"not getting it\"\n- Learning-path questions: prerequisites, sequencing, what to study before X\n- Conceptual questions about mechanisms, causes, or dynamics\n\nDon't trigger for:\n- Tasks: coding, writing, calculation, translation, factual lookup, news updates\n- Personal troubleshooting; resource/textbook recommendations\n- Claude's evaluative verdict: opinion prompts (\"do you think X\", \"settle this\", \"honest take\", \"is X dead / still taken seriously\") and interpretive takes (\"was X really as harsh as people say\")",
+            "zh": "当用户想要理解知识——弄懂某事如何或为何运作，而非完成任务或征求判断时使用。触发于显式学习请求（讲解、ELI5、带我过一遍、给我出题、做记忆卡、「我这块生疏了」）以及暗示「帮我理解」的简短概念名（如「伽罗瓦理论」「从零讲 transformer」）。"
+          },
+          "sparse_path": "skills/claude-science/learn",
+          "category": "workflow",
+          "license": "Complete terms in LICENSE.txt",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/learn"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.ligandmpnn",
+          "name": "ligandmpnn",
+          "summary": {
+            "en": "Inverse-fold a backbone with ligand, nucleic-acid, and metal context using LigandMPNN (Dauparas et al. 2023, github.com/dauparas/LigandMPNN). Reach for this skill to redesign the residues lining a binding pocket around a bound small molecule or cofactor, to design metal-coordinating sites where the geometry must be respected, or to get threaded designed-sequence PDBs out of any MPNN run.",
+            "zh": "用 LigandMPNN 在配体、核酸与金属环境下对骨架做逆折叠（Dauparas 等 2023）。用于围绕结合的小分子或辅因子重设计口袋衬里残基、设计需尊重几何的金属配位位点，或从任意 MPNN 运行输出穿线后的设计序列 PDB。"
+          },
+          "sparse_path": "skills/claude-science/ligandmpnn",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/ligandmpnn"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.literature-review",
+          "name": "literature-review",
+          "summary": {
+            "en": "Find, verify, and synthesize scientific literature — from \"what's the seminal paper for X\" through full multi-source reviews. Covers grounding claims in real retrieved sources, avoiding fabricated citations, handling retractions, and calibrating confidence to evidence strength.",
+            "zh": "查找、核验并综合科学文献——从「X 的奠基性论文是哪篇」到完整的多来源综述。涵盖将论断锚定到真实检索到的来源、避免伪造引用、处理撤稿，以及按证据强度校准置信度。"
+          },
+          "sparse_path": "skills/claude-science/literature-review",
+          "category": "writing",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/literature-review"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.managed-model-endpoints",
+          "name": "managed-model-endpoints",
+          "summary": {
+            "en": "Register a model service in the managed family — a local model server container the daemon starts/stops on demand, or a remote upstream model API (https). Read the runbook, allocate a port (local only), compose idempotent start/stop scripts (local only), register once. Load when the user wants a model service available for inference, or when list_compute shows managed endpoints.",
+            "zh": "在托管族中注册模型服务——由守护进程按需启停的本地模型服务器容器，或远程上游模型 API（https）。阅读运行手册、分配端口（仅本地）、编写幂等启停脚本（仅本地）并一次性注册。当用户需要可用于推理的模型服务时加载。"
+          },
+          "sparse_path": "skills/claude-science/managed-model-endpoints",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/managed-model-endpoints"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.openfold3",
+          "name": "openfold3",
+          "summary": {
+            "en": "Structure prediction using OpenFold3, an open-weights PyTorch reproduction of AlphaFold3 from the AlQuraishi Lab. Use this skill when predicting protein/nucleic-acid/ligand complex structures with an Apache-2.0-licensed AF3 reimplementation.",
+            "zh": "用 OpenFold3 做结构预测——AlQuraishi 实验室对 AlphaFold3 的开源权重 PyTorch 复现。当需要用 Apache-2.0 许可的 AF3 复现来预测蛋白质/核酸/配体复合物结构时使用。"
+          },
+          "sparse_path": "skills/claude-science/openfold3",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/openfold3"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.paper-narrative",
+          "name": "paper-narrative",
+          "summary": {
+            "en": "Judge and reshape the STORY a paper's figures tell. Input is the work itself — manuscript (or abstract) + figure deck — no hand-written brief. `derive_paper_brief(abstract, captions)` extracts pitch/vision/per-figure-claims; a handling-editor reviewer on the full deck returns hook_verdict (would Fig 1 make me send this for review?), arc (hook→mechanism→evidence→application), figure_moves (panels in the wrong figure), missing_panels (concrete analyses to RUN), kill_list, and boldest_defensible_fig1. Hands per-figure claims to `figure-composer`. Load when writing or revising a paper.",
+            "zh": "评判并重塑一篇论文的图件所讲述的「故事」。输入是作品本身——手稿（或摘要）＋图集，无需手写简报。derive_paper_brief 提取卖点/愿景/逐图论点；处理编辑式评审给出 hook 结论、叙事弧（钩子→机制→证据→应用）与逐面板的图件调整建议。"
+          },
+          "sparse_path": "skills/claude-science/paper-narrative",
+          "category": "writing",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/paper-narrative"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.pdf-explore",
+          "name": "pdf-explore",
+          "summary": {
+            "en": "Use this skill when the user has attached a PDF, paper, report, or other document and the answer needs content from more than one place in it: summarize the methods or any other section, compare sections, find where a topic is discussed, read a value or label off a figure or chart, or find/list/extract every instance of something across the whole document (datasets, benchmarks, citations, figures, table rows, accession numbers — including appendices). Skip it only for a single lookup of 1–4 pages quoted in your very next response — `read_file(pages=[...])` attaches pages as images that are dropped from context after one turn, so multi-section answers end up re-reading the same ranges repeatedly. Parses the PDF once in the Python kernel: `pdf_pages` (pages as persistent text), `pdf_outline` (TOC), `pdf_scan` (rank pages by relevance), `pdf_map`/`pdf_extract` (per-page summary / structured fields via parallel haiku calls). For PDF creation/manipulation, use reportlab/pypdf directly.",
+            "zh": "当用户附上 PDF、论文、报告或文档且答案需要文中多处内容时使用：总结方法或任意章节、比较章节、定位某话题的讨论、从图表读取数值或标签，或在全文中查找/列举/抽取某类事物（数据集、基准、引用、图件等）的每一处实例。"
+          },
+          "sparse_path": "skills/claude-science/pdf-explore",
+          "category": "research",
+          "subdiscipline": "other",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/pdf-explore"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.product-self-knowledge",
+          "name": "product-self-knowledge",
+          "summary": {
+            "en": "Stop and consult this skill whenever your response would include specific facts about Anthropic's products. Covers: Claude Code (how to install, Node.js requirements, platform/OS support, MCP server integration, configuration), Claude API (function calling/tool use, batch processing, SDK usage, rate limits, pricing, models, streaming), and Claude.ai (Pro vs Team vs Enterprise plans, feature limits). Trigger this even for coding tasks that use the Anthropic SDK, content creation mentioning Claude capabilities or pricing, or LLM provider comparisons. Any time you would otherwise rely on memory for Anthropic product details, verify here instead — your training data may be outdated or wrong.",
+            "zh": "每当你的回答将包含关于 Anthropic 产品的具体事实时，先停下并查阅此 skill。涵盖 Claude Code（安装、Node.js 要求、平台/系统支持、MCP 集成、配置）、Claude API（工具使用、批处理、SDK、速率限制、定价、模型、流式）与 Claude.ai（Pro/Team/Enterprise 方案与功能限制）。"
+          },
+          "sparse_path": "skills/claude-science/product-self-knowledge",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/product-self-knowledge"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.proteinmpnn",
+          "name": "proteinmpnn",
+          "summary": {
+            "en": "Inverse-fold a protein backbone (PDB structure) into amino-acid sequence with ProteinMPNN (Dauparas et al. 2022, github.com/dauparas/ProteinMPNN). Reach for this skill to run sequence design on RFdiffusion backbones, to redesign one chain of a PDB while holding interface residues fixed, or to generate a temperature-swept set of sequences for downstream folding.",
+            "zh": "用 ProteinMPNN 将蛋白质骨架（PDB 结构）逆折叠为氨基酸序列（Dauparas 等 2022）。用于对 RFdiffusion 骨架做序列设计、在固定界面残基的同时重设计 PDB 的某条链，或生成温度扫描的一组序列供下游折叠。"
+          },
+          "sparse_path": "skills/claude-science/proteinmpnn",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/proteinmpnn"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.remote-compute-modal",
+          "name": "remote-compute-modal",
+          "summary": {
+            "en": "Run GPU jobs on the user's own Modal account via host.compute.create('byoc:modal', ...). Covers the create→submit→wait_for_notification flow, the compute_provider kernel for env setup, image/volume resolution, and the two approval cards. Load once you've decided to dispatch to Modal.",
+            "zh": "通过 host.compute.create(byoc:modal, ...) 在用户自己的 Modal 账户上运行 GPU 任务。涵盖 create→submit→wait_for_notification 流程、用于环境搭建的 compute_provider 内核、镜像/卷解析与两张审批卡。决定派发到 Modal 后加载。"
+          },
+          "sparse_path": "skills/claude-science/remote-compute-modal",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/remote-compute-modal"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.remote-compute-ssh",
+          "name": "remote-compute-ssh",
+          "summary": {
+            "en": "Submit→wait_for_notification→harvest workflow for the user's SSH/SLURM hosts. Load once you've decided to dispatch remote.",
+            "zh": "面向用户 SSH/SLURM 主机的 submit→wait_for_notification→harvest 工作流。决定派发到远程后加载。"
+          },
+          "sparse_path": "skills/claude-science/remote-compute-ssh",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/remote-compute-ssh"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.scgpt",
+          "name": "scgpt",
+          "summary": {
+            "en": "Embed and annotate single-cell expression data with scGPT, a foundation model for single-cell biology. Use this skill when: (1) Producing cell embeddings from an AnnData for clustering/integration, (2) Zero-shot or fine-tuned cell-type annotation, (3) Gene-level representation for perturbation/GRN tasks.",
+            "zh": "用单细胞生物学基础模型 scGPT 嵌入并注释单细胞表达数据。用于从 AnnData 生成细胞嵌入做聚类/整合、零样本或微调的细胞类型注释，或为扰动/GRN 任务生成基因级表征。"
+          },
+          "sparse_path": "skills/claude-science/scgpt",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/scgpt"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.scvi-tools",
+          "name": "scvi-tools",
+          "summary": {
+            "en": "Probabilistic single-cell RNA-seq with scvi-tools — scVI for a batch-corrected latent space, scANVI for semi-supervised label transfer, and Bayesian differential expression. Reach for this skill to integrate scRNA-seq batches, embed cells for clustering, transfer annotations from a reference onto a query, or score differentially expressed genes per cluster. For spatial deconvolution / mapping use the cell2location, DestVI, or Tangram methods instead.",
+            "zh": "用 scvi-tools 做概率式单细胞 RNA-seq——scVI 生成批次校正的隐空间、scANVI 做半监督标签迁移、贝叶斯差异表达。用于整合 scRNA-seq 批次、嵌入细胞聚类、将参考注释迁移到查询集，或按簇为差异表达基因打分。"
+          },
+          "sparse_path": "skills/claude-science/scvi-tools",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/scvi-tools"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.self-awareness",
+          "name": "self-awareness",
+          "summary": {
+            "en": "Claude Science's own session database schema and SDK surface for introspection via host.query(). Load this when you need to query your own conversation history, token usage, cost accounting, execution log, or artifact metadata beyond what host.frames()/host.artifacts() provide — e.g. \"how many tokens has this session used\", \"what was my last tool call\", \"list every file I've written\", \"where are messages stored\", \"what tables can I query\", \"inspect frames.context_data\", or any time you're about to PRAGMA-probe the Claude Science metadata DB to discover its schema.",
+            "zh": "Claude Science 自身会话数据库 schema 与用于自省的 SDK（host.query()）。当你需要查询自己的对话历史、token 用量、成本核算、执行日志或工件元数据，超出 host.frames()/host.artifacts() 所能提供时加载——如「本会话用了多少 token」「上一次工具调用是什么」「列出我写过的每个文件」。"
+          },
+          "sparse_path": "skills/claude-science/self-awareness",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/self-awareness"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.skill-creator",
+          "name": "skill-creator",
+          "summary": {
+            "en": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+            "zh": "创建新 skill、修改与改进现有 skill，并评测 skill 表现。当用户想从零创建 skill、编辑或优化现有 skill、运行 eval 测试 skill、用方差分析基准化表现，或优化 skill 描述以提升触发准确率时使用。"
+          },
+          "sparse_path": "skills/claude-science/skill-creator",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/skill-creator"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.solublempnn",
+          "name": "solublempnn",
+          "summary": {
+            "en": "Inverse-fold a backbone with SolubleMPNN — ProteinMPNN retrained on a soluble-PDB subset (Dauparas et al. 2022) — for sequences biased toward cytosolic expression and reduced aggregation. Reach for this skill when designs from vanilla ProteinMPNN are aggregating or going to inclusion bodies, when redesigning a membrane-adjacent fold for soluble expression, or when an E. coli expression screen is the next step.",
+            "zh": "用 SolubleMPNN 对骨架逆折叠——在可溶 PDB 子集上重训练的 ProteinMPNN（Dauparas 等 2022），使序列偏向胞质表达并减少聚集。当 vanilla ProteinMPNN 的设计发生聚集或进入包涵体、需为可溶表达重设计近膜折叠，或做 E. coli 表达筛选时使用。"
+          },
+          "sparse_path": "skills/claude-science/solublempnn",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/solublempnn"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.using-model-endpoint",
+          "name": "using-model-endpoint",
+          "summary": {
+            "en": "Call a registered model endpoint over its native HTTP API from the endpoint's scoped inference kernel (BASE_URL preloaded). Load once a task needs predictions from a registered model endpoint.",
+            "zh": "从端点专属的推理内核（已预载 BASE_URL）通过其原生 HTTP API 调用已注册的模型端点。一旦任务需要来自已注册模型端点的预测即加载。"
+          },
+          "sparse_path": "skills/claude-science/using-model-endpoint",
+          "category": "workflow",
+          "license": "Apache-2.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/using-model-endpoint"
+          },
+          "post_install": []
+        },
+        {
+          "id": "cs.web-artifacts-builder",
+          "name": "web-artifacts-builder",
+          "summary": {
+            "en": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+            "zh": "用现代前端技术（React、Tailwind CSS、shadcn/ui）创建精致的多组件 claude.ai HTML 工件的工具套件。用于需要状态管理、路由或 shadcn/ui 组件的复杂工件——而非简单的单文件 HTML/JSX 工件。"
+          },
+          "sparse_path": "skills/claude-science/web-artifacts-builder",
+          "category": "visualization",
+          "license": "Complete terms in LICENSE.txt",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/HughYau/AcademicForge.git",
+            "sparse_path": "skills/claude-science/web-artifacts-builder"
+          },
+          "post_install": []
+        }
+      ]
+    },
+    {
       "id": "scientific-visualization",
       "name": "Scientific Visualization",
       "summary": {

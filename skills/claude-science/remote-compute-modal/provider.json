@@ -1,0 +1,16 @@
+{
+  "id": "modal",
+  "helperEnv": {
+    "name": "compute-provider-modal",
+    "packages": ["python=3.11", "pip"],
+    "pip": ["modal==1.5.1", "python-socks[asyncio]==2.8.1"]
+  },
+  "egress": {
+    "control": { "host": "api.modal.com", "port": 443 },
+    "worker": [{ "suffix": ".w.modal.host" }],
+    "blob": [
+      { "suffix": ".amazonaws.com" },
+      { "suffix": ".r2.cloudflarestorage.com" }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ Academic Forge uses a **hybrid integration model**:
 - Large upstream collections are scanned into categorized `sub_skills` entries for the site-first catalog
 - `superpowers` is installed from upstream `skills/` via sparse checkout
 - `scientific-visualization` is maintained locally in this repository (no upstream dependency)
+- `claude-science` (Anthropic's Claude Science skills) is maintained locally as a categorized collection and installs by sparse-checkout of this repo — no subscription required
 
 This means:
 
@@ -142,6 +143,21 @@ This means:
 
 ---
 
+### 9. claude-science (local built-in, by Anthropic)
+
+**Source**: Anthropic's Claude Science skills, maintained locally in this repository at `skills/claude-science`
+
+- **Author**: Anthropic
+- **License**: Apache-2.0 (most skills; a few bundle their own `LICENSE.txt`)
+- **Included Version**: Tracked directly by this repository's commit history
+- **Purpose**: 32 skills spanning protein structure & design (AlphaFold2, Boltz, Chai-1, ESMFold2, OpenFold3, ProteinMPNN, LigandMPNN, SolubleMPNN, DiffDock), genomics & single-cell (Borzoi, Evo 2, ESM-2, scGPT, scvi-tools), publication figures (figure-composer, figure-style, algorithmic-art, web-artifacts-builder), literature & narrative (literature-review, paper-narrative, indication-dossier, pdf-explore), and workflow/compute (compute-env-setup, remote-compute, model endpoints, skill-creator, learn, customize)
+- **Modifications**: Collection root filed under "Workflow & Process" as *Claude Science*; each sub-skill is re-classified into research / writing / figures / workflow. Content is unmodified.
+- **Original License Text**: See each skill's frontmatter and the bundled `LICENSE.txt` where present.
+
+**Why we included it**: These are Anthropic's own first-party research skills. Hosting them locally in this repo means they install by sparse-checkout **without a Claude Science subscription**, work **across agents** (Claude Code / OpenCode / Codex), and run **on Windows** — while staying fully transparent in this repository's git history.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -161,8 +177,11 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 | paper-polish-workflow-skill | MIT | ✅ Yes | ✅ Yes |
 | scientific-visualization | MIT | ✅ Yes | ✅ Yes |
 | nature-skills | MIT | ✅ Yes | ✅ Yes |
+| claude-science | Apache-2.0† | ✅ Yes | ✅ Yes |
 
 *Please check the original repository for current license information.
+
+†Most Claude Science skills are Apache-2.0; a few bundle their own `LICENSE.txt` — check each skill's frontmatter.
 
 ## How to Give Credit
 
@@ -235,6 +254,7 @@ This document tracks which versions of each skill are included:
 | 2026-03-21 | paper-polish-workflow-skill | submodule from Lylll9436/Paper-Polish-Workflow-skill | Initial inclusion |
 | 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
 | 2026-05-17 | nature-skills | installed from Yuan1z0825/nature-skills | Initial inclusion |
+| 2026-07-02 | claude-science (local) | tracked in this repository | Initial inclusion of Anthropic's 32 Claude Science skills as a categorized local collection |
 
 To see the current linked submodule versions, run:
 ```bash

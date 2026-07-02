@@ -108,6 +108,71 @@ test('classifies and translates the current upstream additions', () => {
   }
 });
 
+test('claude-science is registered as a locally maintained collection', () => {
+  const claudeScience = collections.find((collection) => collection.rootSkillId === 'claude-science');
+
+  assert.ok(claudeScience, 'claude-science collection is registered');
+  assert.equal(claudeScience.local, true);
+  assert.equal(claudeScience.prefix, 'cs');
+  assert.equal(claudeScience.relativeRoot, 'skills/claude-science');
+
+  const classification = JSON.parse(
+    readFileSync(new URL('../skill-classification.json', import.meta.url), 'utf8'),
+  );
+  const translations = JSON.parse(
+    readFileSync(new URL('../skill-translations.zh.json', import.meta.url), 'utf8'),
+  );
+  const expectedClassification = {
+    'cs.figure-style': { category: 'visualization' },
+    'cs.alphafold2': { category: 'research', subdiscipline: 'life-sci' },
+    'cs.pdf-explore': { category: 'research', subdiscipline: 'other' },
+    'cs.literature-review': { category: 'writing' },
+    'cs.skill-creator': { category: 'workflow' },
+  };
+
+  for (const [id, expected] of Object.entries(expectedClassification)) {
+    assert.deepEqual(classification[id], expected, `missing or incorrect classification for ${id}`);
+    assert.ok(translations[id]?.trim(), `missing Chinese translation for ${id}`);
+  }
+});
+
+test('claude-science sub-skills resolve from the local skills directory', () => {
+  const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
+  const classification = JSON.parse(
+    readFileSync(new URL('../skill-classification.json', import.meta.url), 'utf8'),
+  );
+  const translations = JSON.parse(
+    readFileSync(new URL('../skill-translations.zh.json', import.meta.url), 'utf8'),
+  );
+
+  const subSkills = collectSubSkills({
+    rootDir: repoRoot,
+    relativeRoot: 'skills/claude-science',
+    includeRootSkill: false,
+    prefix: 'cs',
+    parentSkill: {
+      install: {
+        method: 'sparse-checkout',
+        url: 'https://github.com/HughYau/AcademicForge.git',
+        sparse_path: 'skills/claude-science',
+      },
+      post_install: [],
+    },
+    classification,
+    translations,
+  });
+
+  assert.equal(subSkills.length, 32);
+
+  const figureStyle = subSkills.find((skill) => skill.id === 'cs.figure-style');
+  assert.ok(figureStyle, 'cs.figure-style is collected');
+  assert.equal(figureStyle.category, 'visualization');
+  assert.equal(figureStyle.sparse_path, 'skills/claude-science/figure-style');
+  assert.equal(figureStyle.install.url, 'https://github.com/HughYau/AcademicForge.git');
+  assert.equal(figureStyle.install.sparse_path, 'skills/claude-science/figure-style');
+  assert.notEqual(figureStyle.summary.zh, figureStyle.summary.en);
+});
+
 test('registry excludes community packs that have not received user approval', () => {
   const registry = JSON.parse(
     readFileSync(new URL('../../registry/skills.json', import.meta.url), 'utf8'),

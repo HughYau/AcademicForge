@@ -8,6 +8,7 @@ on:
       - 'scripts/**'
       - 'site/**'
       - 'skills/scientific-visualization/**'
+      - 'skills/claude-science/**'
       - 'package.json'
   pull_request:
     branches: [site-first]
@@ -16,6 +17,7 @@ on:
       - 'scripts/**'
       - 'site/**'
       - 'skills/scientific-visualization/**'
+      - 'skills/claude-science/**'
       - 'package.json'
 
 jobs:

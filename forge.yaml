@@ -13,6 +13,7 @@ runtime:
   source_of_truth: "registry/skills.json"
   local_skill_content:
     - "skills/scientific-visualization"
+    - "skills/claude-science"
 
 installation:
   method: "registry-installer"
@@ -32,4 +33,7 @@ notes: |
 
   The legacy submodule-based `master` branch has been retired.
 
-  Only `skills/scientific-visualization` is maintained locally on `site-first`.
+  `skills/scientific-visualization` and the `skills/claude-science` collection
+  (Anthropic's Claude Science skills) are maintained locally on `site-first`.
+  Rebuild the collection index after editing them with
+  `node scripts/build-skill-index.mjs --only claude-science`.
