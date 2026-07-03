@@ -41,7 +41,7 @@
 
 ### 🖱️ 方式一：使用选配站
 
-打开 `https://hughyau.github.io/AcademicForge/`，勾选需要的 skill pack、选择你的平台（Claude Code / OpenCode / Codex），一键生成安装命令。
+打开 `https://hughyau.com/AcademicForge/`，勾选需要的 skill pack、选择你的平台（Claude Code / OpenCode / Codex），一键生成安装命令。
 
 <p align="center">
   <video src="https://github.com/user-attachments/assets/3b539896-6380-4ac4-9ae9-9b79ed7adaf3" controls width="960">
