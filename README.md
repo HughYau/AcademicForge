@@ -22,8 +22,8 @@
 </div>
 
 
-> ✨ **新增：内置 Claude Science（Anthropic 出品）的 32 个技能**
-> - 覆盖蛋白质结构与设计、基因组、单细胞、发表级图表、文献综述、远程算力等
+> ✨ **新增： Claude Science内置的 32 个技能**
+> - 覆盖发表级图表、文献综述、远程算力、蛋白质结构与设计、基因组、单细胞等
 > - **无需订阅 Claude Science** 即可安装，**跨 agent 通用**（Claude Code / OpenCode / Codex），**支持 Windows**（PowerShell 安装脚本）
 > - 作为本地维护集合收录在 `skills/claude-science`，在目录中归类为「流程与方法 · Claude Science」，其下每个技能再按科研 / 写作 / 图表等分类展示
 
@@ -77,35 +77,6 @@ Remove-Item $script
 
 > 请获取并阅读 https://hughyau.github.io/AcademicForge/agents.md，按其中的说明了解我的研究需求，然后从 AcademicForge 目录中为我挑选合适的学术 skills 并生成安装命令。
 
-站点右下角的「不知道选什么？」卡片可以一键复制（会自动带上你已选择的工具与平台）。智能体可读的目录索引：
-
-- 指南：`https://hughyau.github.io/AcademicForge/agents.md`
-- 瘦索引：`https://hughyau.github.io/AcademicForge/index.slim.json`
-- 完整 registry 镜像：`https://hughyau.github.io/AcademicForge/skills.json`
-
-验证安装：
-
-```bash
-ls .claude/skills/
-ls .opencode/skills/
-ls .codex/skills/
-```
-
-## 📦 本地维护内容
-
-`site-first` 分支中，保留在仓库内本地维护的内容有：
-
-- `skills/scientific-visualization` — 单个本地 skill
-- `skills/claude-science` — **Claude Science**（Anthropic）内置技能集合，共 32 个技能。作为集合根归类在「流程与方法（Workflow & Process）」下、名为 *Claude Science*、作者 *Anthropic*；其下每个子技能再按科研 / 写作 / 图表等分类。因为直接托管在本仓库，所以**无需订阅 Claude Science** 即可通过 sparse-checkout 安装，**跨 agent 通用并支持 Windows**。
-
-  编辑该目录后，用以下命令仅重建此集合的索引（无需联网克隆其他集合）：
-
-  ```bash
-  node scripts/build-skill-index.mjs --only claude-science
-  node scripts/build-slim-index.mjs
-  ```
-
-其他 pack 都通过 `registry/skills.json` 描述，并在安装时从各自来源仓库获取。
 
 ## 🔬 Claude Science 技能清单（32 个）
 
@@ -184,25 +155,6 @@ curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/sit
 
 </details>
 
-## 🛠️ 维护 `site-first`
-
-常用本地命令：
-
-```bash
-npm run site:install
-npm run build
-npm run preview
-npm run validate:registry
-npm run ci:validate
-node scripts/build-skill-index.mjs --check
-```
-
-本地安装器冒烟测试：
-
-```bash
-"D:\Application\Git\bin\bash.exe" scripts/tests/forge-install-local-registry.sh
-pwsh -File scripts/tests/forge-install-local-registry.ps1
-```
 
 ## 📚 文档
 
