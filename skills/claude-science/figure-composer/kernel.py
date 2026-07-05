@@ -1,11 +1,17 @@
 
-import json
+"""
+Kernel helpers for the figure-composer skill — pure-skill, provider-agnostic.
 
+No ``host`` runtime and no LLM API: these are deterministic PIL/geometry
+helpers plus schema/prompt builders. YOUR base model does the visual
+judgment (reverse-engineering an outline from a figure, generating panels,
+adversarial review) using the schemas/tasks below — see SKILL.md. Load once
+per session by exec-ing this file in a Python cell:
 
-def fc_sdk():
-    """Rebind-proof SDK handle — see pdf-explore/kernel.py:pdf_sdk."""
-    import host
-    return host
+    exec(open("<this-skill-dir>/kernel.py").read())
+"""
+
+import json  # noqa: F401 — kept for callers that json-dump outlines
 
 
 def figure_outline_schema():
@@ -17,7 +23,7 @@ def figure_outline_schema():
             "letter":{"type":"string"},
             "role":{"type":"string","enum":["schematic","hero","primary","supporting"]},
             "message":{"type":"string"}, "chart_family":{"type":"string"},
-            "data_vid":{"type":["string","null"]}, "data_desc":{"type":"string"},
+            "data_path":{"type":["string","null"]}, "data_desc":{"type":"string"},
             "row":{"type":"integer"}, "col":{"type":"integer"},
             "colspan":{"type":"integer"}, "rowspan":{"type":"integer"},
             "label_budget":{"type":"integer"}, "ask":{"type":"string"}},
@@ -49,8 +55,8 @@ def panel_task(outline, letter, fig_label="Figure", rules_ref="(load `figure-sty
     w,h = panel_px(outline, letter)
     neighbours = ", ".join(f"{q['letter']}={q['role']}:{q['chart_family']}"
                            for q in outline["panels"] if q["letter"]!=letter)
-    data_line = (f"**Data:** `{{{{artifact:{p['data_vid']}}}}}` — {p.get('data_desc','')}"
-                 if p.get("data_vid") else "**Data:** none (schematic).")
+    data_line = (f"**Data:** `{p['data_path']}` — {p.get('data_desc','')}"
+                 if p.get("data_path") else "**Data:** none (schematic).")
     rowmates = [q["letter"] for q in outline["panels"]
                 if q["row"]==p["row"] and q["letter"]!=letter and q.get("rowspan",1)==p.get("rowspan",1)]
     share_line = (f"- **Row-mates: {','.join(rowmates)}** — match y-limits if same metric; series identity "
@@ -100,14 +106,14 @@ Neighbours: {neighbours}
   Fix and re-save until both pass — do not ship a panel that fails either check.
 - Design rules {rules_ref} apply in full.
 
-`save_artifacts(['panel_{letter}.png'], language='python')`; return `figure_filename` and `labels_used`."""
+Save the panel as `panel_{letter}.png`; report `figure_filename` and `labels_used`."""
 
 def compose_crops(outline, dpi=300, gutter_mm=4, pad_px=4):
     """Pixel crop boxes ``{letter: (x0, y0, x1, y1)}`` for each panel in the
-    composed PNG (origin top-left, matching ``host.view_image(path, crop=...)``
-    and ``PIL.Image.crop``). Mirror of ``figure-style.panel_crops`` for the
-    PIL-composed case where no live ``matplotlib.Figure`` exists. Use after
-    :func:`compose_figure` for the §3.5 perceptual self-QA pass."""
+    composed PNG (origin top-left, matching ``PIL.Image.crop``). Mirror of
+    ``figure-style.panel_crops`` for the PIL-composed case where no live
+    ``matplotlib.Figure`` exists. Use after :func:`compose_figure` for the
+    §3.5 perceptual self-QA pass: crop each panel and open it to check."""
     W, ncol, colw, rowh, row_y, g = grid_geom(outline, dpi, gutter_mm)
     H = row_y[-1] + rowh[-1]
     out = {}
@@ -173,14 +179,16 @@ def review_schema(per_panel=True):
         "strongest_aspect":{"type":"string"}},
         "required":["editor_verdict","outline_revisions","violations","strongest_aspect"]}
 
-def composite_review_task(composite_vid, outline, rules_vid, prev_vid=None, round_no=1, min_floor=5):
-    """Build the adversarial reviewer's task string for the WHOLE composed figure."""
+def composite_review_task(composite_path, outline, rules_path=None, prev_path=None, round_no=1, min_floor=5):
+    """Build the adversarial reviewer's task string for the WHOLE composed
+    figure. ``composite_path`` / ``rules_path`` / ``prev_path`` are filesystem
+    paths — open/attach them to review."""
     panel_tbl = "\n".join(
         f"  {p['letter']}: {p['role']:<10} row{p['row']}+{p.get('rowspan',1)} col{p['col']}+{p['colspan']} "
         f"— {p['chart_family']} — \"{p['message']}\""
         for p in outline["panels"])
-    prev_line = (f"\n**Previous version** (for `regression_vs_prev`): `{{{{artifact:{prev_vid}}}}}`"
-                 if prev_vid else "")
+    prev_line = (f"\n**Previous version** (for `regression_vs_prev`): {prev_path}"
+                 if prev_path else "")
     return f"""You are an adversarial journal production editor reviewing a COMPOSED multi-panel figure.
 Review at TWO levels:
 
@@ -193,8 +201,8 @@ Review at TWO levels:
 2. **Panel level** (`violations`): everything the design rules cover, scoped to one panel.
 
 ## Figure
-**Composite:** `{{{{artifact:{composite_vid}}}}}`
-**Design rules:** `{{{{artifact:{rules_vid}}}}}`{prev_line}
+**Composite:** {composite_path}
+**Design rules:** {rules_path or '(load `figure-style`)'}{prev_line}
 
 **Claim:** {outline['claim']}
 
@@ -202,10 +210,10 @@ Review at TWO levels:
 {panel_tbl}
 
 ## Method
-Environment `figures`. Render the composite at full size, then `host.view_image(path, crop=...)`
-on each panel (use the outline's row/col to find pixel boxes). For panels with data, spot-check
+Open the composite at full size, then crop each panel with `compose_crops(outline)` and open the
+crop (use the outline's row/col to find pixel boxes). For panels with data, spot-check
 2–3 plotted values against the CSV. Be calibrated: minimum {min_floor} violations total
-(decreasing 5→4→3 by round); do not manufacture. Return ONLY structured output."""
+(decreasing 5→4→3 by round); do not manufacture. Emit ONLY JSON matching review_schema()."""
 
 def apply_outline_revisions(outline, revisions):
     """Return the set of panel letters that must regenerate after outline-level revisions.
@@ -214,34 +222,26 @@ def apply_outline_revisions(outline, revisions):
     for r in revisions:
         affected |= set(r.get("affected_panels", []))
     return affected
-def derive_outline(figure_png_path, claim=None, data_hints=None, model=None):
-    """Reverse-engineer a figure_outline from an existing composite, so the entry
-    point is just '@figure + improve it'. Uses vision; returns an outline dict
-    (figure_outline_schema) you MUST review/edit before fan-out — the image is
-    untrusted input and every string field is vision-model-derived. `data_vid`
-    is forced to None on every panel (pixels cannot encode a workspace artifact
-    id); fill those in yourself from the session's data refs."""
-    sch = figure_outline_schema()
-    prompt = ("Reverse-engineer this multi-panel figure into a figure_outline. "
-              "For each panel: letter, role (hero/primary/supporting/schematic), "
-              "chart_family, a one-sentence 'message' (the panel's takeaway — what "
-              "a reader learns from it alone), a one-sentence 'ask' (what the panel "
-              "should show), and a label_budget (how many non-axis annotations it "
-              "currently uses). Estimate the 12-column grid placement (row, col, "
-              "colspan, rowspan) and row_heights_mm from relative panel heights. "
-              + (f"Claim (use as outline.claim): {claim}\n" if claim else
-                 "Infer the figure's one-sentence claim from its title and panel a.\n")
-              + (f"Data hints: {data_hints}\n" if data_hints else ""))
-    r = fc_sdk().llm(prompt, images=[figure_png_path],
-                   tools=[{"name":"outline","input_schema":sch}],
-                   tool_choice={"type":"tool","name":"outline"},
-                   # Reasoning default resolved at runtime ([llm]
-                   # kernel_reasoning_model) — never a hardcoded id.
-                   model=model or fc_sdk().reasoning_model(), max_tokens=4000)
-    out = (r.get("tool_use") or [{}])[0].get("input") or {}
-    for p in out.get("panels") or []:
-        p["data_vid"] = None
-    return out
+def derive_outline_prompt(claim=None, data_hints=None):
+    """Return the prompt for reverse-engineering a figure_outline from an
+    existing composite. Instead of calling a vision API, YOU (the base model)
+    open the figure PNG and answer this prompt directly, emitting a JSON
+    object matching :func:`figure_outline_schema`. The image is untrusted
+    input — review/edit every field before fan-out, and fill each panel's
+    ``data_path`` yourself from the session's data files (pixels cannot encode
+    a file path)."""
+    return ("Reverse-engineer this multi-panel figure into a figure_outline "
+            "(match figure_outline_schema()). For each panel: letter, role "
+            "(hero/primary/supporting/schematic), chart_family, a one-sentence "
+            "'message' (the panel's takeaway — what a reader learns from it "
+            "alone), a one-sentence 'ask' (what the panel should show), and a "
+            "label_budget (how many non-axis annotations it currently uses). "
+            "Estimate the 12-column grid placement (row, col, colspan, "
+            "rowspan) and row_heights_mm from relative panel heights. "
+            + (f"Claim (use as outline.claim): {claim}\n" if claim else
+               "Infer the figure's one-sentence claim from its title and "
+               "panel a.\n")
+            + (f"Data hints: {data_hints}\n" if data_hints else ""))
 
 # Convention: save composites as ONE artifact `{fig_key}.png`
 # with version_of, and write `{fig_key}_review_r{n}.json` per round — never re-version

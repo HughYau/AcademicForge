@@ -26,6 +26,17 @@ metadata:
 
 A literature question has two halves: finding the papers a domain expert would point to, and turning them into something more useful than a reading list — a synthesis that says what's established, what's contested, what's new, and where the holes are. Both halves can fail quietly and look like competent output until someone checks.
 
+## Setup (any agent, no API key)
+This is a **pure skill** — `kernel.py` is deterministic Python (plain HTTP/stdlib calls to CrossRef and OpenAlex) and *you* (the base model) do all the reasoning: the finding, the synthesis, the prose. There is no `host` runtime and no LLM API. Load the helpers once per session in a Python cell:
+```python
+exec(open("<this skill's directory>/kernel.py").read())
+```
+Nothing auto-loads it outside Claude Science. Then call the helpers directly — `verify_dois`, `crossref_lookup`, `search_openalex`, `expand_citations`, `extract_dois`, `style_pass`. If a helper name is not defined, you haven't exec'd `kernel.py`.
+
+Configuration is via environment variables, not a host — no LLM key is involved:
+- `OPENALEX_API_KEY` — required for the OpenAlex-backed steps (`search_openalex`, `expand_citations`); free at https://openalex.org/settings/api.
+- `HOST_USER_EMAIL` — optional contact email for the CrossRef/doi.org polite pool (falls back to `git config user.email`; never sent to OpenAlex).
+
 ## Read the request for what it's actually asking
 
 "What's the paper for X" wants one or two specific citations; "what's the evidence on X" wants a synthesis; "compare A and B" wants a comparison, not two adjacent summaries; "where are the gaps" wants the gaps, with the survey as supporting material. A two-word lay query wants you to choose the scope a domain expert would default to and say so up front — "I'll take this as asking about human RCT evidence; the animal literature is separate." Ask a clarifier only when the answer would genuinely change what you do.

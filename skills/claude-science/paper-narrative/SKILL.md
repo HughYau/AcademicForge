@@ -1,6 +1,6 @@
 ---
 name: paper-narrative
-description: "Judge and reshape the STORY a paper's figures tell. Input is the work itself — manuscript (or abstract) + figure deck — no hand-written brief. `derive_paper_brief(abstract, captions)` extracts pitch/vision/per-figure-claims; a handling-editor reviewer on the full deck returns hook_verdict (would Fig 1 make me send this for review?), arc (hook→mechanism→evidence→application), figure_moves (panels in the wrong figure), missing_panels (concrete analyses to RUN), kill_list, and boldest_defensible_fig1. Hands per-figure claims to `figure-composer`. Load when writing or revising a paper."
+description: "Judge and reshape the STORY a paper's figures tell. Input is the work itself — manuscript (or abstract) + figure deck — no hand-written brief. `paper_brief_prompt(abstract, captions)` hands you the prompt to write the brief yourself (pitch/vision/per-figure-claims); then you play a handling editor over the full deck and return hook_verdict (would Fig 1 make me send this for review?), arc (hook→mechanism→evidence→application), figure_moves (panels in the wrong figure), missing_panels (concrete analyses to RUN), kill_list, and boldest_defensible_fig1. Hands per-figure claims to `figure-composer`. Load when writing or revising a paper."
 license: Apache-2.0
 ---
 

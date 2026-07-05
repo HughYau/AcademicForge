@@ -24,6 +24,24 @@ classifier head for semi-supervised cell-type label transfer). Both expect
 **raw integer UMI counts** and emit a low-dimensional `X_scVI` / `X_scANVI`
 that drops into the scanpy neighbors → leiden → umap pipeline.
 
+## Setup (any agent, no API key)
+
+This is a **pure skill** — `kernel.py` is deterministic Python and *you* (the
+base model) do all the reasoning. There is no `host` runtime and no LLM API.
+The only helper here is `h5ad_safe_obs`, which coerces an obs/var frame so
+`anndata.write_h5ad()` succeeds. Load it once per session in a Python cell:
+
+```python
+exec(open("scvi-tools/kernel.py").read())   # path to this skill's kernel.py
+```
+
+Nothing auto-loads it outside Claude Science. Then call `h5ad_safe_obs(...)`
+directly. If it raises `NameError`, you haven't exec'd kernel.py.
+
+Dependencies: `pip install scvi-tools scanpy anndata`. Training needs a
+CUDA-capable GPU — see [Remote compute](#remote-compute-rent-a-gpu) to fall out
+to a rented GPU when you don't have one locally.
+
 ## How to run
 
 ### scVI — batch-corrected latent space

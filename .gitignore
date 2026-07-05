@@ -36,3 +36,4 @@ DESIGN.md
 /.opencode
 docs/*
 !docs/skill-catalog-maintenance.md
+*.pyc

@@ -1,16 +1,25 @@
 """
-Literature-review helpers. Auto-loaded into the python kernel by the host
-when the skill loads:
+Literature-review helpers — pure-skill, provider-agnostic.
 
     verify_dois, crossref_lookup, search_openalex, expand_citations,
     extract_dois, style_pass
 
-Module top level is definition-only (functions, imports, literal constants) so
-the sidecar AST gate accepts it; everything that touches the network or the
-host runtime happens inside a function body.
+There is no ``host`` runtime here: these are plain HTTP/stdlib helpers. Load
+once per session by exec-ing this file in a Python cell (nothing auto-injects
+it outside Claude Science):
+
+    exec(open("<this-skill-dir>/kernel.py").read())
+
+Configuration is via the environment, not a host:
+    OPENALEX_API_KEY   required for the OpenAlex-backed steps (search_openalex
+                       / expand_citations); free at
+                       https://openalex.org/settings/api
+    HOST_USER_EMAIL    optional contact email for the CrossRef/doi.org polite
+                       pool (falls back to ``git config user.email``)
 """
 
 import json
+import os
 import re
 import time
 import urllib.error
@@ -21,65 +30,51 @@ import urllib.request
 DOI_PATTERN = r"10\.\d{4,9}/[^\s\"'`\]\}—–&|]+"
 
 
-def lr_sdk():
-    """Rebind-proof SDK handle — see pdf-explore/kernel.py:pdf_sdk."""
-    import host
-    return host
-
-
 def litrev_contact() -> str | None:
     """User contact email for polite-pool API headers (CrossRef/doi.org
-    ONLY — never sent to OpenAlex, which does not take a contact
-    email); None if unavailable/declined."""
-    # get_user_email() returns the address as a plain str and raises
-    # host.ContactEmailUnavailable (ContactEmailDeclined is a subclass)
-    # when there is no address. The bare `except Exception` deliberately
-    # also covers host-call failures (this helper runs in the analysis
-    # kernel, where the host refuses the call outright): the polite-pool
-    # `mailto:` UA suffix is best-effort, never worth failing a fetch.
+    ONLY — never sent to OpenAlex, which does not take a contact email);
+    None if unavailable.
+
+    Reads ``HOST_USER_EMAIL`` (or ``CONTACT_EMAIL``) from the environment,
+    then falls back to the local git identity (``git config user.email``).
+    The ``mailto:`` polite-pool suffix is best-effort — a missing email
+    never fails a fetch. Set ``HOST_USER_EMAIL`` to override, or set it to an
+    empty string to opt out of the git fallback."""
+    e = os.environ.get("HOST_USER_EMAIL")
+    if e is not None:  # explicitly set (empty string = opt-out)
+        e = e.strip()
+        return e or None
+    e = os.environ.get("CONTACT_EMAIL")
+    if e and e.strip():
+        return e.strip()
     try:
-        r = lr_sdk().get_user_email()
+        import subprocess
+        out = subprocess.run(
+            ["git", "config", "user.email"],
+            capture_output=True, text=True, timeout=5,
+        )
+        e = (out.stdout or "").strip()
+        return e or None
     except Exception:
         return None
-    return (r or None) if isinstance(r, str) else None
 
 
 def litrev_openalex_key() -> str:
     """The OpenAlex API key — REQUIRED on every api.openalex.org request
-    (keyless calls fail with 409/429; OpenAlex takes no mailto
-    parameter). Env first (OPENALEX_API_KEY is injected into this kernel when
-    a credential is stored), then the host ask (repl kernel — may prompt
-    the user once; the accepted key is validated and saved). Raises
-    RuntimeError with the host's actionable guidance when no key is
-    available — callers must NOT fall back to anonymous calls."""
-    import os
+    (keyless calls fail with 409/429; OpenAlex takes no mailto parameter).
+    Read from the ``OPENALEX_API_KEY`` environment variable. Raises
+    RuntimeError with actionable guidance when unset — callers must NOT fall
+    back to anonymous calls; skip the OpenAlex-backed steps instead."""
     k = os.environ.get("OPENALEX_API_KEY")
     if k:
         return k
-    try:
-        k = lr_sdk().credentials.request("openalex")
-    except Exception as e:
-        # Preserve the SDK's typed pair (CredentialDeclined IS-A
-        # CredentialUnavailable — matched by name because the class
-        # objects live on the host SDK singleton): a durable decline must
-        # stay distinguishable from a transient miss, or a caller retries
-        # the ask against a decline. Everything else (host-call refusal in
-        # the analysis kernel, older hosts) wraps into a clear RuntimeError.
-        if type(e).__name__ in ("CredentialUnavailable", "CredentialDeclined"):
-            raise
-        raise RuntimeError(
-            "OpenAlex requires a free API key and none is available "
-            "(%s). Skip OpenAlex-backed steps (search_openalex / "
-            "expand_citations); keyless calls are unsupported. The user "
-            "can add a key under Customize → Credentials → OpenAlex "
-            "(free at https://openalex.org/settings/api)." % e
-        ) from None
-    # Memo the host-asked key into the env (the function's own precedence
-    # source) so a multi-request helper (expand_citations makes 3-5
-    # requests) pays ONE host round-trip, not one per request.
-    if isinstance(k, str) and k:
-        os.environ["OPENALEX_API_KEY"] = k
-    return k
+    raise RuntimeError(
+        "OpenAlex requires a free API key and none is set. Export "
+        "OPENALEX_API_KEY and re-run — keyless calls are unsupported. Get a "
+        "free key at https://openalex.org/settings/api, or skip the "
+        "OpenAlex-backed steps (search_openalex / expand_citations) and "
+        "continue with CrossRef/PubMed/web sources."
+    )
 
 
 def litrev_openalex_key_ok(key: str, timeout: float = 10) -> bool | None:
