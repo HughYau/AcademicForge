@@ -117,58 +117,55 @@ mode).
 | `adata.layers["scvi_normalized"]` | decoded expression, library-size normalized         |
 | DE dataframe                   | per-gene `lfc_*` / `proba_de` (with `mode="change"`)   |
 
-## Remote compute
+## Remote compute (rent a GPU)
 
-A100-class GPU recommended for >50k cells. The prebuilt **`singlecell_gpu`**
-Modal env ships scvi-tools 1.4.2 + scanpy 1.11.5 + anndata 0.11.4 — read
-`compute_details({provider: 'byoc:modal', mode: 'read'})` for the current
-image ref, then:
+An A100-class GPU is recommended for >50k cells. Training is a plain Python
+script (`pipeline.py`) that reads counts, trains scVI/scANVI, and writes the
+output `.h5ad` — run it on whatever GPU you have (a local/cluster CUDA box, or a
+serverless GPU host such as Modal). There is no Claude-Science compute broker
+here; drive the GPU host directly.
 
-```python
-c = host.compute.create('byoc:modal', provider_params={'modal': {
-    'image':  '<image ref from compute_details>',   # e.g. im-...
-    'gpu':    'A100',
-    'cpu':    8,
-    'memory': 32768,
-    'timeout': 3600,
-}})
-job = c.submit_job(
-    intent="scVI+scANVI on 80k cells — 1×A100, ~15 min",
-    inputs=[
-        {"src": "dataset.h5ad", "dst_filename": "dataset.h5ad"},
-        {"src": "pipeline.py",  "dst_filename": "pipeline.py"},
-    ],
-    command="python pipeline.py",
-    outputs=["out/**"],
-    timeout_seconds=2400,
-)
-print(job.job_id)   # cell ends here — kernel never blocks on compute
-```
-
-`h5ad_safe_obs` is auto-loaded into the **local** analysis kernel only — in
-`pipeline.py` running on Modal, paste the helper at the top of the script
-(or inline the `pd.Index(np.asarray(..., dtype=object))` coercion) before
-`.write_h5ad()`.
-
-Then call the `wait_for_notification` brain-tool. When `compute_done`
-arrives, `save_artifacts(payload["featured_files"])`. For the full result
-dict, re-enter the kernel and bind the **compute handle** (not the job)
-separately — `.close()` lives on the handle, not on the job:
+**Modal** (serverless GPU) — wrap `pipeline.py` in a Modal app and run it with
+the Modal CLI (`modal run pipeline.py`), which blocks until the job finishes, so
+you read the result synchronously (no notification tool needed):
 
 ```python
-h = host.compute.create('byoc:modal')
-res = h.attach_job(job_id).result()   # output_files, remote_workdir, ...
-h.close()
+# pipeline.py — run with:  modal run pipeline.py
+import modal
+image = (modal.Image.debian_slim()
+         .pip_install("scvi-tools==1.4.2", "scanpy==1.11.5", "anndata==0.11.4"))
+app = modal.App("scvi-run", image=image)
+vol = modal.Volume.from_name("scvi-data", create_if_missing=True)  # holds dataset.h5ad / out.h5ad
+
+@app.function(gpu="A100", timeout=3600, volumes={"/data": vol})
+def train():
+    import scanpy as sc, scvi   # noqa
+    adata = sc.read_h5ad("/data/dataset.h5ad")
+    # ... setup_anndata / scVI / scANVI / DE — see the recipe above ...
+    adata.obs = h5ad_safe_obs(adata.obs)   # paste the helper into THIS script (below)
+    adata.write_h5ad("/data/out.h5ad")
+    vol.commit()
+
+@app.local_entrypoint()
+def main():
+    train.remote()   # blocks until done; then read /data/out.h5ad from the volume
 ```
 
-See the `remote-compute-modal` skill for orchestration details.
+`h5ad_safe_obs` is loaded via `exec` in your **local** session (see **Setup**);
+inside `pipeline.py` running remotely it is not defined, so paste the helper at
+the top of that script (or inline the `pd.Index(np.asarray(..., dtype=object))`
+coercion) before `.write_h5ad()`.
+
+For a local/cluster GPU, just run `pipeline.py` directly where CUDA is visible —
+no wrapper needed. (For a fuller Modal workflow see the `remote-compute-modal`
+skill.)
 
 ## Gotchas
 
 | Gotcha | What happens / fix |
 |---|---|
 | `differential_expression()` defaults to `mode="vanilla"` (scvi-tools ≥1.4) | `KeyError: 'lfc_mean'` / `'proba_de'` when sorting — pass `mode="change"` to get `lfc_*`/`proba_de`/`is_de_fdr_*`; in vanilla mode sort on `bayes_factor`. |
-| `adata.obs` index/columns are `string[pyarrow]` (`ArrowStringArray`) | `.write_h5ad()` dies with `IORegistryError: No method registered for writing <class 'pandas.arrays.ArrowStringArray'>` (anndata #2377). Coerce before writing: `adata.obs = h5ad_safe_obs(adata.obs)` (kernel helper — local kernel only; inline the coercion in remote `pipeline.py`). **`.astype(str)` alone is not enough** — on a pyarrow-backed Index/Series it returns another Arrow-backed array; round-trip through `np.asarray(..., dtype=object)`. `anndata.settings.allow_write_nullable_strings = True` does **not** cover Arrow-backed strings. |
+| `adata.obs` index/columns are `string[pyarrow]` (`ArrowStringArray`) | `.write_h5ad()` dies with `IORegistryError: No method registered for writing <class 'pandas.arrays.ArrowStringArray'>` (anndata #2377). Coerce before writing: `adata.obs = h5ad_safe_obs(adata.obs)` (kernel helper — load it via `exec` locally, see Setup; inline the coercion in a remote `pipeline.py`). **`.astype(str)` alone is not enough** — on a pyarrow-backed Index/Series it returns another Arrow-backed array; round-trip through `np.asarray(..., dtype=object)`. `anndata.settings.allow_write_nullable_strings = True` does **not** cover Arrow-backed strings. |
 | `use_gpu=` kwarg | Removed in 1.x → `TypeError: train() got an unexpected keyword argument 'use_gpu'`. Use `accelerator="gpu", devices=1`. |
 | Log-normalized data fed to `setup_anndata` | Silent garbage — scVI's NB likelihood needs raw integer counts. Stash counts in `adata.layers["counts"]` *before* normalize/log1p and pass `layer="counts"`. |
 
@@ -181,8 +178,7 @@ See the `remote-compute-modal` skill for orchestration details.
 | `TypeError: ... unexpected keyword argument 'use_gpu'` | Replace with `accelerator="gpu", devices=1`. |
 | `ValueError: ... non-negative integers` / NB loss explodes | `layer="counts"` points at log/float data — restore raw counts. |
 | `MisconfigurationException: No supported gpu backend found` | No CUDA visible — drop `accelerator`/`devices` to fall back to CPU, or dispatch via Remote compute. |
-| `UnicodeEncodeError: 'ascii' codec can't encode character ...` writing a summary / printing | Container has no `LANG` so Python defaults to ASCII. Open files with `encoding="utf-8"` and/or `sys.stdout.reconfigure(encoding="utf-8")` at script top. The prebuilt `singlecell_gpu` env sets `PYTHONIOENCODING=utf-8`, so this only bites user-built images. |
-| `AttributeError: ... object has no attribute 'close'` on a job handle | You chained `host.compute.create(...).attach_job(...)` and called `.close()` on the job. Bind the compute handle separately and close that — see Remote compute above. |
+| `UnicodeEncodeError: 'ascii' codec can't encode character ...` writing a summary / printing | Container has no `LANG` so Python defaults to ASCII. Open files with `encoding="utf-8"` and/or `sys.stdout.reconfigure(encoding="utf-8")` at script top, or set `PYTHONIOENCODING=utf-8` in the image. |
 
 ---
 
