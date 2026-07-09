@@ -164,11 +164,13 @@ curl -sSL https://raw.githubusercontent.com/HughYau/AcademicForge/refs/heads/sit
 
 ## ⭐ Star History
 
+## Star History
+
 <a href="https://www.star-history.com/?repos=HughYau%2FAcademicForge&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=HughYau/AcademicForge&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=HughYau/AcademicForge&type=date&theme=dark&legend=top-left&sealed_token=2Sg2STJH7SK2WrMNraVowS8GTJozFGsNwQLeAeNXQzFPh9B87cYYEMPbPezQDvCUvat2YPAyq16qA6qn9lPaQnB1O5sIAv5jdiJpB0z3jPWukEG-dk_aZQ" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=HughYau/AcademicForge&type=date&legend=top-left&sealed_token=2Sg2STJH7SK2WrMNraVowS8GTJozFGsNwQLeAeNXQzFPh9B87cYYEMPbPezQDvCUvat2YPAyq16qA6qn9lPaQnB1O5sIAv5jdiJpB0z3jPWukEG-dk_aZQ" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=HughYau/AcademicForge&type=date&legend=top-left&sealed_token=2Sg2STJH7SK2WrMNraVowS8GTJozFGsNwQLeAeNXQzFPh9B87cYYEMPbPezQDvCUvat2YPAyq16qA6qn9lPaQnB1O5sIAv5jdiJpB0z3jPWukEG-dk_aZQ" />
  </picture>
 </a>
 
