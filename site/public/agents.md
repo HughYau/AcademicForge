@@ -40,8 +40,9 @@ ID rules:
   repository.
 - A prefixed id (e.g. `sa.scanpy`, `ns.figure-design`, `air.rag`) installs one
   sub-skill from a collection. Prefer individual sub-skills over installing a
-  whole large collection — `scientific-agent-skills` alone contains 143 skills
-  and most users need only a few.
+  whole large collection — `scientific-agent-skills` alone contains 160 skills
+  and most users need only a few. Read `skill_count` from the catalog rather
+  than trusting a number quoted here; upstream collections grow.
 - Mixing both kinds in one command is fine.
 
 Recommend 2–6 skills unless the user asks for more. Tell the user what you

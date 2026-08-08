@@ -4,14 +4,14 @@
       "id": "superpowers",
       "name": "Superpowers",
       "summary": {
-        "en": "15 workflow-oriented skills for planning, debugging, TDD, code review, and verification.",
-        "zh": "15 个流程型 skill：规划、调试、TDD、代码审查、验证。"
+        "en": "14 workflow-oriented skills for planning, debugging, TDD, code review, and verification.",
+        "zh": "14 个流程型 skill：规划、调试、TDD、代码审查、验证。"
       },
       "author": "obra",
       "repository": "https://github.com/obra/superpowers",
       "license": "MIT",
-      "skill_count": 15,
-      "stars": 244137,
+      "skill_count": 14,
+      "stars": 268888,
       "tags": [
         "workflow",
         "planning",
@@ -37,7 +37,7 @@
       "repository": "https://github.com/multica-ai/andrej-karpathy-skills",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 186547,
+      "stars": 200569,
       "tags": [
         "workflow",
         "process",
@@ -56,14 +56,14 @@
       "id": "scientific-agent-skills",
       "name": "Scientific Agent Skills",
       "summary": {
-        "en": "149 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
-        "zh": "149 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
+        "en": "160 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
+        "zh": "160 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
       },
       "author": "K-Dense-AI",
       "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "license": "MIT",
-      "skill_count": 149,
-      "stars": 29933,
+      "skill_count": 160,
+      "stars": 32943,
       "tags": [
         "science",
         "research",
@@ -115,6 +115,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/aeon"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.analytical-method-validation",
+          "name": "analytical-method-validation",
+          "summary": {
+            "en": "Plan, execute, and document validation, verification, and transfer of analytical procedures under the governing framework - ICH Q2(R2) and Q14, USP <1220>/<1225>/<1226>, ICH M10 bioanalytical, CLSI EP, or ISO/IEC 17025. Use for HPLC, LC-MS/MS, GC, CE, ICP-MS, dissolution, qNMR, qPCR, NIR, and ligand binding or cell-based assays whenever the question is whether a procedure is fit for its intended purpose. Triggers include \"method validation\", \"analytical method validation\", \"AMV\", \"validation protocol\", \"acceptance criteria\", \"linearity\", \"reportable range\", \"accuracy and precision\", \"repeatability\", \"intermediate precision\", \"recovery\", \"LOD\", \"LOQ\", \"detection limit\", \"quantitation limit\", \"specificity\", \"robustness\", \"method transfer\", \"method comparison\", \"Deming\", \"Passing-Bablok\", \"Bland-Altman\", \"equivalence testing\", \"OOS investigation\", \"ICH Q2\", \"Q2(R2)\", \"Q14\", \"USP 1225\", \"ICH M10\", \"incurred sample reanalysis\", \"ISR\", \"CLSI EP\", and any request to show that an assay works.",
+            "zh": "在 ICH Q2(R2)/Q14、USP <1220>/<1225>/<1226>、ICH M10 生物分析、CLSI EP 或 ISO/IEC 17025 框架下规划、执行并记录分析方法的验证、确认与转移。适用于 HPLC、LC-MS/MS、GC、CE、ICP-MS、溶出度、qNMR、qPCR、NIR 以及配体结合和细胞法测定，涵盖线性、准确度与精密度、重复性、中间精密度、回收率、LOD/LOQ、专属性、耐用性、方法转移与方法比较（Deming、Passing-Bablok、Bland-Altman）、等效性检验与 OOS 调查。"
+          },
+          "sparse_path": "skills/analytical-method-validation",
+          "category": "research",
+          "subdiscipline": "chem-mat-phys",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/analytical-method-validation"
           },
           "post_install": [
             "clean_ads"
@@ -383,7 +403,7 @@
           "id": "sa.citation-management",
           "name": "citation-management",
           "summary": {
-            "en": "Comprehensive citation management for academic research. Search Google Scholar and PubMed for papers, extract accurate metadata, validate citations, and generate properly formatted BibTeX entries. This skill should be used when you need to find papers, verify citation information, convert DOIs to BibTeX, or ensure reference accuracy in scientific writing.",
+            "en": "Comprehensive citation management for academic research. Search OpenAlex, PubMed, and Google Scholar for papers, extract accurate metadata, validate citations, and generate properly formatted BibTeX entries. This skill should be used when you need to find papers, verify citation information, convert DOIs to BibTeX, or ensure reference accuracy in scientific writing.",
             "zh": "学术研究的综合引文管理。在 Google Scholar 和 PubMed 中搜索论文、提取准确的元数据、验证引文并生成格式正确的 BibTeX 条目。当您需要查找论文、验证引文信息、将 DOI 转换为 BibTeX 或确保科学写作中的参考准确性时，应该使用此技能。"
           },
           "sparse_path": "skills/citation-management",
@@ -402,13 +422,13 @@
           "id": "sa.clinical-decision-support",
           "name": "clinical-decision-support",
           "summary": {
-            "en": "Generate professional clinical decision support (CDS) documents for pharmaceutical and clinical research settings, including patient cohort analyses (biomarker-stratified with outcomes) and treatment recommendation reports (evidence-based guidelines with decision algorithms). Supports GRADE evidence grading, statistical analysis (hazard ratios, survival curves, waterfall plots), biomarker integration, and regulatory compliance. Outputs publication-ready LaTeX/PDF format optimized for drug development, clinical research, and evidence synthesis.",
+            "en": "Prepare and validate research-only clinical decision-support evaluation, evidence-profile, cohort, survival, biomarker/model, privacy, and governance artifacts. Use for aggregate or synthetic research documentation and traceability—not patient care or live clinical operation.",
             "zh": "为制药和临床研究环境生成专业的临床决策支持 (CDS) 文件，包括患者队列分析（根据结果进行生物标志物分层）和治疗推荐报告（带有决策算法的循证指南）。支持 GRADE 证据分级、统计分析（风险比、生存曲线、瀑布图）、生物标志物集成和法规遵从性。输出针对药物开发、临床研究和证据合成进行优化的可发布 LaTeX/PDF 格式。"
           },
           "sparse_path": "skills/clinical-decision-support",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT License",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -422,13 +442,13 @@
           "id": "sa.clinical-reports",
           "name": "clinical-reports",
           "summary": {
-            "en": "Write comprehensive clinical reports including case reports (CARE guidelines), diagnostic reports (radiology/pathology/lab), clinical trial reports (ICH-E3, SAE, CSR), and patient documentation (SOAP, H&P, discharge summaries). Full support with templates, regulatory compliance (HIPAA, FDA, ICH-GCP), and validation tools.",
+            "en": "Create safety-bounded draft structures and run local deterministic checks for clinical case, diagnostic, trial, safety, and aggregate research reports. Use only with synthetic, de-identified, or aggregate inputs and verified source-fact manifests; every output requires qualified review.",
             "zh": "撰写全面的临床报告，包括病例报告（CARE 指南）、诊断报告（放射学/病理学/实验室）、临床试验报告（ICH-E3、SAE、CSR）和患者文件（SOAP、H&P、出院小结）。全面支持模板、法规遵从性（HIPAA、FDA、ICH-GCP）和验证工具。"
           },
           "sparse_path": "skills/clinical-reports",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT License",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -559,6 +579,26 @@
           ]
         },
         {
+          "id": "sa.deepspot-m",
+          "name": "deepspot-m",
+          "summary": {
+            "en": "Generate transcriptome-wide virtual spatial transcriptomics from H&E histology with DeepSpot-M. Use when you need spatial gene expression in log1p-CPM for 224x224 tiles at about 20x, want to query protein-coding genes by symbol instead of a fixed panel, or want to run prediction across a whole slide after tiling with histolab.",
+            "zh": "用 DeepSpot-M 从 H&E 组织学切片生成全转录组级的虚拟空间转录组。适用于需要 224x224、约 20x 图块的 log1p-CPM 空间基因表达，按基因符号查询蛋白编码基因而非固定 panel，或在用 histolab 切片后对整张切片批量预测。"
+          },
+          "sparse_path": "skills/deepspot-m",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "PolyForm-Noncommercial-1.0.0",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/deepspot-m"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.deeptools",
           "name": "deeptools",
           "summary": {
@@ -642,13 +682,13 @@
           "id": "sa.dnanexus-integration",
           "name": "dnanexus-integration",
           "summary": {
-            "en": "DNAnexus cloud genomics platform. Build apps/applets, manage data (upload/download), dxpy Python SDK, run workflows, FASTQ/BAM/VCF, for genomics pipeline development and execution.",
+            "en": "Build and operate reproducible genomics workloads on DNAnexus with the dx CLI, dxpy, apps/applets, native workflows, dxCompiler, and Nextflow. Use for DNAnexus data transfers, dxapp.json development, execution monitoring, workflow import, and project automation.",
             "zh": "DNAnexus 云基因组学平台。构建应用程序/小程序、管理数据（上传/下载）、dxpy Python SDK、运行工作流程、FASTQ/BAM/VCF，用于基因组学管道开发和执行。"
           },
           "sparse_path": "skills/dnanexus-integration",
           "category": "research",
           "subdiscipline": "lab-automation",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -662,7 +702,7 @@
           "id": "sa.docx",
           "name": "docx",
           "summary": {
-            "en": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.",
+            "en": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files) or Word templates (.dotx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', '.dotx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx or .dotx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.",
             "zh": "每当用户想要创建、阅读、编辑或操作 Word 文档（.docx 文件）时，请使用此技能。触发因素包括：提及“Word doc”、“word 文档”、“.docx”，或要求生成具有目录、标题、页码或信头等格式的专业文档。还可以在从 .docx 文件中提取或重新组织内容、在文档中插入或替换图像、在 Word 文件中执行查找和替换、处理跟踪的更改或注释或将内容转换为精美的 Word 文档时使用。如果用户要求“报告”、“备忘录”、“信件”、“模板”或类似的 Word 或 .docx 文件形式的可交付成果，请使用此技能。请勿用于 PDF、电子表格、Google 文档或与文档生成无关的一般编码任务。"
           },
           "sparse_path": "skills/docx",
@@ -702,13 +742,13 @@
           "id": "sa.etetoolkit",
           "name": "etetoolkit",
           "summary": {
-            "en": "Phylogenetic tree toolkit (ETE). Tree manipulation (Newick/NHX), evolutionary event detection, orthology/paralogy, NCBI taxonomy, visualization (PDF/SVG), for phylogenomics.",
+            "en": "Analyze, manipulate, compare, annotate, and visualize phylogenetic or other hierarchical trees with ETE 4. Use for Newick/Nexus tree I/O, topology edits and pattern matching, Robinson-Foulds comparisons, gene-tree evolutionary events and reconciliation, NCBI/GTDB taxonomy, SmartView exploration, and publication rendering. Do not use it to infer trees from raw sequences; align sequences and infer a tree first.",
             "zh": "系统发育树工具包（ETE）。树操作 (Newick/NHX)、进化事件检测、直系同源/旁系同源、NCBI 分类、可视化 (PDF/SVG)，用于系统发育学。"
           },
           "sparse_path": "skills/etetoolkit",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "GPL-3.0 license",
+          "license": "GPL-3.0-or-later",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -742,7 +782,7 @@
           "id": "sa.experimental-design",
           "name": "experimental-design",
           "summary": {
-            "en": "Design experiments and studies BEFORE data is collected — choosing a design, randomizing, blocking, and laying out treatment combinations so the results will actually be interpretable. Use whenever someone is planning a study, asks how to assign subjects/samples to groups, mentions randomization, blocking, stratification, controls, factorial or fractional-factorial designs, design of experiments (DOE), screening many factors, response-surface optimization, crossover or repeated-measures or split-plot designs, cluster/group randomization, Latin squares, plate layouts, batch/run-order effects, replication vs. pseudoreplication, or sequential/adaptive/group-sequential designs. Trigger this even for informal phrasings like \"how should I set up this experiment\", \"how do I avoid confounding\", \"what's the best way to test these 6 factors\", or \"assign these mice to conditions\". For computing the sample size or power once the design is chosen, use statistical-power; for analyzing data already collected, use statistical-analysis.",
+            "en": "Design experiments and studies BEFORE data is collected — choosing a design, randomizing, blocking, and laying out treatment combinations so results are interpretable. Use whenever someone is planning a study, asks how to assign subjects/samples to groups, mentions randomization, blocking, stratification, controls, factorial or fractional-factorial designs, design of experiments (DOE), screening many factors, response-surface optimization, crossover or repeated-measures or split-plot designs, cluster/group randomization, Latin squares, plate layouts, batch/run-order effects, replication vs. pseudoreplication, or sequential/adaptive/group-sequential designs. Trigger even for informal phrasings like \"how should I set up this experiment\", \"how do I avoid confounding\", \"what's the best way to test these 6 factors\", or \"assign these mice to conditions\". For computing the sample size or power once the design is chosen, use statistical-power; for analyzing data already collected, use statistical-analysis.",
             "zh": "在采集数据前设计可解释的实验或研究：选择设计、随机化、区组和处理组合。适用于对照、混杂、因子或部分因子设计、重复测量、交叉设计、样本分组及序贯设计；确定设计后，可用 statistical-power 进行样本量和功效计算。"
           },
           "sparse_path": "skills/experimental-design",
@@ -762,13 +802,13 @@
           "id": "sa.exploratory-data-analysis",
           "name": "exploratory-data-analysis",
           "summary": {
-            "en": "Perform comprehensive exploratory data analysis on scientific data files across 200+ file formats. This skill should be used when analyzing any scientific data file to understand its structure, content, quality, and characteristics. Automatically detects file type and generates detailed markdown reports with format-specific analysis, quality metrics, and downstream analysis recommendations. Covers chemistry, bioinformatics, microscopy, spectroscopy, proteomics, metabolomics, and general scientific data formats.",
+            "en": "Perform bounded, local exploratory analysis of explicitly supported scientific files. Use for redacted CSV/TSV/JSON profiles; optional NumPy, HDF5, FASTA/FASTQ, and basic image metadata inspection; missingness/leakage audits; outlier and transformation sensitivity; and rigorous EDA report scaffolds. Other domain formats are reference-only and unknown formats fail closed.",
             "zh": "对 200 多种文件格式的科学数据文件执行全面的探索性数据分析。在分析任何科学数据文件以了解其结构、内容、质量和特征时，应使用此技能。自动检测文件类型并生成详细的降价报告，其中包含特定于格式的分析、质量指标和下游分析建议。涵盖化学、生物信息学、显微镜、光谱学、蛋白质组学、代谢组学和一般科学数据格式。"
           },
           "sparse_path": "skills/exploratory-data-analysis",
           "category": "research",
           "subdiscipline": null,
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -782,7 +822,7 @@
           "id": "sa.flowio",
           "name": "flowio",
           "summary": {
-            "en": "Parse FCS (Flow Cytometry Standard) files v2.0-3.1. Extract events as NumPy arrays, read metadata/channels, convert to CSV/DataFrame, for flow cytometry data preprocessing.",
+            "en": "Read, inspect, and write Flow Cytometry Standard (FCS) 2.0, 3.0, and 3.1 files with FlowIO. Use for low-level FCS metadata and channel inspection, NumPy event extraction, multi-dataset files, table export, and FCS 3.1 creation; use FlowKit for compensation, cytometry transforms, gating, or FlowJo workspaces.",
             "zh": "解析 FCS（流式细胞术标准）文件 v2.0-3.1。将事件提取为 NumPy 数组，读取元数据/通道，转换为 CSV/DataFrame，用于流式细胞术数据预处理。"
           },
           "sparse_path": "skills/flowio",
@@ -802,13 +842,13 @@
           "id": "sa.fluidsim",
           "name": "fluidsim",
           "summary": {
-            "en": "Framework for computational fluid dynamics simulations using Python. Use when running fluid dynamics simulations including Navier-Stokes equations (2D/3D), shallow water equations, stratified flows, or when analyzing turbulence, vortex dynamics, or geophysical flows. Provides pseudospectral methods with FFT, HPC support, and comprehensive output analysis.",
+            "en": "Plan, configure, inspect, restart, and analyze bounded FluidSim computational-fluid-dynamics simulations with explicit numerical-validity and HPC safety checks. Use for FluidSim solver selection, parameter review, FFT/MPI setup, output diagnostics, or restart compatibility.",
             "zh": "使用 Python 进行计算流体动力学模拟的框架。在运行流体动力学模拟（包括纳维-斯托克斯方程 (2D/3D)、浅水方程、分层流）或分析湍流、涡动力学或地球物理流时使用。提供具有 FFT、HPC 支持和全面输出分析的伪谱方法。"
           },
           "sparse_path": "skills/fluidsim",
           "category": "research",
           "subdiscipline": "chem-mat-phys",
-          "license": "CeCILL FREE SOFTWARE LICENSE AGREEMENT",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -822,12 +862,12 @@
           "id": "sa.generate-image",
           "name": "generate-image",
           "summary": {
-            "en": "Generate or edit images using AI models (FLUX, Nano Banana 2). Use for general-purpose image generation including photos, illustrations, artwork, visual assets, concept art, and any image that is not a technical diagram or schematic. For flowcharts, circuits, pathways, and technical diagrams, use the scientific-schematics skill instead.",
+            "en": "Generate or edit images with AI models through the OpenRouter Image API (Gemini, Seedream, Recraft, GPT-Image, Riverflow). Use for photos, illustrations, artwork, concept art, visual assets, logos, and image editing or compositing from reference images. For flowcharts, circuits, pathways, and other technical diagrams, use the scientific-schematics skill instead.",
             "zh": "使用 AI 模型（FLUX、Nano Banana 2）生成或编辑图像。用于生成通用图像，包括照片、插图、艺术作品、视觉资产、概念艺术以及任何非技术图表或原理图的图像。对于流程图、电路、路径和技术图表，请使用科学原理图技能。"
           },
           "sparse_path": "skills/generate-image",
           "category": "visualization",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -841,17 +881,57 @@
           "id": "sa.geniml",
           "name": "geniml",
           "summary": {
-            "en": "This skill should be used when working with genomic interval data (BED files) for machine learning tasks. Use for training region embeddings (Region2Vec, BEDspace), single-cell ATAC-seq analysis (scEmbed), building consensus peaks (universes), or any ML-based analysis of genomic regions. Applies to BED file collections, scATAC-seq data, chromatin accessibility datasets, and region-based genomic feature learning.",
+            "en": "Use Geniml for audited local genomic-interval workflows: validate BED and universe contracts, plan Region2Vec or scEmbed runs, inspect model/tokenizer compatibility, and assess consensus universes.",
             "zh": "在处理机器学习任务的基因组区间数据（BED 文件）时应使用此技能。用于训练区域嵌入（Region2Vec、BEDspace）、单细胞 ATAC-seq 分析 (scEmbed)、构建共识峰（宇宙）或任何基于 ML 的基因组区域分析。适用于 BED 文件集合、scATAC-seq 数据、染色质可及性数据集和基于区域的基因组特征学习。"
           },
           "sparse_path": "skills/geniml",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "BSD-2-Clause license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/geniml"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.genomic-coordinates",
+          "name": "genomic-coordinates",
+          "summary": {
+            "en": "Convert genomic intervals between coordinate conventions, normalise and compare variant representations, and detect assembly or contig-naming mismatches before they corrupt an analysis. Use whenever coordinates cross a format, tool, or assembly boundary - converting between BED, GFF/GTF, VCF, SAM/BAM, WIG, PSL, genePred, Picard interval_list, or region strings; reconciling 0-based half-open with 1-based inclusive; left-aligning or trimming indels; checking whether two variant records describe the same change; mapping genomic to transcript, CDS, or protein positions; auditing a BED/GTF/VCF for convention violations; or diagnosing GRCh37 vs hg19 vs GRCh38 vs T2T, chr-prefix, and liftover problems. Triggers include \"off by one\", \"0-based\", \"1-based\", \"half-open\", \"coordinate system\", \"left-align\", \"normalize variant\", \"bcftools norm\", \"chr prefix\", \"wrong genome build\", \"liftover\", \"REF mismatch\", and \"HGVS\".",
+            "zh": "在不同坐标约定间转换基因组区间、规范化并比较变异表示，并在分析被污染前发现基因组版本或 contig 命名不一致。适用于 BED、GFF/GTF、VCF、SAM/BAM、WIG、PSL、genePred、Picard interval_list 与区域字符串之间的转换，协调 0-based 半开区间与 1-based 闭区间，indel 左对齐与截断，判断两条变异记录是否描述同一改变，基因组到转录本/CDS/蛋白位置的映射，以及诊断 GRCh37/hg19/GRCh38/T2T、chr 前缀、liftover 与 REF 不匹配等问题。"
+          },
+          "sparse_path": "skills/genomic-coordinates",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/genomic-coordinates"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.genomic-intelligence",
+          "name": "genomic-intelligence",
+          "summary": {
+            "en": "Predict regulatory features, gene structure, and expression directly from DNA sequence using Genomic Intelligence's hosted transformer DNA language models — no local GPU or model weights. Six tasks over a REST API and a hosted MCP server (keyless public demo): promoter regions, splice donor/acceptor sites, enhancer activity, chromatin state, sequence-to-expression (log TPM), and de-novo gene annotation, plus a composite find-genes-then-predict-expression workflow. Use when the user has a gene symbol, a genomic region, or a DNA/FASTA sequence and wants any of these predictions, mentions Genomic Intelligence, genomicintelligence.ai, api.genomicintelligence.ai, or mcp.genomicintelligence.ai.",
+            "zh": "使用 Genomic Intelligence 托管的 transformer DNA 语言模型，直接从 DNA 序列预测调控元件、基因结构与表达，无需本地 GPU 或模型权重。通过 REST API 与托管 MCP 服务器（提供免密钥公开演示）支持六类任务：启动子区域、剪接供体/受体位点、增强子活性、染色质状态、序列到表达（log TPM）与从头基因注释，并提供先找基因再预测表达的组合流程。"
+          },
+          "sparse_path": "skills/genomic-intelligence",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/genomic-intelligence"
           },
           "post_install": [
             "clean_ads"
@@ -881,13 +961,13 @@
           "id": "sa.geopandas",
           "name": "geopandas",
           "summary": {
-            "en": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files. Use when working with geographic data for spatial analysis, geometric operations, coordinate transformations, spatial joins, overlay operations, choropleth mapping, or any task involving reading/writing/analyzing vector geographic data. Supports PostGIS databases, interactive maps, and integration with matplotlib/folium/cartopy. Use for tasks like buffer analysis, spatial joins between datasets, dissolving boundaries, clipping data, calculating areas/distances, reprojecting coordinate systems, creating maps, or converting between spatial file formats.",
+            "en": "Guidance and local audit tools for Python workflows that directly use GeoPandas GeoSeries, GeoDataFrame, spatial operations, or vector-data I/O.",
             "zh": "用于处理地理空间矢量数据（包括 shapefile、GeoJSON 和 GeoPackage 文件）的 Python 库。在处理地理数据进行空间分析、几何运算、坐标变换、空间连接、叠加操作、分区统计图或涉及读取/写入/分析矢量地理数据的任何任务时使用。支持 PostGIS 数据库、交互式地图以及与 matplotlib/folium/cartopy 的集成。用于缓冲区分析、数据集之间的空间连接、溶解边界、剪切数据、计算面积/距离、重新投影坐标系、创建地图或在空间文件格式之间进行转换等任务。"
           },
           "sparse_path": "skills/geopandas",
           "category": "research",
           "subdiscipline": "earth-geo",
-          "license": "BSD-3-Clause license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -901,13 +981,13 @@
           "id": "sa.get-available-resources",
           "name": "get-available-resources",
           "summary": {
-            "en": "This skill should be used at the start of any computationally intensive scientific task to detect and report available system resources (CPU cores, GPUs, memory, disk space). It creates a JSON file with resource information and strategic recommendations that inform computational approach decisions such as whether to use parallel processing (joblib, multiprocessing), out-of-core computing (Dask, Zarr), GPU acceleration (PyTorch, JAX), or memory-efficient strategies. Use this skill before running analyses, training models, processing large datasets, or any task where resource constraints matter.",
+            "en": "Detect host inventory and effective CPU, memory, disk, scheduler, container, and accelerator limits when a user asks for resource-aware planning or before a clearly resource-sensitive local workload. Produces a redacted JSON snapshot and conservative planning helpers without stress tests or assuming visible host hardware is usable.",
             "zh": "此技能应在任何计算密集型科学任务开始时使用，以检测和报告可用的系统资源（CPU 内核、GPU、内存、磁盘空间）。它创建一个包含资源信息和战略建议的 JSON 文件，为计算方法决策提供信息，例如是否使用并行处理（joblib、多处理）、核外计算（Dask、Zarr）、GPU 加速（PyTorch、JAX）或内存高效策略。在运行分析、训练模型、处理大型数据集或任何资源限制很重要的任务之前使用此技能。"
           },
           "sparse_path": "skills/get-available-resources",
           "category": "research",
           "subdiscipline": "other",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -981,13 +1061,13 @@
           "id": "sa.gtars",
           "name": "gtars",
           "summary": {
-            "en": "High-performance toolkit for genomic interval analysis in Rust with Python bindings. Use when working with genomic regions, BED files, coverage tracks, overlap detection, tokenization for ML models, or fragment analysis in computational genomics and machine learning applications.",
+            "en": "Use Gtars for local genomic interval models and set algebra, overlaps and counts, consensus and coverage, tokenization, fragment processing, and refget/BEDbase planning across Python, Rust, and the CLI.",
             "zh": "使用 Rust 与 Python 绑定进行基因组区间分析的高性能工具包。在处理基因组区域、BED 文件、覆盖轨迹、重叠检测、ML 模型标记化或计算基因组学和机器学习应用程序中的片段分析时使用。"
           },
           "sparse_path": "skills/gtars",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1040,13 +1120,13 @@
           "id": "sa.hypogenic",
           "name": "hypogenic",
           "summary": {
-            "en": "Automated LLM-driven hypothesis generation and testing on tabular datasets. Use when you want to systematically explore hypotheses about patterns in empirical data (e.g., deception detection, content analysis). Combines literature insights with data-driven hypothesis testing. For manual hypothesis formulation use hypothesis-generation; for creative ideation use scientific-brainstorming.",
+            "en": "Plans and audits use of ChicagoHAI HypoGeniC/HypoRefine for LLM-assisted hypothesis generation from labeled text datasets. Use for the `hypogenic` package, its task configs, hypothesis banks, or HypoBench datasets—not for manual hypothesis formulation or scientific validation.",
             "zh": "自动生成 LLM 驱动的假设并在表格数据集上进行测试。当您想要系统地探索有关经验数据模式的假设（例如，欺骗检测、内容分析）时使用。将文献见解与数据驱动的假设检验相结合。对于手动假设制定，请使用假设生成；对于创意构思，请使用科学头脑风暴法。"
           },
           "sparse_path": "skills/hypogenic",
           "category": "research",
           "subdiscipline": "other",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1060,13 +1140,13 @@
           "id": "sa.hypothesis-generation",
           "name": "hypothesis-generation",
           "summary": {
-            "en": "Structured hypothesis formulation from observations. Use when you have experimental observations or data and need to formulate testable hypotheses with predictions, propose mechanisms, and design experiments to test them. Follows scientific method framework. For open-ended ideation use scientific-brainstorming; for automated LLM-driven hypothesis testing on datasets use hypogenic.",
+            "en": "Formulate evidence-bounded scientific questions, candidate hypotheses, rival explanations, causal or associational claims, discriminating predictions, measurements, and preregistration-ready analysis plans. Use when turning observations or preliminary findings into transparent, testable research plans without treating hypotheses as facts.",
             "zh": "根据观察形成结构化假设。当您有实验观察或数据并且需要制定可检验的假设和预测、提出机制并设计实验来测试它们时使用。遵循科学方法框架。对于开放式构思，请使用科学头脑风暴法；对于数据集上的自动化 LLM 驱动的假设检验，使用 lowogenic。"
           },
           "sparse_path": "skills/hypothesis-generation",
           "category": "research",
           "subdiscipline": null,
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1100,7 +1180,7 @@
           "id": "sa.infographics",
           "name": "infographics",
           "summary": {
-            "en": "Create professional infographics using Nano Banana Pro AI with smart iterative refinement. Uses Gemini 3 Pro for quality review. Integrates research-lookup and web search for accurate data. Supports 10 infographic types, 8 industry styles, and colorblind-safe palettes.",
+            "en": "Create professional infographics using Nano Banana Pro AI with smart iterative refinement. Uses Gemini 3.6 Flash for quality review. Integrates research-lookup and web search for accurate data. Supports 10 infographic types, 8 industry styles, and colorblind-safe palettes.",
             "zh": "使用 Nano Banana Pro AI 和智能迭代细化创建专业的信息图表。 Uses Gemini 3 Pro for quality review.集成研究查找和网络搜索以获取准确的数据。支持 10 种信息图表类型、8 种行业样式和色盲安全调色板。"
           },
           "sparse_path": "skills/infographics",
@@ -1115,20 +1195,20 @@
           ]
         },
         {
-          "id": "sa.iso-13485-certification",
-          "name": "iso-13485-certification",
+          "id": "sa.iso-standards-readiness",
+          "name": "iso-standards-readiness",
           "summary": {
-            "en": "Comprehensive toolkit for preparing ISO 13485 certification documentation for medical device Quality Management Systems. Use when users need help with ISO 13485 QMS documentation, including (1) conducting gap analysis of existing documentation, (2) creating Quality Manuals, (3) developing required procedures and work instructions, (4) preparing Medical Device Files, (5) understanding ISO 13485 requirements, or (6) identifying missing documentation for medical device certification. Also use when users mention medical device regulations, QMS certification, FDA QMSR, EU MDR, or need help with quality system documentation.",
-            "zh": "用于为医疗器械质量管理体系准备 ISO 13485 认证文档的综合工具包。当用户需要 ISO 13485 QMS 文档方面的帮助时使用，包括 (1) 对现有文档进行差距分析，(2) 创建质量手册，(3) 制定所需的程序和工作说明，(4) 准备医疗器械文件，(5) 了解 ISO 13485 要求，或 (6) 识别医疗器械认证缺失的文档。当用户提及医疗器械法规、QMS 认证、FDA QMSR、EU MDR 或需要质量体系文档帮助时也可使用。"
+            "en": "Prepares and structurally reviews readiness evidence for ISO management-system and laboratory-competence standards - ISO 13485 medical device QMS, ISO 14971 device risk management, ISO/IEC 17025 testing and calibration laboratories, and ISO 15189 medical laboratories. Use when organizing declared scope, controlled documents, risk-management files, scope of accreditation, traceability, CAPA, external-provider controls, or bounded local evidence manifests, and when separating ISO certification from laboratory accreditation, FDA QMSR inspection, CLIA certification, MDSAP, and EU MDR/IVDR evidence boundaries. Not for legal applicability, compliance, certification, or accreditation decisions; contains no clause text.",
+            "zh": "为 ISO 管理体系与实验室能力标准准备并结构化审查符合性证据——ISO 13485 医疗器械质量管理体系、ISO 14971 器械风险管理、ISO/IEC 17025 检测与校准实验室、ISO 15189 医学实验室。适用于梳理声明范围、受控文件、风险管理文件、认可范围、溯源性、CAPA、外部供方控制与本地证据清单，并区分 ISO 认证与实验室认可、FDA QMSR 检查、CLIA 认证、MDSAP 及 EU MDR/IVDR 的证据边界。不用于法律适用性、合规或认证/认可决策，且不包含标准条款原文。"
           },
-          "sparse_path": "skills/iso-13485-certification",
+          "sparse_path": "skills/iso-standards-readiness",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
-            "sparse_path": "skills/iso-13485-certification"
+            "sparse_path": "skills/iso-standards-readiness"
           },
           "post_install": [
             "clean_ads"
@@ -1138,13 +1218,13 @@
           "id": "sa.labarchive-integration",
           "name": "labarchive-integration",
           "summary": {
-            "en": "Electronic lab notebook API integration. Access notebooks, manage entries/attachments, backup notebooks, integrate with Protocols.io/Jupyter/REDCap, for programmatic ELN workflows.",
+            "en": "Securely integrate with the official LabArchives ELN REST-like API and Inventory API v1. Use for regional endpoint selection, signed-request construction, user authorization and UID flows, local LA container validation, and verified LabArchives integration workflows.",
             "zh": "电子实验室笔记本 API 集成。访问笔记本、管理条目/附件、备份笔记本、与 Protocols.io/Jupyter/REDCap 集成，实现编程式 ELN 工作流程。"
           },
           "sparse_path": "skills/labarchive-integration",
           "category": "research",
           "subdiscipline": "lab-automation",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1178,13 +1258,13 @@
           "id": "sa.latchbio-integration",
           "name": "latchbio-integration",
           "summary": {
-            "en": "Latch platform for bioinformatics workflows. Build pipelines with Latch SDK, @workflow/@task decorators, deploy serverless workflows, LatchFile/LatchDir, Nextflow/Snakemake integration.",
+            "en": "Build, register, debug, and operate bioinformatics workflows on Latch using the Python SDK, CLI, Latch Data and Registry, Nextflow, Snakemake, programmatic execution, and Latch MCP. Use when authoring or deploying Latch workflows, configuring resources or interfaces, moving data, integrating Registry, or launching and monitoring runs.",
             "zh": "用于生物信息学工作流程的 Latch 平台。使用 Latch SDK、@workflow/@task 装饰器构建管道，部署无服务器工作流程、LatchFile/LatchDir、Nextflow/Snakemake 集成。"
           },
           "sparse_path": "skills/latchbio-integration",
           "category": "research",
           "subdiscipline": "lab-automation",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1216,7 +1296,7 @@
           "id": "sa.liteparse",
           "name": "liteparse",
           "summary": {
-            "en": "Local document and PDF parsing with spatial text and bounding boxes. Use for extracting text from PDFs, DOCX, Office files, and images; OCR on scans; layout-preserved JSON for RAG; batch-ingesting paper folders; or page screenshots for multimodal agents — even when the user does not name liteparse. Prefer over MarkItDown when you need bboxes, fast local parsing, or PNG page renders; prefer over the pdf skill for merge/split/forms.",
+            "en": "Local document and PDF parsing that returns spatial text with bounding boxes. Use for extracting text from PDFs, DOCX, Office files, and images; running OCR on scans; producing layout-preserved JSON for RAG; batch-ingesting folders of papers; or rendering pages to PNG for multimodal agents. Distinguishing capabilities are per-token bounding boxes, page raster output, and fully local processing with no cloud API.",
             "zh": "本地文档和 PDF 解析，支持空间文本和边界框。用于从 PDF、DOCX、Office 文件和图像中提取文本、扫描件 OCR、为 RAG 生成保留布局的 JSON、批量导入论文文件夹，或为多模态 agent 生成页面截图。需要 bbox、快速本地解析或 PNG 页面渲染时优先于 MarkItDown；合并/拆分/表单等 PDF 操作则优先使用 pdf skill。"
           },
           "sparse_path": "skills/liteparse",
@@ -1274,12 +1354,12 @@
           "id": "sa.market-research-reports",
           "name": "market-research-reports",
           "summary": {
-            "en": "Generate comprehensive market research reports (50+ pages) in the style of top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting, extensive visual generation with scientific-schematics and generate-image, deep integration with research-lookup for data gathering, and multi-framework strategic analysis including Porter Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix.",
+            "en": "Build evidence-traceable market research reports and assumption-driven market sizing or forecast scenarios. Use for market definition, industry and customer evidence, competitive landscapes, TAM/SAM/SOM reconciliation, forecast sensitivity, and auditable report scaffolds.",
             "zh": "以顶级咨询公司（麦肯锡、BCG、Gartner）的风格生成全面的市场研究报告（50 多页）。具有专业的 LaTeX 格式、具有科学原理图和生成图像的广泛视觉生成、与数据收集的研究查找的深度集成以及多框架战略分析，包括波特五力、PESTLE、SWOT、TAM/SAM/SOM 和 BCG 矩阵。"
           },
           "sparse_path": "skills/market-research-reports",
           "category": "writing",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1293,13 +1373,13 @@
           "id": "sa.markitdown",
           "name": "markitdown",
           "summary": {
-            "en": "Convert files and office documents to Markdown. Supports PDF, DOCX, PPTX, XLSX, images (with OCR), audio (with transcription), HTML, CSV, JSON, XML, ZIP, YouTube URLs, EPubs and more.",
+            "en": "Convert heterogeneous documents and selected URIs to Markdown with Microsoft MarkItDown for text analysis, search, and LLM/RAG ingestion. Covers safe local conversion, streams, Office/PDF/data formats, batch workflows, plugins, vision OCR, Azure extraction, and the official MCP server.",
             "zh": "将文件和 Office 文档转换为 Markdown。支持 PDF、DOCX、PPTX、XLSX、图像（带 OCR）、音频（带转录）、HTML、CSV、JSON、XML、ZIP、YouTube URL、EPub 等。"
           },
           "sparse_path": "skills/markitdown",
           "category": "research",
           "subdiscipline": "other",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1313,13 +1393,13 @@
           "id": "sa.matchms",
           "name": "matchms",
           "summary": {
-            "en": "Spectral similarity and compound identification for metabolomics. Use for comparing mass spectra, computing similarity scores (cosine, modified cosine), and identifying unknown compounds from spectral libraries. Best for metabolite identification, spectral matching, library searching. For full LC-MS/MS proteomics pipelines use pyopenms.",
+            "en": "Process, clean, compare, and search tandem mass spectra with matchms. Use for MS/MS file I/O, metadata harmonization, peak filtering, spectral similarity, library matching, score matrices, and molecular-similarity networks. Use pyopenms instead for LC-MS feature detection or proteomics pipelines.",
             "zh": "代谢组学的光谱相似性和化合物鉴定。用于比较质谱、计算相似性分数（余弦、修正余弦）以及从谱库中识别未知化合物。最适合代谢物鉴定、光谱匹配、库搜索。对于完整的 LC-MS/MS 蛋白质组学管道，请使用 pyopenms。"
           },
           "sparse_path": "skills/matchms",
           "category": "research",
           "subdiscipline": "chem-mat-phys",
-          "license": "Apache-2.0 license",
+          "license": "Apache-2.0",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1333,13 +1413,13 @@
           "id": "sa.matlab",
           "name": "matlab",
           "summary": {
-            "en": "MATLAB and GNU Octave numerical computing for matrix operations, data analysis, visualization, and scientific computing. Use when writing MATLAB/Octave scripts for linear algebra, signal processing, image processing, differential equations, optimization, statistics, or creating scientific visualizations. Also use when the user needs help with MATLAB syntax, functions, or wants to convert between MATLAB and Python code. Scripts can be executed with MATLAB or the open-source GNU Octave interpreter.",
+            "en": "Build, review, migrate, and safely plan MATLAB or GNU Octave numerical workflows, including arrays, tabular/time data, tests, projects, graphics, MAT files, and explicit Python interoperability.",
             "zh": "MATLAB 和 GNU Octave 数值计算，用于矩阵运算、数据分析、可视化和科学计算。在编写用于线性代数、信号处理、图像处理、微分方程、优化、统计或创建科学可视化的 MATLAB/Octave 脚本时使用。当用户需要有关 MATLAB 语法、函数的帮助或想要在 MATLAB 和 Python 代码之间进行转换时，也可使用。脚本可以使用 MATLAB 或开源 GNU Octave 解释器执行。"
           },
           "sparse_path": "skills/matlab",
           "category": "research",
           "subdiscipline": "chem-mat-phys",
-          "license": "For MATLAB (https://www.mathworks.com/pricing-licensing.html) and for Octave (GNU General Public License version 3)",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1471,13 +1551,13 @@
           "id": "sa.neurokit2",
           "name": "neurokit2",
           "summary": {
-            "en": "Comprehensive biosignal processing toolkit for analyzing physiological data including ECG, EEG, EDA, RSP, PPG, EMG, and EOG signals. Use this skill when processing cardiovascular signals, brain activity, electrodermal responses, respiratory patterns, muscle activity, or eye movements. Applicable for heart rate variability analysis, event-related potentials, complexity measures, autonomic nervous system assessment, psychophysiology research, and multi-modal physiological signal integration.",
+            "en": "Use NeuroKit2 to build or audit reproducible research workflows for physiological time-series preprocessing, event/interval analysis, multimodal alignment, variability, and complexity. Trigger when code imports neurokit2 or needs its current APIs, schemas, and method-aware validation—not for diagnosis or device validation.",
             "zh": "用于分析生理数据的综合生物信号处理工具包，包括 ECG、EEG、EDA、RSP、PPG、EMG 和 EOG 信号。在处理心血管信号、大脑活动、皮肤电反应、呼吸模式、肌肉活动或眼球运动时使用此技能。适用于心率变异性分析、事件相关电位、复杂性测量、自主神经系统评估、心理生理学研究和多模态生理信号集成。"
           },
           "sparse_path": "skills/neurokit2",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1531,13 +1611,13 @@
           "id": "sa.omero-integration",
           "name": "omero-integration",
           "summary": {
-            "en": "Microscopy data management platform. Access images via Python, retrieve datasets, analyze pixels, manage ROIs/annotations, batch processing, for high-content screening and microscopy workflows.",
+            "en": "Securely inspect and automate microscopy data workflows against OMERO.server with omero-py, BlitzGateway, OMERO CLI, tables, annotations, ROIs, rendering, and documented OMERO.web APIs. Use for scoped OMERO inventory, metadata export, import/export planning, or reviewed write workflows.",
             "zh": "显微镜数据管理平台。通过 Python 访问图像、检索数据集、分析像素、管理 ROI/注释、批处理，以实现高内容筛选和显微镜工作流程。"
           },
           "sparse_path": "skills/omero-integration",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1568,6 +1648,26 @@
           ]
         },
         {
+          "id": "sa.ontology-term-resolution",
+          "name": "ontology-term-resolution",
+          "summary": {
+            "en": "Resolve free-text scientific labels to ontology term IDs and validate existing CURIEs against the EBI Ontology Lookup Service (OLS4). Use whenever an ontology identifier must be produced or checked - annotating tissue, cell type, disease, phenotype, assay, chemical, organism, sex, or developmental stage fields; preparing metadata for GEO, ENA, BioSamples, CELLxGENE, HCA, or ISA-Tab submission; auditing a metadata table of term IDs; checking whether a term is obsolete and what replaced it; or mapping between ontologies. Triggers include \"ontology term\", \"ontology ID\", \"CURIE\", \"controlled vocabulary\", \"UBERON\", \"CL:\", \"MONDO\", \"HPO\", \"EFO\", \"ChEBI\", \"NCBITaxon\", \"GO term\", \"PATO\", \"annotate this tissue/cell type/disease\", and any request to emit or verify an identifier shaped like PREFIX:0001234.",
+            "zh": "将自由文本科学标签解析为本体术语 ID，并基于 EBI 本体查询服务（OLS4）校验已有 CURIE。适用于标注组织、细胞类型、疾病、表型、实验方法、化学物质、物种、性别或发育阶段字段，为 GEO、ENA、BioSamples、CELLxGENE、HCA 或 ISA-Tab 提交准备元数据，审计术语 ID 元数据表，检查术语是否已废弃及其替代项，以及在 UBERON、CL、MONDO、HPO、EFO、ChEBI、NCBITaxon、GO、PATO 等本体间映射。"
+          },
+          "sparse_path": "skills/ontology-term-resolution",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/ontology-term-resolution"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.open-notebook",
           "name": "open-notebook",
           "summary": {
@@ -1588,16 +1688,36 @@
           ]
         },
         {
+          "id": "sa.openpiv",
+          "name": "openpiv",
+          "summary": {
+            "en": "Particle Image Velocimetry (PIV) analysis with OpenPIV. Use when extracting velocity fields from PIV image pairs, analyzing fluid dynamics or flow visualization experiments, cross-correlating interrogation windows, validating and replacing spurious PIV vectors, or computing vorticity, strain rate, and turbulence statistics from measured velocity fields.",
+            "zh": "使用 OpenPIV 进行粒子图像测速（PIV）分析。适用于从 PIV 图像对提取速度场、分析流体动力学或流动可视化实验、对查询窗口做互相关、识别并替换错误矢量，以及由实测速度场计算涡量、应变率与湍流统计量。"
+          },
+          "sparse_path": "skills/openpiv",
+          "category": "research",
+          "subdiscipline": "chem-mat-phys",
+          "license": "BSD-3-Clause",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/openpiv"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.opentrons-integration",
           "name": "opentrons-integration",
           "summary": {
-            "en": "Official Opentrons Protocol API for OT-2 and Flex robots. Use when writing protocols specifically for Opentrons hardware with full access to Protocol API v2 features. Best for production Opentrons protocols, official API compatibility. For multi-vendor automation or broader equipment control use pylabrobot.",
+            "en": "Author, review, migrate, simulate, and troubleshoot official Opentrons Python Protocol API v2 protocols for Flex and OT-2 robots. Use for robot-specific liquid handling, deck and labware setup, pipettes, modules, runtime parameters, liquid classes, and Opentrons App analysis. Use pylabrobot instead when one workflow must support multiple robot vendors.",
             "zh": "适用于 OT-2 和 Flex 机器人的官方 Opentrons 协议 API。在专门为 Opentrons 硬件编写协议时使用，可以完全访问协议 API v2 功能。最适合生产 Opentrons 协议，官方 API 兼容性。对于多供应商自动化或更广泛的设备控制，请使用 pylabrobot。"
           },
           "sparse_path": "skills/opentrons-integration",
           "category": "research",
           "subdiscipline": "lab-automation",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1611,12 +1731,13 @@
           "id": "sa.optimize-for-gpu",
           "name": "optimize-for-gpu",
           "summary": {
-            "en": "GPU-accelerate Python code using CuPy, Numba CUDA, Warp, cuDF, cuML, cuGraph, KvikIO, cuCIM, cuxfilter, cuVS, cuSpatial, and RAFT. Use whenever the user mentions GPU/CUDA/NVIDIA acceleration, or wants to speed up NumPy, pandas, scikit-learn, scikit-image, NetworkX, GeoPandas, or Faiss workloads. Covers physics simulation, differentiable rendering, mesh ray casting, particle systems (DEM/SPH/fluids), vector/similarity search, GPUDirect Storage file IO, interactive dashboards, geospatial analysis, medical imaging, and sparse eigensolvers. Also use when you see CPU-bound Python code (loops, large arrays, ML pipelines, graph analytics, image processing) that would benefit from GPU acceleration, even if not explicitly requested.",
+            "en": "GPU-accelerates scientific Python on NVIDIA hardware and verifies that the result is correct and faster. Use for CUDA/GPU optimization; CPU-bound NumPy, SciPy, pandas, scikit-learn, NetworkX, scikit-image, vector-search, image-processing, graph, simulation, or file-I/O workloads; CuPy, cuDF, cuML, cuGraph, cuVS, cuCIM, KvikIO, Warp, Newton, Numba-CUDA, or RAFT questions; and profiling, memory-transfer, kernel, or multi-GPU bottlenecks. Also use when large data-parallel Python code is slow and GPU acceleration is a plausible option, even if the user does not name CUDA.",
             "zh": "使用 CuPy、Numba CUDA、Warp、cuDF、cuML、cuGraph、KvikIO、cuCIM、cuxfilter、cuVS、cuSpatial 和 RAFT 对 Python 代码进行 GPU 加速。每当用户提到 GPU/CUDA/NVIDIA 加速，或想要加速 NumPy、pandas、scikit-learn、scikit-image、NetworkX、GeoPandas 或 Faiss 工作负载时使用。涵盖物理模拟、可微渲染、网格光线投射、粒子系统（DEM/SPH/流体）、矢量/相似性搜索、GPUDirect Storage 文件 IO、交互式仪表板、地理空间分析、医学成像和稀疏特征求解器。当您看到 CPU 密集型 Python 代码（循环、大型数组、机器学习管道、图形分析、图像处理）时，即使没有明确请求，也可以使用这些代码，这些代码将受益于 GPU 加速。"
           },
           "sparse_path": "skills/optimize-for-gpu",
           "category": "research",
           "subdiscipline": "other",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1650,15 +1771,36 @@
           "id": "sa.paper-lookup",
           "name": "paper-lookup",
           "summary": {
-            "en": "Search 10 academic paper databases via REST APIs for research papers, preprints, and scholarly articles. Covers PubMed, PMC (full text), bioRxiv, medRxiv, arXiv, OpenAlex, Crossref, Semantic Scholar, CORE, Unpaywall. Use when searching for papers, citations, DOI/PMID lookups, abstracts, full text, open access, preprints, citation graphs, author search, or any scholarly literature query. Triggers on mentions of any supported database or requests like \"find papers on X\" or \"look up this DOI\".",
+            "en": "Search 11 academic literature APIs for papers, preprints, citations, and open-access full text, and return results with reproducible provenance. Covers PubMed, PMC (full text), Europe PMC (full-text and preprint search), bioRxiv, medRxiv, arXiv, OpenAlex, Crossref, Semantic Scholar, CORE, Unpaywall. Use when searching for papers, citations, DOI/PMID/arXiv lookups, abstracts, full text, open-access PDFs, preprints, citation graphs, author publications, or any scholarly literature query. Triggers on mentions of any supported database or requests like \"find papers on X\", \"look up this DOI\", \"who cites this paper\", or \"get me the PDF\".",
             "zh": "通过 REST API 搜索 10 个学术论文数据库，查找研究论文、预印本和学术文章。涵盖 PubMed、PMC（全文）、bioRxiv、medRxiv、arXiv、OpenAlex、Crossref、Semantic Sc​​holar、CORE、Unpaywall。在搜索论文、引文、DOI/PMID 查找、摘要、全文、开放获取、预印本、引文图、作者搜索或任何学术文献查询时使用。在提及任何受支持的数据库或请求（例如“在 X 上查找论文”或“查找此 DOI”）时触发。"
           },
           "sparse_path": "skills/paper-lookup",
           "category": "writing",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/paper-lookup"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.paperclip",
+          "name": "paperclip",
+          "summary": {
+            "en": "Search and read full-text biomedical papers, FDA/PMDA/EMA regulatory documents, clinical trial registries, and UniProt/PDB/ChEMBL entries with the Paperclip CLI from GXL. Covers installing and authenticating the `paperclip` binary with a PAPERCLIP_API_KEY, the read-only virtual filesystem under /papers, /fda, /trials, /proteins and /clipboard, source-scoped semantic search, corpus-wide grep, metadata lookup and SQL, map/reduce reading across many papers, figure vision analysis, opt-in paper repositories with claim verification, and line-pinned citations. Use when asked to install paperclip, run paperclip search/grep/map/reduce/sql/repo, find or read biomedical literature, regulatory filings or clinical trials through paperclip, or produce citations with line numbers.",
+            "zh": "用 GXL 的 Paperclip CLI 检索与阅读生物医学论文全文、FDA/PMDA/EMA 监管文件、临床试验注册信息以及 UniProt/PDB/ChEMBL 条目。涵盖 paperclip 二进制安装与 PAPERCLIP_API_KEY 认证、/papers、/fda、/trials、/proteins、/clipboard 只读虚拟文件系统、按来源限定的语义检索、全库 grep、元数据查询与 SQL、跨多篇论文的 map/reduce 阅读、图像视觉分析、可选论文库与论断核验，以及带行号锚定的引用。"
+          },
+          "sparse_path": "skills/paperclip",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/paperclip"
           },
           "post_install": [
             "clean_ads"
@@ -1687,12 +1829,13 @@
           "id": "sa.parallel-web",
           "name": "parallel-web",
           "summary": {
-            "en": "All-in-one web toolkit powered by parallel-cli, with a strong emphasis on academic and scientific sources. Use this skill whenever the user needs to search the web, fetch/extract URL content, enrich data with web-sourced fields, or run deep research reports. Covers: web search (fast lookups, research, current info — prioritizing peer-reviewed papers, preprints, and scholarly databases), URL extraction (fetching pages, articles, academic PDFs), bulk data enrichment (adding fields to CSV/lists from the web), and deep research (exhaustive multi-source reports grounded in academic literature). Also handles setup, status checks, and result retrieval. Use this skill for ANY web-related task — even if the user doesn't mention 'parallel' or 'web' explicitly. If they want to look something up, fetch a page, enrich a dataset, investigate a topic, find academic papers, check citations, or review scientific literature, this is the skill to use.",
+            "en": "Use Parallel CLI for web search, URL extraction, deep research, structured data enrichment, entity discovery, and recurring web monitoring. Best for requests that explicitly need current web evidence, academic-source discovery, repeated entity lookups, exhaustive reports, or ongoing change tracking.",
             "zh": "由 parallel-cli 提供支持的一体化 Web 工具包，重点关注学术和科学资源。每当用户需要搜索网络、获取/提取 URL 内容、使用网络来源的字段丰富数据或运行深入的研究报告时，请使用此技能。涵盖：网络搜索（快速查找、研究、当前信息 - 优先考虑同行评审的论文、预印本和学术数据库）、URL 提取（获取页面、文章、学术 PDF）、批量数据丰富（从网络将字段添加到 CSV/列表）和深入研究（基于学术文献的详尽多源报告）。还处理设置、状态检查和结果检索。将此技能用于任何与网络相关的任务 - 即使用户没有明确提及“并行”或“网络”。如果他们想要查找某些内容、获取页面、丰富数据集、研究主题、查找学术论文、检查引文或审查科学文献，就可以使用此技能。"
           },
           "sparse_path": "skills/parallel-web",
           "category": "research",
           "subdiscipline": "other",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1706,17 +1849,37 @@
           "id": "sa.pathml",
           "name": "pathml",
           "summary": {
-            "en": "Full-featured computational pathology toolkit. Use for advanced WSI analysis including multiplexed immunofluorescence (CODEX, Vectra), nucleus segmentation, tissue graph construction, and ML model training on pathology data. Supports 160+ slide formats. For simple tile extraction from H&E slides, histolab may be simpler.",
+            "en": "Use PathML for local, research-only computational pathology workflows: load and tile slides, build preprocessing and QC pipelines, manage h5path data, quantify multiplex images, construct spatial graphs, and plan bounded model inference.",
             "zh": "全功能的计算病理学工具包。用于高级 WSI 分析，包括多重免疫荧光（CODEX、Vectra）、细胞核分割、组织图构建和病理数据的 ML 模型训练。支持 160 多种幻灯片格式。对于从 H&E 载玻片中进行简单的切片提取，histolab 可能更简单。"
           },
           "sparse_path": "skills/pathml",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "GPL-2.0 license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/pathml"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.pathogen-variant-surveillance",
+          "name": "pathogen-variant-surveillance",
+          "summary": {
+            "en": "Query live pathogen genomic surveillance data through the GenSpectrum LAPIS API to find which viral lineages are circulating now, how fast they are growing, and what mutations they carry. Use whenever a question depends on the current state of a pathogen population rather than on remembered facts - which SARS-CoV-2 variant is dominant, whether a Pango lineage is still designated or has been withdrawn, what clade or genotype of H5N1 is in a host or region, whether a PCR primer or assay target still matches circulating sequence, or how a lineage's prevalence has moved week to week. Triggers include \"variant surveillance\", \"genomic surveillance\", \"what variant is circulating\", \"dominant variant\", \"Pango lineage\", \"lineage prevalence\", \"growth advantage\", \"SARS-CoV-2 variant\", \"XFG\", \"clade 2.3.4.4b\", \"H5N1 genotype\", \"influenza clade\", \"RSV/mpox/measles/dengue lineage\", \"CoV-Spectrum\", \"LAPIS\", \"Nextclade\", \"pango-designation\", and any request to report what a pathogen population looks like today.",
+            "zh": "通过 GenSpectrum LAPIS API 查询实时病原基因组监测数据，了解当前流行的病毒谱系、其增长速度与携带突变。适用于判断当前优势 SARS-CoV-2 变异株、某 Pango 谱系是否仍被认定或已撤销、某地区或宿主中 H5N1 的 clade 与基因型、PCR 引物或检测靶标是否仍匹配在流行序列，以及谱系流行率的逐周变化。覆盖 CoV-Spectrum、LAPIS、Nextclade 与 pango-designation 等数据源。"
+          },
+          "sparse_path": "skills/pathogen-variant-surveillance",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/pathogen-variant-surveillance"
           },
           "post_install": [
             "clean_ads"
@@ -1766,12 +1929,12 @@
           "id": "sa.peer-review",
           "name": "peer-review",
           "summary": {
-            "en": "Structured manuscript/grant review with checklist-based evaluation. Use when writing formal peer reviews with specific criteria methodology assessment, statistical validity, reporting standards compliance (CONSORT/STROBE), and constructive feedback. Best for actual review writing, manuscript revision. For evaluating claims/evidence quality use scientific-critical-thinking; for quantitative scoring frameworks use scholar-evaluation.",
+            "en": "Prepare evidence-bounded, constructive peer-review drafts and structured manuscript assessments. Use for authorized review of scientific manuscripts, protocols, preprints, or research proposals; reporting-guideline selection; claim–evidence checks; methods, statistics, reproducibility, ethics, figure/table, and citation critique; or revision-response planning.",
             "zh": "结构化手稿/拨款审查以及基于清单的评估。在撰写具有特定标准方法评估、统计有效性、报告标准合规性（CONSORT/STROBE）和建设性反馈的正式同行评审时使用。最适合实际的评论写作、手稿修改。为了评估主张/证据质量，请使用科学批判性思维；对于定量评分框架，使用学者评估。"
           },
           "sparse_path": "skills/peer-review",
           "category": "writing",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1825,7 +1988,7 @@
           "id": "sa.pi-agent",
           "name": "pi-agent",
           "summary": {
-            "en": "Build with and use Pi, the minimal terminal coding harness. Use for installing Pi, configuring providers/models/settings, creating Pi skills/extensions/packages/themes/prompt templates, embedding Pi through the SDK, integrating over RPC or JSON event streams, parsing sessions, developing custom Pi providers and TUI components, or using ecosystem packages such as pi-subagents (delegation/orchestration), pi-mcp-adapter (MCP servers), pi-interview (interactive forms), and pi-web-access (web search, fetching, video understanding).",
+            "en": "Build with and use Pi, the minimal terminal coding harness. Use for installing Pi, configuring providers/models/settings/environment variables, creating Pi skills/extensions/packages/themes/prompt templates, embedding Pi through the SDK, integrating over RPC or JSON event streams, parsing sessions, running local models through the llama.cpp router, developing custom Pi providers and TUI components, or using ecosystem packages such as pi-subagents (delegation/orchestration), pi-mcp-adapter (MCP servers), pi-interview (interactive forms), and pi-web-access (web search, fetching, video understanding).",
             "zh": "构建和使用 Pi 极简终端编码 Agent。适用于安装 Pi、配置模型和提供商、创建 Pi skills、扩展、包、主题与提示模板，通过 SDK、RPC 或 JSON 事件流集成 Pi，以及使用 pi-subagents、pi-mcp-adapter、pi-interview 和 pi-web-access 等生态包。"
           },
           "sparse_path": "skills/pi-agent",
@@ -1835,6 +1998,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/pi-agent"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.pkpd-modeling",
+          "name": "pkpd-modeling",
+          "summary": {
+            "en": "Pharmacokinetic and pharmacodynamic modelling and simulation - non-compartmental analysis, compartmental and population PK, PK/PD and exposure-response, TMDD, PBPK orientation, bioequivalence, allometric scaling and first-in-human dose, drug interaction prediction, and Bayesian therapeutic drug monitoring. Use when analysing concentration-time data, deriving exposure metrics, fitting PK or PD models, or evaluating dosing regimens. Triggers include \"pharmacokinetics\", \"pharmacodynamics\", \"PK/PD\", \"NCA\", \"non-compartmental\", \"AUC\", \"Cmax\", \"lambda z\", \"half-life\", \"clearance\", \"volume of distribution\", \"compartmental model\", \"population PK\", \"popPK\", \"NONMEM\", \"nlmixr2\", \"Pharmpy\", \"Monolix\", \"exposure-response\", \"Emax\", \"EC50\", \"indirect response\", \"effect compartment\", \"TMDD\", \"PBPK\", \"bioequivalence\", \"RSABE\", \"ABEL\", \"allometric scaling\", \"first-in-human\", \"MABEL\", \"drug-drug interaction\", \"DDI\", \"ICH M12\", \"concentration-QTc\", \"therapeutic drug monitoring\", \"MIPD\", and \"dosing regimen\".",
+            "zh": "药代动力学与药效动力学建模仿真——非房室分析、房室与群体 PK、PK/PD 与暴露-效应、TMDD、PBPK 定位、生物等效性、异速缩放与首次人体剂量、药物相互作用预测，以及贝叶斯治疗药物监测。适用于分析浓度-时间数据、推导暴露指标（AUC、Cmax、λz、半衰期、清除率、分布容积）、拟合 PK/PD 模型或评估给药方案，涉及 NONMEM、nlmixr2、Pharmpy、Monolix、ICH M12、浓度-QTc 与 MIPD 等场景。"
+          },
+          "sparse_path": "skills/pkpd-modeling",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/pkpd-modeling"
           },
           "post_install": [
             "clean_ads"
@@ -1884,12 +2067,12 @@
           "id": "sa.pptx-posters",
           "name": "pptx-posters",
           "summary": {
-            "en": "Create research posters using HTML/CSS that can be exported to PDF or PPTX. Use this skill ONLY when the user explicitly requests PowerPoint/PPTX poster format. For standard research posters, use latex-posters instead. This skill provides modern web-based poster design with responsive layouts and easy visual integration.",
+            "en": "Create and audit editable scientific posters in macro-free PowerPoint (.pptx) from author-approved local content and assets. Use when the requested deliverable is a PowerPoint research/conference poster and exact physical, printer, accessibility, provenance, and package-security checks are required.",
             "zh": "使用 HTML/CSS 创建可导出为 PDF 或 PPTX 的研究海报。仅当用户明确请求 PowerPoint/PPTX 海报格式时才使用此技能。对于标准研究海报，请使用乳胶海报。这项技能提供了具有响应式布局和轻松视觉集成的现代基于网络的海报设计。"
           },
           "sparse_path": "skills/pptx-posters",
           "category": "visualization",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1903,7 +2086,7 @@
           "id": "sa.pptx",
           "name": "pptx",
           "summary": {
-            "en": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \\\"deck,\\\" \\\"slides,\\\" \\\"presentation,\\\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.",
+            "en": "Use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx or .potx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates (.potx), layouts, speaker notes, or comments. Trigger whenever the user mentions \\\"deck,\\\" \\\"slides,\\\" \\\"presentation,\\\" or references a .pptx or .potx filename, regardless of what they plan to do with the content afterward. If a .pptx or .potx file needs to be opened, created, or touched, use this skill.",
             "zh": "每当以任何方式涉及 .pptx 文件时（作为输入、输出或两者），都可以使用此技能。这包括：创建幻灯片、宣传材料或演示文稿；从任何 .pptx 文件中读取、解析或提取文本（即使提取的内容将在其他地方使用，例如在电子邮件或摘要中）；编辑、修改或更新现有演示文稿；合并或拆分幻灯片文件；使用模板、布局、演讲者注释或评论。每当用户提到“甲板”、“幻灯片”、“演示文稿”或引用 .pptx 文件名时触发，无论他们随后计划如何处理内容。如果需要打开、创建或触摸 .pptx 文件，请使用此技能。"
           },
           "sparse_path": "skills/pptx",
@@ -1942,13 +2125,13 @@
           "id": "sa.protocolsio-integration",
           "name": "protocolsio-integration",
           "summary": {
-            "en": "Integration with protocols.io API for managing scientific protocols. This skill should be used when working with protocols.io to search, create, update, or publish protocols; manage protocol steps and materials; handle discussions and comments; organize workspaces; upload and manage files; or integrate protocols.io functionality into workflows. Applicable for protocol discovery, collaborative protocol development, experiment tracking, lab protocol management, and scientific documentation.",
+            "en": "Read, validate, and safely export protocols.io data with current official REST/MCP contracts, or create non-executing mutation plans. The bundled client makes bounded official-host GET requests only with explicit --execute. Use only for tasks explicitly targeting protocols.io or an exact protocols.io protocol version.",
             "zh": "与 Protocols.io API 集成，用于管理科学协议。当使用protocols.io搜索、创建、更新或发布协议时，应该使用此技能；管理方案步骤和材料；处理讨论和评论；整理工作空间；上传和管理文件；或将protocols.io 功能集成到工作流程中。适用于协议发现、协作协议开发、实验跟踪、实验室协议管理和科学文档。"
           },
           "sparse_path": "skills/protocolsio-integration",
           "category": "research",
           "subdiscipline": "lab-automation",
-          "license": "Unknown",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -1962,13 +2145,13 @@
           "id": "sa.pufferlib",
           "name": "pufferlib",
           "summary": {
-            "en": "High-performance reinforcement learning framework optimized for speed and scale. Use when you need fast parallel training, vectorized environments, multi-agent systems, or integration with game environments (Atari, Procgen, NetHack). Achieves 2-10x speedups over standard implementations. For quick prototyping or standard algorithm implementations with extensive documentation, use stable-baselines3 instead.",
+            "en": "Version-aware guidance for PufferLib reinforcement-learning environments, vectorization, policies, PuffeRL training, evaluation, and safe checkpoint review. Use when adapting Gymnasium/PettingZoo environments to published PufferLib 3.0.0 or working with the redesigned native 4.0 source line.",
             "zh": "针对速度和规模进行优化的高性能强化学习框架。当您需要快速并行训练、矢量化环境、多代理系统或与游戏环境（Atari、Procgen、NetHack）集成时使用。与标准实现相比，速度提高了 2-10 倍。对于快速原型设计或具有大量文档的标准算法实现，请使用 stable-baselines3。"
           },
           "sparse_path": "skills/pufferlib",
           "category": "research",
           "subdiscipline": "other",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2002,13 +2185,13 @@
           "id": "sa.pydicom",
           "name": "pydicom",
           "summary": {
-            "en": "Python library for working with DICOM (Digital Imaging and Communications in Medicine) files. Use this skill when reading, writing, or modifying medical imaging data in DICOM format, extracting pixel data from medical images (CT, MRI, X-ray, ultrasound), anonymizing DICOM files, working with DICOM metadata and tags, converting DICOM images to other formats, handling compressed DICOM data, or processing medical imaging datasets. Applies to tasks involving medical image analysis, PACS systems, radiology workflows, and healthcare imaging applications.",
+            "en": "Use pydicom to read, inspect, write, transform, and safely preflight local DICOM datasets and pixel data. Applies to DICOM metadata, transfer syntaxes, compression plugins, frames, private elements, JSON, and bounded de-identification review.",
             "zh": "用于处理 DICOM（医学数字成像和通信）文件的 Python 库。在读取、写入或修改 DICOM 格式的医学成像数据、从医学图像（CT、MRI、X 射线、超声）中提取像素数据、匿名 DICOM 文件、使用 DICOM 元数据和标签、将 DICOM 图像转换为其他格式、处理压缩的 DICOM 数据或处理医学成像数据集时，请使用此技能。适用于涉及医学图像分析、PACS 系统、放射学工作流程和医疗保健成像应用程序的任务。"
           },
           "sparse_path": "skills/pydicom",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "https://github.com/pydicom/pydicom/blob/main/LICENSE",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2041,13 +2224,13 @@
           "id": "sa.pylabrobot",
           "name": "pylabrobot",
           "summary": {
-            "en": "Vendor-agnostic lab automation framework. Use when controlling multiple equipment types (Hamilton, Tecan, Opentrons, plate readers, pumps) or needing unified programming across different vendors. Best for complex workflows, multi-vendor setups, simulation. For Opentrons-only protocols with official API, opentrons-integration may be simpler.",
+            "en": "Develop and review PyLabRobot lab-automation resources, liquid-handling plans, offline simulations, and supported-device integrations. Use for PyLabRobot protocols or API questions; keep physical execution behind an explicit operator safety gate.",
             "zh": "与供应商无关的实验室自动化框架。当控制多种设备类型（Hamilton、Tecan、Opentron、读板机、泵）或需要跨不同供应商进行统一编程时使用。最适合复杂的工作流程、多供应商设置、模拟。对于具有官方 API 的仅限 Opentrons 的协议，opentrons 集成可能更简单。"
           },
           "sparse_path": "skills/pylabrobot",
           "category": "research",
           "subdiscipline": "lab-automation",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2061,13 +2244,13 @@
           "id": "sa.pymatgen",
           "name": "pymatgen",
           "summary": {
-            "en": "Materials science toolkit. Crystal structures (CIF, POSCAR), phase diagrams, band structure, DOS, Materials Project integration, format conversion, for computational materials science.",
+            "en": "Analyze, validate, convert, and transform materials structures and computed materials data with current pymatgen APIs, including local phase diagrams, symmetry sensitivity, electronic-structure I/O, and explicitly bounded Materials Project queries.",
             "zh": "材料科学工具包。晶体结构（CIF、POSCAR）、相图、能带结构、DOS、材料项目集成、格式转换，用于计算材料科学。"
           },
           "sparse_path": "skills/pymatgen",
           "category": "research",
           "subdiscipline": "chem-mat-phys",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2141,13 +2324,13 @@
           "id": "sa.pysam",
           "name": "pysam",
           "summary": {
-            "en": "Genomic file toolkit. Read/write SAM/BAM/CRAM alignments, VCF/BCF variants, FASTA/FASTQ sequences, extract regions, calculate coverage, for NGS data processing pipelines.",
+            "en": "Python/HTSlib workflows for genomic files. Use when reading, querying, filtering, or writing SAM/BAM/CRAM, VCF/BCF, FASTA/FASTQ, or tabix data with pysam, including pileup, coverage, indexing, and CRAM references.",
             "zh": "基因组文件工具包。读/写 SAM/BAM/CRAM 比对、VCF/BCF 变体、FASTA/FASTQ 序列、提取区域、计算覆盖率，用于 NGS 数据处理流程。"
           },
           "sparse_path": "skills/pysam",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2161,13 +2344,13 @@
           "id": "sa.pytdc",
           "name": "pytdc",
           "summary": {
-            "en": "Therapeutics Data Commons. AI-ready drug discovery datasets (ADME, toxicity, DTI), benchmarks, scaffold splits, molecular oracles, for therapeutic ML and pharmacological prediction.",
+            "en": "Use Therapeutics Data Commons through the PyTDC Python package for registry discovery, approved dataset access, task-aware splits, evaluator metrics, benchmark groups, and bounded molecular-oracle workflows.",
             "zh": "治疗数据共享。 AI 就绪药物发现数据集（ADME、毒性、DTI）、基准、支架分割、分子预言，用于治疗性 ML 和药理学预测。"
           },
           "sparse_path": "skills/pytdc",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2220,13 +2403,13 @@
           "id": "sa.qiskit",
           "name": "qiskit",
           "summary": {
-            "en": "IBM quantum computing framework. Use when targeting IBM Quantum hardware, working with Qiskit Runtime for production workloads, or needing IBM optimization tools. Best for IBM hardware execution, quantum error mitigation, and enterprise quantum computing. For Google hardware use cirq; for gradient-based quantum ML use pennylane; for open quantum system simulations use qutip.",
+            "en": "Build, simulate, transpile, and execute quantum circuits with Qiskit and IBM Quantum Runtime. Use for Qiskit 2.x circuits and operators, V2 Sampler or Estimator primitives, target-aware transpilation, local or noisy simulation, IBM QPU execution, Runtime sessions or batches, error mitigation, and Qiskit ecosystem packages.",
             "zh": "IBM 量子计算框架。当针对 IBM Quantum 硬件、使用 Qiskit Runtime 处理生产工作负载或需要 IBM 优化工具时使用。最适合 IBM 硬件执行、量子错误缓解和企业量子计算。对于 Google 硬件，请使用 cirq；对于基于梯度的量子机器学习，使用 pennylane；对于开放量子系统模拟，请使用 qutip。"
           },
           "sparse_path": "skills/qiskit",
           "category": "research",
           "subdiscipline": "chem-mat-phys",
-          "license": "Apache-2.0 license",
+          "license": "Apache-2.0",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2240,13 +2423,13 @@
           "id": "sa.qutip",
           "name": "qutip",
           "summary": {
-            "en": "Quantum physics simulation library for open quantum systems. Use when studying master equations, Lindblad dynamics, decoherence, quantum optics, or cavity QED. Best for physics research, open system dynamics, and educational simulations. NOT for circuit-based quantum computing—use qiskit, cirq, or pennylane for quantum algorithms and hardware execution.",
+            "en": "Simulate and audit closed and open quantum-system models with QuTiP 5, including deterministic, trajectory, steady-state, spectral, and phase-space workflows. Use for local quantum-dynamics work where physical assumptions, dimensions, and numerical convergence must be explicit.",
             "zh": "开放量子系统的量子物理模拟库。在研究主方程、Lindblad 动力学、退相干、量子光学或腔 QED 时使用。最适合物理研究、开放系统动力学和教育模拟。不适用于基于电路的量子计算 - 使用 qiskit、cirq 或 pennylane 进行量子算法和硬件执行。"
           },
           "sparse_path": "skills/qutip",
           "category": "research",
           "subdiscipline": "chem-mat-phys",
-          "license": "BSD-3-Clause license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2277,6 +2460,26 @@
           ]
         },
         {
+          "id": "sa.relsa-severity-assessment",
+          "name": "relsa-severity-assessment",
+          "summary": {
+            "en": "Multivariate severity assessment and humane endpoint prediction for laboratory animal studies using the RELSA (RELative Severity Assessment) score and ARIMA-based foRcast forecasting. Use when combining welfare readouts — body weight or weight loss, body temperature, clinical or nesting scores, biomarkers, activity, heart rate, burrowing, wheel running — into one severity score per animal per day, when asking which animals are at risk of reaching a humane endpoint or when one will be reached, when defining attention/danger zones or thresholds on a severity scale by kernel density estimation, or when reporting severity for a 3Rs, refinement, animal-welfare, or EU Directive 2010/63/EU severity-assessment context. Covers directionality (\"turned\" variables), baseline normalization, reference sets, RELSA weights, ARIMA prediction intervals, and RMSE/PICP/MPIW evaluation.",
+            "zh": "使用 RELSA（相对严重度评估）评分与基于 ARIMA 的 foRcast 预测，对实验动物研究进行多变量严重度评估与人道终点预测。适用于将体重及体重下降、体温、临床或筑巢评分、生物标志物、活动量、心率、掘穴、转轮运动等福利指标合成每只动物每天一个严重度分值，判断哪些动物濒临人道终点或何时到达，用核密度估计划定关注/危险区间与阈值，以及在 3Rs、优化处理、动物福利或 EU Directive 2010/63/EU 严重度评估情境下报告结果。"
+          },
+          "sparse_path": "skills/relsa-severity-assessment",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/relsa-severity-assessment"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.research-grants",
           "name": "research-grants",
           "summary": {
@@ -2299,7 +2502,7 @@
           "id": "sa.research-lookup",
           "name": "research-lookup",
           "summary": {
-            "en": "Look up current research information using parallel-cli search (primary, fast web search), the Parallel Chat API (deep research), or Perplexity sonar-pro-search (academic paper searches). Automatically routes queries to the best backend. Use for finding papers, gathering research data, and verifying scientific information. Note: query text is transmitted to api.parallel.ai (PARALLEL_API_KEY) and, for academic searches, to openrouter.ai (OPENROUTER_API_KEY).",
+            "en": "Compile current scholarly evidence for a scientific manuscript or research brief. Use when the user explicitly asks to gather literature, references, background evidence, competing findings, or a manuscript research packet. Uses Parallel Search by default, Parallel Extract for source verification, Parallel Research for explicitly deep/exhaustive work, optional explicit Parallel Chat, and optional Perplexity only when requested or allowed as a failure fallback.",
             "zh": "使用parallel-cli 搜索（主要的快速网络搜索）、Parallel Chat API（深度研究）或 Perplexity sonar-pro-search（学术论文搜索）查找当前研究信息。自动将查询路由到最佳后端。用于查找论文、收集研究数据和验证科学信息。注意：查询文本将传输至 api.parallel.ai (PARALLEL_API_KEY)，对于学术搜索，则传输至 openrouter.ai (OPENROUTER_API_KEY)。"
           },
           "sparse_path": "skills/research-lookup",
@@ -2359,12 +2562,12 @@
           "id": "sa.scholar-evaluation",
           "name": "scholar-evaluation",
           "summary": {
-            "en": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including problem formulation, methodology, analysis, and writing with quantitative scoring and actionable feedback.",
+            "en": "Provide qualitative-first, evidence-traceable developmental review of scholarly works and audit low-stakes research-assessment rubrics with optional local quality controls. Never use for ranking people or consequential decisions.",
             "zh": "使用 ScholarEval 框架系统地评估学术工作，提供跨研究质量维度的结构化评估，包括问题表述、方法论、分析和写作，并提供定量评分和可行的反馈。"
           },
           "sparse_path": "skills/scholar-evaluation",
           "category": "writing",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2378,13 +2581,13 @@
           "id": "sa.scientific-brainstorming",
           "name": "scientific-brainstorming",
           "summary": {
-            "en": "Creative research ideation and exploration. Use for open-ended brainstorming sessions, exploring interdisciplinary connections, challenging assumptions, or identifying research gaps. Best for early-stage research planning when you do not have specific observations yet. For formulating testable hypotheses from data use hypothesis-generation.",
+            "en": "Facilitates evidence-aware scientific ideation with independent generation, structured discussion, explicit assumptions, transparent evaluation, adversarial review, and decision logs. Use for early-stage research brainstorming or prioritizing candidate directions; hand off empirical validation, study design, ethics or regulatory review, and clinical questions to appropriate experts or skills.",
             "zh": "创造性的研究构思和探索。用于开放式头脑风暴会议、探索跨学科联系、挑战假设或确定研究差距。当您还没有具体的观察结果时，最适合早期研究计划。为了根据数据制定可检验的假设，请使用假设生成。"
           },
           "sparse_path": "skills/scientific-brainstorming",
           "category": "research",
           "subdiscipline": null,
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2418,7 +2621,7 @@
           "id": "sa.scientific-schematics",
           "name": "scientific-schematics",
           "summary": {
-            "en": "Create publication-quality scientific diagrams using Nano Banana 2 AI with smart iterative refinement. Uses Gemini 3.1 Pro Preview for quality review. Only regenerates if quality is below threshold for your document type. Specialized in neural network architectures, system diagrams, flowcharts, biological pathways, and complex scientific visualizations.",
+            "en": "Create publication-quality scientific diagrams using Nano Banana 2 AI with smart iterative refinement. Uses Gemini 3.6 Flash for quality review. Only regenerates if quality is below threshold for your document type. Specialized in neural network architectures, system diagrams, flowcharts, biological pathways, and complex scientific visualizations.",
             "zh": "使用 Nano Banana 2 AI 和智能迭代细化创建出版质量的科学图表。使用 Gemini 3.1 Pro Preview 进行质量审查。仅当质量低于文档类型的阈值时才重新生成。专注于神经网络架构、系统图、流程图、生物路径和复杂的科学可视化。"
           },
           "sparse_path": "skills/scientific-schematics",
@@ -2456,12 +2659,12 @@
           "id": "sa.scientific-visualization",
           "name": "scientific-visualization",
           "summary": {
-            "en": "Meta-skill for publication-ready figures. Use when creating journal submission figures requiring multi-panel layouts, significance annotations, error bars, colorblind-safe palettes, and specific journal formatting (Nature, Science, Cell). Orchestrates matplotlib/seaborn/plotly with publication styles. For quick exploration use seaborn or plotly directly.",
+            "en": "Create and audit truthful, accessible, publication-ready scientific figures with Matplotlib, Seaborn, or Plotly. Use for figure design, multi-panel layouts, uncertainty and missing-data displays, color/contrast review, image metadata validation, and journal export planning.",
             "zh": "用于准备发表的人物的元技能。在创建需要多面板布局、重要性注释、错误栏、色盲安全调色板和特定期刊格式（《自然》、《科学》、《细胞》）的期刊提交图表时使用。使用发布样式协调 matplotlib/seaborn/plotly。为了快速探索，直接使用seaborn或plotly。"
           },
           "sparse_path": "skills/scientific-visualization",
           "category": "visualization",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2475,12 +2678,12 @@
           "id": "sa.scientific-writing",
           "name": "scientific-writing",
           "summary": {
-            "en": "Core skill for the deep research and writing tool. Write scientific manuscripts in full paragraphs (never bullet points). Use two-stage process with (1) section outlines with key points using research-lookup then (2) convert to flowing prose. IMRAD structure, citations (APA/AMA/Vancouver), figures/tables, reporting guidelines (CONSORT/STROBE/PRISMA), for research papers and journal submissions.",
+            "en": "Draft, revise, and audit scientific manuscripts or reports with explicit evidence provenance, reporting-guideline coverage, authorship accountability, confidentiality controls, and local consistency checks. Use for manuscript sections, references, declarations, tables, figures, or submission preparation when scientific accuracy and traceability matter.",
             "zh": "深度研究和写作工具的核心技能。用完整的段落撰写科学手稿（不要要点）。使用两阶段过程：(1) 使用研究查找列出带有要点的章节大纲，然后 (2) 转换为流畅的散文。 IMRAD 结构、引文（APA/AMA/温哥华）、图表、报告指南（CONSORT/STROBE/PRISMA），用于研究论文和期刊提交。"
           },
           "sparse_path": "skills/scientific-writing",
           "category": "writing",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2534,13 +2737,13 @@
           "id": "sa.scikit-survival",
           "name": "scikit-survival",
           "summary": {
-            "en": "Comprehensive toolkit for survival analysis and time-to-event modeling in Python using scikit-survival. Use this skill when working with censored survival data, performing time-to-event analysis, fitting Cox models, Random Survival Forests, Gradient Boosting models, or Survival SVMs, evaluating survival predictions with concordance index or Brier score, handling competing risks, or implementing any survival analysis workflow with the scikit-survival library.",
+            "en": "Build, evaluate, and audit right-censored or competing-risk survival workflows with scikit-survival, including leakage-safe preprocessing, model selection, probability prediction, and censoring-aware metrics.",
             "zh": "使用 scikit-survival 在 Python 中进行生存分析和事件时间建模的综合工具包。在处理经过审查的生存数据、执行事件时间分析、拟合 Cox 模型、随机生存森林、梯度提升模型或生存 SVM、使用一致性指数或 Brier 评分评估生存预测、处理竞争风险或使用 scikit-survival 库实施任何生存分析工作流程时，可以使用此技能。"
           },
           "sparse_path": "skills/scikit-survival",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "GPL-3.0 license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2613,13 +2816,13 @@
           "id": "sa.shap",
           "name": "shap",
           "summary": {
-            "en": "Model interpretability and explainability using SHAP (SHapley Additive exPlanations). Use this skill when explaining machine learning model predictions, computing feature importance, generating SHAP plots (waterfall, beeswarm, bar, scatter, force, heatmap), debugging models, analyzing model bias or fairness, comparing models, or implementing explainable AI. Works with tree-based models (XGBoost, LightGBM, Random Forest), deep learning (TensorFlow, PyTorch), linear models, and any black-box model.",
+            "en": "Explain and audit machine-learning predictions with SHAP. Use for selecting SHAP explainers and maskers, computing and validating feature attributions, handling multi-output explanations, and producing local or global SHAP visualizations.",
             "zh": "使用 SHAP（SHapley Additive exPlanations）建立模型的可解释性和可解释性。在解释机器学习模型预测、计算特征重要性、生成 SHAP 图（瀑布图、蜂群图、条形图、散点图、力图、热图）、调试模型、分析模型偏差或公平性、比较模型或实现可解释的 AI 时，请使用此技能。适用于基于树的模型（XGBoost、LightGBM、随机森林）、深度学习（TensorFlow、PyTorch）、线性模型和任何黑盒模型。"
           },
           "sparse_path": "skills/shap",
           "category": "research",
           "subdiscipline": null,
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2633,13 +2836,13 @@
           "id": "sa.simpy",
           "name": "simpy",
           "summary": {
-            "en": "Process-based discrete-event simulation framework in Python. Use this skill when building simulations of systems with processes, queues, resources, and time-based events such as manufacturing systems, service operations, network traffic, logistics, or any system where entities interact with shared resources over time.",
+            "en": "Build, inspect, test, and analyze bounded process-based discrete-event simulations with SimPy, including events, resources, interrupts, monitoring, replications, warm-up, and reproducible output analysis.",
             "zh": "Python 中基于过程的离散事件仿真框架。在构建具有流程、队列、资源和基于时间的事件的系统（例如制造系统、服务运营、网络流量、物流或实体随时间与共享资源交互的任何系统）的模拟时，请使用此技能。"
           },
           "sparse_path": "skills/simpy",
           "category": "research",
           "subdiscipline": "other",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2673,7 +2876,7 @@
           "id": "sa.statistical-analysis",
           "name": "statistical-analysis",
           "summary": {
-            "en": "Guided statistical analysis with test selection and reporting. Use when you need help choosing appropriate tests for your data, assumption checking, power analysis, and APA-formatted results. Best for academic research reporting, test selection guidance. For implementing specific models programmatically use statsmodels.",
+            "en": "Guided statistical analysis for research data - test selection, assumption checking, effect sizes, power analysis, Bayesian alternatives, and APA-formatted reporting. Use whenever a user wants to compare groups, test a hypothesis, analyze experimental or survey data, check statistical assumptions, compute required sample sizes, or write up results - even if they never name a specific test. Covers t-tests, ANOVA, chi-square, correlation, regression, non-parametric and Bayesian methods. For low-level model APIs, see the statsmodels and pymc skills.",
             "zh": "通过测试选择和报告指导统计分析。当您需要帮助为您的数据选择适当的测试、假设检查、功效分析和 APA 格式的结果时使用。最适合学术研究报告、考试选择指导。要以编程方式实现特定模型，请使用 statsmodels。"
           },
           "sparse_path": "skills/statistical-analysis",
@@ -2832,7 +3035,7 @@
           "id": "sa.torchdrug",
           "name": "torchdrug",
           "summary": {
-            "en": "PyTorch-native graph neural networks for molecules and proteins. Use when building custom GNN architectures for drug discovery, protein modeling, or knowledge graph reasoning. Best for custom model development, protein property prediction, retrosynthesis. For pre-trained models and diverse featurizers use deepchem; for benchmark datasets use pytdc.",
+            "en": "Build and troubleshoot TorchDrug 0.2.1 workflows for molecular graphs, property prediction, self-supervised pretraining, molecule generation, retrosynthesis, protein representation learning, and knowledge graph reasoning. Use when code imports torchdrug or needs its datasets, models, tasks, or Engine.",
             "zh": "PyTorch-分子和蛋白质的原生图神经网络。在构建用于药物发现、蛋白质建模或知识图推理的自定义 GNN 架构时使用。最适合定制模型开发、蛋白质特性预测、逆合成。对于预先训练的模型和不同的特征器，使用 deepchem；对于基准数据集，请使用 pytdc。"
           },
           "sparse_path": "skills/torchdrug",
@@ -2872,13 +3075,13 @@
           "id": "sa.treatment-plans",
           "name": "treatment-plans",
           "summary": {
-            "en": "Generate concise (3-4 page), focused medical treatment plans in LaTeX/PDF format for all clinical specialties. Supports general medical treatment, rehabilitation therapy, mental health care, chronic disease management, perioperative care, and pain management. Includes SMART goal frameworks, evidence-based interventions with minimal text citations, regulatory compliance (HIPAA), and professional formatting. Prioritizes brevity and clinical actionability.",
+            "en": "Format and structurally validate local treatment-plan documentation after clinical decisions have already been supplied and verified by authorized licensed professionals. Use for source traceability, clinician-authored intervention records, goals and checkpoints, shared-decision records, reconciliation handoffs, and release gates—not for clinical decision-making.",
             "zh": "为所有临床专业生成 LaTeX/PDF 格式的简明（3-4 页）、重点突出的医疗计划。支持一般医疗、康复治疗、心理保健、慢性病管理、围手术期护理和疼痛管理。包括 SMART 目标框架、以最少文本引用的循证干预措施、法规遵从性 (HIPAA) 和专业格式。优先考虑简洁性和临床可操作性。"
           },
           "sparse_path": "skills/treatment-plans",
           "category": "research",
           "subdiscipline": "life-sci",
-          "license": "MIT license",
+          "license": "MIT",
           "install": {
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
@@ -2903,6 +3106,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/umap-learn"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.uncertainty-and-units",
+          "name": "uncertainty-and-units",
+          "summary": {
+            "en": "Track physical units and propagate measurement uncertainty in scientific calculations using pint and uncertainties. Use for unit conversion and dimensional checking, GUM uncertainty budgets, Type A and Type B evaluation, coverage factors and expanded uncertainty, Monte Carlo propagation, significant-figure and plus-minus reporting, error propagation through curve fits, CODATA constants, auditing Python code for stripped units or broken uncertainty propagation, and order-of-magnitude plausibility checks using dimensionless groups (Reynolds, Peclet, Damkohler, Knudsen, Biot, Womersley), characteristic scales such as diffusion time or Debye length, and observed magnitude ranges. Trigger on \"is this number physically reasonable\", \"sanity check these units\", \"what regime is this flow in\", or a result that looks off by orders of magnitude.",
+            "zh": "用 pint 与 uncertainties 在科学计算中跟踪物理单位并传播测量不确定度。适用于单位换算与量纲检查、GUM 不确定度预算、A 类与 B 类评定、包含因子与扩展不确定度、蒙特卡洛传播、有效数字与 ± 报告、曲线拟合中的误差传播、CODATA 常数、审计 Python 代码中被剥离的单位或失效的不确定度传播，以及借助无量纲数（Reynolds、Peclet、Damköhler、Knudsen、Biot、Womersley）、扩散时间或德拜长度等特征尺度做量级合理性检查。"
+          },
+          "sparse_path": "skills/uncertainty-and-units",
+          "category": "research",
+          "subdiscipline": null,
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/uncertainty-and-units"
           },
           "post_install": [
             "clean_ads"
@@ -2952,7 +3175,7 @@
           "id": "sa.venue-templates",
           "name": "venue-templates",
           "summary": {
-            "en": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing manuscripts for journal submission, conference papers, research posters, or grant proposals and need venue-specific formatting requirements and templates.",
+            "en": "Prepare journal manuscripts, conference papers, research posters, and grant documents using venue-specific formatting guidance and bundled LaTeX scaffolds. Use when selecting an official template, checking current page or anonymity rules, adapting academic writing to a venue, or inspecting a submission PDF.",
             "zh": "访问主要科学出版场所（Nature、Science、PLOS、IEEE、ACM）、学术会议（NeurIPS、ICML、CVPR、CHI）、研究海报和资助提案（NSF、NIH、DOE、DARPA）的全面 LaTeX 模板、格式要求和提交指南。在准备期刊投稿、会议论文、研究海报或拨款提案的手稿并需要特定于场地的格式要求和模板时，应使用此技能。"
           },
           "sparse_path": "skills/venue-templates",
@@ -2991,7 +3214,7 @@
           "id": "sa.xlsx",
           "name": "xlsx",
           "summary": {
-            "en": "Create, edit, analyze, or convert Excel spreadsheets (.xlsx, .xlsm) where the workbook file is the primary deliverable. Use for formulas, formatting, financial models, multi-sheet workbooks, and tabular cleanup exported to Excel. Also applies to .csv/.tsv when the user wants spreadsheet output. Do NOT use for Word documents, HTML reports, standalone Python scripts, database pipelines, or Google Sheets API work.",
+            "en": "Create, edit, analyze, or convert Excel spreadsheets (.xlsx, .xlsm, .xltx) where the workbook file is the primary deliverable. Use for formulas, formatting, financial models, multi-sheet workbooks, and tabular cleanup exported to Excel. Also applies to .csv/.tsv when the user wants spreadsheet output. Do NOT use for Word documents, HTML reports, standalone Python scripts, database pipelines, or Google Sheets API work.",
             "zh": "只要电子表格文件是主要输入或输出，就可以使用此技能。这意味着用户想要执行的任何任务： 打开、读取、编辑或修复现有 .xlsx、.xlsm、.csv 或 .tsv 文件（例如，添加列、计算公式、格式化、图表、清理混乱数据）；从头开始或从其他数据源创建新的电子表格；或在表格文件格式之间进行转换。特别是当用户通过名称或路径引用电子表格文件时（甚至是随意引用（例如“我下载的 xlsx”））并希望对其执行某些操作或从中生成某些内容时，尤其会触发。还可以触发清理或重组混乱的表格数据文件（格式错误的行、错误的标题、垃圾数据）到正确的电子表格中。可交付成果必须是电子表格文件。当主要交付成果是 Word 文档、HTML 报告、独立 Python 脚本、数据库管道或 Google Sheets API 集成时，即使涉及表格数据，也不要触发。"
           },
           "sparse_path": "skills/xlsx",
@@ -3038,9 +3261,9 @@
       },
       "author": "blader",
       "repository": "https://github.com/blader/humanizer",
-      "license": "See repository",
+      "license": "MIT",
       "skill_count": 1,
-      "stars": 27213,
+      "stars": 34269,
       "tags": [
         "writing",
         "tone",
@@ -3064,7 +3287,7 @@
       "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
       "license": "MIT",
       "skill_count": 98,
-      "stars": 10316,
+      "stars": 11502,
       "tags": [
         "AI",
         "deep-learning",
@@ -5932,7 +6155,7 @@
       "repository": "https://github.com/op7418/Humanizer-zh",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 12200,
+      "stars": 14878,
       "tags": [
         "chinese",
         "writing",
@@ -5949,14 +6172,14 @@
       "id": "nature-skills",
       "name": "Nature Skills",
       "summary": {
-        "en": "15 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
-        "zh": "15 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
+        "en": "19 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
+        "zh": "19 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
       },
       "author": "Yuan1z0825",
       "repository": "https://github.com/Yuan1z0825/nature-skills",
-      "license": "MIT",
-      "skill_count": 15,
-      "stars": 25293,
+      "license": "Apache-2.0",
+      "skill_count": 19,
+      "stars": 34004,
       "tags": [
         "nature",
         "writing",
@@ -5975,7 +6198,7 @@
           "id": "ns.nature-academic-search",
           "name": "nature-academic-search",
           "summary": {
-            "en": "Multi-source literature search, citation verification, MeSH search strategy, citation file management (.nbib/.ris/.bib conversion), and reference management (BibTeX, related articles, ID conversion) via MCP tools (PubMed, CrossRef, arXiv, Scopus, ScienceDirect). Use when the user needs coordinated multi-step literature workflows beyond a single MCP call. Also trigger on general literature-search needs during academic writing even without the word \"Nature\", such as searching for papers/literature, doing a literature review, verifying a citation, converting citation files, and Chinese phrasings like 文献检索、查文献、找文献、 文献综述检索、查论文、引文核对、参考文献管理、文献去重.",
+            "en": "Multi-source literature search, citation verification, strict independent other-citation audits, article-level citation metric tables, influential citer profiling with citation-context extraction, MeSH search strategy, citation file management (.nbib/.ris/.bib conversion), and reference management (BibTeX, related articles, ID conversion) via MCP tools (PubMed, CrossRef, arXiv, Scopus, ScienceDirect). Use for coordinated literature workflows beyond one MCP call, including 文献检索、 查文献、找文献、文献综述检索、查论文、引文核对、参考文献管理、文献去重、 严格他引、他引判定、排除自引、谁引用了我的文章、引用我的文章的人有没有大牛、 院士引用、校长引用、院长引用、杰青引用、长江学者引用、Fellow引用、文章引用表、 指定文章引用数、严格他引数、整理成表格.",
             "zh": "通过 MCP 工具（PubMed、CrossRef、arXiv）执行多源文献检索、引用验证、MeSH 检索策略、引用文件管理（.nbib/.ris/.bib 转换）和参考文献管理（BibTeX、相关文章、ID 转换）。当用户需要超出单次 MCP 调用的协同多步骤文献工作流时使用。"
           },
           "sparse_path": "skills/nature-academic-search",
@@ -6024,7 +6247,7 @@
           "id": "ns.nature-downloader",
           "name": "nature-downloader",
           "summary": {
-            "en": "Use this skill whenever the user wants to configure school/library access, reuse a logged-in Chrome institutional session, search library databases, download legitimate open-access or institution-authorized academic full text/PDFs, handle missing library permission, organize papers, or read PDFs and supporting information.",
+            "en": "Use when a user needs lawful academic full text, CNKI institutional access, English OA retrieval, publisher API access, institutional browser fallback, or supporting information downloads.",
             "zh": "文献获取工具。配置校园/图书馆访问、复用已登录的 Chrome 机构会话、检索图书馆数据库、下载合规的开放获取或机构授权全文 PDF，并整理与阅读文献及补充材料。"
           },
           "sparse_path": "skills/nature-downloader",
@@ -6041,7 +6264,7 @@
           "id": "ns.nature-experiment-log",
           "name": "nature-experiment-log",
           "summary": {
-            "en": "标准化实验日志记录——接收原始材料（图/语音/文字），产出带 YAML frontmatter 的标准日志到 Obsidian vault。需配合飞书 CLI 或手动输入使用。",
+            "en": "标准化实验日志记录——直接上传或读取本地图片、语音和文字，产出带 YAML frontmatter 的 Markdown；可选集成飞书 CLI 与 Obsidian。",
             "zh": "标准化实验日志技能：接收图像、语音或文字等原始素材，自动生成带 YAML frontmatter 的规范日志并归档至 Obsidian 知识库；可搭配飞书 CLI 或手动录入使用。"
           },
           "sparse_path": "skills/nature-experiment-log",
@@ -6058,7 +6281,7 @@
           "id": "ns.nature-figure",
           "name": "nature-figure",
           "summary": {
-            "en": "Submission-grade Nature/high-impact journal figure workflow for Python or R. Use whenever the user asks to create, revise, audit, or polish manuscript figures, multi-panel scientific plots, figures4papers-style matplotlib plots, or journal-ready SVG/PDF/TIFF outputs, especially for Nature-family or other high-impact journals. Before plotting, define the figure's conclusion, evidence logic, export needs, and review risks. If the user has not chosen Python or R, ask \"Python or R?\" and stop. Use only the selected backend for figure generation, previewing, exporting, and QA. Supports matplotlib/seaborn and ggplot2/patchwork/ComplexHeatmap. Not for dashboards or Illustrator/Figma-first infographics. Also trigger on general academic-writing figure needs even without the word \"Nature\", such as making figures/plots for a paper, scientific/academic plotting, data visualization for a manuscript, and Chinese phrasings like 论文配图、学术写作配图、科研绘图、科研作图、画图、作图、出图、论文图表、可视化.",
+            "en": "Create, revise, audit, and export submission-grade scientific figures for Nature-family and other high-impact venues in Python (matplotlib/seaborn) or R (ggplot2/patchwork/ComplexHeatmap), including multi-panel plots, figures4papers-style work, and journal-ready SVG/PDF/TIFF outputs. Use for paper or scientific plots, manuscript data visualization, 论文配图、学术写作配图、科研绘图、科研作图、画图、作图、出图、论文图表、可视化. Define the conclusion, evidence logic, data integrity, template compatibility, export needs, and reviewer risks before plotting; honor or persist the Python/R backend choice. Also use the separate OpenRouter GPT Image 2 route for explicit AI-generated graphical abstracts, mechanism diagrams, concept schematics, 论文示意图、机制示意图、图形摘要; this route skips backend choice and treats outputs as drafts. Do not use for interactive dashboards, statistics-only analysis, data cleaning, literature review, code debugging, pure photo editing, or Illustrator/Figma-first infographics without manuscript-figure intent.",
             "zh": "面向 Nature 和高影响力期刊投稿级图表的 Python 或 R 工作流。用户需要创建、修改、审查或润色稿件图、多面板科研图、figures4papers 风格 matplotlib 图，或期刊就绪的 SVG/PDF/TIFF 输出时使用，尤其适用于 Nature 系列或其他高影响力期刊。绘图前先明确图的结论、证据逻辑、导出需求和审稿风险。如果用户尚未选择 Python 或 R，询问“Python or R?”并停止。只使用用户选择的后端生成、预览、导出和质检图表。支持 matplotlib/seaborn 和 ggplot2/patchwork/ComplexHeatmap。不用于仪表盘或 Illustrator/Figma 优先的信息图。"
           },
           "sparse_path": "skills/nature-figure",
@@ -6089,10 +6312,26 @@
           "post_install": []
         },
         {
+          "id": "ns.nature-paper-card",
+          "name": "nature-paper-card",
+          "summary": {
+            "en": "Build a source-grounded deep-reading Paper Card for one scientific paper, preprint, PDF, DOI, arXiv page, publisher article, or pasted paper text. Use when the user asks for a Paper Card, deep-reading literature card, single-paper deep analysis, module-by-module analysis, experiment-to-claim evidence chain, conclusion-boundary audit, critical analysis, knowledge connections, or candidate research ideas. Produce the fixed Sections 01-16 covering bibliographic position, research question, background route, pain point, core insight, method and module logic, essential formulas, experiment-to-claim evidence, conclusion boundaries, author-stated limitations, critical analysis, learned knowledge, knowledge connections, and testable research ideas. Do not use for full-paper bilingual translation, formal peer-review reports, batch literature monitoring, academic-English collection, comprehension quizzes, or public-article writing.",
+            "zh": "为单篇科学论文、预印本、PDF、DOI、arXiv 页面、出版社文章或粘贴文本构建来源锚定的精读 Paper Card。适用于单篇论文深度分析、逐模块解析、实验到论断的证据链、结论边界审查、批判性分析、知识关联与可检验研究想法，输出固定的 01-16 节结构（文献定位、研究问题、背景路线、痛点、核心洞见、方法与模块逻辑、关键公式、证据链、结论边界、作者自述局限、批判分析、知识收获、知识关联、研究想法）。不用于全文双语翻译、正式审稿报告、批量文献监测或公众号写作。"
+          },
+          "sparse_path": "skills/nature-paper-card",
+          "category": "writing",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-paper-card"
+          },
+          "post_install": []
+        },
+        {
           "id": "ns.nature-paper-to-patent",
           "name": "nature-paper-to-patent",
           "summary": {
-            "en": "Convert scientific papers, theses, technical reports, source code, figures, or research manuscripts into evidence-grounded Chinese invention patent drafts. Use when an AI agent must extract patentable technical contributions, map every claimed feature to source evidence, preserve core formulas as editable Office Math, generate claim-aligned flowcharts and methodology figures, compare a paper with an existing patent, audit support and consistency, or deliver separate Chinese DOCX files for claims, specification, abstract, and abstract figure.",
+            "en": "Convert scientific papers, theses, technical reports, source code, figures, inventor notes, or research manuscripts into evidence-grounded Chinese invention patent drafts and attorney-facing technical disclosure materials. Use when an AI agent must mine patent points, draft or revise a Chinese technical disclosure (技术交底书), run prior-art comparison, convert Office project materials, map every claimed feature to source evidence, preserve core formulas as editable Office Math, generate claim-aligned flowcharts and methodology figures, compare a paper with an existing patent, audit support and consistency, or deliver Chinese DOCX patent/disclosure files.",
             "zh": "将科研论文、学位论文、技术报告、源代码、图表或研究稿件转换为证据可追溯的中文发明专利草稿。适用于提取可专利技术贡献、将每项权利要求映射至原始证据、保留可编辑公式、生成与权利要求对应的流程图和方法图，以及分别交付权利要求书、说明书、摘要与摘要附图 DOCX。"
           },
           "sparse_path": "skills/nature-paper-to-patent",
@@ -6108,7 +6347,7 @@
           "id": "ns.nature-paper2ppt",
           "name": "nature-paper2ppt",
           "summary": {
-            "en": "Build a complete but efficient Nature-style Chinese PPTX presentation from a scientific paper, preprint, PDF, article text, abstract, figure legends, or reading notes. Use this skill whenever the user asks to make slides/PPT/PPTX for journal club, group meeting, paper sharing, thesis seminar, lab meeting, department report, or academic presentation from a research paper, not only medical papers. It identifies the paper type and argument, selects only the figures needed for the story, writes Chinese slide content and speaker notes, creates the actual .pptx deck, and runs an explicit self-review/corrective revision loop focused on figure quality, text overflow prevention, and non-template visual design before delivery. Also trigger on general academic-presentation requests even without the word \"Nature\", such as turning a paper into slides, building an academic talk deck, conference/defense presentations, and Chinese phrasings like 论文做PPT、论文汇报、组会PPT、文献汇报、学术汇报、做幻灯片、讲paper、读书报告PPT.",
+            "en": "Build a complete Nature-style Chinese PPTX presentation from a scientific paper, preprint, PDF, article text, figure legends, or reading notes. Use for journal club, group meeting, thesis seminar, paper sharing, conference or defense decks, and Chinese requests such as 论文做PPT、论文汇报、组会PPT、文献汇报、学术汇报、做幻灯片、读书报告PPT. It classifies paper type, builds an evidence-led story, selects key figures, writes Chinese slide content and speaker notes, creates the actual .pptx, and runs corrective QA for complete figure crops, stable alignment, text overflow, and de-templated Chinese academic expression. Also trigger when improving weak paper-to-PPT output with cropped figures, loose alignment, obvious AI-style wording, or heavy manual rework.",
             "zh": "从科研论文、预印本、PDF、文章文本、摘要、图注或阅读笔记生成完整但高效的 Nature 风格中文 PPTX 汇报。用户需要为 journal club、组会、论文分享、毕业/课题汇报、实验室会议、院系报告或基于研究论文的学术演示制作 slides/PPT/PPTX 时使用，不限于医学论文。该技能识别论文类型和论证主线，只选择支撑叙事所需的图，撰写中文幻灯片内容和讲稿备注，创建实际 .pptx 文件，并默认使用跨平台 Python 工具做轻量验证。"
           },
           "sparse_path": "skills/nature-paper2ppt",
@@ -6140,7 +6379,7 @@
           "id": "ns.nature-proposal-writer",
           "name": "nature-proposal-writer",
           "summary": {
-            "en": "Proposal-first scientific writing pipeline. Three modes (compose/revise/hybrid) with four-layer QA pipeline. Enforces evidence-before-prose, argument-before-sections, and contracts-before-paragraphs.",
+            "en": "Proposal-first scientific writing pipeline, installed under the compatibility trigger researchwrite and the repository package name nature-proposal-writer. Use for composing, revising, or auditing research proposals, opening reports, research plans, and evidence-grounded scientific writing. Three modes (compose/revise/hybrid) with a four-layer QA pipeline. Enforces evidence-before-prose, argument-before-sections, and contracts-before-paragraphs.",
             "zh": "以提案为先的科学写作流水线，提供 compose/revise/hybrid 三种模式与四层质量校验；强制先证据后成文、先论证后章节、先契约后段落。"
           },
           "sparse_path": "skills/nature-proposal-writer",
@@ -6157,7 +6396,7 @@
           "id": "ns.nature-reader",
           "name": "nature-reader",
           "summary": {
-            "en": "Build full-paper Chinese-English side-by-side, figure/table-aware, source-grounded Markdown readers for journal or conference papers from PDF, DOI, arXiv, publisher HTML, or pasted text. Use whenever the user asks to translate or read a paper, make 中英文对照/原文对照/全文翻译解读, extract figures or tables into the right positions, preserve figure/table placement near relevant prose, or keep exact source anchors for every block. This skill must not degrade into a summary-only output unless the user explicitly asks for a summary. Also trigger on general paper-reading and translation requests even without the word \"Nature\", such as reading/translating an academic paper, literature reading, understanding a paper, and Chinese phrasings like 读论文、精读论文、论文翻译、文献翻译、文献阅读、学术阅读、帮我读这篇文章、翻译这篇paper.",
+            "en": "Build full-paper Chinese-English side-by-side, figure/table/equation-aware, source-grounded Markdown readers for journal or conference papers from PDF, DOI, arXiv, publisher HTML, or pasted text. Use whenever the user asks to translate or read a paper, make 中英文对照/原文对照/全文翻译解读, render equations instead of exposing raw LaTeX, extract figures or tables into the right positions, preserve figure/table placement near relevant prose, or keep exact source anchors for every block. This skill must not degrade into a summary-only output unless the user explicitly asks for a summary. Also trigger on general paper-reading and translation requests even without the word \"Nature\", such as reading/translating an academic paper, literature reading, understanding a paper, and Chinese phrasings like 读论文、精读论文、论文翻译、文献翻译、文献阅读、学术阅读、帮我读这篇文章、翻译这篇paper.",
             "zh": "基于 PDF、DOI、arXiv、出版社 HTML 或粘贴文本，为期刊或会议论文构建全文中英对照、图表感知、来源锚定的 Markdown 精读稿。用户要求翻译或阅读论文、制作中英文对照/原文对照/全文翻译解读、把图表插入正确位置、让图表靠近相关正文，或为每个内容块保留准确来源锚点时使用。除非用户明确要求摘要，否则该技能不能退化为只输出摘要。"
           },
           "sparse_path": "skills/nature-reader",
@@ -6170,10 +6409,27 @@
           "post_install": []
         },
         {
+          "id": "ns.nature-ref-verifier",
+          "name": "nature-ref-verifier",
+          "summary": {
+            "en": "对学术文献逐条执行多源交叉验证，逐字段对比作者、标题、年份、卷期、页码， 标记卷年/DOI年冲突、作者顺序异常、页码偏差等问题，输出结构化验证报告。 可批量处理整篇论文/开题报告的参考文献列表，也可单条校验，支持与 Zotero 同步修正。",
+            "zh": "对学术文献逐条执行多源交叉验证，逐字段对比作者、标题、年份、卷期与页码，标记卷年/DOI 年冲突、作者顺序异常、页码偏差等问题，并输出结构化验证报告。可批量处理整篇论文或开题报告的参考文献列表，也支持单条校验，并可与 Zotero 同步修正。"
+          },
+          "sparse_path": "skills/nature-ref-verifier",
+          "category": "research",
+          "subdiscipline": "other",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-ref-verifier"
+          },
+          "post_install": []
+        },
+        {
           "id": "ns.nature-response",
           "name": "nature-response",
           "summary": {
-            "en": "Draft, audit, or revise point-by-point reviewer response letters for Nature-family manuscript revisions. Use when the user provides reviewer comments, editor decision letters, revision notes, response drafts, or asks how to respond to major/minor revision requests, rebuttal letters, response to reviewers, peer-review reports, 审稿意见回复, 逐点回复, 修回信, 大修回复, 小修回复, or 如何回复 reviewer. Also trigger on general peer-review response needs during academic writing/revision even without the word \"Nature\", such as replying to reviewers for any journal, writing a rebuttal/response letter, handling revision comments, and Chinese phrasings like 回复审稿人、审稿回复、返修、 修改稿回复、写rebuttal、回应审稿意见、应对审稿.",
+            "en": "Draft, audit, or revise Nature-style revision correspondence packages: point-by-point reviewer-separated response letters, rebuttal letters, revision cover letters, LaTeX cover/response templates, and red-marked revised-manuscript excerpts. Keep mutually blind reviewers isolated so no reviewer-facing response reveals another reviewer's comments, numbering, recommendation, or author response. Use for reviewer comments, editor decision letters, pasted editorial emails, response drafts, cover letters, response to reviewers, rebuttal, 修回信, 返修邮件, 编辑邮件, 返修 cover letter, 审稿意见回复, 逐点回复, 大修回复, 小修回复, 回复审稿人, 修改稿回复, 写rebuttal, 回应审稿意见, 标红修改, or LaTeX 模板.",
             "zh": "为 Nature 系列稿件修回起草、审查或修订逐点审稿回复信。用户提供审稿意见、编辑决定信、修回笔记、回复草稿，或询问如何回应大修/小修、rebuttal letter、response to reviewers、peer-review reports、审稿意见回复、逐点回复、修回信、大修回复、小修回复、如何回复 reviewer 时使用。"
           },
           "sparse_path": "skills/nature-response",
@@ -6189,7 +6445,7 @@
           "id": "ns.nature-reviewer",
           "name": "nature-reviewer",
           "summary": {
-            "en": "Simulate a Nature-style reviewer assessment from the referee perspective rather than an author rebuttal. Use when the user wants a pre-submission review, reviewer report, peer-review style critique, novelty/significance/technical soundness assessment, reviewer-style manuscript evaluation, 审稿人视角评估, 预审稿意见, or Nature reviewer report. Return 3 reviewer reports plus a cross-review synthesis, grounded only in the local Nature reviewer source basis. Also trigger on general pre-submission review requests during academic writing even without the word \"Nature\", such as getting a mock peer review for any journal, critiquing a draft as a reviewer would, assessing novelty/rigor before submission, and Chinese phrasings like 审稿人视角、模拟审稿、预审、帮我审一下论文、投稿前自审、审稿意见模拟、找论文问题.",
+            "en": "Simulate Nature-style or general pre-submission peer review from the referee perspective, not an author rebuttal. Use for reviewer reports, mock peer review, manuscript critique, novelty/significance/technical-soundness assessment, 审稿人视角评估, 模拟审稿, 预审, 投稿前自审, 审稿意见模拟, or 帮我审一下论文. Produce evidence-grounded Major Concerns, Minor Comments, and blocking flags. For multiple reviewers, keep every reviewer mutually blind in a separate context, freeze all reports before comparison, and create any synthesis only afterward as a separate editor/author-facing artifact.",
             "zh": "从审稿人视角模拟 Nature 风格评审，而不是作者 rebuttal。用于投稿前预审、审稿报告、同行评议式批判、新颖性/重要性/技术可靠性评估、审稿人视角评估、预审稿意见或 Nature reviewer report；输出 3 份 reviewer reports 加交叉综合，并且只基于本地 Nature reviewer source basis 和用户提供的稿件事实。"
           },
           "sparse_path": "skills/nature-reviewer",
@@ -6202,10 +6458,42 @@
           "post_install": []
         },
         {
+          "id": "ns.nature-shared",
+          "name": "nature-shared",
+          "summary": {
+            "en": "Internal shared-reference support package for installed nature-writing, nature-polishing, nature-reader, and nature-paper2ppt skills. Do not invoke it as a standalone user workflow. Load only the specific core or journal-format file requested by another Nature skill.",
+            "zh": "nature-writing、nature-polishing、nature-reader、nature-paper2ppt 等 Nature 系列 skill 的内部共享参考支撑包，不作为独立用户流程调用；仅在其他 Nature skill 请求时按需加载对应的核心或期刊格式文件。与这些 skill 单独安装时需一并选择。"
+          },
+          "sparse_path": "skills/nature-shared",
+          "category": "workflow",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-shared"
+          },
+          "post_install": []
+        },
+        {
+          "id": "ns.nature-statistics",
+          "name": "nature-statistics",
+          "summary": {
+            "en": "Audit, revise, or draft manuscript statistical reporting for Nature / high-impact journal submissions. Use when the user asks to check statistical analysis sections, p values, confidence intervals, sample size, biological versus technical replicates, randomization, blinding, multiple-comparison correction, model assumptions, figure legends, Results statistics wording, reviewer comments about statistics, or Chinese academic drafts needing publication-ready Statistical analysis text. Also trigger on general paper-statistics requests such as 统计审查、统计分析小节、统计方法、p值、样本量、重复数、多重比较、置信区间、效应量、图注统计、审稿人统计意见.",
+            "zh": "为 Nature 及高影响力期刊投稿审查、修订或起草稿件中的统计报告。适用于检查统计分析小节、p 值、置信区间、样本量、生物学重复与技术重复、随机化、盲法、多重比较校正、模型假设、图注统计与 Results 中的统计表述，回应审稿人统计意见，或将中文草稿转为可发表的 Statistical analysis 文本。"
+          },
+          "sparse_path": "skills/nature-statistics",
+          "category": "writing",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-statistics"
+          },
+          "post_install": []
+        },
+        {
           "id": "ns.nature-writing",
           "name": "nature-writing",
           "summary": {
-            "en": "Draft, restructure, or plan Nature-style manuscript sections from author-provided claims, results, figures, notes, or Chinese drafts. Use when the user wants to write or rebuild an abstract, introduction, related-work, method, experiments, discussion, conclusion, title, or full manuscript argument rather than only polish finished prose. Also trigger on general academic-writing requests even without the word \"Nature\", such as writing a paper from scratch, drafting a manuscript/section, structuring a paper, and Chinese phrasings like 学术写作、科研写作、论文写作、写论文、写paper、SCI写作、帮我写论文、搭论文框架、起草论文、写引言/摘要/讨论.",
+            "en": "Draft, restructure, or plan Nature-style manuscript sections and initial-submission materials from author-provided claims, results, figures, notes, or Chinese drafts. Use when the user wants to write or rebuild an abstract, introduction, related-work, method, experiments, discussion, conclusion, title, full manuscript argument, pre-submission cover letter, title page, highlights, author-contribution statement, availability/declaration text, reviewer suggestions, or a complete initial submission package rather than only polish finished prose. Also trigger on general academic-writing and first-submission requests such as writing a paper from scratch, drafting a manuscript/section, structuring a paper, submission package, 投稿材料、首次投稿、投稿前 cover letter、投稿信、标题页、亮点、作者贡献、数据可用性声明、推荐审稿人.",
             "zh": "根据作者提供的 claims、结果、图表、笔记或中文草稿，起草、重组或规划 Nature 风格稿件章节。用户想写作或重建摘要、引言、结果叙事、讨论、结论、标题或整篇稿件论证，而不是只润色已完成文本时使用。"
           },
           "sparse_path": "skills/nature-writing",
@@ -6230,7 +6518,7 @@
       "repository": "https://github.com/HughYau/qiushi-skill",
       "license": "MIT",
       "skill_count": 11,
-      "stars": 3312,
+      "stars": 3687,
       "tags": [
         "workflow",
         "methodology",
@@ -6255,7 +6543,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "Apache-2.0",
       "skill_count": 32,
-      "stars": 1903,
+      "stars": 2439,
       "tags": [
         "anthropic",
         "claude-science",
@@ -6470,7 +6758,7 @@
           "id": "cs.figure-composer",
           "name": "figure-composer",
           "summary": {
-            "en": "Compose one publication-grade multi-panel figure. Entry from a one-line claim + data refs, OR from an existing figure via `derive_outline(png)`. Runs a per-figure loop: outline (12-col grid, per-panel ask + label_budget) → fan-out one sub-agent per panel (each loads `figure-style`) → tile + stamp letters → adversarial composite review with two-tier feedback (Tier-1 outline_revisions / Tier-2 per-panel violations) → regen affected panels, ≤3 rounds. Loads panel_task / compose_figure / compose_crops / composite_review_task / derive_outline into the kernel. For one standalone plot use `figure-style`; for whole-paper figure ordering use `paper-narrative`.",
+            "en": "Compose one publication-grade multi-panel figure. Entry from a one-line claim + data files, OR from an existing figure via `derive_outline_prompt` (you read the PNG). Runs a per-figure loop: outline (12-col grid, per-panel ask + label_budget) → render each panel with `panel_task` (loading `figure-style`), one at a time or parallelized → tile + stamp letters with `compose_figure` → adversarial composite self-review with two-tier feedback (Tier-1 outline_revisions / Tier-2 per-panel violations) → regen affected panels, ≤3 rounds. Helpers: panel_task / compose_figure / compose_crops / composite_review_task / derive_outline_prompt. For one standalone plot use `figure-style`; for whole-paper figure ordering use `paper-narrative`.",
             "zh": "编排一张发表级多面板图。可从一句话论点＋数据引用出发，或从已有图 derive_outline(png) 反推。按图运行循环：大纲（12 列栅格、逐面板需求与标签预算）→ 每面板派发一个子 agent（各自加载 figure-style）→ 拼接与标注字母 → 对抗式合成评审。"
           },
           "sparse_path": "skills/claude-science/figure-composer",
@@ -6608,7 +6896,7 @@
           "id": "cs.paper-narrative",
           "name": "paper-narrative",
           "summary": {
-            "en": "Judge and reshape the STORY a paper's figures tell. Input is the work itself — manuscript (or abstract) + figure deck — no hand-written brief. `derive_paper_brief(abstract, captions)` extracts pitch/vision/per-figure-claims; a handling-editor reviewer on the full deck returns hook_verdict (would Fig 1 make me send this for review?), arc (hook→mechanism→evidence→application), figure_moves (panels in the wrong figure), missing_panels (concrete analyses to RUN), kill_list, and boldest_defensible_fig1. Hands per-figure claims to `figure-composer`. Load when writing or revising a paper.",
+            "en": "Judge and reshape the STORY a paper's figures tell. Input is the work itself — manuscript (or abstract) + figure deck — no hand-written brief. `paper_brief_prompt(abstract, captions)` hands you the prompt to write the brief yourself (pitch/vision/per-figure-claims); then you play a handling editor over the full deck and return hook_verdict (would Fig 1 make me send this for review?), arc (hook→mechanism→evidence→application), figure_moves (panels in the wrong figure), missing_panels (concrete analyses to RUN), kill_list, and boldest_defensible_fig1. Hands per-figure claims to `figure-composer`. Load when writing or revising a paper.",
             "zh": "评判并重塑一篇论文的图件所讲述的「故事」。输入是作品本身——手稿（或摘要）＋图集，无需手写简报。derive_paper_brief 提取卖点/愿景/逐图论点；处理编辑式评审给出 hook 结论、叙事弧（钩子→机制→证据→应用）与逐面板的图件调整建议。"
           },
           "sparse_path": "skills/claude-science/paper-narrative",
@@ -6625,7 +6913,7 @@
           "id": "cs.pdf-explore",
           "name": "pdf-explore",
           "summary": {
-            "en": "Use this skill when the user has attached a PDF, paper, report, or other document and the answer needs content from more than one place in it: summarize the methods or any other section, compare sections, find where a topic is discussed, read a value or label off a figure or chart, or find/list/extract every instance of something across the whole document (datasets, benchmarks, citations, figures, table rows, accession numbers — including appendices). Skip it only for a single lookup of 1–4 pages quoted in your very next response — `read_file(pages=[...])` attaches pages as images that are dropped from context after one turn, so multi-section answers end up re-reading the same ranges repeatedly. Parses the PDF once in the Python kernel: `pdf_pages` (pages as persistent text), `pdf_outline` (TOC), `pdf_scan` (rank pages by relevance), `pdf_map`/`pdf_extract` (per-page summary / structured fields via parallel haiku calls). For PDF creation/manipulation, use reportlab/pypdf directly.",
+            "en": "Use this skill when the user has attached a PDF, paper, report, or other document and the answer needs content from more than one place in it: summarize the methods or any other section, compare sections, find where a topic is discussed, read a value or label off a figure or chart, or find/list/extract every instance of something across the whole document (datasets, benchmarks, citations, figures, table rows, accession numbers — including appendices). Parses the PDF once with a deterministic Python kernel: `pdf_pages` (pages as persistent text, or high-res images), `pdf_outline` (embedded TOC), `pdf_scan` (a lexical pre-filter that narrows a long doc to candidate pages), `pdf_grep` (regex sweep for exhaustive pattern extraction). You read the shortlist and do the relevance / summary / extraction judgment yourself. For PDF creation/manipulation, use reportlab/pypdf directly.",
             "zh": "当用户附上 PDF、论文、报告或文档且答案需要文中多处内容时使用：总结方法或任意章节、比较章节、定位某话题的讨论、从图表读取数值或标签，或在全文中查找/列举/抽取某类事物（数据集、基准、引用、图件等）的每一处实例。"
           },
           "sparse_path": "skills/claude-science/pdf-explore",
@@ -6843,7 +7131,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 1903,
+      "stars": 2439,
       "tags": [
         "visualization",
         "matplotlib",
@@ -6868,7 +7156,7 @@
       "repository": "https://github.com/ethanweber/posterskill",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 566,
+      "stars": 593,
       "tags": [
         "poster",
         "visualization",
@@ -6886,14 +7174,14 @@
       "id": "paper-polish-workflow-skill",
       "name": "Paper Polish Workflow",
       "summary": {
-        "en": "15 workflow skills for paper translation, polishing, mock review, and submission preparation.",
-        "zh": "15 个论文翻译、润色、审稿模拟与投稿工作流 skill。"
+        "en": "16 workflow skills for paper translation, polishing, mock review, and submission preparation.",
+        "zh": "16 个论文翻译、润色、审稿模拟与投稿工作流 skill。"
       },
       "author": "Lylll9436",
       "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",
       "license": "MIT",
-      "skill_count": 15,
-      "stars": 373,
+      "skill_count": 16,
+      "stars": 382,
       "tags": [
         "writing",
         "translation",

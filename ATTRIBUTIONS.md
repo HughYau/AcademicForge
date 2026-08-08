@@ -29,25 +29,25 @@ This means:
 
 - **Author**: K-Dense-AI
 - **License**: MIT License
-- **Included Version**: See `.gitmodules` for current commit hash
+- **Included Version**: Installed from the current upstream default branch at install time
 - **Purpose**: Scientific and research workflows for any AI agent
-- **Modifications**: None (used as-is via git submodule)
-- **Original License Text**: See `skills/scientific-agent-skills/LICENSE.md`
+- **Modifications**: None (installed from upstream via git clone, or sparse checkout for individual sub-skills)
+- **Original License Text**: See upstream `LICENSE.md`
 
-**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. It currently provides 143 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with 78+ scientific databases plus 70+ optimized Python package workflows.
+**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. As of the 2026-08-08 refresh it provides 160 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with scientific databases and optimized Python package workflows.
 
 ---
 
 ### 2. AI-research-SKILLs
 
-**Original Repository**: [orchestra-research/AI-research-SKILLs](https://github.com/orchestra-research/AI-research-SKILLs)
+**Original Repository**: [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs)
 
-- **Author**: orchestra-research
-- **License**: Check original repository for license details
-- **Included Version**: See `.gitmodules` for current commit hash
+- **Author**: Orchestra-Research
+- **License**: MIT License
+- **Included Version**: Installed from the current upstream default branch at install time
 - **Purpose**: Research methodology, experimental design, data analysis
-- **Modifications**: None (used as-is via git submodule)
-- **Original License Text**: See `skills/AI-research-SKILLs/LICENSE`
+- **Modifications**: None (installed from upstream via git clone, or sparse checkout for individual sub-skills)
+- **Original License Text**: See upstream `LICENSE`
 
 **Why we included it**: The gold standard for AI research engineering workflows, with 98 expert-level skills covering the complete research lifecycle. Each skill contains detailed documentation and reference materials. Covers cutting-edge frameworks across model architecture (LitGPT, Mamba, RWKV), training (Axolotl, DeepSpeed, FSDP), post-training (TRL, OpenRLHF), inference (vLLM, TensorRT-LLM), and evaluation (lm-eval-harness). Invaluable for researchers and engineers working on LLMs, multimodal models, or publishing ML papers at top-tier conferences (NeurIPS, ICML, ICLR).
 
@@ -57,12 +57,12 @@ This means:
 
 **Original Repository**: [blader/humanizer](https://github.com/blader/humanizer)
 
-- **Author**: blader
-- **License**: Check original repository for license details
-- **Included Version**: See `.gitmodules` for current commit hash
+- **Author**: blader (Siqi Chen)
+- **License**: MIT License
+- **Included Version**: Installed from the current upstream default branch at install time
 - **Purpose**: Academic tone refinement, readability improvement
-- **Modifications**: None (used as-is via git submodule)
-- **Original License Text**: See `skills/humanizer/LICENSE`
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: See upstream `LICENSE`
 
 **Why we included it**: Helps refine academic writing to maintain appropriate scholarly tone while improving clarity and readability.
 
@@ -74,10 +74,10 @@ This means:
 
 - **Author**: op7418
 - **License**: MIT License
-- **Included Version**: See `.gitmodules` for current commit hash
+- **Included Version**: Installed from the current upstream default branch at install time
 - **Purpose**: Chinese de-AI rewriting, naturalization, and Chinese academic polishing
-- **Modifications**: None (used as-is via git submodule)
-- **Original License Text**: See `skills/humanizer-zh/LICENSE`
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: See upstream `LICENSE`
 
 **Why we included it**: Complements `humanizer` with a Chinese-first variant for more natural Chinese abstracts, paper sections, and bilingual revision workflows.
 
@@ -89,12 +89,12 @@ This means:
 
 - **Author**: obra
 - **License**: MIT License
-- **Included Version**: Synced snapshot of `skills/` (see git history for latest sync commit)
+- **Included Version**: Installed from the current upstream default branch at install time
 - **Purpose**: Structured development workflow skills (planning, debugging, TDD, review workflows)
-- **Modifications**: Integrated as skills-only content under `skills/superpowers` (plugin/non-skill directories are intentionally excluded)
+- **Modifications**: None. Installed by sparse checkout of the upstream `skills/` directory only, so plugin/non-skill directories are intentionally excluded.
 - **Original License Text**: See upstream `obra/superpowers` repository
 
-**Why we included it**: Adds battle-tested workflow skills like brainstorming, writing-plans, systematic-debugging, and test-driven-development that complement academic and research implementation workflows.
+**Why we included it**: Adds battle-tested workflow skills like brainstorming, writing-plans, systematic-debugging, and test-driven-development that complement academic and research implementation workflows. The upstream `skills/` directory holds 14 skills as of the 2026-08-08 refresh.
 
 ---
 
@@ -104,12 +104,12 @@ This means:
 
 - **Author**: Lylll9436
 - **License**: MIT License
-- **Included Version**: See `.gitmodules` for current commit hash
+- **Included Version**: Installed from the current upstream default branch at install time
 - **Purpose**: End-to-end academic paper translation, polishing, review simulation, and submission workflow
-- **Modifications**: None (used as-is via git submodule)
-- **Original License Text**: See `skills/paper-polish-workflow-skill/LICENSE`
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: See upstream `LICENSE`
 
-**Why we included it**: It adds a tightly integrated paper-writing workflow pack that complements Academic Forge's research and visualization skills with bilingual translation, polishing, reviewer simulation, literature search, and submission-focused helpers.
+**Why we included it**: It adds a tightly integrated paper-writing workflow pack that complements Academic Forge's research and visualization skills with bilingual translation, polishing, reviewer simulation, literature search, and submission-focused helpers. The pack holds 16 skills as of the 2026-08-08 refresh.
 
 ---
 
@@ -133,13 +133,13 @@ This means:
 **Original Repository**: [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills)
 
 - **Author**: Yuan1z0825 / Yuan Yizhe
-- **License**: MIT License
+- **License**: Apache-2.0
 - **Included Version**: Installed from the current upstream default branch
-- **Purpose**: Nature-style academic writing, polishing, citations, data availability, figures, paper reading, reviewer responses, slides, and literature search
+- **Purpose**: Nature-style academic writing, polishing, citations, data availability, figures, paper reading, reviewer responses, slides, statistics reporting, reference verification, and literature search
 - **Modifications**: None (installed from upstream via git clone or sparse checkout for sub-skills)
 - **Original License Text**: See upstream `LICENSE`
 
-**Why we included it**: It provides a focused Nature-family publication workflow that complements Academic Forge's research, writing, citation, figure, and revision workflows with practical Chinese-author support.
+**Why we included it**: It provides a focused Nature-family publication workflow that complements Academic Forge's research, writing, citation, figure, and revision workflows with practical Chinese-author support. The pack holds 19 skills as of the 2026-08-08 refresh; `ns.nature-shared` is an internal shared-reference package that the other Nature skills load, so select it alongside them when installing individual sub-skills.
 
 ---
 
@@ -158,6 +158,51 @@ This means:
 
 ---
 
+### 10. andrej-karpathy-skills
+
+**Original Repository**: [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+
+- **Author**: multica-ai
+- **License**: No license file declared upstream — see the repository before redistributing
+- **Included Version**: Installed from the current upstream default branch at install time
+- **Purpose**: A single workflow skill encoding four coding principles — Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution
+- **Modifications**: None. Installed by sparse checkout of the upstream `skills/` directory only.
+- **Original License Text**: None published upstream at the time of review
+
+**Why we included it**: Research code drifts toward accidental complexity. This pack gives a short, opinionated discipline for keeping analysis code minimal and verifiable, complementing the heavier workflow packs.
+
+---
+
+### 11. qiushi-skill
+
+**Original Repository**: [HughYau/qiushi-skill](https://github.com/HughYau/qiushi-skill)
+
+- **Author**: HughYau
+- **License**: MIT License
+- **Included Version**: Installed from the current upstream default branch at install time
+- **Purpose**: Chinese-first academic writing and research workflow helpers
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: See upstream `LICENSE`
+
+**Why we included it**: It covers Chinese-language academic conventions that the Nature-family and English-first packs do not, and it is maintained by this project's author, so breakage is fixable quickly.
+
+---
+
+### 12. posterskill
+
+**Original Repository**: [ethanweber/posterskill](https://github.com/ethanweber/posterskill)
+
+- **Author**: ethanweber
+- **License**: No license file declared upstream — see the repository before redistributing
+- **Included Version**: Installed from the current upstream default branch at install time
+- **Purpose**: Conference poster generation
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: None published upstream at the time of review
+
+**Why we included it**: Poster production is a recurring, deadline-driven academic task that the writing and figure packs do not cover end to end.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -167,19 +212,24 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 
 ### License Summary
 
+Verified against each upstream repository on 2026-08-08.
+
 | Skill | License | Commercial Use | Attribution Required |
 |-------|---------|----------------|---------------------|
 | scientific-agent-skills | MIT | ✅ Yes | ✅ Yes |
-| AI-research-SKILLs | TBD* | Check repo | Check repo |
-| humanizer | TBD* | Check repo | Check repo |
+| AI-research-SKILLs | MIT | ✅ Yes | ✅ Yes |
+| humanizer | MIT | ✅ Yes | ✅ Yes |
 | humanizer-zh | MIT | ✅ Yes | ✅ Yes |
 | superpowers | MIT | ✅ Yes | ✅ Yes |
 | paper-polish-workflow-skill | MIT | ✅ Yes | ✅ Yes |
 | scientific-visualization | MIT | ✅ Yes | ✅ Yes |
-| nature-skills | MIT | ✅ Yes | ✅ Yes |
+| nature-skills | Apache-2.0 | ✅ Yes | ✅ Yes |
 | claude-science | Apache-2.0† | ✅ Yes | ✅ Yes |
+| qiushi-skill | MIT | ✅ Yes | ✅ Yes |
+| andrej-karpathy-skills | None declared* | ⚠️ Check repo | ⚠️ Check repo |
+| posterskill | None declared* | ⚠️ Check repo | ⚠️ Check repo |
 
-*Please check the original repository for current license information.
+*No `LICENSE` file is published upstream. Default copyright applies: the code is readable on GitHub but not clearly licensed for redistribution or commercial use. Contact the author before relying on it in a commercial or redistributed product.
 
 †Most Claude Science skills are Apache-2.0; a few bundle their own `LICENSE.txt` — check each skill's frontmatter.
 
@@ -255,13 +305,17 @@ This document tracks which versions of each skill are included:
 | 2026-03-04 | scientific-visualization (local) | tracked in this repository | Initial inclusion |
 | 2026-05-17 | nature-skills | installed from Yuan1z0825/nature-skills | Initial inclusion |
 | 2026-07-02 | claude-science (local) | tracked in this repository | Initial inclusion of Anthropic's 32 Claude Science skills as a categorized local collection |
+| 2026-08-08 | scientific-agent-skills | upstream default branch | Catalog refresh: 149 → 160 skills; upstream replaced `iso-13485-certification` with the broader `iso-standards-readiness` |
+| 2026-08-08 | nature-skills | upstream default branch | Catalog refresh: 15 → 19 skills; **license corrected from MIT to Apache-2.0** |
+| 2026-08-08 | superpowers | upstream default branch | Measured count corrected 15 → 14 |
+| 2026-08-08 | paper-polish-workflow-skill | upstream default branch | Measured count corrected 15 → 16 |
+| 2026-08-08 | humanizer | upstream default branch | License recorded exactly: "See repository" → MIT |
+| 2026-08-08 | andrej-karpathy-skills, qiushi-skill, posterskill | upstream default branch | Attribution sections added (previously listed in the registry but undocumented here) |
 
-To see the current linked submodule versions, run:
-```bash
-git submodule status
-```
-
-For `superpowers` (skills-only sync), check the latest sync commits in this repository's git history. For `scientific-visualization`, check normal file history in this repository.
+Packs are no longer vendored as git submodules. Every non-local pack is fetched from its upstream
+default branch at install time by `scripts/forge-install.sh` / `scripts/forge-install.ps1`, so the
+"included version" is whatever upstream HEAD is when a user installs. For the two local packs
+(`claude-science`, `scientific-visualization`), check normal file history in this repository.
 
 ---
 

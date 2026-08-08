@@ -105,12 +105,45 @@ test('classifies and translates the current upstream additions', () => {
     'ns.nature-literature-pipeline': { category: 'research', subdiscipline: 'other' },
     'ns.nature-proposal-writer': { category: 'writing' },
     'ns.nature-paper-to-patent': { category: 'writing' },
+    // 2026-08-08 refresh: scientific-agent-skills 149 -> 160, nature-skills 15 -> 19.
+    'sa.analytical-method-validation': { category: 'research', subdiscipline: 'chem-mat-phys' },
+    'sa.deepspot-m': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.genomic-coordinates': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.genomic-intelligence': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.iso-standards-readiness': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.ontology-term-resolution': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.openpiv': { category: 'research', subdiscipline: 'chem-mat-phys' },
+    'sa.paperclip': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.pathogen-variant-surveillance': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.pkpd-modeling': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.relsa-severity-assessment': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.uncertainty-and-units': { category: 'research', subdiscipline: null },
+    'ns.nature-paper-card': { category: 'writing' },
+    'ns.nature-ref-verifier': { category: 'research', subdiscipline: 'other' },
+    'ns.nature-shared': { category: 'workflow' },
+    'ns.nature-statistics': { category: 'writing' },
   };
 
   for (const [id, expected] of Object.entries(expectedClassification)) {
     assert.deepEqual(classification[id], expected, `missing or incorrect classification for ${id}`);
     assert.ok(translations[id]?.trim(), `missing Chinese translation for ${id}`);
   }
+});
+
+test('retired upstream skill ids are not resurrected', () => {
+  const classification = JSON.parse(
+    readFileSync(new URL('../skill-classification.json', import.meta.url), 'utf8'),
+  );
+  const translations = JSON.parse(
+    readFileSync(new URL('../skill-translations.zh.json', import.meta.url), 'utf8'),
+  );
+
+  // Upstream K-Dense-AI/scientific-agent-skills replaced skills/iso-13485-certification
+  // with the broader skills/iso-standards-readiness on or before 2026-08-08. Keeping the
+  // old mapping makes `build-skill-index.mjs` fail with "Classification contains unknown ids".
+  assert.equal(classification['sa.iso-13485-certification'], undefined);
+  assert.equal(translations['sa.iso-13485-certification'], undefined);
+  assert.ok(classification['sa.iso-standards-readiness'], 'replacement id is classified');
 });
 
 test('claude-science is registered as a locally maintained collection', () => {
