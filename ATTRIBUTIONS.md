@@ -203,6 +203,21 @@ This means:
 
 ---
 
+### 13. academic-humanizer
+
+**Original Repository**: [AIScientists-Dev/academic-humanizer](https://github.com/AIScientists-Dev/academic-humanizer)
+
+- **Author**: AIScientists-Dev (Jie Ding, University of Minnesota)
+- **License**: MIT License — the upstream `LICENSE` adds a notice that the work builds on [blader/humanizer](https://github.com/blader/humanizer) (MIT) and adopts standards from [koaeraser/ARMS](https://github.com/koaeraser/ARMS)
+- **Included Version**: Installed from the current upstream default branch at install time
+- **Purpose**: Remove AI-writing tells from manuscripts, theses, rebuttals, and NSF/NIH proposals while preserving scholarly conventions, author voice, and claim-to-evidence discipline
+- **Modifications**: None (installed from upstream via git clone)
+- **Original License Text**: See upstream `LICENSE`
+
+**Why we included it**: It is the most carefully scoped skill in this category. Where general humanizers flatten academic precision, this one is layered — strip AI tells, then explicitly preserve calibrated hedging, passive voice, citations, and numbers; then enforce that no verb outruns its evidence; then calibrate to the author's own prior accepted writing; then shift register for proposal mode. The upstream README is explicit that it does not generate findings, alter data or citations, and is not built to evade AI-use disclosure. It is also the tool [*Nature* covered in July 2026](https://www.nature.com/articles/d41586-026-02105-3), which makes the scope limits worth reading alongside it. Featured first under **Writing & polishing**.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -218,6 +233,7 @@ Verified against each upstream repository on 2026-08-08.
 |-------|---------|----------------|---------------------|
 | scientific-agent-skills | MIT | ✅ Yes | ✅ Yes |
 | AI-research-SKILLs | MIT | ✅ Yes | ✅ Yes |
+| academic-humanizer | MIT | ✅ Yes | ✅ Yes |
 | humanizer | MIT | ✅ Yes | ✅ Yes |
 | humanizer-zh | MIT | ✅ Yes | ✅ Yes |
 | superpowers | MIT | ✅ Yes | ✅ Yes |
@@ -311,6 +327,7 @@ This document tracks which versions of each skill are included:
 | 2026-08-08 | paper-polish-workflow-skill | upstream default branch | Measured count corrected 15 → 16 |
 | 2026-08-08 | humanizer | upstream default branch | License recorded exactly: "See repository" → MIT |
 | 2026-08-08 | andrej-karpathy-skills, qiushi-skill, posterskill | upstream default branch | Attribution sections added (previously listed in the registry but undocumented here) |
+| 2026-08-11 | academic-humanizer | installed from AIScientists-Dev/academic-humanizer | Initial inclusion; pinned first under Writing & polishing via the new `featured` registry flag |
 
 Packs are no longer vendored as git submodules. Every non-local pack is fetched from its upstream
 default branch at install time by `scripts/forge-install.sh` / `scripts/forge-install.ps1`, so the

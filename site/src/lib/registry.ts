@@ -39,6 +39,8 @@ export interface SkillRecord {
   post_install: string[];
   sub_skills?: SubSkillRecord[];
   is_collection?: boolean;
+  /** Pins a pack to the top of its category, ahead of higher-starred neighbours. */
+  featured?: boolean;
 }
 
 export interface RegistryData {
@@ -52,9 +54,14 @@ export interface RegistryItemMatch {
 
 export const formatCount = (value: number) => new Intl.NumberFormat('en-US').format(value);
 
+// Featured packs come first (SkillGrid buckets by category afterwards, so a
+// featured pack heads its own category); everything else falls back to stars.
 export const sortSkillsByStars = (skills: SkillRecord[]) => {
   return [...skills].sort(
-    (left, right) => right.stars - left.stars || right.skill_count - left.skill_count || left.name.localeCompare(right.name),
+    (left, right) => Number(right.featured ?? false) - Number(left.featured ?? false)
+      || right.stars - left.stars
+      || right.skill_count - left.skill_count
+      || left.name.localeCompare(right.name),
   );
 };
 

@@ -3253,6 +3253,31 @@
       ]
     },
     {
+      "id": "academic-humanizer",
+      "name": "Academic Humanizer",
+      "summary": {
+        "en": "Strips AI-writing tells from manuscripts and NSF/NIH proposals while preserving scholarly conventions, author voice, and claim-to-evidence discipline.",
+        "zh": "去除论文与 NSF/NIH 基金申请中的 AI 写作痕迹，同时保留学术表达惯例、作者个人文风，以及「论断—证据」的对应关系。"
+      },
+      "author": "AIScientists-Dev",
+      "repository": "https://github.com/AIScientists-Dev/academic-humanizer",
+      "license": "MIT",
+      "skill_count": 1,
+      "stars": 890,
+      "featured": true,
+      "tags": [
+        "writing",
+        "de-ai",
+        "academic-style",
+        "grant-writing"
+      ],
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/AIScientists-Dev/academic-humanizer.git"
+      },
+      "post_install": []
+    },
+    {
       "id": "humanizer",
       "name": "Humanizer",
       "summary": {
