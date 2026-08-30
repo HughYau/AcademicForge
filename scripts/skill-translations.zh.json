@@ -307,5 +307,9 @@
   "ns.nature-paper-card": "为单篇科学论文、预印本、PDF、DOI、arXiv 页面、出版社文章或粘贴文本构建来源锚定的精读 Paper Card。适用于单篇论文深度分析、逐模块解析、实验到论断的证据链、结论边界审查、批判性分析、知识关联与可检验研究想法，输出固定的 01-16 节结构（文献定位、研究问题、背景路线、痛点、核心洞见、方法与模块逻辑、关键公式、证据链、结论边界、作者自述局限、批判分析、知识收获、知识关联、研究想法）。不用于全文双语翻译、正式审稿报告、批量文献监测或公众号写作。",
   "ns.nature-ref-verifier": "对学术文献逐条执行多源交叉验证，逐字段对比作者、标题、年份、卷期与页码，标记卷年/DOI 年冲突、作者顺序异常、页码偏差等问题，并输出结构化验证报告。可批量处理整篇论文或开题报告的参考文献列表，也支持单条校验，并可与 Zotero 同步修正。",
   "ns.nature-shared": "nature-writing、nature-polishing、nature-reader、nature-paper2ppt 等 Nature 系列 skill 的内部共享参考支撑包，不作为独立用户流程调用；仅在其他 Nature skill 请求时按需加载对应的核心或期刊格式文件。与这些 skill 单独安装时需一并选择。",
-  "ns.nature-statistics": "为 Nature 及高影响力期刊投稿审查、修订或起草稿件中的统计报告。适用于检查统计分析小节、p 值、置信区间、样本量、生物学重复与技术重复、随机化、盲法、多重比较校正、模型假设、图注统计与 Results 中的统计表述，回应审稿人统计意见，或将中文草稿转为可发表的 Statistical analysis 文本。"
+  "ns.nature-statistics": "为 Nature 及高影响力期刊投稿审查、修订或起草稿件中的统计报告。适用于检查统计分析小节、p 值、置信区间、样本量、生物学重复与技术重复、随机化、盲法、多重比较校正、模型假设、图注统计与 Results 中的统计表述，回应审稿人统计意见，或将中文草稿转为可发表的 Statistical analysis 文本。",
+  "sa.lab-hardware-cad": "用 build123d 参数化建模设计定制实验室硬件，并导出可直接加工的 STEP、STL 与 DXF 文件——微流控芯片与模具、光机支架与面包板转接件、比色皿与微孔板夹具、试管架、动物行为学装置以及 3D 打印仪器配件。适用于研究任务需要一个必须与标准化耗材、光学平台、饲养笼具或 3D 打印/CNC/激光工艺相配合的实体零件时。",
+  "sa.ncats-arax": "查询 NCATS Translator ARAX 生产环境 API，获取有边界、有类型、带溯源信息的生物医学知识图谱一跳与端点锚定两跳关系。适用于 Biolink 约束下的 RTX-KG2 查询、显式指定数据源的 ARAX 联邦检索、独立实体规范化、带限定符的图遍历，以及查看 TRAPI 边绑定、文献与知识来源溯源。不适用于推断、排序、开放式路径搜索、临床决策建议或敏感查询。",
+  "sa.waypoint-bio": "用于 Outpost Bio 开源微生物组基础模型的工作流——Waypoint 系列 checkpoint（Waypoint-6m、Waypoint-45m、Waypoint-170m）、Atlas 预训练语料、Compass 八任务基准以及 waypoint-bio 包提供的 waypoint CLI。涵盖微生物组样本嵌入、基于物种丰度数据的微调、在 Compass 上评测 checkpoint、以物种丰度谱预训练 GPT-2 模型，以及将 MetaPhlAn、Kraken2、QIIME 2 或 MGnify 丰度表转换为 waypoint 格式。",
+  "ns.nature-image2ppt": "将幻灯片图片、截图、扫描版 PDF 以及纯图片型 PPT/PPTX 转换为对象级可编辑的 PowerPoint，支持语义区域混合重建、按测量还原的流程图与知识图谱、原生圆形节点与连接线、单对象细箭头与实心箭头、备注保留以及渲染后质检。适用于图片转可编辑 PPT、截图还原 PPT、扫描 PDF 恢复、图片型 PPTX 转换与流程图/知识图谱/复合图形/箭头重建；不用于从笔记新建演示文稿。"
 }

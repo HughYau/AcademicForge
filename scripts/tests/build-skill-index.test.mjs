@@ -122,6 +122,11 @@ test('classifies and translates the current upstream additions', () => {
     'ns.nature-ref-verifier': { category: 'research', subdiscipline: 'other' },
     'ns.nature-shared': { category: 'workflow' },
     'ns.nature-statistics': { category: 'writing' },
+    // 2026-08-30 refresh: scientific-agent-skills 160 -> 163, nature-skills 19 -> 20.
+    'sa.lab-hardware-cad': { category: 'research', subdiscipline: 'lab-automation' },
+    'sa.ncats-arax': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.waypoint-bio': { category: 'research', subdiscipline: 'life-sci' },
+    'ns.nature-image2ppt': { category: 'visualization' },
   };
 
   for (const [id, expected] of Object.entries(expectedClassification)) {

@@ -307,5 +307,9 @@
   "ns.nature-paper-card": { "category": "writing" },
   "ns.nature-ref-verifier": { "category": "research", "subdiscipline": "other" },
   "ns.nature-shared": { "category": "workflow" },
-  "ns.nature-statistics": { "category": "writing" }
+  "ns.nature-statistics": { "category": "writing" },
+  "sa.lab-hardware-cad": { "category": "research", "subdiscipline": "lab-automation" },
+  "sa.ncats-arax": { "category": "research", "subdiscipline": "life-sci" },
+  "sa.waypoint-bio": { "category": "research", "subdiscipline": "life-sci" },
+  "ns.nature-image2ppt": { "category": "visualization" }
 }

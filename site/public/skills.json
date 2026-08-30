@@ -11,7 +11,7 @@
       "repository": "https://github.com/obra/superpowers",
       "license": "MIT",
       "skill_count": 14,
-      "stars": 268888,
+      "stars": 279575,
       "tags": [
         "workflow",
         "planning",
@@ -37,7 +37,7 @@
       "repository": "https://github.com/multica-ai/andrej-karpathy-skills",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 200569,
+      "stars": 208824,
       "tags": [
         "workflow",
         "process",
@@ -56,14 +56,14 @@
       "id": "scientific-agent-skills",
       "name": "Scientific Agent Skills",
       "summary": {
-        "en": "160 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
-        "zh": "160 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
+        "en": "163 research workflow skills across bioinformatics, chemoinformatics, clinical research, and more than 15 domains.",
+        "zh": "163 个科研工作流 skill，覆盖生物信息、化学信息、临床研究等 15+ 领域。"
       },
       "author": "K-Dense-AI",
       "repository": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "license": "MIT",
-      "skill_count": 160,
-      "stars": 32943,
+      "skill_count": 163,
+      "stars": 38594,
       "tags": [
         "science",
         "research",
@@ -1160,7 +1160,7 @@
           "id": "sa.imaging-data-commons",
           "name": "imaging-data-commons",
           "summary": {
-            "en": "Query and download public cancer imaging data from NCI Imaging Data Commons using idc-index. Use for accessing large-scale radiology (CT, MR, PET) and pathology datasets for AI training or research. No authentication required. Query by metadata, visualize in browser, check licenses.",
+            "en": "Query and download public cancer imaging data from NCI Imaging Data Commons. Invoke for any question about IDC collections, cancer imaging datasets, DICOM data access, radiology (CT, MR, PET) or pathology AI training sets, metadata queries, visualization, or license checks — even when the user doesn't explicitly mention \"IDC\". No authentication required.",
             "zh": "使用 idc-index 从 NCI Imaging Data Commons 查询和下载公共癌症成像数据。用于访问大规模放射学（CT、MR、PET）和病理学数据集以进行 AI 培训或研究。无需身份验证。按元数据查询、在浏览器中可视化、检查许可证。"
           },
           "sparse_path": "skills/imaging-data-commons",
@@ -1209,6 +1209,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/iso-standards-readiness"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.lab-hardware-cad",
+          "name": "lab-hardware-cad",
+          "summary": {
+            "en": "Design custom laboratory hardware as parametric build123d models and export fabrication-ready STEP, STL, and DXF files - microfluidic chips and molds, optomechanical mounts and breadboard adapters, cuvette and microplate holders, tube racks, animal-behavior rigs, and 3D-printed instrument fixtures. Use when a research task needs a physical part that must mate with standardized labware, an optical table, a cage system, or a printer, CNC, or laser process.",
+            "zh": "用 build123d 参数化建模设计定制实验室硬件，并导出可直接加工的 STEP、STL 与 DXF 文件——微流控芯片与模具、光机支架与面包板转接件、比色皿与微孔板夹具、试管架、动物行为学装置以及 3D 打印仪器配件。适用于研究任务需要一个必须与标准化耗材、光学平台、饲养笼具或 3D 打印/CNC/激光工艺相配合的实体零件时。"
+          },
+          "sparse_path": "skills/lab-hardware-cad",
+          "category": "research",
+          "subdiscipline": "lab-automation",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/lab-hardware-cad"
           },
           "post_install": [
             "clean_ads"
@@ -1523,6 +1543,26 @@
             "method": "sparse-checkout",
             "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
             "sparse_path": "skills/molfeat"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
+          "id": "sa.ncats-arax",
+          "name": "ncats-arax",
+          "summary": {
+            "en": "Queries the NCATS Translator ARAX production API for bounded, typed, provenance-rich one-hop and endpoint-pinned two-hop biomedical knowledge-graph relationships. Use for Biolink-constrained RTX-KG2 lookup, explicit selected-provider ARAX federation, separate entity normalization, qualifier-aware graph traversal, and inspection of TRAPI edge bindings, publications, and knowledge-source provenance. Do not use for inference, ranking, open-ended pathfinding, clinical guidance, or sensitive queries.",
+            "zh": "查询 NCATS Translator ARAX 生产环境 API，获取有边界、有类型、带溯源信息的生物医学知识图谱一跳与端点锚定两跳关系。适用于 Biolink 约束下的 RTX-KG2 查询、显式指定数据源的 ARAX 联邦检索、独立实体规范化、带限定符的图遍历，以及查看 TRAPI 边绑定、文献与知识来源溯源。不适用于推断、排序、开放式路径搜索、临床决策建议或敏感查询。"
+          },
+          "sparse_path": "skills/ncats-arax",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/ncats-arax"
           },
           "post_install": [
             "clean_ads"
@@ -3191,6 +3231,26 @@
           ]
         },
         {
+          "id": "sa.waypoint-bio",
+          "name": "waypoint-bio",
+          "summary": {
+            "en": "Use when working with Outpost Bio's open microbiome foundation models - the Waypoint checkpoints (Waypoint-6m, Waypoint-45m, Waypoint-170m), the Atlas pretraining corpus, the Compass eight-task benchmark, or the `waypoint` CLI from the `waypoint-bio` package. Covers embedding microbiome samples, fine-tuning on taxonomic abundance data, benchmarking a checkpoint on Compass, pretraining a GPT-2 model on taxonomic abundance profiles, and converting MetaPhlAn, Kraken2, QIIME 2, or MGnify abundance tables into waypoint format.",
+            "zh": "用于 Outpost Bio 开源微生物组基础模型的工作流——Waypoint 系列 checkpoint（Waypoint-6m、Waypoint-45m、Waypoint-170m）、Atlas 预训练语料、Compass 八任务基准以及 waypoint-bio 包提供的 waypoint CLI。涵盖微生物组样本嵌入、基于物种丰度数据的微调、在 Compass 上评测 checkpoint、以物种丰度谱预训练 GPT-2 模型，以及将 MetaPhlAn、Kraken2、QIIME 2 或 MGnify 丰度表转换为 waypoint 格式。"
+          },
+          "sparse_path": "skills/waypoint-bio",
+          "category": "research",
+          "subdiscipline": "life-sci",
+          "license": "MIT",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/K-Dense-AI/scientific-agent-skills.git",
+            "sparse_path": "skills/waypoint-bio"
+          },
+          "post_install": [
+            "clean_ads"
+          ]
+        },
+        {
           "id": "sa.what-if-oracle",
           "name": "what-if-oracle",
           "summary": {
@@ -3263,7 +3323,7 @@
       "repository": "https://github.com/AIScientists-Dev/academic-humanizer",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 890,
+      "stars": 1214,
       "featured": true,
       "tags": [
         "writing",
@@ -3288,7 +3348,7 @@
       "repository": "https://github.com/blader/humanizer",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 34269,
+      "stars": 38932,
       "tags": [
         "writing",
         "tone",
@@ -3312,7 +3372,7 @@
       "repository": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
       "license": "MIT",
       "skill_count": 98,
-      "stars": 11502,
+      "stars": 12170,
       "tags": [
         "AI",
         "deep-learning",
@@ -6180,7 +6240,7 @@
       "repository": "https://github.com/op7418/Humanizer-zh",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 14878,
+      "stars": 16315,
       "tags": [
         "chinese",
         "writing",
@@ -6197,14 +6257,14 @@
       "id": "nature-skills",
       "name": "Nature Skills",
       "summary": {
-        "en": "19 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
-        "zh": "19 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
+        "en": "20 Nature-focused academic skills for manuscript writing, polishing, citation, data availability, figures, paper reading, reviewer responses, slides, and literature search.",
+        "zh": "20 个面向 Nature 风格学术工作的 skill，覆盖论文写作、润色、引用、数据可用性、图表、论文精读、审稿回复、汇报幻灯片和文献检索。"
       },
       "author": "Yuan1z0825",
       "repository": "https://github.com/Yuan1z0825/nature-skills",
       "license": "Apache-2.0",
-      "skill_count": 19,
-      "stars": 34004,
+      "skill_count": 20,
+      "stars": 37932,
       "tags": [
         "nature",
         "writing",
@@ -6319,6 +6379,22 @@
           "post_install": []
         },
         {
+          "id": "ns.nature-image2ppt",
+          "name": "nature-image2ppt",
+          "summary": {
+            "en": "Convert slide images, screenshots, scanned PDFs, and image-only PPT/PPTX files into high-fidelity object-level editable PowerPoint, including semantic-region mixed reconstruction, measured flowcharts and knowledge graphs, native circle nodes and connectors, single-object thin and filled arrows, speaker-note preservation, and rendered QA. Use for 图片转可编辑PPT、截图还原PPT、扫描PDF恢复、图片型PPTX转换、流程图/知识图谱/复合图形/箭头重建; not for authoring a new deck from notes.",
+            "zh": "将幻灯片图片、截图、扫描版 PDF 以及纯图片型 PPT/PPTX 转换为对象级可编辑的 PowerPoint，支持语义区域混合重建、按测量还原的流程图与知识图谱、原生圆形节点与连接线、单对象细箭头与实心箭头、备注保留以及渲染后质检。适用于图片转可编辑 PPT、截图还原 PPT、扫描 PDF 恢复、图片型 PPTX 转换与流程图/知识图谱/复合图形/箭头重建；不用于从笔记新建演示文稿。"
+          },
+          "sparse_path": "skills/nature-image2ppt",
+          "category": "visualization",
+          "install": {
+            "method": "sparse-checkout",
+            "url": "https://github.com/Yuan1z0825/nature-skills.git",
+            "sparse_path": "skills/nature-image2ppt"
+          },
+          "post_install": []
+        },
+        {
           "id": "ns.nature-literature-pipeline",
           "name": "nature-literature-pipeline",
           "summary": {
@@ -6388,7 +6464,7 @@
           "id": "ns.nature-polishing",
           "name": "nature-polishing",
           "summary": {
-            "en": "Polish, restructure, or translate academic prose into Nature-leaning English using writing-strategy principles, curated Nature/Nature Communications article patterns, and phrase-level support from Academic Phrasebank. Use whenever the user asks to polish a manuscript paragraph, abstract, introduction, results, discussion, conclusion, title, methods section, or Chinese academic draft for publication-quality English. Also covers LaTeX layout/typesetting (排版) fixes — loose or sparse pages, stranded section headings, figures that don't fill the page or split across pages, \"Float too large\", multi-panel figure arrangement, and Supplementary Information that looks empty — via references/latex-layout.md. Also trigger on general academic/scientific writing requests even without the word \"Nature\", including academic writing, scientific writing, SCI/paper writing, English manuscript polishing, language editing, proofreading, and Chinese phrasings such as 学术写作、科研写作、论文润色、写paper、SCI写作、英文论文润色、语言润色、润色、改写、学术英语、英文写作.",
+            "en": "Polish, restructure, or translate academic prose into concise Nature-leaning English while preserving facts, evidence boundaries, terminology, and citation intent. Use for manuscript paragraphs, abstracts, introductions, Results, discussions, conclusions, titles, Methods, Chinese drafts, proofreading, language editing, and general academic or scientific writing. Also use to shorten bloated Results, allocate evidence across main text, captions, and Supplementary Information, prevent reviewer-driven revision accretion, reduce repeated statistics or claims, and apply paragraph-necessity checks. Covers LaTeX layout or typesetting fixes such as sparse pages, stranded headings, oversized or split figures, float errors, multi-panel arrangement, and sparse Supplementary Information via references/latex-layout.md. Trigger on 学术写作、科研写作、论文润色、SCI写作、英文论文润色、语言润色、润色、改写、学术英语、排版.",
             "zh": "根据写作策略原则、精选 Nature/Nature Communications 文章模式和 Academic Phrasebank 的短语级支持，将学术文本润色、重组或翻译为偏 Nature 风格的英文。用户需要润色稿件段落、摘要、引言、结果、讨论、结论、标题、方法部分，或将中文学术初稿改写为发表级英文时使用。"
           },
           "sparse_path": "skills/nature-polishing",
@@ -6454,7 +6530,7 @@
           "id": "ns.nature-response",
           "name": "nature-response",
           "summary": {
-            "en": "Draft, audit, or revise Nature-style revision correspondence packages: point-by-point reviewer-separated response letters, rebuttal letters, revision cover letters, LaTeX cover/response templates, and red-marked revised-manuscript excerpts. Keep mutually blind reviewers isolated so no reviewer-facing response reveals another reviewer's comments, numbering, recommendation, or author response. Use for reviewer comments, editor decision letters, pasted editorial emails, response drafts, cover letters, response to reviewers, rebuttal, 修回信, 返修邮件, 编辑邮件, 返修 cover letter, 审稿意见回复, 逐点回复, 大修回复, 小修回复, 回复审稿人, 修改稿回复, 写rebuttal, 回应审稿意见, 标红修改, or LaTeX 模板.",
+            "en": "Draft, audit, or revise Nature-style revision correspondence packages: point-by-point reviewer-separated response letters, rebuttal letters, revision cover letters, LaTeX cover/response templates, and red-marked revised-manuscript excerpts. Keep mutually blind reviewers isolated so no reviewer-facing response reveals another reviewer's comments, numbering, recommendation, or author response. Prevent reviewer-driven manuscript accretion by preferring replacement, compression, or SI relocation over appending non-central defense prose. Use for reviewer comments, editor decision letters, pasted editorial emails, response drafts, cover letters, response to reviewers, rebuttal, 修回信, 返修邮件, 编辑邮件, 返修 cover letter, 审稿意见回复, 逐点回复, 大修回复, 小修回复, 回复审稿人, 修改稿回复, 写rebuttal, 回应审稿意见, 标红修改, or LaTeX 模板.",
             "zh": "为 Nature 系列稿件修回起草、审查或修订逐点审稿回复信。用户提供审稿意见、编辑决定信、修回笔记、回复草稿，或询问如何回应大修/小修、rebuttal letter、response to reviewers、peer-review reports、审稿意见回复、逐点回复、修回信、大修回复、小修回复、如何回复 reviewer 时使用。"
           },
           "sparse_path": "skills/nature-response",
@@ -6486,7 +6562,7 @@
           "id": "ns.nature-shared",
           "name": "nature-shared",
           "summary": {
-            "en": "Internal shared-reference support package for installed nature-writing, nature-polishing, nature-reader, and nature-paper2ppt skills. Do not invoke it as a standalone user workflow. Load only the specific core or journal-format file requested by another Nature skill.",
+            "en": "Internal shared-reference support package for installed Nature Skills, including nature-writing, nature-polishing, nature-response, nature-reader, and nature-paper2ppt. Do not invoke it as a standalone user workflow. Load only the specific core or journal-format file requested by another Nature skill.",
             "zh": "nature-writing、nature-polishing、nature-reader、nature-paper2ppt 等 Nature 系列 skill 的内部共享参考支撑包，不作为独立用户流程调用；仅在其他 Nature skill 请求时按需加载对应的核心或期刊格式文件。与这些 skill 单独安装时需一并选择。"
           },
           "sparse_path": "skills/nature-shared",
@@ -6518,7 +6594,7 @@
           "id": "ns.nature-writing",
           "name": "nature-writing",
           "summary": {
-            "en": "Draft, restructure, or plan Nature-style manuscript sections and initial-submission materials from author-provided claims, results, figures, notes, or Chinese drafts. Use when the user wants to write or rebuild an abstract, introduction, related-work, method, experiments, discussion, conclusion, title, full manuscript argument, pre-submission cover letter, title page, highlights, author-contribution statement, availability/declaration text, reviewer suggestions, or a complete initial submission package rather than only polish finished prose. Also trigger on general academic-writing and first-submission requests such as writing a paper from scratch, drafting a manuscript/section, structuring a paper, submission package, 投稿材料、首次投稿、投稿前 cover letter、投稿信、标题页、亮点、作者贡献、数据可用性声明、推荐审稿人.",
+            "en": "Draft, restructure, or plan Nature-style manuscript sections and initial-submission materials from author-provided claims, results, figures, notes, or Chinese drafts. Use for abstracts, introductions, related work, methods, Results or experiments, discussions, conclusions, titles, full manuscript arguments, and first-submission packages such as cover letters, title pages, highlights, author contributions, availability or declaration text, and reviewer suggestions. Also use to classify Results evidence, decide what belongs in main text, captions, Methods or source data, or Supplementary Information, compress Results to the shortest sufficient evidence chain, prevent revision accretion, and audit paragraph necessity or claim repetition. Trigger on drafting a paper or section, structuring a manuscript, academic writing, first submission, 投稿材料、首次投稿、投稿信、标题页、亮点、作者贡献、数据可用性声明、推荐审稿人.",
             "zh": "根据作者提供的 claims、结果、图表、笔记或中文草稿，起草、重组或规划 Nature 风格稿件章节。用户想写作或重建摘要、引言、结果叙事、讨论、结论、标题或整篇稿件论证，而不是只润色已完成文本时使用。"
           },
           "sparse_path": "skills/nature-writing",
@@ -6543,7 +6619,7 @@
       "repository": "https://github.com/HughYau/qiushi-skill",
       "license": "MIT",
       "skill_count": 11,
-      "stars": 3687,
+      "stars": 3754,
       "tags": [
         "workflow",
         "methodology",
@@ -6568,7 +6644,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "Apache-2.0",
       "skill_count": 32,
-      "stars": 2439,
+      "stars": 2496,
       "tags": [
         "anthropic",
         "claude-science",
@@ -7156,7 +7232,7 @@
       "repository": "https://github.com/HughYau/AcademicForge",
       "license": "MIT",
       "skill_count": 1,
-      "stars": 2439,
+      "stars": 2496,
       "tags": [
         "visualization",
         "matplotlib",
@@ -7181,7 +7257,7 @@
       "repository": "https://github.com/ethanweber/posterskill",
       "license": "See repository",
       "skill_count": 1,
-      "stars": 593,
+      "stars": 610,
       "tags": [
         "poster",
         "visualization",
@@ -7206,7 +7282,7 @@
       "repository": "https://github.com/Lylll9436/Paper-Polish-Workflow-skill",
       "license": "MIT",
       "skill_count": 16,
-      "stars": 382,
+      "stars": 384,
       "tags": [
         "writing",
         "translation",

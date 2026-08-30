@@ -2,17 +2,18 @@
 
 > Give this file to an agent whenever it is asked to refresh, repair, or extend the AcademicForge skill catalog. It contains the operating procedure and the project-specific context it needs; do not rely on an old conversation for catalog facts.
 >
-> Last verified against the repository on 2026-08-08.
+> Last verified against the repository on 2026-08-30.
 
 ## Scope and source of truth
 
 - The authoritative catalog is [`registry/skills.json`](../registry/skills.json). Never edit `site/public/skills.json` or `site/public/index.slim.json` by hand: they are generated copies.
 - The catalog lives on `site-first`, the project's main (default) branch. There is no separate legacy branch.
 - `skill_count` means the number of `SKILL.md` files that this pack intentionally exposes. Count actual files; never infer it from a README. For an expanded collection the indexer overwrites this field with the number of sub-skills it actually collected, so do not hand-edit it there.
-- The catalog currently contains **12 top-level packs**. **Four** are expanded into individually selectable sub-skills; the remaining eight are installed as a complete pack.
+- The catalog currently contains **13 top-level packs**. **Four** are expanded into individually selectable sub-skills; the remaining nine are installed as a complete pack.
 - Two packs are maintained inside this repository under [`skills/`](../skills) (`claude-science`, `scientific-visualization`). They install by sparse-checkout of AcademicForge itself, so their `stars` value is AcademicForge's own star count, not an upstream project's.
 - Star counts are a timestamped snapshot, not a permanent fact. Always refresh them in the same run that changes the catalog.
 - `is_collection` and `sub_skills` are written by `scripts/build-skill-index.mjs`. Treat them as generated fields inside an otherwise hand-maintained file.
+- An optional `featured: true` flag pins a pack to the top of its category on the site. It is hand-set and deliberately rare — `academic-humanizer` is the only entry using it. The indexer and validator ignore it; the site's sorting reads it.
 
 ## Read this before editing
 
@@ -46,6 +47,7 @@
 | `nature-skills` | `Yuan1z0825/nature-skills` | Expanded collection: clone `skills/`, prefix child IDs with `ns.`. |
 | `scientific-visualization` | Local, `skills/scientific-visualization/` | Single locally maintained skill; sparse-checkout of `HughYau/AcademicForge`. |
 | `humanizer` / `humanizer-zh` | `blader/humanizer`, `op7418/Humanizer-zh` | Full pack clone. |
+| `academic-humanizer` | `AIScientists-Dev/academic-humanizer` | Full pack clone; single skill. Carries `featured: true` so the site pins it first under Writing & polishing. Its MIT `LICENSE` has an added attribution preamble, so the GitHub API reports `NOASSERTION` — see the license note in step 2. |
 | `qiushi-skill`, `posterskill`, `paper-polish-workflow-skill` | `HughYau/qiushi-skill`, `ethanweber/posterskill`, `Lylll9436/Paper-Polish-Workflow-skill` | Full pack clone; keep their existing install methods. |
 
 ### Important upstream-path history
@@ -93,9 +95,11 @@ Run these steps in order from the repository root.
 
    Nothing automates the other two per-source facts, so check both by hand in the same run:
 
-   - **Measured count for the eight non-expanded packs.** `refresh:stars` does not touch `skill_count`, and the indexer only recomputes it for the four collections. Count `SKILL.md` files in the upstream tree (scoped to `install.sparse_path` when one is set) and compare. The 2026-08-08 refresh found `superpowers` at 15 → 14 and `paper-polish-workflow-skill` at 15 → 16.
+   - **Measured count for the nine non-expanded packs.** `refresh:stars` does not touch `skill_count`, and the indexer only recomputes it for the four collections. Count `SKILL.md` files in the upstream tree (scoped to `install.sparse_path` when one is set) and compare. The 2026-08-08 refresh found `superpowers` at 15 → 14 and `paper-polish-workflow-skill` at 15 → 16; the 2026-08-30 refresh found all nine already correct.
    - **The leading number inside `summary.en` / `summary.zh`.** For collections the indexer rewrites it; for a non-expanded pack it is plain prose and will silently contradict `skill_count` unless you edit both.
    - **License state.** Re-read `license` from the GitHub API rather than trusting the stored value. The 2026-08-08 refresh found `nature-skills` recorded as MIT when upstream ships Apache-2.0, and `humanizer` recorded as `See repository` when upstream ships MIT. For the two local packs the stored value describes the *skill content* (Apache-2.0 for Anthropic's Claude Science, MIT for `scientific-visualization`), not AcademicForge's own repository license — the API's `NOASSERTION` for those is expected and not a defect.
+
+     `NOASSERTION` from the API means "a `LICENSE` file exists but does not match a known template verbatim", which is not the same as unlicensed. `academic-humanizer` reports it because its otherwise-standard MIT text carries an added upstream-attribution paragraph; `MIT` is the correct recorded state there. Read the actual `LICENSE` before changing a recorded value on the strength of an API mismatch.
 
 3. Regenerate the public catalog artifacts after all registry changes:
 
@@ -108,7 +112,7 @@ Run these steps in order from the repository root.
 4. Update the hand-maintained companions when sources changed. None of these are generated:
 
    - `site/public/agents.md` — the agent-facing guide served next to the catalog.
-   - `ATTRIBUTIONS.md` — per-source credit and license notes, one numbered section per pack plus a license-summary table and a dated version-history table. All 12 packs have a section as of 2026-08-08; add one for any pack you introduce, and append a version-history row for every refresh that changes a count or a license.
+   - `ATTRIBUTIONS.md` — per-source credit and license notes, one numbered section per pack plus a license-summary table and a dated version-history table. All 13 packs have a section as of 2026-08-30; add one for any pack you introduce, and append a version-history row for every refresh that changes a count or a license.
    - `README.md` / `README_en.md` — these avoid hardcoded pack counts on purpose; keep it that way.
 
 5. Validate before handing off:
