@@ -332,6 +332,8 @@ const ORIGIN_PACKAGES = [
 </section>
 
 <script>
+  import { matchesSearch } from '../lib/search.mjs';
+
   const skillCards = Array.from(document.querySelectorAll<HTMLElement>('.skill-card'));
   const skillGroups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.skill-group--sub'));
   const categoryTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category-tab]'));
@@ -445,13 +447,13 @@ const ORIGIN_PACKAGES = [
   };
 
   const applyFilters = () => {
-    const query = searchInput?.value.trim().toLowerCase() ?? '';
-    const hasQuery = query.length > 0;
+    const rawQuery = searchInput?.value ?? '';
+    const hasQuery = rawQuery.trim().length > 0;
     visibleCount = 0;
 
     skillCards.forEach((card) => {
       const search = card.dataset.search ?? '';
-      const matchesQuery = !query || search.includes(query);
+      const matchesQuery = matchesSearch(search, rawQuery);
       const matchesTag = !activeTag || search.includes(activeTag);
       const matchesOrigin = !activeOrigin || card.dataset.origin === activeOrigin;
       const isVisible = matchesQuery && matchesTag && matchesOrigin;

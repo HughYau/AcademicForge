@@ -38,9 +38,9 @@ ID rules:
 
 - A top-level id (no dot, e.g. `humanizer`, `superpowers`) installs that whole
   repository.
-- A prefixed id (e.g. `sa.scanpy`, `ns.figure-design`, `air.rag`) installs one
+- A prefixed id (e.g. `sa.scanpy`, `ns.nature-figure`, `air.llamaindex`) installs one
   sub-skill from a collection. Prefer individual sub-skills over installing a
-  whole large collection — `scientific-agent-skills` alone contains 163 skills
+  whole large collection — `scientific-agent-skills` alone contains 173 skills
   and most users need only a few. Read `skill_count` from the catalog rather
   than trusting a number quoted here; upstream collections grow.
 - Mixing both kinds in one command is fine.

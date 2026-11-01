@@ -96,7 +96,7 @@ test('classifies and translates the current upstream additions', () => {
   const expectedClassification = {
     'sa.arbor': { category: 'research', subdiscipline: null },
     'sa.experimental-design': { category: 'research', subdiscipline: null },
-    'sa.pi-agent': { category: 'workflow' },
+    'sa.pi-agent': { category: 'workflow', disabled: true },
     'sa.statistical-power': { category: 'research', subdiscipline: null },
     'sa.onekgpd': { category: 'research', subdiscipline: 'life-sci' },
     'sa.tamarind': { category: 'research', subdiscipline: 'life-sci' },
@@ -127,6 +127,29 @@ test('classifies and translates the current upstream additions', () => {
     'sa.ncats-arax': { category: 'research', subdiscipline: 'life-sci' },
     'sa.waypoint-bio': { category: 'research', subdiscipline: 'life-sci' },
     'ns.nature-image2ppt': { category: 'visualization' },
+    // 2026-11-01 refresh: scientific-agent-skills 163 -> 177, nature-skills 20 -> 24.
+    'sa.13c-metabolic-flux': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.alphagenome': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.cantera': { category: 'research', subdiscipline: 'chem-mat-phys' },
+    'sa.cellprofiler': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.datalad': { category: 'research', subdiscipline: null },
+    'sa.fictiv': { category: 'research', subdiscipline: 'lab-automation', disabled: true },
+    'sa.flowkit': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.folklore-variant-evidence': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.mageck': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.marine-carbonate-chemistry': { category: 'research', subdiscipline: 'earth-geo' },
+    'sa.nmrglue': { category: 'research', subdiscipline: 'chem-mat-phys' },
+    'sa.nwb-conversion': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.primer-design': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.pybamm': { category: 'research', subdiscipline: 'chem-mat-phys' },
+    'sa.pycalphad': { category: 'research', subdiscipline: 'chem-mat-phys' },
+    'sa.qiime2-amplicon': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.relion': { category: 'research', subdiscipline: 'life-sci' },
+    'sa.tellurium': { category: 'research', subdiscipline: 'life-sci' },
+    'ns.nature-paper-trans': { category: 'writing' },
+    'ns.nature-paper-xray': { category: 'writing' },
+    'ns.nature-paper2word': { category: 'writing' },
+    'ns.nature-social-science': { category: 'writing' },
   };
 
   for (const [id, expected] of Object.entries(expectedClassification)) {
@@ -149,6 +172,13 @@ test('retired upstream skill ids are not resurrected', () => {
   assert.equal(classification['sa.iso-13485-certification'], undefined);
   assert.equal(translations['sa.iso-13485-certification'], undefined);
   assert.ok(classification['sa.iso-standards-readiness'], 'replacement id is classified');
+
+  // Upstream removed its vendored office-document skills (docx, pdf, pptx, xlsx) with no
+  // replacement by 2026-10-26; they were retired in the 2026-11-01 refresh.
+  for (const id of ['sa.docx', 'sa.pdf', 'sa.pptx', 'sa.xlsx']) {
+    assert.equal(classification[id], undefined, `${id} was removed upstream`);
+    assert.equal(translations[id], undefined, `${id} was removed upstream`);
+  }
 });
 
 test('claude-science is registered as a locally maintained collection', () => {
@@ -296,4 +326,61 @@ test('PowerShell installer exits nonzero when a pack fails to install', (t) => {
   } finally {
     rmSync(rootDir, { recursive: true, force: true });
   }
+});
+
+test('agents.md only cites skill ids that exist in the registry', () => {
+  const registry = JSON.parse(
+    readFileSync(new URL('../../registry/skills.json', import.meta.url), 'utf8'),
+  );
+  const agentsGuide = readFileSync(new URL('../../site/public/agents.md', import.meta.url), 'utf8');
+  const ids = new Set(registry.skills.flatMap((skill) => [skill.id, ...(skill.sub_skills ?? []).map((sub) => sub.id)]));
+  const prefixes = new Set(collections.map((collection) => collection.prefix));
+
+  // Agents copy example ids straight into install commands, so a stale one is a broken install.
+  const cited = [...agentsGuide.matchAll(/`([a-z0-9]+)\.([a-z0-9][a-z0-9.-]*)`/g)]
+    .filter(([, prefix]) => prefixes.has(prefix))
+    .map(([, prefix, rest]) => `${prefix}.${rest}`);
+
+  assert.ok(cited.length > 0, 'expected agents.md to cite at least one sub-skill id');
+  for (const id of cited) {
+    assert.ok(ids.has(id), `agents.md cites unknown skill id ${id}`);
+  }
+});
+
+test('owner-removed packs and hidden sub-skills stay out of the catalog', () => {
+  const registry = JSON.parse(
+    readFileSync(new URL('../../registry/skills.json', import.meta.url), 'utf8'),
+  );
+  const classification = JSON.parse(
+    readFileSync(new URL('../skill-classification.json', import.meta.url), 'utf8'),
+  );
+  const ids = new Set(registry.skills.flatMap((skill) => [skill.id, ...(skill.sub_skills ?? []).map((sub) => sub.id)]));
+
+  // 2026-11-02 owner decision. Top-level packs: not academic / no license / superseded.
+  for (const id of ['andrej-karpathy-skills', 'posterskill']) {
+    assert.equal(ids.has(id), false, `${id} was removed by the owner`);
+  }
+
+  // Upstream sub-skills hidden as off-topic for an academic catalog (fictiv also places paid orders).
+  for (const id of ['sa.fictiv', 'sa.usfiscaldata', 'sa.market-research-reports', 'sa.pi-agent']) {
+    assert.equal(classification[id]?.disabled, true, `${id} should stay disabled`);
+    assert.equal(ids.has(id), false, `${id} should not be published`);
+  }
+});
+
+test('owner-approved anti-defensive-writing pack installs only its skills directory', () => {
+  const registry = JSON.parse(
+    readFileSync(new URL('../../registry/skills.json', import.meta.url), 'utf8'),
+  );
+  const pack = registry.skills.find((skill) => skill.id === 'anti-defensive-writing');
+
+  // 2026-11-02 owner approval. Upstream root also holds Codex-plugin packaging and prompts.
+  assert.ok(pack, 'anti-defensive-writing should be in the catalog');
+  assert.deepEqual(pack.install, {
+    method: 'sparse-checkout',
+    url: 'https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill.git',
+    sparse_path: 'skills',
+  });
+  assert.equal(pack.license, 'MIT');
+  assert.equal(pack.skill_count, 2);
 });

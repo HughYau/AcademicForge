@@ -34,7 +34,7 @@ This means:
 - **Modifications**: None (installed from upstream via git clone, or sparse checkout for individual sub-skills)
 - **Original License Text**: See upstream `LICENSE.md`
 
-**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. As of the 2026-08-30 refresh it provides 163 ready-to-use scientific and research skills, broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with scientific databases and optimized Python package workflows.
+**Why we included it**: The most comprehensive scientific skills collection available, now published as Scientific Agent Skills. As of the 2026-11-01 refresh upstream provides 177 scientific and research skills, of which 173 are listed here (four off-topic ones are hidden: `fictiv`, `usfiscaldata`, `market-research-reports`, `pi-agent`), broad AI-agent compatibility via the open Agent Skills standard, coverage across 15+ domains, and deep integration with scientific databases and optimized Python package workflows.
 
 ---
 
@@ -94,7 +94,7 @@ This means:
 - **Modifications**: None. Installed by sparse checkout of the upstream `skills/` directory only, so plugin/non-skill directories are intentionally excluded.
 - **Original License Text**: See upstream `obra/superpowers` repository
 
-**Why we included it**: Adds battle-tested workflow skills like brainstorming, writing-plans, systematic-debugging, and test-driven-development that complement academic and research implementation workflows. The upstream `skills/` directory holds 14 skills as of the 2026-08-30 refresh.
+**Why we included it**: Adds battle-tested workflow skills like brainstorming, writing-plans, systematic-debugging, and test-driven-development that complement academic and research implementation workflows. The upstream `skills/` directory holds 15 skills as of the 2026-11-01 refresh.
 
 ---
 
@@ -109,7 +109,7 @@ This means:
 - **Modifications**: None (installed from upstream via git clone)
 - **Original License Text**: See upstream `LICENSE`
 
-**Why we included it**: It adds a tightly integrated paper-writing workflow pack that complements Academic Forge's research and visualization skills with bilingual translation, polishing, reviewer simulation, literature search, and submission-focused helpers. The pack holds 16 skills as of the 2026-08-30 refresh.
+**Why we included it**: It adds a tightly integrated paper-writing workflow pack that complements Academic Forge's research and visualization skills with bilingual translation, polishing, reviewer simulation, literature search, and submission-focused helpers. The pack holds 16 skills as of the 2026-11-01 refresh.
 
 ---
 
@@ -139,7 +139,7 @@ This means:
 - **Modifications**: None (installed from upstream via git clone or sparse checkout for sub-skills)
 - **Original License Text**: See upstream `LICENSE`
 
-**Why we included it**: It provides a focused Nature-family publication workflow that complements Academic Forge's research, writing, citation, figure, and revision workflows with practical Chinese-author support. The pack holds 20 skills as of the 2026-08-30 refresh; `ns.nature-shared` is an internal shared-reference package that the other Nature skills load, so select it alongside them when installing individual sub-skills.
+**Why we included it**: It provides a focused Nature-family publication workflow that complements Academic Forge's research, writing, citation, figure, and revision workflows with practical Chinese-author support. The pack holds 24 skills as of the 2026-11-01 refresh; `ns.nature-shared` is an internal shared-reference package that the other Nature skills load, so select it alongside them when installing individual sub-skills.
 
 ---
 
@@ -158,22 +158,7 @@ This means:
 
 ---
 
-### 10. andrej-karpathy-skills
-
-**Original Repository**: [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
-
-- **Author**: multica-ai
-- **License**: No license file declared upstream — see the repository before redistributing
-- **Included Version**: Installed from the current upstream default branch at install time
-- **Purpose**: A single workflow skill encoding four coding principles — Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution
-- **Modifications**: None. Installed by sparse checkout of the upstream `skills/` directory only.
-- **Original License Text**: None published upstream at the time of review
-
-**Why we included it**: Research code drifts toward accidental complexity. This pack gives a short, opinionated discipline for keeping analysis code minimal and verifiable, complementing the heavier workflow packs.
-
----
-
-### 11. qiushi-skill
+### 10. qiushi-skill
 
 **Original Repository**: [HughYau/qiushi-skill](https://github.com/HughYau/qiushi-skill)
 
@@ -188,22 +173,7 @@ This means:
 
 ---
 
-### 12. posterskill
-
-**Original Repository**: [ethanweber/posterskill](https://github.com/ethanweber/posterskill)
-
-- **Author**: ethanweber
-- **License**: No license file declared upstream — see the repository before redistributing
-- **Included Version**: Installed from the current upstream default branch at install time
-- **Purpose**: Conference poster generation
-- **Modifications**: None (installed from upstream via git clone)
-- **Original License Text**: None published upstream at the time of review
-
-**Why we included it**: Poster production is a recurring, deadline-driven academic task that the writing and figure packs do not cover end to end.
-
----
-
-### 13. academic-humanizer
+### 11. academic-humanizer
 
 **Original Repository**: [AIScientists-Dev/academic-humanizer](https://github.com/AIScientists-Dev/academic-humanizer)
 
@@ -218,6 +188,21 @@ This means:
 
 ---
 
+### 12. anti-defensive-writing
+
+**Original Repository**: [Adkid-Zephyr/anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)
+
+- **Author**: Adkid-Zephyr
+- **License**: MIT License
+- **Included Version**: Installed from the current upstream default branch at install time
+- **Purpose**: Stops defensive writing in academic papers — frames drafts, revisions and rebuttals around the work's strongest contribution
+- **Modifications**: None (sparse checkout of upstream `skills/`)
+- **Original License Text**: See upstream `LICENSE`
+
+**Why we included it**: It targets a writing failure the humanizer packs do not cover — self-auditing, hedging and experiment-diary structure — and ships both a Chinese and an English skill. The upstream `skills/` directory holds 2 skills as of 2026-11-02.
+
+---
+
 ## License Compliance
 
 This forge's structure (configuration files, scripts, documentation) is licensed under MIT. However, **each included skill retains its original license**. When using Academic Forge, you must comply with:
@@ -227,7 +212,7 @@ This forge's structure (configuration files, scripts, documentation) is licensed
 
 ### License Summary
 
-Verified against each upstream repository on 2026-08-30.
+Verified against each upstream repository on 2026-11-01.
 
 | Skill | License | Commercial Use | Attribution Required |
 |-------|---------|----------------|---------------------|
@@ -242,10 +227,8 @@ Verified against each upstream repository on 2026-08-30.
 | nature-skills | Apache-2.0 | ✅ Yes | ✅ Yes |
 | claude-science | Apache-2.0† | ✅ Yes | ✅ Yes |
 | qiushi-skill | MIT | ✅ Yes | ✅ Yes |
-| andrej-karpathy-skills | None declared* | ⚠️ Check repo | ⚠️ Check repo |
-| posterskill | None declared* | ⚠️ Check repo | ⚠️ Check repo |
+| anti-defensive-writing | MIT | ✅ Yes | ✅ Yes |
 
-*No `LICENSE` file is published upstream. Default copyright applies: the code is readable on GitHub but not clearly licensed for redistribution or commercial use. Contact the author before relying on it in a commercial or redistributed product.
 
 †Most Claude Science skills are Apache-2.0; a few bundle their own `LICENSE.txt` — check each skill's frontmatter.
 
@@ -331,6 +314,13 @@ This document tracks which versions of each skill are included:
 | 2026-08-30 | scientific-agent-skills | upstream default branch | Catalog refresh: 160 → 163 skills (`lab-hardware-cad`, `ncats-arax`, `waypoint-bio`) |
 | 2026-08-30 | nature-skills | upstream default branch | Catalog refresh: 19 → 20 skills (`nature-image2ppt`) |
 | 2026-08-30 | all sources | upstream default branches | Stars refreshed; measured counts and license states re-verified — no count or license corrections needed this round |
+| 2026-11-01 | scientific-agent-skills | upstream default branch | Catalog refresh: 163 → 177 skills (+18); upstream removed its vendored office skills `docx`, `pdf`, `pptx`, `xlsx` |
+| 2026-11-01 | nature-skills | upstream default branch | Catalog refresh: 20 → 24 skills (`nature-paper-trans`, `nature-paper-xray`, `nature-paper2word`, `nature-social-science`) |
+| 2026-11-01 | superpowers | upstream default branch | Measured count 14 → 15 (`diagnosing-superpowers` added) |
+| 2026-11-01 | all sources | upstream default branches | Stars refreshed; license states re-verified from each upstream `LICENSE` file — no corrections |
+| 2026-11-01 | andrej-karpathy-skills, posterskill | — | **Removed by owner decision.** Karpathy pack: general coding guidelines, not academic, no license, inactive since 2026-04, overlaps `superpowers`. posterskill: no license, inactive since 2026-03, superseded by MIT-licensed `sa.latex-posters` / `sa.pptx-posters` |
+| 2026-11-02 | scientific-agent-skills | — | Owner decision: hid `sa.fictiv` (places paid manufacturing orders), `sa.usfiscaldata`, `sa.market-research-reports`, `sa.pi-agent` as off-topic via `disabled: true` |
+| 2026-11-02 | anti-defensive-writing | sparse checkout of Adkid-Zephyr/anti-defensive-writing-Skill `skills/` | Initial inclusion (owner-approved): 2 skills (zh + en), MIT |
 
 Packs are no longer vendored as git submodules. Every non-local pack is fetched from its upstream
 default branch at install time by `scripts/forge-install.sh` / `scripts/forge-install.ps1`, so the

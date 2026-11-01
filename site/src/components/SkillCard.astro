@@ -130,7 +130,7 @@ const compactTags = tags.slice(0, 3);
             )}
             <span>
               {formatCount(count)}
-              <span class="lang-en"> skills</span>
+              <span class="lang-en"> {count === 1 ? 'skill' : 'skills'}</span>
               <span class="lang-zh"> skill</span>
             </span>
           </div>

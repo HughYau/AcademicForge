@@ -2,14 +2,14 @@
 
 > Give this file to an agent whenever it is asked to refresh, repair, or extend the AcademicForge skill catalog. It contains the operating procedure and the project-specific context it needs; do not rely on an old conversation for catalog facts.
 >
-> Last verified against the repository on 2026-08-30.
+> Last verified against the repository on 2026-11-01.
 
 ## Scope and source of truth
 
 - The authoritative catalog is [`registry/skills.json`](../registry/skills.json). Never edit `site/public/skills.json` or `site/public/index.slim.json` by hand: they are generated copies.
 - The catalog lives on `site-first`, the project's main (default) branch. There is no separate legacy branch.
 - `skill_count` means the number of `SKILL.md` files that this pack intentionally exposes. Count actual files; never infer it from a README. For an expanded collection the indexer overwrites this field with the number of sub-skills it actually collected, so do not hand-edit it there.
-- The catalog currently contains **13 top-level packs**. **Four** are expanded into individually selectable sub-skills; the remaining nine are installed as a complete pack.
+- The catalog currently contains **12 top-level packs**. **Four** are expanded into individually selectable sub-skills; the remaining eight are installed as a complete pack.
 - Two packs are maintained inside this repository under [`skills/`](../skills) (`claude-science`, `scientific-visualization`). They install by sparse-checkout of AcademicForge itself, so their `stars` value is AcademicForge's own star count, not an upstream project's.
 - Star counts are a timestamped snapshot, not a permanent fact. Always refresh them in the same run that changes the catalog.
 - `is_collection` and `sub_skills` are written by `scripts/build-skill-index.mjs`. Treat them as generated fields inside an otherwise hand-maintained file.
@@ -40,7 +40,6 @@
 | ID | Upstream | Install/index rule |
 | --- | --- | --- |
 | `superpowers` | `obra/superpowers` | Sparse checkout of `skills/`; installed as one pack (not expanded). |
-| `andrej-karpathy-skills` | `multica-ai/andrej-karpathy-skills` | Sparse checkout of `skills/`; single skill. |
 | `claude-science` | Local, `skills/claude-science/` | Expanded collection, `local: true`. Read from disk with no clone; child IDs prefixed `cs.`; each child installs by sparse-checkout of `HughYau/AcademicForge`. Credited to `anthropics` (Apache-2.0). |
 | `scientific-agent-skills` | `K-Dense-AI/scientific-agent-skills` | Expanded collection: clone `skills/`, prefix child IDs with `sa.`. Top-level install is `git-clone` with the `clean_ads` post-install step. |
 | `AI-research-SKILLs` | `Orchestra-Research/AI-Research-SKILLs` | Expanded collection: scan the repository root (`relativeRoot: ''`, `includeRootSkill: true`), prefix child IDs with `air.`. |
@@ -48,7 +47,8 @@
 | `scientific-visualization` | Local, `skills/scientific-visualization/` | Single locally maintained skill; sparse-checkout of `HughYau/AcademicForge`. |
 | `humanizer` / `humanizer-zh` | `blader/humanizer`, `op7418/Humanizer-zh` | Full pack clone. |
 | `academic-humanizer` | `AIScientists-Dev/academic-humanizer` | Full pack clone; single skill. Carries `featured: true` so the site pins it first under Writing & polishing. Its MIT `LICENSE` has an added attribution preamble, so the GitHub API reports `NOASSERTION` — see the license note in step 2. |
-| `qiushi-skill`, `posterskill`, `paper-polish-workflow-skill` | `HughYau/qiushi-skill`, `ethanweber/posterskill`, `Lylll9436/Paper-Polish-Workflow-skill` | Full pack clone; keep their existing install methods. |
+| `qiushi-skill`, `paper-polish-workflow-skill` | `HughYau/qiushi-skill`, `Lylll9436/Paper-Polish-Workflow-skill` | Full pack clone; keep their existing install methods. |
+| `anti-defensive-writing` | `Adkid-Zephyr/anti-defensive-writing-Skill` | Sparse checkout of `skills/` (2 skills: Chinese + English); the rest of the repo is Codex-plugin packaging and prompts. Added 2026-11-02 by owner approval. |
 
 ### Important upstream-path history
 
@@ -61,7 +61,13 @@ The same upstream also renames individual skills. On or before 2026-08-08 it rep
 - On 2026-06-20, `zLanqing/codex-claude-academic-skills` had three useful primary skills and an MIT license, but its full-pack clone failed under the normal Windows installer temporary path: vendored reference files exceeded the Windows filename limit and Git exited 128 after a partial checkout. Do not add it as a `git-clone` pack unless the installer supports safely selecting only the primary skill directories and that path is smoke-tested on Windows.
 - `academic-research-skills`, `deep-research-skills`, `phd-skills`, and `voidful-academic-skills` were surveyed but never approved by the owner.
 
-All five exclusions are locked in by the `registry excludes community packs that have not received user approval` test in `scripts/tests/build-skill-index.test.mjs`. If the owner later approves one of them, update that test in the same change — do not delete the assertion to make a build pass.
+On 2026-11-02 the owner also **removed** two former packs: `andrej-karpathy-skills` (general coding guidelines, not academic, no license, inactive since 2026-04, overlaps `superpowers`) and `ethanweber/posterskill` (no license, inactive since 2026-03, superseded by the MIT-licensed `sa.latex-posters` and `sa.pptx-posters`). The `owner-removed packs and hidden sub-skills stay out of the catalog` test locks this in.
+
+### Reviewed and deliberately kept
+
+Nine `claude-science` sub-skills call tools that exist only in Anthropic's Claude Science runtime (`repl`, `submit_job`, `list_compute`, `host.*`): `self-awareness`, `customize`, `managed-model-endpoints`, `using-model-endpoint`, `remote-compute-modal`, `remote-compute-ssh`, `compute-env-setup`, `skill-creator`, `product-self-knowledge`. On 2026-11-02 the owner decided to **keep** them. Do not propose removing them again on those grounds.
+
+The five exclusions above are locked in by the `registry excludes community packs that have not received user approval` test in `scripts/tests/build-skill-index.test.mjs`. If the owner later approves one of them, update that test in the same change — do not delete the assertion to make a build pass.
 
 ## Standard refresh procedure
 
@@ -83,7 +89,7 @@ Run these steps in order from the repository root.
 
    If the build reports `Missing classification for <id> (<path>)`, do not disable the skill just to make it pass. Read its upstream frontmatter, choose a real category in `scripts/skill-classification.json`, add a Chinese summary in `scripts/skill-translations.zh.json`, add a regression assertion, then rerun. Categories are `research`, `writing`, `visualization`, and `workflow`. Research skills carry a `subdiscipline` — currently `life-sci`, `chem-mat-phys`, `earth-geo`, `lab-automation`, `multimodal`, `llm`, `other`, or an explicit `null`. Non-research categories usually omit the field.
 
-   A classification entry supports `disabled: true`, which makes the indexer skip that skill silently. No entry uses it today; it is for genuinely unusable upstream skills, not a shortcut around classification work.
+   A classification entry supports `disabled: true`, which makes the indexer skip that skill silently. It is for upstream skills the owner has decided not to publish, not a shortcut around classification work. Current entries (owner decision, 2026-11-02): `sa.fictiv` (operates a commercial manufacturing site end to end, including paid checkout), `sa.usfiscaldata`, `sa.market-research-reports`, and `sa.pi-agent` — all off-topic for an academic catalog. A disabled skill still needs its classification entry, and its `skill_count` drops accordingly (upstream 177 → 173 listed).
 
 2. Refresh GitHub stars for every top-level repository:
 
@@ -95,7 +101,7 @@ Run these steps in order from the repository root.
 
    Nothing automates the other two per-source facts, so check both by hand in the same run:
 
-   - **Measured count for the nine non-expanded packs.** `refresh:stars` does not touch `skill_count`, and the indexer only recomputes it for the four collections. Count `SKILL.md` files in the upstream tree (scoped to `install.sparse_path` when one is set) and compare. The 2026-08-08 refresh found `superpowers` at 15 → 14 and `paper-polish-workflow-skill` at 15 → 16; the 2026-08-30 refresh found all nine already correct.
+   - **Measured count for the eight non-expanded packs.** `refresh:stars` does not touch `skill_count`, and the indexer only recomputes it for the four collections. Count `SKILL.md` files in the upstream tree (scoped to `install.sparse_path` when one is set) and compare. The 2026-08-08 refresh found `superpowers` at 15 → 14 and `paper-polish-workflow-skill` at 15 → 16; the 2026-08-30 refresh found all nine already correct; the 2026-11-01 refresh found `superpowers` at 14 → 15.
    - **The leading number inside `summary.en` / `summary.zh`.** For collections the indexer rewrites it; for a non-expanded pack it is plain prose and will silently contradict `skill_count` unless you edit both.
    - **License state.** Re-read `license` from the GitHub API rather than trusting the stored value. The 2026-08-08 refresh found `nature-skills` recorded as MIT when upstream ships Apache-2.0, and `humanizer` recorded as `See repository` when upstream ships MIT. For the two local packs the stored value describes the *skill content* (Apache-2.0 for Anthropic's Claude Science, MIT for `scientific-visualization`), not AcademicForge's own repository license — the API's `NOASSERTION` for those is expected and not a defect.
 
@@ -111,8 +117,8 @@ Run these steps in order from the repository root.
 
 4. Update the hand-maintained companions when sources changed. None of these are generated:
 
-   - `site/public/agents.md` — the agent-facing guide served next to the catalog.
-   - `ATTRIBUTIONS.md` — per-source credit and license notes, one numbered section per pack plus a license-summary table and a dated version-history table. All 13 packs have a section as of 2026-08-30; add one for any pack you introduce, and append a version-history row for every refresh that changes a count or a license.
+   - `site/public/agents.md` — the agent-facing guide served next to the catalog. Agents copy its example ids straight into install commands, so the `agents.md only cites skill ids that exist in the registry` test fails if an example id goes stale (the 2026-11-01 refresh found `ns.figure-design` and `air.rag`, neither of which ever existed).
+   - `ATTRIBUTIONS.md` — per-source credit and license notes, one numbered section per pack plus a license-summary table and a dated version-history table. All 12 packs have a section as of 2026-11-02; add one for any pack you introduce, and append a version-history row for every refresh that changes a count or a license.
    - `README.md` / `README_en.md` — these avoid hardcoded pack counts on purpose; keep it that way.
 
 5. Validate before handing off:
@@ -191,6 +197,7 @@ After adding a pack, run `npm run refresh:stars` again so its saved star count i
 | `Local pack '<id>' is missing from <path>` | A registry entry claims a local `sparse_path` that no longer exists under `skills/`. | Restore the directory or fix `install.sparse_path`. |
 | `Skill '<id>' has untranslated summary.zh` | A new entry shipped with the English summary copied into `summary.zh`. | Write a real Chinese summary. |
 | Star refresh fails with 403 | GitHub API rate limit. | Use a temporary environment token; do not persist it. |
+| Manual count/license checks hit the rate limit | The unauthenticated API allows 60 requests/hour, and a refresh already spends ~13 on stars. | Measure from shallow clones instead (`git clone --depth 1 --filter=blob:none --no-checkout`, then `git ls-tree -r --name-only HEAD` for `SKILL.md` files and `git show HEAD:LICENSE` for the license). No API quota needed. |
 | Public site shows old data | Generated artifacts were not rebuilt. | Run `node scripts/build-slim-index.mjs` and inspect `site/public/`. |
 
 ## Definition of done
